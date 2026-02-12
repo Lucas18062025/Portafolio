@@ -24,11 +24,10 @@
             overflow-x: hidden;
         }
 
-        /* --- PORTADA CORREGIDA (FULL WIDTH & CONTRASTE) --- */
+        /* --- PORTADA PRESERVADA --- */
         header {
             height: 65vh;
             width: 100%;
-            /* Overlay más oscuro para resaltar el texto */
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('FOTO_PORTADA..jpg');
             background-size: cover;
             background-position: center;
@@ -73,7 +72,7 @@
             letter-spacing: 3px;
         }
 
-        /* --- STACK TECNOLÓGICO MEJORADO --- */
+        /* --- STACK TECNOLÓGICO CON ICONO SIEM CORREGIDO --- */
         .stack-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -86,7 +85,7 @@
             padding: 25px;
             border: 1px solid var(--border);
             border-radius: 4px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s;
         }
         .stack-item:hover { 
             border-color: var(--accent); 
@@ -108,7 +107,7 @@
         .card:hover { border-color: var(--accent); background: #050505; }
         .card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; }
 
-        /* --- BOTONES ESTILO TERMINAL --- */
+        /* --- BOTONES --- */
         .btn {
             display: inline-block;
             margin-top: 20px;
@@ -134,13 +133,11 @@
             border-top: 1px solid var(--border); 
             font-size: 0.8rem; 
             color: #444; 
-            letter-spacing: 1px;
         }
 
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
             header { height: 55vh; }
-            section { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -158,7 +155,7 @@
         <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
         <div class="stack-item"><i class="fab fa-linux"></i><span>LINUX</span></div>
         <div class="stack-item"><i class="fas fa-database"></i><span>SQL</span></div>
-        <div class="stack-item"><i class="fas fa-shield-halved"></i><span>SIEM/IDS</span></div>
+        <div class="stack-item"><i class="fas fa-user-shield"></i><span>SIEM/IDS</span></div>
         <div class="stack-item"><i class="fas fa-robot"></i><span>GEN AI</span></div>
     </div>
 </section>
@@ -167,7 +164,7 @@
     <h2>./whoami</h2>
     <p style="font-size: 1.15rem; max-width: 900px; color: #bbb;">
         Analista de ciberseguridad especializado en operaciones de Red Team y protección de infraestructuras críticas. 
-        Certificado por Google, fusiono la auditoría técnica con la automatización proactiva para blindar activos digitales contra amenazas avanzadas.
+        Certificado por Google, fusiono la auditoría técnica con la automatización proactiva para blindar activos digitales.
     </p>
 </section>
 
@@ -195,7 +192,7 @@
         </div>
         <div class="card">
             <h3>Google AI Essentials</h3>
-            <p>Dominio de IA Generativa y Prompt Engineering para optimizar la respuesta ante incidentes y productividad.</p>
+            <p>Dominio de IA Generativa y Prompt Engineering para optimizar la respuesta ante incidentes.</p>
             <a href="Google AI Essentials.pdf" target="_blank" class="btn">VER CREDENCIAL PDF</a>
         </div>
     </div>
