@@ -3,51 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas Villagra | Cybersecurity Analyst</title>
+    <title>Lucas Villagra | Cybersecurity Specialist</title>
     <style>
         :root {
-            --bg-dark: #0d1117;
+            --bg: #0d1117;
+            --card-bg: #161b22;
             --accent: #00ff41;
             --text: #c9d1d9;
+            --border: #30363d;
         }
-        body { background-color: var(--bg-dark); color: var(--text); font-family: 'Courier New', monospace; margin: 0; }
-        
-        /* HEADER CON IMAGEN REPARADA */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Courier New', monospace; line-height: 1.6; }
+
         header {
-            height: 60vh;
-            background: linear-gradient(rgba(13, 17, 23, 0.7), rgba(13, 17, 23, 0.8)), url('FOTO_PORTADA..jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-bottom: 2px solid var(--accent);
+            height: 65vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('FOTO_PORTADA..jpg');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; border-bottom: 2px solid var(--accent);
         }
 
-        h1 { color: #fff; font-size: 3rem; margin: 0; }
-        .tagline { color: var(--accent); font-weight: bold; margin-top: 10px; }
+        h1 { font-size: 3rem; color: #fff; letter-spacing: 5px; }
+        .tagline { color: var(--accent); font-weight: bold; margin: 10px 0; }
 
-        section { padding: 40px 20px; max-width: 900px; margin: auto; }
-        h2 { border-left: 4px solid var(--accent); padding-left: 15px; color: #fff; }
+        section { padding: 60px 20px; max-width: 1000px; margin: auto; }
+        h2 { border-left: 4px solid var(--accent); padding-left: 15px; color: #fff; text-transform: uppercase; margin-bottom: 30px; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: #161b22; padding: 20px; border: 1px solid #30363d; border-radius: 8px; }
-        
+        .card { background: var(--card-bg); border: 1px solid var(--border); padding: 25px; border-radius: 8px; transition: 0.3s; }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .card h3 { color: var(--accent); margin-bottom: 10px; }
+
         .btn {
             display: inline-block;
             margin-top: 15px;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border: 1px solid var(--accent);
             color: var(--accent);
             text-decoration: none;
-            font-size: 0.8rem;
             font-weight: bold;
+            font-size: 0.9rem;
         }
-        .btn:hover { background: var(--accent); color: #000; }
+        .btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 15px var(--accent); }
 
-        footer { text-align: center; padding: 30px; border-top: 1px solid #30363d; font-size: 0.8rem; }
+        footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -58,39 +57,52 @@
     <p>San Miguel de Tucumán, Argentina</p>
 </header>
 
-<section>
+<section id="about">
     <h2>./whoami</h2>
-    <p>
-        Especialista en seguridad ofensiva y defensiva con enfoque en protección de infraestructuras críticas. 
-        <strong>Certificado por Google en Ciberseguridad y IA.</strong> Mi enfoque combina el análisis técnico 
-        riguroso con la automatización para blindar activos digitales.
-    </p>
+    <p>Especialista en seguridad ofensiva y defensiva enfocado en infraestructuras críticas. Mi metodología integra herramientas de IA avanzadas para la detección y mitigación de amenazas antes de que ocurran.</p>
 </section>
 
-<section>
-    <h2>./certificaciones</h2>
+<section id="servicios">
+    <h2>./servicios_disponibles</h2>
     <div class="grid">
         <div class="card">
-            <h3>Google Cybersecurity</h3>
-            <p>9 cursos profesionales: Python, Linux, SQL, SIEM e IDS.</p>
-            <a href="Analista de ciberseguridad.pdf" target="_blank" class="btn">VER CERTIFICADO PDF</a>
+            <h3>Auditoría de Sistemas</h3>
+            <p>Análisis exhaustivo de configuraciones de seguridad, cumplimiento de normas y endurecimiento (hardening) de servidores Linux/Windows.</p>
         </div>
         <div class="card">
-            <h3>Google AI Essentials</h3>
-            <p>5 cursos de especialización en IA generativa y productividad.</p>
-            <a href="Fundamentos de inteligencia artificial de Goog.pdf" target="_blank" class="btn">VER CERTIFICADO PDF</a>
+            <h3>Pruebas de Penetración</h3>
+            <p>Simulación de ataques reales (Pentesting) para identificar vulnerabilidades explotables en redes y aplicaciones web.</p>
         </div>
     </div>
 </section>
 
-<section style="text-align: center;">
+<section id="certificaciones">
+    <h2>./certificaciones_google</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Google Cybersecurity</h3>
+            <p>Certificación profesional (9 cursos). Dominio de Python, Linux, SQL, SIEM e IDS.</p>
+            <a href="Analista de ciberseguridad.pdf" target="_blank" class="btn">DESCARGAR CREDENCIAL PDF</a>
+        </div>
+        <div class="card">
+            <h3>Google AI Essentials</h3>
+            <p>Especialización en IA (5 cursos). Optimización de flujos de trabajo con Prompt Engineering.</p>
+            <a href="Fundamentos de inteligencia artificial de Goog.pdf" target="_blank" class="btn">DESCARGAR CREDENCIAL PDF</a>
+        </div>
+    </div>
+</section>
+
+<section id="contacto" style="text-align: center;">
     <h2>./conectar</h2>
-    <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn">LINKEDIN</a>
-    <a href="mailto:lucaslean1806@gmail.com" class="btn">EMAIL</a>
+    <div style="margin-top: 20px;">
+        <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn" target="_blank">LINKEDIN</a>
+        <a href="https://wa.me/543814764474" class="btn" target="_blank">WHATSAPP</a>
+        <a href="mailto:lucaslean1806@gmail.com" class="btn">EMAIL</a>
+    </div>
 </section>
 
 <footer>
-    <p>© 2026 Lucas Villagra. System Secured.</p>
+    <p>© 2026 Lucas Villagra. System Secured. | Built on GitHub Pages</p>
 </footer>
 
 </body>
