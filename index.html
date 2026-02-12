@@ -3,102 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio de Ciberseguridad de Lucas Villagra - Red Team y IA.">
     <title>Lucas Villagra | Cybersecurity Analyst</title>
     <style>
         :root {
-            --bg-color: #0d1117;
-            --text-color: #c9d1d9;
-            --accent-color: #00ff41;
-            --secondary-bg: #161b22;
-            --card-border: #30363d;
+            --bg-dark: #0d1117;
+            --accent: #00ff41;
+            --text: #c9d1d9;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Courier New', Courier, monospace; }
+        body { background-color: var(--bg-dark); color: var(--text); font-family: 'Courier New', monospace; margin: 0; }
         
-        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
-
-        /* HERO SECTION CON PORTADA */
+        /* HEADER CON IMAGEN REPARADA */
         header {
-            position: relative;
-            height: 60vh; /* Altura de la portada */
+            height: 60vh;
+            background: linear-gradient(rgba(13, 17, 23, 0.7), rgba(13, 17, 23, 0.8)), url('FOTO_PORTADA..jpg');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* SE BUSCA EL ARCHIVO SUBIDO AL REPOSITORIO */
-            background: linear-gradient(rgba(13, 17, 23, 0.7), rgba(13, 17, 23, 0.7)), url('FOTO_PORTADA..jpg');
-            background-size: cover;
-            background-position: center;
-            border-bottom: 2px solid var(--accent-color);
+            border-bottom: 2px solid var(--accent);
         }
+
+        h1 { color: #fff; font-size: 3rem; margin: 0; }
+        .tagline { color: var(--accent); font-weight: bold; margin-top: 10px; }
+
+        section { padding: 40px 20px; max-width: 900px; margin: auto; }
+        h2 { border-left: 4px solid var(--accent); padding-left: 15px; color: #fff; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: #161b22; padding: 20px; border: 1px solid #30363d; border-radius: 8px; }
         
-        h1 { font-size: 3rem; color: #fff; text-shadow: 2px 2px 10px #000; }
-        .subtitle { color: var(--accent-color); font-weight: bold; font-size: 1.2rem; margin-top: 10px; }
-
-        section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
-        h2 { border-left: 5px solid var(--accent-color); padding-left: 1rem; margin-bottom: 2rem; color: #fff; text-transform: uppercase; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .card { background: var(--secondary-bg); border: 1px solid var(--card-border); padding: 2rem; border-radius: 8px; transition: 0.3s; }
-        .card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
-
         .btn {
             display: inline-block;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 10px 20px;
-            margin: 10px;
+            margin-top: 15px;
+            padding: 8px 15px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
             text-decoration: none;
+            font-size: 0.8rem;
             font-weight: bold;
         }
-        .btn:hover { background: var(--accent-color); color: #000; }
+        .btn:hover { background: var(--accent); color: #000; }
 
-        footer { text-align: center; padding: 2rem; border-top: 1px solid var(--card-border); }
+        footer { text-align: center; padding: 30px; border-top: 1px solid #30363d; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>LUCAS VILLAGRA</h1>
-        <p class="subtitle">CYBERSECURITY ANALYST | RED TEAM | AI INTEGRATOR</p>
-        <p style="color: #fff; margin-top: 10px;">San Miguel de Tucumán, Argentina</p>
-    </header>
+<header>
+    <h1>LUCAS VILLAGRA</h1>
+    <p class="tagline">CYBERSECURITY ANALYST | RED TEAM | AI INTEGRATOR</p>
+    <p>San Miguel de Tucumán, Argentina</p>
+</header>
 
-    <section id="about">
-        <h2>./whoami</h2>
-        <p>
-            Especialista en seguridad ofensiva y defensiva con enfoque en protección de infraestructuras críticas. 
-            [cite_start]Certificado por Google en Ciberseguridad y IA[cite: 20, 43]. Mi objetivo es blindar activos digitales mediante auditorías rigurosas y remediación efectiva.
-        </p>
-    </section>
+<section>
+    <h2>./whoami</h2>
+    <p>
+        Especialista en seguridad ofensiva y defensiva con enfoque en protección de infraestructuras críticas. 
+        <strong>Certificado por Google en Ciberseguridad y IA.</strong> Mi enfoque combina el análisis técnico 
+        riguroso con la automatización para blindar activos digitales.
+    </p>
+</section>
 
-    <section id="certs">
-        <h2>./certificaciones</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Google Cybersecurity</h3>
-                [cite_start]<p>Certificación profesional (9 cursos)[cite: 5, 20].</p>
-                [cite_start]<small>✓ Python, Linux, SQL, SIEM[cite: 22].</small>
-            </div>
-            <div class="card">
-                <h3>Google AI Essentials</h3>
-                [cite_start]<p>Especialización en IA generativa (5 cursos)[cite: 33, 43].</p>
-                [cite_start]<small>✓ Prompt Engineering & Productividad[cite: 36, 45].</small>
-            </div>
+<section>
+    <h2>./certificaciones</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Google Cybersecurity</h3>
+            <p>9 cursos profesionales: Python, Linux, SQL, SIEM e IDS.</p>
+            <a href="Analista de ciberseguridad.pdf" target="_blank" class="btn">VER CERTIFICADO PDF</a>
         </div>
-    </section>
+        <div class="card">
+            <h3>Google AI Essentials</h3>
+            <p>5 cursos de especialización en IA generativa y productividad.</p>
+            <a href="Fundamentos de inteligencia artificial de Goog.pdf" target="_blank" class="btn">VER CERTIFICADO PDF</a>
+        </div>
+    </div>
+</section>
 
-    <section id="contact" style="text-align: center;">
-        <h2>./conectar</h2>
-        <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn">LINKEDIN</a>
-        <a href="mailto:lucaslean1806@gmail.com" class="btn">EMAIL</a>
-    </section>
+<section style="text-align: center;">
+    <h2>./conectar</h2>
+    <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn">LINKEDIN</a>
+    <a href="mailto:lucaslean1806@gmail.com" class="btn">EMAIL</a>
+</section>
 
-    <footer>
-        <p>&copy; 2026 Lucas Villagra. System Secured.</p>
-    </footer>
+<footer>
+    <p>© 2026 Lucas Villagra. System Secured.</p>
+</footer>
 
 </body>
 </html>
