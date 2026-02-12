@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas Villagra | Cybersecurity & Red Team</title>
+    <title>Lucas Villagra | Cybersecurity & AI Specialist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --bg: #0d1117;
@@ -15,7 +16,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg); color: var(--text); font-family: 'Courier New', monospace; line-height: 1.6; }
 
-        /* SECCIÓN DE PORTADA */
         header {
             height: 70vh;
             background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('FOTO_PORTADA..jpg');
@@ -27,50 +27,43 @@
 
         h1 { font-size: 3.5rem; color: #fff; letter-spacing: 4px; text-transform: uppercase; }
         .tagline { color: var(--accent); font-weight: bold; margin: 15px 0; font-size: 1.1rem; }
-        .location { font-size: 0.9rem; color: #8b949e; }
 
-        section { padding: 80px 20px; max-width: 1100px; margin: auto; }
-        h2 { border-left: 5px solid var(--accent); padding-left: 20px; color: #fff; text-transform: uppercase; margin-bottom: 40px; font-size: 1.8rem; }
+        section { padding: 60px 20px; max-width: 1100px; margin: auto; }
+        h2 { border-left: 5px solid var(--accent); padding-left: 20px; color: #fff; text-transform: uppercase; margin-bottom: 30px; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .card { 
-            background: var(--card-bg); 
-            border: 1px solid var(--border); 
-            padding: 30px; 
-            border-radius: 12px; 
-            transition: all 0.3s ease;
-            position: relative;
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); padding: 30px; border-radius: 12px; transition: 0.3s; }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .card h3 { color: var(--accent); margin-bottom: 15px; }
+
+        /* STACK TECNOLÓGICO VISUAL */
+        .stack-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            text-align: center;
+            margin-top: 20px;
         }
-        .card:hover { border-color: var(--accent); transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0, 255, 65, 0.1); }
-        .card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; }
-        .card p { font-size: 0.95rem; margin-bottom: 15px; }
+        .stack-item { transition: 0.3s; }
+        .stack-item:hover { color: #fff; transform: scale(1.1); }
+        .stack-item i { font-size: 3rem; color: var(--accent); display: block; margin-bottom: 10px; }
+        .stack-item span { font-weight: bold; font-size: 0.9rem; }
 
-        /* BOTONES */
         .btn {
             display: inline-block;
-            margin-top: 10px;
+            margin-top: 15px;
             padding: 12px 24px;
             border: 1px solid var(--accent);
             color: var(--accent);
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             transition: 0.3s;
+            cursor: pointer;
         }
-        .btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--accent); }
+        .btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 15px var(--accent); }
 
-        .contact-container { text-align: center; margin-top: 20px; }
-        .btn-contact { margin: 10px; min-width: 180px; }
-
-        footer { text-align: center; padding: 50px; border-top: 1px solid var(--border); font-size: 0.8rem; color: #8b949e; }
-
-        /* RESPONSIVO */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            header { height: 50vh; }
-        }
+        footer { text-align: center; padding: 50px; border-top: 1px solid var(--border); font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -78,16 +71,18 @@
 <header>
     <h1>LUCAS VILLAGRA</h1>
     <p class="tagline">CYBERSECURITY ANALYST | RED TEAM | AI INTEGRATOR</p>
-    <p class="location">San Miguel de Tucumán, Argentina</p>
+    <p>San Miguel de Tucumán, Argentina</p>
 </header>
 
-<section id="about">
-    <h2>./whoami</h2>
-    <p style="font-size: 1.1rem; max-width: 800px;">
-        Especialista en seguridad ofensiva y defensiva con enfoque en protección de infraestructuras críticas. 
-        Certificado por Google en <strong>Ciberseguridad y IA</strong>. Mi objetivo es blindar activos digitales 
-        mediante auditorías rigurosas, simulaciones de adversarios y remediación efectiva basada en datos.
-    </p>
+<section id="stack">
+    <h2>./stack_tecnológico</h2>
+    <div class="stack-grid">
+        <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
+        <div class="stack-item"><i class="fab fa-linux"></i><span>LINUX</span></div>
+        <div class="stack-item"><i class="fas fa-database"></i><span>SQL</span></div>
+        <div class="stack-item"><i class="fas fa-shield-halved"></i><span>SIEM/IDS</span></div>
+        <div class="stack-item"><i class="fas fa-robot"></i><span>AI PROMPTING</span></div>
+    </div>
 </section>
 
 <section id="servicios">
@@ -95,46 +90,40 @@
     <div class="grid">
         <div class="card">
             <h3>Auditoría de Sistemas</h3>
-            <p>Análisis profundo de infraestructuras, revisión de configuraciones críticas y endurecimiento (Hardening) de entornos para prevenir intrusiones.</p>
+            <p>Hardening de entornos y análisis de vulnerabilidades críticas en infraestructuras locales y nube.</p>
         </div>
         <div class="card">
             <h3>Pruebas de Penetración</h3>
-            <p>Simulación de ataques reales bajo metodologías controladas para identificar vulnerabilidades explotables en redes y aplicaciones.</p>
-        </div>
-        <div class="card">
-            <h3>Seguridad Impulsada por IA</h3>
-            <p>Optimización de procesos de defensa y detección de amenazas utilizando herramientas de IA generativa y análisis predictivo.</p>
+            <p>Simulación de ataques reales (Red Team) para validar la resiliencia de los activos digitales.</p>
         </div>
     </div>
 </section>
 
 <section id="certificaciones">
-    <h2>./certificaciones_google</h2>
+    <h2>./certificaciones_validadas</h2>
     <div class="grid">
         <div class="card">
             <h3>Google Cybersecurity</h3>
-            <p>Programa de 9 cursos que valida competencias en Python, Linux, SQL, herramientas SIEM (Chronicle/Splunk) e IDS (Suricata).</p>
-            <a href="Cybersecutity Analist.pdf" target="_blank" class="btn">DESCARGAR CREDENCIAL</a>
+            <p>9 cursos completados: Redes, Python, Linux, SQL y Detección de Amenazas.</p>
+            <a href="Cybersecutity Analist.pdf" target="_blank" class="btn">VER CREDENCIAL PDF</a>
         </div>
         <div class="card">
             <h3>Google AI Essentials</h3>
-            <p>Especialización de 5 cursos centrada en IA responsable, Prompt Engineering y maximización de la productividad técnica.</p>
-            <a href="Google AI Essentials.pdf" target="_blank" class="btn">DESCARGAR CREDENCIAL</a>
+            <p>5 cursos completados: Uso responsable de IA y productividad avanzada.</p>
+            <a href="Google AI Essentials.pdf" target="_blank" class="btn">VER CREDENCIAL PDF</a>
         </div>
     </div>
 </section>
 
-<section id="contacto">
-    <h2 style="text-align: center; border: none;">./conectar_con_analista</h2>
-    <div class="contact-container">
-        <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn btn-contact" target="_blank">LINKEDIN</a>
-        <a href="https://wa.me/543814764474" class="btn btn-contact" target="_blank">WHATSAPP DIRECTO</a>
-        <a href="mailto:lucaslean1806@gmail.com" class="btn btn-contact">EMAIL PROFESIONAL</a>
-    </div>
+<section id="contacto" style="text-align: center;">
+    <h2>./conectar</h2>
+    <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn" target="_blank">LINKEDIN</a>
+    <a href="https://wa.me/543814764474" class="btn" target="_blank">WHATSAPP</a>
+    <a href="mailto:lucaslean1806@gmail.com" class="btn">EMAIL</a>
 </section>
 
 <footer>
-    <p>© 2026 Lucas Villagra. System Secured. | Built on GitHub Pages</p>
+    <p>© 2026 Lucas Villagra. System Secured. | Status: 200 OK</p>
 </footer>
 
 </body>
