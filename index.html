@@ -3,83 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas Villagra | Cybersecurity Specialist</title>
+    <title>Lucas Villagra | Cybersecurity Analyst & Red Team</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-/* HEADER REFINADO - AJUSTE DE BORDES PRECISOS */
-        header {
-            height: 60vh; /* Altura equilibrada */
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)), url('FOTO_PORTADA..jpg');
-            background-size: cover;
-            background-position: center; /* Vuelve al centro para coincidir bordes */
-            background-repeat: no-repeat;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center;
-            text-align: center; 
-            border-bottom: 3px solid var(--accent);
-            padding: 20px;
-            width: 100%; /* Asegura que cubra todo el ancho */
+        :root {
+            --bg: #0d1117;
+            --card-bg: #161b22;
+            --accent: #00ff41;
+            --text: #c9d1d9;
+            --border: #30363d;
         }
+        
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Courier New', monospace; line-height: 1.6; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Courier New', monospace; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
 
-        /* HEADER AJUSTADO PARA EVITAR CORTE DE TEXTO EN IMAGEN */
+        /* --- PORTADA REVISADA (AJUSTE DE BORDES) --- */
         header {
-            height: 65vh;
+            height: 60vh;
+            width: 100%;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url('FOTO_PORTADA..jpg');
             background-size: cover;
-            background-position: center 70%; /* Ajustado para centrar mejor el arte de la imagen */
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; border-bottom: 2px solid var(--accent);
+            background-position: center center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
             padding: 20px;
         }
 
-        h1 { font-size: 3.2rem; color: #fff; letter-spacing: 5px; text-shadow: 2px 2px 10px #000; }
-        .tagline { color: var(--accent); font-weight: bold; margin: 10px 0; font-size: 1.1rem; background: rgba(0,0,0,0.5); padding: 5px 15px; }
+        h1 { font-size: 3.5rem; color: #fff; letter-spacing: 5px; text-transform: uppercase; text-shadow: 2px 2px 10px #000; }
+        .tagline { color: var(--accent); font-weight: bold; margin: 15px 0; font-size: 1.1rem; letter-spacing: 1px; }
+        .location { font-size: 0.9rem; color: #8b949e; }
 
-        section { padding: 50px 20px; max-width: 1000px; margin: auto; }
-        h2 { border-left: 4px solid var(--accent); padding-left: 15px; color: #fff; text-transform: uppercase; margin-bottom: 30px; }
+        section { padding: 60px 20px; max-width: 1100px; margin: auto; }
+        h2 { border-left: 5px solid var(--accent); padding-left: 20px; color: #fff; text-transform: uppercase; margin-bottom: 35px; font-size: 1.6rem; }
 
-        /* STACK TECNOLÓGICO */
-        .stack-container {
+        /* --- STACK TECNOLÓGICO --- */
+        .stack-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 20px;
             text-align: center;
-            margin-top: 20px;
+            margin-bottom: 40px;
         }
         .stack-item {
             background: var(--card-bg);
             padding: 20px;
             border: 1px solid var(--border);
-            border-radius: 10px;
-            transition: 0.3s;
+            border-radius: 12px;
+            transition: 0.3s ease;
         }
-        .stack-item:hover { border-color: var(--accent); transform: scale(1.05); }
+        .stack-item:hover { border-color: var(--accent); transform: translateY(-5px); }
         .stack-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; display: block; }
-        .stack-item span { font-size: 0.8rem; font-weight: bold; letter-spacing: 1px; }
+        .stack-item span { font-size: 0.8rem; font-weight: bold; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: var(--card-bg); border: 1px solid var(--border); padding: 25px; border-radius: 8px; transition: 0.3s; }
+        /* --- GRIDS DE CONTENIDO --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            padding: 30px; 
+            border-radius: 12px; 
+            transition: 0.3s ease; 
+        }
         .card:hover { border-color: var(--accent); }
-        .card h3 { color: var(--accent); margin-bottom: 10px; }
+        .card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.3rem; }
 
+        /* --- BOTONES --- */
         .btn {
             display: inline-block;
             margin-top: 15px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: 1px solid var(--accent);
             color: var(--accent);
             text-decoration: none;
             font-weight: bold;
             font-size: 0.85rem;
+            text-transform: uppercase;
             transition: 0.3s;
+            cursor: pointer;
         }
         .btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 15px var(--accent); }
 
-        footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); font-size: 0.8rem; color: #6e7681; }
+        footer { text-align: center; padding: 50px; border-top: 1px solid var(--border); font-size: 0.8rem; color: #6e7681; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.3rem; }
+            header { height: 50vh; }
+        }
     </style>
 </head>
 <body>
@@ -87,18 +108,26 @@
 <header>
     <h1>LUCAS VILLAGRA</h1>
     <p class="tagline">CYBERSECURITY ANALYST | RED TEAM | AI INTEGRATOR</p>
-    <p>San Miguel de Tucumán, Argentina</p>
+    <p class="location">San Miguel de Tucumán, Argentina</p>
 </header>
 
 <section id="stack">
     <h2>./stack_tecnológico</h2>
-    <div class="stack-container">
+    <div class="stack-grid">
         <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
         <div class="stack-item"><i class="fab fa-linux"></i><span>LINUX</span></div>
         <div class="stack-item"><i class="fas fa-database"></i><span>SQL</span></div>
-        <div class="stack-item"><i class="fas fa-shield-virus"></i><span>SIEM/IDS</span></div>
-        <div class="stack-item"><i class="fas fa-microchip"></i><span>GEN AI</span></div>
+        <div class="stack-item"><i class="fas fa-shield-halved"></i><span>SIEM/IDS</span></div>
+        <div class="stack-item"><i class="fas fa-robot"></i><span>GEN AI</span></div>
     </div>
+</section>
+
+<section id="about">
+    <h2>./whoami</h2>
+    <p style="font-size: 1.1rem; max-width: 850px;">
+        Analista de ciberseguridad especializado en operaciones de Red Team y protección de infraestructuras críticas. 
+        Certificado por Google, combino la auditoría técnica rigurosa con la automatización en Python y el uso estratégico de IA para neutralizar amenazas proactivamente.
+    </p>
 </section>
 
 <section id="servicios">
@@ -106,11 +135,11 @@
     <div class="grid">
         <div class="card">
             <h3>Auditoría & Hardening</h3>
-            <p>Protección de activos mediante el endurecimiento de sistemas y análisis de riesgos configuracionales.</p>
+            <p>Análisis de superficies de ataque y endurecimiento de sistemas Linux/Windows para minimizar vectores de compromiso.</p>
         </div>
         <div class="card">
-            <h3>Pruebas de Penetración</h3>
-            <p>Identificación proactiva de brechas de seguridad simulando tácticas de adversarios reales.</p>
+            <h3>Pentesting (Red Team)</h3>
+            <p>Ejecución de simulaciones de adversarios reales para identificar y reportar vulnerabilidades críticas en redes corporativas.</p>
         </div>
     </div>
 </section>
@@ -120,19 +149,19 @@
     <div class="grid">
         <div class="card">
             <h3>Google Cybersecurity</h3>
-            <p>Especialista en detección y respuesta, redes y automatización con Python.</p>
-            <a href="Cybersecutity Analist.pdf" target="_blank" class="btn">DESCARGAR PDF</a>
+            <p>Formación integral en redes, SIEM (Chronicle), IDS (Suricata) y respuesta ante incidentes.</p>
+            <a href="Cybersecutity Analist.pdf" target="_blank" class="btn">VER CREDENCIAL</a>
         </div>
         <div class="card">
             <h3>Google AI Essentials</h3>
-            <p>Dominio de IA generativa para maximizar la productividad en flujos de trabajo de seguridad.</p>
-            <a href="Google AI Essentials.pdf" target="_blank" class="btn">DESCARGAR PDF</a>
+            <p>Especialización en Prompt Engineering y productividad aplicada a entornos de seguridad defensiva.</p>
+            <a href="Google AI Essentials.pdf" target="_blank" class="btn">VER CREDENCIAL</a>
         </div>
     </div>
 </section>
 
 <section id="contacto" style="text-align: center;">
-    <h2>./conectar</h2>
+    <h2>./conectar_con_el_analista</h2>
     <div style="margin-top: 20px;">
         <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn" target="_blank">LINKEDIN</a>
         <a href="https://wa.me/543814764474" class="btn" target="_blank">WHATSAPP</a>
@@ -141,7 +170,7 @@
 </section>
 
 <footer>
-    <p>© 2026 Lucas Villagra. System Secured. | Status: 200 OK</p>
+    <p>© 2026 Lucas Villagra. System Secured. | Built on GitHub Pages</p>
 </footer>
 
 </body>
