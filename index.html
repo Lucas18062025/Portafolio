@@ -3,35 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio de Ciberseguridad de Lucas Villagra. Red Team & Auditoría.">
+    
     <title>Lucas Villagra | Cybersecurity Specialist</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --bg: #000000; /* Negro Puro (Ósculo) */
-            --card-bg: #0a0a0a; 
-            --accent: #00ff41; /* Verde Matrix */
-            --text: #e0e0e0;
-            --border: #1a1a1a;
+            --bg: #000000; /* Negro Absoluto */
+            --card-bg: #0f0f0f; 
+            --accent: #2ecc71; /* Verde Dólar/Esmeralda (El color elegido) */
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border: #1f1f1f;
         }
         
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
             background-color: var(--bg); 
-            color: var(--text); 
-            font-family: 'Courier New', monospace; 
+            color: var(--text-main); 
+            font-family: 'Courier New', Courier, monospace; 
             line-height: 1.6; 
             overflow-x: hidden;
         }
 
-        /* --- PORTADA PRESERVADA --- */
+        /* --- PORTADA SOLUCIONADA --- */
         header {
-            height: 65vh;
+            height: 60vh;
             width: 100%;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('FOTO_PORTADA..jpg');
+            position: relative;
+            
+            /* SINTAXIS ROBUSTA PARA ASEGURAR CARGA DE IMAGEN */
+            /* Degradado más suave (0.5 a 0.8) para que SE VEA la foto */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('FOTO_PORTADA.jpg');
+            
+            /* Centrado perfecto */
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-repeat: no-repeat;
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -44,23 +56,34 @@
         h1 { 
             font-size: 3.5rem; 
             color: #ffffff; 
-            letter-spacing: 6px; 
+            letter-spacing: 4px; 
             text-transform: uppercase; 
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3); 
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+            margin-bottom: 10px;
+            z-index: 2; /* Asegura que el texto flote sobre la imagen */
         }
 
         .tagline { 
             color: var(--accent); 
             font-weight: bold; 
-            margin: 15px 0; 
-            font-size: 1.2rem; 
-            letter-spacing: 2px;
+            font-size: 1.1rem; 
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.7); /* Fondo oscuro para resaltar letras */
+            padding: 5px 15px;
+            border-radius: 4px;
+            z-index: 2;
         }
 
-        .location { font-size: 0.9rem; color: #666; }
+        .location { 
+            margin-top: 15px; 
+            font-size: 0.9rem; 
+            color: #ccc; 
+            z-index: 2;
+        }
 
-        section { padding: 80px 20px; max-width: 1100px; margin: auto; }
+        /* --- SECCIONES --- */
+        section { padding: 70px 20px; max-width: 1100px; margin: auto; }
         
         h2 { 
             border-left: 4px solid var(--accent); 
@@ -68,63 +91,79 @@
             color: #ffffff; 
             text-transform: uppercase; 
             margin-bottom: 40px; 
-            font-size: 1.8rem;
-            letter-spacing: 3px;
+            font-size: 1.7rem;
+            letter-spacing: 2px;
         }
 
-        /* --- STACK TECNOLÓGICO CON ICONO SIEM CORREGIDO --- */
+        /* --- STACK TECNOLÓGICO --- */
         .stack-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 25px;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
         .stack-item {
             background: var(--card-bg);
-            padding: 25px;
+            padding: 20px;
             border: 1px solid var(--border);
-            border-radius: 4px;
-            transition: 0.4s;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
         .stack-item:hover { 
             border-color: var(--accent); 
-            transform: translateY(-10px);
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.15);
         }
-        .stack-item i { font-size: 2.8rem; color: var(--accent); margin-bottom: 12px; display: block; }
-        .stack-item span { font-size: 0.85rem; font-weight: bold; color: #fff; }
+        .stack-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; display: block; }
+        .stack-item span { font-size: 0.8rem; font-weight: bold; color: #fff; }
 
-        /* --- GRIDS DE CONTENIDO --- */
+        /* --- TARJETAS (GRID SYSTEM) --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
         .card { 
             background: var(--card-bg); 
             border: 1px solid var(--border); 
-            padding: 35px; 
-            border-radius: 4px; 
+            padding: 30px; 
+            border-radius: 6px; 
             transition: 0.3s ease; 
         }
-        .card:hover { border-color: var(--accent); background: #050505; }
-        .card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; }
+        
+        .card:hover { 
+            border-color: var(--accent); 
+            background: #141414;
+        }
+        
+        .card h3 { 
+            color: var(--accent); 
+            margin-bottom: 15px; 
+            font-size: 1.3rem; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
 
         /* --- BOTONES --- */
         .btn {
             display: inline-block;
             margin-top: 20px;
-            padding: 14px 28px;
+            padding: 12px 25px;
             border: 1px solid var(--accent);
             color: var(--accent);
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             background: transparent;
+            cursor: pointer;
         }
         .btn:hover { 
             background: var(--accent); 
             color: #000; 
-            box-shadow: 0 0 25px var(--accent); 
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.4); 
         }
 
         footer { 
@@ -132,12 +171,15 @@
             padding: 60px; 
             border-top: 1px solid var(--border); 
             font-size: 0.8rem; 
-            color: #444; 
+            color: var(--text-muted); 
+            margin-top: 40px;
         }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
-            header { height: 55vh; }
+            header { height: 50vh; }
+            section { padding: 50px 20px; }
         }
     </style>
 </head>
@@ -150,7 +192,7 @@
 </header>
 
 <section id="stack">
-    <h2>./stack_tecnológico</h2>
+    <h2>./ Stack Tecnológico</h2>
     <div class="stack-grid">
         <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
         <div class="stack-item"><i class="fab fa-linux"></i><span>LINUX</span></div>
@@ -161,54 +203,74 @@
 </section>
 
 <section id="about">
-    <h2>./whoami</h2>
-    <p style="font-size: 1.15rem; max-width: 900px; color: #bbb;">
-        Analista de ciberseguridad especializado en operaciones de Red Team y protección de infraestructuras críticas. 
-        Certificado por Google, fusiono la auditoría técnica con la automatización proactiva para blindar activos digitales.
+    <h2>./ WhoAmI</h2>
+    <p style="font-size: 1.1rem; max-width: 900px; color: #ccc;">
+        Analista de ciberseguridad con enfoque en operaciones de <strong>Red Team</strong> y defensa de infraestructuras críticas. 
+        Combino la auditoría técnica rigurosa con la automatización de procesos mediante IA y Python para blindar activos digitales.
     </p>
 </section>
 
+<section id="proyectos">
+    <h2>./ Laboratorio y Proyectos</h2>
+    <div class="grid">
+        <div class="card">
+            <h3><i class="fas fa-wifi"></i> Auditoría Wireless</h3>
+            <p>
+                Análisis de espectro y seguridad en redes WPA2/WPA3 utilizando hardware especializado 
+                <strong>(Alfa AWUS036ACS)</strong> en entorno Kali Linux. Pruebas de inyección y monitoreo de tráfico.
+            </p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-project-diagram"></i> Automatización n8n</h3>
+            <p>
+                Desarrollo de flujos de trabajo (Workflows) locales integrados con Visual Studio Code para 
+                el procesamiento automatizado de logs y alertas de seguridad.
+            </p>
+        </div>
+    </div>
+</section>
+
 <section id="servicios">
-    <h2>./servicios</h2>
+    <h2>./ Servicios Profesionales</h2>
     <div class="grid">
         <div class="card">
             <h3>Auditoría & Hardening</h3>
-            <p>Fortalecimiento de sistemas operativos y redes mediante el cierre de vectores de ataque y políticas de seguridad robustas.</p>
+            <p>Endurecimiento de sistemas operativos y análisis de configuraciones para minimizar la superficie de ataque.</p>
         </div>
         <div class="card">
             <h3>Pentesting (Red Team)</h3>
-            <p>Simulación de intrusiones reales para identificar brechas de seguridad antes de que sean explotadas por actores maliciosos.</p>
+            <p>Simulación controlada de ciberataques para identificar vulnerabilidades explotables antes que los adversarios reales.</p>
         </div>
     </div>
 </section>
 
 <section id="certificaciones">
-    <h2>./certificaciones</h2>
+    <h2>./ Certificaciones Google</h2>
     <div class="grid">
         <div class="card">
             <h3>Google Cybersecurity</h3>
-            <p>Especialización en redes, Python, Linux, SQL y herramientas SIEM como Splunk y Chronicle.</p>
+            <p>Especialización completa: Python, Linux, SQL, SIEM (Chronicle/Splunk) e IDS (Suricata).</p>
             <a href="Cybersecutity Analist.pdf" target="_blank" class="btn">VER CREDENCIAL PDF</a>
         </div>
         <div class="card">
             <h3>Google AI Essentials</h3>
-            <p>Dominio de IA Generativa y Prompt Engineering para optimizar la respuesta ante incidentes.</p>
+            <p>Integración de Inteligencia Artificial Generativa y Prompt Engineering para ciberseguridad.</p>
             <a href="Google AI Essentials.pdf" target="_blank" class="btn">VER CREDENCIAL PDF</a>
         </div>
     </div>
 </section>
 
 <section id="contacto" style="text-align: center;">
-    <h2>./conectar</h2>
-    <div style="margin-top: 30px;">
-        <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn" target="_blank">LINKEDIN</a>
-        <a href="https://wa.me/543814764474" class="btn" target="_blank">WHATSAPP</a>
-        <a href="mailto:lucaslean1806@gmail.com" class="btn">EMAIL</a>
+    <h2>./ Conectar</h2>
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 30px;">
+        <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn" target="_blank"><i class="fab fa-linkedin"></i> LINKEDIN</a>
+        <a href="https://wa.me/543814764474" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+        <a href="mailto:lucaslean1806@gmail.com" class="btn"><i class="fas fa-envelope"></i> EMAIL</a>
     </div>
 </section>
 
 <footer>
-    <p>© 2026 Lucas Villagra. STATUS: SYSTEM SECURED | HOSTED ON GITHUB PAGES</p>
+    <p>© 2026 Lucas Villagra. System Secured. | Built on GitHub Pages</p>
 </footer>
 
 </body>
