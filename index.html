@@ -13,7 +13,7 @@
         :root {
             --bg: #000000; /* Negro Absoluto */
             --card-bg: #0f0f0f; 
-            --accent: #2ecc71; /* Verde Dólar/Esmeralda (El color elegido) */
+            --accent: #2ecc71; /* Verde Dólar Profesional */
             --text-main: #e0e0e0;
             --text-muted: #a0a0a0;
             --border: #1f1f1f;
@@ -29,28 +29,25 @@
             overflow-x: hidden;
         }
 
-        /* --- PORTADA SOLUCIONADA --- */
+        /* --- PORTADA RESTAURADA Y CENTRADA --- */
         header {
-            height: 60vh;
+            height: 65vh; /* Un poco más de aire para la foto */
             width: 100%;
-            position: relative;
-            
-            /* SINTAXIS ROBUSTA PARA ASEGURAR CARGA DE IMAGEN */
-            /* Degradado más suave (0.5 a 0.8) para que SE VEA la foto */
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('FOTO_PORTADA..jpg');
-            
-            /* Centrado perfecto */
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
             border-bottom: 2px solid var(--accent);
             padding: 20px;
+
+            /* CONFIGURACIÓN QUE FUNCIONA: Degradado sutil + Foto */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), 
+                        url('FOTO_PORTADA..jpg'); 
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
 
         h1 { 
@@ -58,9 +55,8 @@
             color: #ffffff; 
             letter-spacing: 4px; 
             text-transform: uppercase; 
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 1); /* Sombra fuerte para resaltar sobre la foto */
             margin-bottom: 10px;
-            z-index: 2; /* Asegura que el texto flote sobre la imagen */
         }
 
         .tagline { 
@@ -69,20 +65,18 @@
             font-size: 1.1rem; 
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            background: rgba(0, 0, 0, 0.7); /* Fondo oscuro para resaltar letras */
+            background: rgba(0, 0, 0, 0.7); 
             padding: 5px 15px;
             border-radius: 4px;
-            z-index: 2;
         }
 
         .location { 
             margin-top: 15px; 
             font-size: 0.9rem; 
             color: #ccc; 
-            z-index: 2;
         }
 
-        /* --- SECCIONES --- */
+        /* --- SECCIONES (SE MANTIENE INTEGRIDAD) --- */
         section { padding: 70px 20px; max-width: 1100px; margin: auto; }
         
         h2 { 
@@ -95,7 +89,6 @@
             letter-spacing: 2px;
         }
 
-        /* --- STACK TECNOLÓGICO --- */
         .stack-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -118,7 +111,6 @@
         .stack-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; display: block; }
         .stack-item span { font-size: 0.8rem; font-weight: bold; color: #fff; }
 
-        /* --- TARJETAS (GRID SYSTEM) --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         
         .card { 
@@ -145,7 +137,6 @@
 
         .card p { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* --- BOTONES --- */
         .btn {
             display: inline-block;
             margin-top: 20px;
@@ -175,7 +166,6 @@
             margin-top: 40px;
         }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
             header { height: 50vh; }
