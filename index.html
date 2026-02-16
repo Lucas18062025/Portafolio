@@ -1,533 +1,327 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="description" content="Portafolio de Ciberseguridad de Lucas Villagra. Red Team & Auditoría.">
-
     
-
     <title>Lucas Villagra | Cybersecurity Specialist</title>
-
     
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     
-
     <style>
-
         :root {
-
             --bg: #000000; /* Negro Absoluto */
-
             --card-bg: #0f0f0f; 
-
             --accent: #2ecc71; /* Verde Dólar Profesional */
-
             --text-main: #e0e0e0;
-
             --text-muted: #a0a0a0;
-
             --border: #1f1f1f;
-
         }
-
         
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         
-
         body { 
-
             background-color: var(--bg); 
-
             color: var(--text-main); 
-
             font-family: 'Courier New', Courier, monospace; 
-
             line-height: 1.6; 
-
             overflow-x: hidden;
-
         }
-
-
 
         /* --- PORTADA RESTAURADA Y CENTRADA --- */
-
         header {
-
-            height: 65vh; /* Un poco más de aire para la foto */
-
+            height: 65vh;
             width: 100%;
-
             display: flex;
-
             flex-direction: column;
-
             justify-content: center;
-
             align-items: center;
-
             text-align: center;
-
             position: relative;
-
             border-bottom: 2px solid var(--accent);
-
             padding: 20px;
-
-
-
-            /* CONFIGURACIÓN QUE FUNCIONA: Degradado sutil + Foto */
-
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), 
-
                         url('FOTO_PORTADA..jpg'); 
-
             background-size: cover;
-
             background-position: center center;
-
             background-repeat: no-repeat;
-
         }
-
-
 
         h1 { 
-
             font-size: 3.5rem; 
-
             color: #ffffff; 
-
             letter-spacing: 4px; 
-
             text-transform: uppercase; 
-
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 1); /* Sombra fuerte para resaltar sobre la foto */
-
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 1);
             margin-bottom: 10px;
-
         }
-
-
 
         .tagline { 
-
             color: var(--accent); 
-
             font-weight: bold; 
-
             font-size: 1.1rem; 
-
             letter-spacing: 1.5px;
-
             text-transform: uppercase;
-
             background: rgba(0, 0, 0, 0.7); 
-
             padding: 5px 15px;
-
             border-radius: 4px;
-
         }
-
-
 
         .location { 
-
             margin-top: 15px; 
-
             font-size: 0.9rem; 
-
             color: #ccc; 
-
         }
 
-
-
-        /* --- SECCIONES (SE MANTIENE INTEGRIDAD) --- */
-
+        /* --- SECCIONES --- */
         section { padding: 70px 20px; max-width: 1100px; margin: auto; }
-
         
-
         h2 { 
-
             border-left: 4px solid var(--accent); 
-
             padding-left: 20px; 
-
             color: #ffffff; 
-
             text-transform: uppercase; 
-
             margin-bottom: 40px; 
-
             font-size: 1.7rem;
-
             letter-spacing: 2px;
-
         }
-
-
 
         .stack-grid {
-
             display: grid;
-
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-
             gap: 25px;
-
             text-align: center;
-
             margin-bottom: 20px;
-
         }
-
         .stack-item {
-
             background: var(--card-bg);
-
             padding: 20px;
-
             border: 1px solid var(--border);
-
             border-radius: 6px;
-
             transition: all 0.3s ease;
-
         }
-
         .stack-item:hover { 
-
             border-color: var(--accent); 
-
             transform: translateY(-5px);
-
             box-shadow: 0 5px 15px rgba(46, 204, 113, 0.15);
-
         }
-
         .stack-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; display: block; }
-
         .stack-item span { font-size: 0.8rem; font-weight: bold; color: #fff; }
 
-
-
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-
         
-
         .card { 
-
             background: var(--card-bg); 
-
             border: 1px solid var(--border); 
-
             padding: 30px; 
-
             border-radius: 6px; 
-
             transition: 0.3s ease; 
-
         }
-
         
-
         .card:hover { 
-
             border-color: var(--accent); 
-
             background: #141414;
-
         }
-
         
-
         .card h3 { 
-
             color: var(--accent); 
-
             margin-bottom: 15px; 
-
             font-size: 1.3rem; 
-
             display: flex;
-
             align-items: center;
-
             gap: 10px;
-
         }
-
-
 
         .card p { color: var(--text-muted); font-size: 0.95rem; }
 
+        /* --- 1. INYECCIÓN CSS: ESTILO TERMINAL --- */
+        .terminal-window {
+            background: #1a1a1a;
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
+        .terminal-header {
+            background: #333;
+            padding: 8px 15px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
 
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .terminal-title {
+            color: #999;
+            font-size: 0.75rem;
+            margin-left: 10px;
+            font-family: sans-serif;
+        }
+
+        .terminal-content img {
+            width: 100%;
+            display: block;
+            filter: brightness(0.9) contrast(1.1);
+        }
+
+        /* --- BOTONES Y FOOTER --- */
         .btn {
-
             display: inline-block;
-
             margin-top: 20px;
-
             padding: 12px 25px;
-
             border: 1px solid var(--accent);
-
             color: var(--accent);
-
             text-decoration: none;
-
             font-weight: bold;
-
             font-size: 0.85rem;
-
             text-transform: uppercase;
-
             transition: all 0.3s ease;
-
             background: transparent;
-
             cursor: pointer;
-
         }
-
         .btn:hover { 
-
             background: var(--accent); 
-
             color: #000; 
-
             box-shadow: 0 0 20px rgba(46, 204, 113, 0.4); 
-
         }
-
-
 
         footer { 
-
             text-align: center; 
-
             padding: 60px; 
-
             border-top: 1px solid var(--border); 
-
             font-size: 0.8rem; 
-
             color: var(--text-muted); 
-
             margin-top: 40px;
-
         }
-
-
 
         @media (max-width: 768px) {
-
             h1 { font-size: 2.2rem; }
-
             header { height: 50vh; }
-
             section { padding: 50px 20px; }
-
         }
-
     </style>
-
 </head>
 
 <body>
 
-
-
 <header>
-
     <h1>LUCAS VILLAGRA</h1>
-
     <p class="tagline">CYBERSECURITY ANALYST | RED TEAM | AI INTEGRATOR</p>
-
-    <p class="location">San Miguel de Tucumán, Argentina</p>
-
+    <p class="location"><i class="fas fa-map-marker-alt"></i> San Miguel de Tucumán, Argentina</p>
 </header>
 
-
-
 <section id="stack">
-
     <h2>./ Stack Tecnológico</h2>
-
     <div class="stack-grid">
-
         <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
-
         <div class="stack-item"><i class="fab fa-linux"></i><span>LINUX</span></div>
-
         <div class="stack-item"><i class="fas fa-database"></i><span>SQL</span></div>
-
         <div class="stack-item"><i class="fas fa-user-shield"></i><span>SIEM/IDS</span></div>
-
         <div class="stack-item"><i class="fas fa-robot"></i><span>GEN AI</span></div>
-
     </div>
-
 </section>
-
-
 
 <section id="about">
-
     <h2>./ Who Am I</h2>
-
     <p style="font-size: 1.1rem; max-width: 900px; color: #ccc;">
-
         Analista de ciberseguridad con enfoque en operaciones de <strong>Red Team</strong> y defensa de infraestructuras críticas. 
-
         Combino la auditoría técnica rigurosa con la automatización de procesos mediante IA y Python para blindar activos digitales.
-
     </p>
-
 </section>
-
-
 
 <section id="proyectos">
-
     <h2>./ Laboratorio y Proyectos</h2>
-
     <div class="grid">
-
+        
         <div class="card">
-
             <h3><i class="fas fa-wifi"></i> Auditoría Wireless</h3>
-
-            <p>
-
-                Análisis de espectro y seguridad en redes WPA2/WPA3 utilizando hardware especializado 
-
-                <strong>(Alfa AWUS036ACS)</strong> en entorno Kali Linux. Pruebas de inyección y monitoreo de tráfico.
-
-            </p>
-
+            <p>Análisis de espectro y monitoreo en entorno real con hardware Alfa/MediaTek.</p>
+            
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                    <span class="terminal-title">kali@kali: /media/kali/KALI_AUDIT</span>
+                </div>
+                <div class="terminal-content">
+                    <img src="https://raw.githubusercontent.com/Lucas18062025/Portafolio/main/Captura01.png" alt="Kali Linux Audit">
+                </div>
+            </div>
+            <p><small style="color: var(--accent);">Status: Unit mounted & cache cleaned.</small></p>
         </div>
 
         <div class="card">
-
-            <h3><i class="fas fa-project-diagram"></i> Automatización n8n</h3>
-
-            <p>
-
-                Desarrollo de flujos de trabajo (Workflows) locales integrados con Visual Studio Code para 
-
-                el procesamiento automatizado de logs y alertas de seguridad.
-
-            </p>
-
+            <h3><i class="fas fa-user-secret"></i> OpSec: Infraestructura VPN</h3>
+            <p>Configuración de túneles cifrados WireGuard con Proton VPN para auditorías anónimas.</p>
+            
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                    <span class="terminal-title">ProtonVPN - WireGuard Interface</span>
+                </div>
+                <div class="terminal-content">
+                    <img src="https://raw.githubusercontent.com/Lucas18062025/Portafolio/main/Captura02.png" alt="Proton VPN Config">
+                </div>
+            </div>
+            <p><small style="color: var(--accent);">Protocol: WireGuard (UDP) | Protected</small></p>
         </div>
 
     </div>
-
 </section>
-
-
 
 <section id="servicios">
-
     <h2>./ Servicios Profesionales</h2>
-
     <div class="grid">
-
         <div class="card">
-
             <h3>Auditoría & Hardening</h3>
-
             <p>Endurecimiento de sistemas operativos y análisis de configuraciones para minimizar la superficie de ataque.</p>
-
         </div>
-
         <div class="card">
-
             <h3>Pentesting (Red Team)</h3>
-
             <p>Simulación controlada de ciberataques para identificar vulnerabilidades explotables antes que los adversarios reales.</p>
-
         </div>
-
     </div>
-
 </section>
-
-
 
 <section id="certificaciones">
-
     <h2>./ Certificaciones</h2>
-
     <div class="grid">
-
         <div class="card">
-
             <h3>Google Cybersecurity</h3>
-
             <p>Especialización completa: Python, Linux, SQL, SIEM (Chronicle/Splunk) e IDS (Suricata).</p>
-
             <a href="Cybersecutity Analist.pdf" target="_blank" class="btn">VER CREDENCIAL PDF</a>
-
         </div>
-
         <div class="card">
-
             <h3>Google AI Essentials</h3>
-
             <p>Integración de Inteligencia Artificial Generativa y Prompt Engineering para ciberseguridad.</p>
-
             <a href="Google AI Essentials.pdf" target="_blank" class="btn">VER CREDENCIAL PDF</a>
-
         </div>
-
     </div>
-
 </section>
-
-
 
 <section id="contacto" style="text-align: center;">
-
     <h2>./ Conectar</h2>
-
     <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 30px;">
-
         <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn" target="_blank"><i class="fab fa-linkedin"></i> LINKEDIN</a>
-
         <a href="https://wa.me/543814764474" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
-
         <a href="mailto:lucaslean1806@gmail.com" class="btn"><i class="fas fa-envelope"></i> EMAIL</a>
-
     </div>
-
 </section>
 
-
-
 <footer>
-
     <p>© 2026 Lucas Villagra. System Secured. | Built on GitHub Pages</p>
-
+    <p style="font-size: 0.6rem; opacity: 0.3; margin-top: 10px;">Shortcut: alt + 126 for ~</p>
 </footer>
 
-
-
 </body>
-
 </html>
