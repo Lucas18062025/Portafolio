@@ -17,6 +17,7 @@
             --text-main: #e0e0e0;
             --text-muted: #a0a0a0;
             --border: #1f1f1f;
+            --terminal-header: #1a1a1a;
         }
         
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,7 +32,7 @@
 
         /* --- PORTADA RESTAURADA Y CENTRADA --- */
         header {
-            height: 65vh; /* Un poco más de aire para la foto */
+            height: 65vh;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -41,10 +42,9 @@
             position: relative;
             border-bottom: 2px solid var(--accent);
             padding: 20px;
-
-            /* CONFIGURACIÓN QUE FUNCIONA: Degradado sutil + Foto */
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), 
-                        url('FOTO_PORTADA..jpg'); 
+            /* Asegúrate de que la ruta de la imagen sea correcta */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
+                        url('FOTO_PORTADA.jpg'); 
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -55,7 +55,7 @@
             color: #ffffff; 
             letter-spacing: 4px; 
             text-transform: uppercase; 
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 1); /* Sombra fuerte para resaltar sobre la foto */
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 1);
             margin-bottom: 10px;
         }
 
@@ -76,7 +76,7 @@
             color: #ccc; 
         }
 
-        /* --- SECCIONES (SE MANTIENE INTEGRIDAD) --- */
+        /* --- SECCIONES --- */
         section { padding: 70px 20px; max-width: 1100px; margin: auto; }
         
         h2 { 
@@ -89,6 +89,7 @@
             letter-spacing: 2px;
         }
 
+        /* --- STACK GRID --- */
         .stack-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -137,6 +138,52 @@
 
         .card p { color: var(--text-muted); font-size: 0.95rem; }
 
+        /* --- NUEVO ESTILO: TERMINAL WINDOW (Iteración 2) --- */
+        .showcase-container {
+            margin-top: 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .terminal-window {
+            background-color: #000;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .terminal-window:hover {
+            border-color: var(--accent);
+            transform: scale(1.01);
+        }
+
+        .terminal-header {
+            background-color: var(--terminal-header);
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        .dot { height: 12px; width: 12px; border-radius: 50%; }
+        .red { background-color: #ff5f56; }
+        .yellow { background-color: #ffbd2e; }
+        .green { background-color: #27c93f; }
+        .terminal-title { margin-left: 10px; font-size: 0.8rem; color: #888; }
+
+        .terminal-content img {
+            width: 100%;
+            display: block;
+            opacity: 0.9; /* Un poco de opacidad para mezclar con el fondo */
+        }
+
+        /* --- BOTONES --- */
         .btn {
             display: inline-block;
             margin-top: 20px;
@@ -207,7 +254,7 @@
             <h3><i class="fas fa-wifi"></i> Auditoría Wireless</h3>
             <p>
                 Análisis de espectro y seguridad en redes WPA2/WPA3 utilizando hardware especializado 
-                <strong>(Alfa AWUS036ACS)</strong> en entorno Kali Linux. Pruebas de inyección y monitoreo de tráfico.
+                <strong>(Alfa/MediaTek)</strong> en entorno Kali Linux. Pruebas de inyección y monitoreo de tráfico.
             </p>
         </div>
         <div class="card">
@@ -216,6 +263,27 @@
                 Desarrollo de flujos de trabajo (Workflows) locales integrados con Visual Studio Code para 
                 el procesamiento automatizado de logs y alertas de seguridad.
             </p>
+        </div>
+    </div>
+
+    <div class="showcase-container">
+        <h3><i class="fas fa-shield-alt"></i> OpSec: Infraestructura WireGuard & Proton VPN</h3>
+        <p style="color: var(--text-muted); margin-bottom: 15px;">
+            Implementación de túneles cifrados de alta velocidad utilizando <strong>WireGuard</strong> (CLI) integrado en Kali Linux. 
+            Configuración de entorno seguro para auditorías externas, garantizando anonimato y protección de datos mediante 
+            gestión avanzada de interfaces de red y rotación de IPs (IPv6/IPv4).
+        </p>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span class="terminal-title">kali@kali: /media/kali/KALI_AUDIT - WireGuard</span>
+            </div>
+            <div class="terminal-content">
+                <img src="kali-audit-terminal.jpg" alt="Terminal Kali Linux con configuración VPN y Auditoría">
+            </div>
         </div>
     </div>
 </section>
