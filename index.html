@@ -374,9 +374,28 @@
             transition: transform 0.4s ease, filter 0.4s ease;
             position: relative; z-index: 1;
         }
+        .cert-preview img[data-error="true"] {
+            display: none;
+        }
         .cert-card:hover .cert-preview img {
             transform: scale(1.08);
             filter: drop-shadow(0 4px 28px rgba(0,200,255,0.45));
+        }
+        .cert-placeholder {
+            display: none; position: absolute; inset: 0;
+            flex-direction: column; align-items: center; justify-content: center;
+            gap: 14px; padding: 20px; text-align: center; z-index: 2;
+        }
+        .cert-placeholder.visible {
+            display: flex;
+        }
+        .cert-placeholder i {
+            font-size: 3.5rem; color: var(--accent2); opacity: 0.6;
+        }
+        .cert-placeholder-text {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem; color: var(--text-muted);
+            letter-spacing: 1px;
         }
 
         .cert-body { padding: 24px; }
@@ -742,7 +761,12 @@
                     src="https://images.credly.com/size/340x340/images/68468004-5a85-4f3b-bc58-590773979486/image.png"
                     alt="Google Cybersecurity Certificate badge"
                     loading="lazy"
+                    onerror="handleCertError(this)"
                 >
+                <div class="cert-placeholder">
+                    <i class="fas fa-certificate"></i>
+                    <div class="cert-placeholder-text">Google Cybersecurity</div>
+                </div>
             </div>
             <div class="cert-body">
                 <h3><i class="fab fa-google"></i> Google Cybersecurity</h3>
@@ -760,7 +784,12 @@
                     src="https://images.credly.com/size/340x340/images/4d393605-72c0-40e8-8b9a-4c2826a42a53/Cybersecurity_Analyst_Professional_Certificate.png"
                     alt="Google AI Essentials Certificate badge"
                     loading="lazy"
+                    onerror="handleCertError(this)"
                 >
+                <div class="cert-placeholder">
+                    <i class="fas fa-certificate"></i>
+                    <div class="cert-placeholder-text">Google AI Essentials</div>
+                </div>
             </div>
             <div class="cert-body">
                 <h3><i class="fab fa-google"></i> Google AI Essentials</h3>
@@ -787,15 +816,16 @@
         </a>
 
         <a
-            href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Contacto%20Portafolio%20%E2%80%94%20Lucas%20Villagra"
+            href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad."
             class="btn btn-gmail"
             target="_blank"
             rel="noopener"
+            onclick="return handleGmailClick();"
         >
             <i class="fab fa-google"></i><span>GMAIL</span>
         </a>
 
-        <a href="mailto:lucaslean1806@gmail.com" class="btn btn-b">
+        <a href="mailto:lucaslean1806@gmail.com?subject=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad." class="btn btn-b">
             <i class="fas fa-envelope"></i><span>EMAIL</span>
         </a>
     </div>
@@ -890,6 +920,22 @@
             const ph = document.getElementById(placeholderId);
             if (ph) ph.classList.remove('hidden');
         }
+    }
+
+    function handleCertError(img) {
+        img.setAttribute('data-error', 'true');
+        const certPreview = img.closest('.cert-preview');
+        if (certPreview) {
+            const placeholder = certPreview.querySelector('.cert-placeholder');
+            if (placeholder) {
+                placeholder.classList.add('visible');
+            }
+        }
+    }
+
+    function handleGmailClick() {
+        // Fallback para navegadores donde mailto no funciona bien
+        return true;
     }
 </script>
 
