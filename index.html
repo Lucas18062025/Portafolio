@@ -756,47 +756,35 @@
 
     <div class="grid">
         <div class="cert-card">
-            <div class="cert-preview">
-                <img
-                    src="https://images.credly.com/size/340x340/images/68468004-5a85-4f3b-bc58-590773979486/image.png"
-                    alt="Google Cybersecurity Certificate badge"
-                    loading="lazy"
-                    onerror="handleCertError(this)"
-                >
-                <div class="cert-placeholder">
-                    <i class="fas fa-certificate"></i>
-                    <div class="cert-placeholder-text">Google Cybersecurity</div>
+            <div class="cert-preview" onclick="openPDF('Google AI Essentials.pdf')">
+                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; cursor: pointer;">
+                    <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--accent2);"></i>
+                    <span style="font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--text-muted); text-align: center;">Google Cybersecurity<br>[ Click para vista previa ]</span>
                 </div>
             </div>
             <div class="cert-body">
                 <h3><i class="fab fa-google"></i> Google Cybersecurity</h3>
                 <p class="cert-meta">9 CURSOS &nbsp;·&nbsp; <span>FEB 5, 2026</span> &nbsp;·&nbsp; COURSERA</p>
                 <p>Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis · Incident response.</p>
-                <a href="https://coursera.org/verify/professional-cert/TUCODIGO" class="btn btn-b" target="_blank" rel="noopener" style="margin-top:16px;">
-                    <i class="fas fa-certificate"></i><span>Ver Credencial</span>
+                <a href="Google AI Essentials.pdf" class="btn btn-b" target="_blank" rel="noopener" style="margin-top:16px;">
+                    <i class="fas fa-file-pdf"></i><span>Ver Credencial</span>
                 </a>
             </div>
         </div>
 
         <div class="cert-card">
-            <div class="cert-preview">
-                <img
-                    src="https://images.credly.com/size/340x340/images/4d393605-72c0-40e8-8b9a-4c2826a42a53/Cybersecurity_Analyst_Professional_Certificate.png"
-                    alt="Google AI Essentials Certificate badge"
-                    loading="lazy"
-                    onerror="handleCertError(this)"
-                >
-                <div class="cert-placeholder">
-                    <i class="fas fa-certificate"></i>
-                    <div class="cert-placeholder-text">Google AI Essentials</div>
+            <div class="cert-preview" onclick="openPDF('Cybersecutity Analist.pdf')">
+                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; cursor: pointer;">
+                    <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--accent2);"></i>
+                    <span style="font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--text-muted); text-align: center;">Google AI Essentials<br>[ Click para vista previa ]</span>
                 </div>
             </div>
             <div class="cert-body">
                 <h3><i class="fab fa-google"></i> Google AI Essentials</h3>
                 <p class="cert-meta">5 CURSOS &nbsp;·&nbsp; <span>FEB 6, 2026</span> &nbsp;·&nbsp; COURSERA</p>
                 <p>AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con Generative AI.</p>
-                <a href="https://coursera.org/verify/professional-cert/TUCODIGO" class="btn btn-b" target="_blank" rel="noopener" style="margin-top:16px;">
-                    <i class="fas fa-certificate"></i><span>Ver Credencial</span>
+                <a href="Cybersecutity Analist.pdf" class="btn btn-b" target="_blank" rel="noopener" style="margin-top:16px;">
+                    <i class="fas fa-file-pdf"></i><span>Ver Credencial</span>
                 </a>
             </div>
         </div>
@@ -931,6 +919,12 @@
                 placeholder.classList.add('visible');
             }
         }
+    }
+
+    function openPDF(filename) {
+        // Abre el PDF en una nueva pestaña
+        const url = window.location.origin + window.location.pathname.replace('index.html', '') + filename;
+        window.open(url, '_blank');
     }
 
     function handleGmailClick() {
