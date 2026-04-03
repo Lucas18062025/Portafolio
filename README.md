@@ -83,7 +83,6 @@ Distribuido bajo licencia **MIT**. Ver [`LICENSE`](LICENSE) para más detalles.
 `[ uptime: ∞ | threat level: monitored | status: operational ]`
 
 </div>
-```
 
 ---
 
