@@ -87,15 +87,4 @@ Distribuido bajo licencia **MIT**. Ver [`LICENSE`](LICENSE) para más detalles.
 
 ---
 
-## 📋 Pasos para subirlo
-
-**1.** Andá a:
-```
-https://github.com/Lucas18062025/Portafolio
-```
-
-**2.** Clic en **"Add file"** → **"Create new file"**
-
-**3.** En el nombre del archivo escribí exactamente:
-```
 README.md
