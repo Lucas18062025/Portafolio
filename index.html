@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio de Ciberseguridad de Lucas Villagra. Red Team, Pentesting & AI Integration.">
+    <meta name="description"
+        content="Portafolio de Ciberseguridad de Lucas Villagra. Red Team, Pentesting & AI Integration.">
     <title>Lucas Villagra | Cybersecurity Specialist</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg:           #020408;
-            --card-bg:      #080f16;
-            --card-bg2:     #0a1520;
-            --accent:       #00ff88;
-            --accent2:      #00c8ff;
-            --accent3:      #7b2fff;
-            --text-main:    #d0e8f0;
-            --text-muted:   #6a8fa8;
-            --border:       #0f2030;
-            --border-bright:#1a3a50;
-            --glow:         rgba(0,255,136,0.12);
+            --bg: #020408;
+            --card-bg: #080f16;
+            --card-bg2: #0a1520;
+            --accent: #00ff88;
+            --accent2: #00c8ff;
+            --accent3: #7b2fff;
+            --text-main: #d0e8f0;
+            --text-muted: #6a8fa8;
+            --border: #0f2030;
+            --border-bright: #1a3a50;
+            --glow: rgba(0, 255, 136, 0.12);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
             background-color: var(--bg);
@@ -38,134 +48,242 @@
         }
 
         #bg-canvas {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0; pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
         body::before {
             content: '';
-            position: fixed; inset: 0;
+            position: fixed;
+            inset: 0;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none; z-index: 1; opacity: 0.5;
-        }
-        body::after {
-            content: ''; position: fixed; inset: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
-            pointer-events: none; z-index: 1;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
         }
 
-        .wrapper { position: relative; z-index: 2; }
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.04) 2px, rgba(0, 0, 0, 0.04) 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 2;
+        }
 
         header {
-            min-height: 70vh; width: 100%;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            text-align: center; position: relative;
-            padding: 60px 20px; overflow: hidden;
+            min-height: 70vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 60px 20px;
+            overflow: hidden;
         }
+
         header::before {
-            content: ''; position: absolute; inset: 0;
+            content: '';
+            position: absolute;
+            inset: 0;
             background:
-                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,255,136,0.07) 0%, transparent 70%),
-                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0,200,255,0.05) 0%, transparent 60%),
-                linear-gradient(180deg, rgba(2,4,8,0) 0%, rgba(2,4,8,0.95) 100%);
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 255, 136, 0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0, 200, 255, 0.05) 0%, transparent 60%),
+                linear-gradient(180deg, rgba(2, 4, 8, 0) 0%, rgba(2, 4, 8, 0.95) 100%);
             z-index: 0;
         }
+
         header::after {
-            content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
         }
-        .header-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
 
         .header-eyebrow {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.72rem; color: var(--accent); letter-spacing: 4px;
-            opacity: 0; animation: fadeDown 0.8s 0.2s forwards;
+            font-size: 0.72rem;
+            color: var(--accent);
+            letter-spacing: 4px;
+            opacity: 0;
+            animation: fadeDown 0.8s 0.2s forwards;
         }
 
         h1 {
             font-family: 'Rajdhani', sans-serif;
             font-size: clamp(2.6rem, 6vw, 4.8rem);
-            font-weight: 700; color: #fff; letter-spacing: 6px;
-            text-transform: uppercase; line-height: 1;
-            text-shadow: 0 0 40px rgba(0,255,136,0.2), 0 0 80px rgba(0,200,255,0.1);
-            opacity: 0; animation: fadeDown 0.8s 0.4s forwards;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            line-height: 1;
+            text-shadow: 0 0 40px rgba(0, 255, 136, 0.2), 0 0 80px rgba(0, 200, 255, 0.1);
+            opacity: 0;
+            animation: fadeDown 0.8s 0.4s forwards;
         }
+
         .tagline {
             font-family: 'Share Tech Mono', monospace;
             font-size: clamp(0.7rem, 1.4vw, 0.88rem);
-            color: var(--accent2); letter-spacing: 2px; text-transform: uppercase;
-            opacity: 0; animation: fadeDown 0.8s 0.6s forwards;
+            color: var(--accent2);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeDown 0.8s 0.6s forwards;
         }
-        .location {
-            font-size: 0.85rem; color: var(--text-muted);
-            opacity: 0; animation: fadeDown 0.8s 0.8s forwards;
-        }
-        .location i { color: var(--accent); margin-right: 6px; }
 
-        section { padding: 80px 20px; max-width: 1140px; margin: auto; }
+        .location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            opacity: 0;
+            animation: fadeDown 0.8s 0.8s forwards;
+        }
+
+        .location i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1140px;
+            margin: auto;
+        }
 
         h2 {
             font-family: 'Share Tech Mono', monospace;
-            color: #fff; text-transform: uppercase;
-            margin-bottom: 50px; font-size: 1.2rem; letter-spacing: 3px;
-            display: flex; align-items: center; gap: 16px;
+            color: #fff;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
+
         h2::before {
-            content: ''; display: inline-block;
-            width: 4px; height: 22px;
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 22px;
             background: linear-gradient(180deg, var(--accent), var(--accent2));
-            border-radius: 2px; box-shadow: 0 0 10px var(--accent); flex-shrink: 0;
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--accent);
+            flex-shrink: 0;
         }
+
         h2::after {
-            content: ''; flex: 1; height: 1px;
+            content: '';
+            flex: 1;
+            height: 1px;
             background: linear-gradient(90deg, var(--border-bright), transparent);
         }
 
         .divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
-            max-width: 1140px; margin: 0 auto;
+            max-width: 1140px;
+            margin: 0 auto;
         }
 
         .stack-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
-            gap: 18px; text-align: center;
+            gap: 18px;
+            text-align: center;
         }
+
         .stack-item {
             background: var(--card-bg);
             padding: 22px 14px;
             border: 1px solid var(--border);
             border-radius: 8px;
             transition: all 0.35s ease;
-            position: relative; overflow: hidden;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 10px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
+
         .stack-item::before {
-            content: ''; position: absolute; inset: 0;
+            content: '';
+            position: absolute;
+            inset: 0;
             background: linear-gradient(135deg, var(--glow), transparent);
-            opacity: 0; transition: opacity 0.35s; z-index: 0;
+            opacity: 0;
+            transition: opacity 0.35s;
+            z-index: 0;
         }
-        .stack-item:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: 0 8px 28px rgba(0,255,136,0.12); }
-        .stack-item:hover::before { opacity: 1; }
-        .stack-item i { font-size: 2rem; color: var(--accent); position: relative; z-index: 1; }
+
+        .stack-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-6px);
+            box-shadow: 0 8px 28px rgba(0, 255, 136, 0.12);
+        }
+
+        .stack-item:hover::before {
+            opacity: 1;
+        }
+
+        .stack-item i {
+            font-size: 2rem;
+            color: var(--accent);
+            position: relative;
+            z-index: 1;
+        }
+
         .stack-item span {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.68rem; font-weight: bold; color: #fff;
-            letter-spacing: 1px; position: relative; z-index: 1;
+            font-size: 0.68rem;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
         }
 
         .about-wrap {
-            display: flex; gap: 48px; align-items: center; flex-wrap: wrap;
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            flex-wrap: wrap;
         }
+
         .about-avatar {
-            width: 160px; height: 160px; border-radius: 12px; flex-shrink: 0;
+            width: 160px;
+            height: 160px;
+            border-radius: 12px;
+            flex-shrink: 0;
             border: 2px solid var(--accent);
-            box-shadow: 0 0 30px rgba(0,255,136,0.15), 0 0 60px rgba(0,255,136,0.06);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.15), 0 0 60px rgba(0, 255, 136, 0.06);
             overflow: hidden;
             background: var(--card-bg2);
             display: flex;
@@ -173,768 +291,1236 @@
             justify-content: center;
             position: relative;
         }
+
         .about-avatar img {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             display: block;
             transition: transform 0.4s ease;
         }
-        .about-avatar:hover img { transform: scale(1.06); }
+
+        .about-avatar:hover img {
+            transform: scale(1.06);
+        }
 
         .about-avatar .avatar-fallback {
             display: none;
-            font-size: 4rem; color: var(--accent);
+            font-size: 4rem;
+            color: var(--accent);
         }
-        .about-avatar img.img-error { display: none; }
-        .about-avatar img.img-error ~ .avatar-fallback { display: flex; }
 
-        .about-text { flex: 1; min-width: 280px; }
-        .about-text p {
-            font-size: 1.08rem; color: #c0d8e8; line-height: 1.9;
+        .about-avatar img.img-error {
+            display: none;
         }
-        .about-text strong.g { color: var(--accent); }
-        .about-text strong.b { color: var(--accent2); }
+
+        .about-avatar img.img-error~.avatar-fallback {
+            display: flex;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .about-text p {
+            font-size: 1.08rem;
+            color: #c0d8e8;
+            line-height: 1.9;
+        }
+
+        .about-text strong.g {
+            color: var(--accent);
+        }
+
+        .about-text strong.b {
+            color: var(--accent2);
+        }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 26px;
         }
+
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 30px; border-radius: 10px;
-            transition: all 0.35s ease; position: relative; overflow: hidden;
-            display: flex; flex-direction: column;
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
+
         .card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            opacity: 0; transition: opacity 0.35s;
+            opacity: 0;
+            transition: opacity 0.35s;
         }
-        .card:hover { border-color: var(--border-bright); background: var(--card-bg2); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.4); }
-        .card:hover::before { opacity: 1; }
+
+        .card:hover {
+            border-color: var(--border-bright);
+            background: var(--card-bg2);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
         .card h3 {
             font-family: 'Rajdhani', sans-serif;
-            color: var(--accent); margin-bottom: 12px;
-            font-size: 1.2rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1px; display: flex; align-items: center; gap: 10px;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .card h3 i { font-size: 1rem; }
-        .card p { color: var(--text-muted); font-size: 0.93rem; line-height: 1.7; flex-grow: 1; }
+
+        .card h3 i {
+            font-size: 1rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.93rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
 
         .terminal-window {
-            background: #040d14; border-radius: 8px;
+            background: #040d14;
+            border-radius: 8px;
             border: 1px solid var(--border-bright);
-            margin: 20px 0 14px; overflow: hidden;
-            box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+            margin: 20px 0 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
         }
+
         .terminal-header {
             background: linear-gradient(90deg, #0a1a28, #0d2035);
-            padding: 9px 14px; display: flex; gap: 7px; align-items: center;
+            padding: 9px 14px;
+            display: flex;
+            gap: 7px;
+            align-items: center;
             border-bottom: 1px solid var(--border);
         }
-        .dot { width: 11px; height: 11px; border-radius: 50%; }
-        .red    { background: #ff5f56; }
-        .yellow { background: #ffbd2e; }
-        .green  { background: #27c93f; box-shadow: 0 0 6px #27c93f; }
+
+        .dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+        }
+
+        .red {
+            background: #ff5f56;
+        }
+
+        .yellow {
+            background: #ffbd2e;
+        }
+
+        .green {
+            background: #27c93f;
+            box-shadow: 0 0 6px #27c93f;
+        }
+
         .terminal-title {
             font-family: 'Share Tech Mono', monospace;
-            color: #4a7a9b; font-size: 0.7rem; margin-left: 6px;
+            color: #4a7a9b;
+            font-size: 0.7rem;
+            margin-left: 6px;
         }
+
         .terminal-content {
-            min-height: 160px; background: #020a10;
-            display: flex; align-items: center; justify-content: center;
+            min-height: 160px;
+            background: #020a10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
             position: relative;
         }
 
         .terminal-content img {
-            width: 100%; display: block;
+            width: 100%;
+            display: block;
             filter: brightness(0.9) contrast(1.1) saturate(0.95);
             transition: opacity 0.3s;
         }
+
         .terminal-content img[data-error="true"] {
             display: none;
         }
 
         .img-placeholder {
-            width: 100%; min-height: 160px;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 12px;
+            width: 100%;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             padding: 20px;
         }
-        .img-placeholder.hidden { display: none; }
+
+        .img-placeholder.hidden {
+            display: none;
+        }
 
         .scan-line {
-            width: 90%; height: 2px;
+            width: 90%;
+            height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
             animation: scanMove 2s ease-in-out infinite;
             border-radius: 1px;
         }
+
         .placeholder-text {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem; color: var(--text-muted);
-            letter-spacing: 2px; text-align: center;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-align: center;
         }
+
         .placeholder-grid {
-            display: grid; grid-template-columns: repeat(6, 1fr);
-            gap: 3px; width: 90%;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 3px;
+            width: 90%;
         }
+
         .placeholder-bar {
-            height: 8px; border-radius: 2px;
+            height: 8px;
+            border-radius: 2px;
             background: var(--border-bright);
             animation: barPulse 1.5s ease-in-out infinite;
         }
+
         .placeholder-bar:nth-child(even) {
-            background: rgba(0,255,136,0.2);
+            background: rgba(0, 255, 136, 0.2);
             animation-delay: 0.3s;
         }
+
         .placeholder-bar:nth-child(3n) {
-            background: rgba(0,200,255,0.15);
+            background: rgba(0, 200, 255, 0.15);
             animation-delay: 0.6s;
         }
 
         @keyframes scanMove {
-            0%   { opacity: 0; transform: scaleX(0.3); }
-            50%  { opacity: 1; transform: scaleX(1); }
-            100% { opacity: 0; transform: scaleX(0.3); }
+            0% {
+                opacity: 0;
+                transform: scaleX(0.3);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scaleX(0.3);
+            }
         }
+
         @keyframes barPulse {
-            0%, 100% { opacity: 0.4; }
-            50%       { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         .status-tag {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem; color: var(--accent);
-            display: flex; align-items: center; gap: 6px; margin-top: 4px; margin-bottom: 10px;
+            font-size: 0.7rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+            margin-bottom: 10px;
         }
+
         .status-tag::before {
-            content: ''; width: 6px; height: 6px; border-radius: 50%;
-            background: var(--accent); box-shadow: 0 0 8px var(--accent);
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
             animation: blink 2s infinite;
         }
 
-        .card-mcp { border-color: rgba(123,47,255,0.3); }
-        .card-mcp h3 { color: #b088ff; }
-        .card-mcp::before { background: linear-gradient(90deg, transparent, #7b2fff, transparent); }
+        .card-mcp {
+            border-color: rgba(123, 47, 255, 0.3);
+        }
+
+        .card-mcp h3 {
+            color: #b088ff;
+        }
+
+        .card-mcp::before {
+            background: linear-gradient(90deg, transparent, #7b2fff, transparent);
+        }
 
         .mcp-diagram {
-            background: #030b12; border: 1px solid var(--border-bright);
-            border-radius: 8px; margin: 20px 0 14px; padding: 16px; overflow: hidden;
+            background: #030b12;
+            border: 1px solid var(--border-bright);
+            border-radius: 8px;
+            margin: 20px 0 14px;
+            padding: 16px;
+            overflow: hidden;
         }
-        .mcp-diagram svg { width: 100%; height: auto; display: block; }
+
+        .mcp-diagram svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
         .mcp-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: rgba(123,47,255,0.12);
-            border: 1px solid rgba(123,47,255,0.4);
-            border-radius: 4px; padding: 3px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(123, 47, 255, 0.12);
+            border: 1px solid rgba(123, 47, 255, 0.4);
+            border-radius: 4px;
+            padding: 3px 10px;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.68rem; color: #b088ff; letter-spacing: 1px;
+            font-size: 0.68rem;
+            color: #b088ff;
+            letter-spacing: 1px;
         }
+
         .mcp-badge::before {
-            content: ''; width: 7px; height: 7px; border-radius: 50%;
-            background: #7b2fff; box-shadow: 0 0 8px #7b2fff;
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #7b2fff;
+            box-shadow: 0 0 8px #7b2fff;
             animation: blink 2s infinite;
         }
 
         .cert-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 10px; overflow: hidden;
-            transition: all 0.35s ease; position: relative;
-        }
-        .cert-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent2), transparent);
-            opacity: 0; transition: opacity 0.35s;
-        }
-        .cert-card:hover { border-color: var(--border-bright); background: var(--card-bg2); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.4); }
-        .cert-card:hover::before { opacity: 1; }
-
-        .cert-preview {
-            width: 100%; height: 200px; overflow: hidden;
-            border-bottom: 1px solid var(--border);
-            background: linear-gradient(135deg, #040e1a, #081820);
-            display: flex; align-items: center; justify-content: center;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.35s ease;
             position: relative;
         }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent2), transparent);
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+
+        .cert-card:hover {
+            border-color: var(--border-bright);
+            background: var(--card-bg2);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+        }
+
+        .cert-card:hover::before {
+            opacity: 1;
+        }
+
+        .cert-preview {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(135deg, #040e1a, #081820);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
         .cert-preview::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 50% 50%, rgba(0,200,255,0.06), transparent 70%);
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(0, 200, 255, 0.06), transparent 70%);
         }
+
         .cert-preview img {
-            height: 160px; width: auto;
+            height: 160px;
+            width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 4px 20px rgba(0,200,255,0.25));
+            filter: drop-shadow(0 4px 20px rgba(0, 200, 255, 0.25));
             transition: transform 0.4s ease, filter 0.4s ease;
-            position: relative; z-index: 1;
+            position: relative;
+            z-index: 1;
         }
+
         .cert-preview img[data-error="true"] {
             display: none;
         }
+
         .cert-card:hover .cert-preview img {
             transform: scale(1.08);
-            filter: drop-shadow(0 4px 28px rgba(0,200,255,0.45));
+            filter: drop-shadow(0 4px 28px rgba(0, 200, 255, 0.45));
         }
+
         .cert-placeholder {
-            display: none; position: absolute; inset: 0;
-            flex-direction: column; align-items: center; justify-content: center;
-            gap: 14px; padding: 20px; text-align: center; z-index: 2;
+            display: none;
+            position: absolute;
+            inset: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 20px;
+            text-align: center;
+            z-index: 2;
         }
+
         .cert-placeholder.visible {
             display: flex;
         }
+
         .cert-placeholder i {
-            font-size: 3.5rem; color: var(--accent2); opacity: 0.6;
+            font-size: 3.5rem;
+            color: var(--accent2);
+            opacity: 0.6;
         }
+
         .cert-placeholder-text {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem; color: var(--text-muted);
+            font-size: 0.75rem;
+            color: var(--text-muted);
             letter-spacing: 1px;
         }
 
-        .cert-body { padding: 24px; }
+        .cert-body {
+            padding: 24px;
+        }
+
         .cert-body h3 {
             font-family: 'Rajdhani', sans-serif;
-            color: var(--accent2); margin-bottom: 8px;
-            font-size: 1.15rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1px;
-            display: flex; align-items: center; gap: 8px;
+            color: var(--accent2);
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .cert-body p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 14px; }
+
+        .cert-body p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
         .cert-meta {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.68rem; color: #2a6a8a; letter-spacing: 1px; margin-bottom: 16px;
+            font-size: 0.68rem;
+            color: #2a6a8a;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
         }
-        .cert-meta span { color: var(--accent); }
+
+        .cert-meta span {
+            color: var(--accent);
+        }
 
         .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            margin-top: 8px; padding: 10px 22px;
-            border: 1px solid var(--accent); color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 10px 22px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
             text-decoration: none;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
-            transition: all 0.3s ease; background: transparent;
-            cursor: pointer; border-radius: 4px;
-            position: relative; overflow: hidden; z-index: 1;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-        .btn::before {
-            content: ''; position: absolute; inset: 0;
-            background: var(--accent); transform: translateX(-101%);
-            transition: transform 0.3s ease; pointer-events: none;
-        }
-        .btn:hover { color: #000; box-shadow: 0 0 20px rgba(0,255,136,0.3); }
-        .btn:hover::before { transform: translateX(0); }
-        .btn span, .btn i { position: relative; z-index: 1; }
 
-        .btn-b { border-color: var(--accent2); color: var(--accent2); }
-        .btn-b::before { background: var(--accent2); }
-        .btn-b:hover { color: #000; box-shadow: 0 0 20px rgba(0,200,255,0.3); }
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            transform: translateX(-101%);
+            transition: transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .btn:hover {
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn span,
+        .btn i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-b {
+            border-color: var(--accent2);
+            color: var(--accent2);
+        }
+
+        .btn-b::before {
+            background: var(--accent2);
+        }
+
+        .btn-b:hover {
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+        }
 
         .btn-gmail {
-            border-color: #ea4335; color: #ea4335;
+            border-color: #ea4335;
+            color: #ea4335;
         }
-        .btn-gmail::before { background: #ea4335; }
-        .btn-gmail:hover { color: #fff; box-shadow: 0 0 20px rgba(234,67,53,0.4); }
 
-        .contact-area { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+        .btn-gmail::before {
+            background: #ea4335;
+        }
+
+        .btn-gmail:hover {
+            color: #fff;
+            box-shadow: 0 0 20px rgba(234, 67, 53, 0.4);
+        }
+
+        .contact-area {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
 
         footer {
-            text-align: center; padding: 56px 20px;
+            text-align: center;
+            padding: 56px 20px;
             border-top: 1px solid var(--border);
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.73rem; color: var(--text-muted);
-            position: relative; z-index: 2;
+            font-size: 0.73rem;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 2;
         }
+
         footer::before {
-            content: ''; display: block; width: 80px; height: 1px;
+            content: '';
+            display: block;
+            width: 80px;
+            height: 1px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
             margin: 0 auto 22px;
         }
 
         @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-18px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         @keyframes blink {
-            0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.3rem; }
-            header { min-height: 55vh; }
-            section { padding: 55px 16px; }
-            .about-wrap { flex-direction: column; gap: 24px; }
-            .about-avatar { width: 120px; height: 120px; align-self: center; }
+            h1 {
+                font-size: 2.3rem;
+            }
+
+            header {
+                min-height: 55vh;
+            }
+
+            section {
+                padding: 55px 16px;
+            }
+
+            .about-wrap {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .about-avatar {
+                width: 120px;
+                height: 120px;
+                align-self: center;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<canvas id="bg-canvas"></canvas>
+    <canvas id="bg-canvas"></canvas>
 
-<div class="wrapper">
+    <div class="wrapper">
 
-<header>
-    <div class="header-content">
-        <p class="header-eyebrow">[ PORTFOLIO v2.6 // SECURITY CLEARANCE: PUBLIC ]</p>
-        <h1>LUCAS VILLAGRA</h1>
-        <p class="tagline">CYBERSECURITY ANALYST &nbsp;|&nbsp; RED TEAM &nbsp;|&nbsp; AI INTEGRATOR</p>
-        <p class="location"><i class="fas fa-map-marker-alt"></i> San Miguel de Tucumán, Argentina</p>
-    </div>
-</header>
+        <header>
+            <div class="header-content">
+                <p class="header-eyebrow">[ PORTFOLIO v2.6 // SECURITY CLEARANCE: PUBLIC ]</p>
+                <h1>LUCAS VILLAGRA</h1>
+                <p class="tagline">CYBERSECURITY ANALYST &nbsp;|&nbsp; RED TEAM &nbsp;|&nbsp; AI INTEGRATOR</p>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> San Miguel de Tucumán, Argentina</p>
+            </div>
+        </header>
 
-<section id="stack">
-    <h2>./ Stack Tecnológico</h2>
-    <div class="stack-grid">
-        <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
-        <div class="stack-item"><i class="fab fa-linux"></i><span>LINUX</span></div>
-        <div class="stack-item"><i class="fas fa-database"></i><span>SQL</span></div>
-        <div class="stack-item"><i class="fas fa-user-shield"></i><span>SIEM / IDS</span></div>
-        <div class="stack-item"><i class="fas fa-robot"></i><span>GEN AI</span></div>
-        <div class="stack-item"><i class="fas fa-plug"></i><span>MCP</span></div>
-        <div class="stack-item"><i class="fas fa-network-wired"></i><span>PENTESTING</span></div>
-        <div class="stack-item"><i class="fas fa-gear"></i><span>n8n / AUTO</span></div>
-    </div>
-</section>
+        <section id="stack">
+            <h2>./ Stack Tecnológico</h2>
+            <div class="stack-grid">
+                <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
+                <div class="stack-item"><i class="fab fa-linux"></i><span>LINUX</span></div>
+                <div class="stack-item"><i class="fas fa-database"></i><span>SQL</span></div>
+                <div class="stack-item"><i class="fas fa-user-shield"></i><span>SIEM / IDS</span></div>
+                <div class="stack-item"><i class="fas fa-robot"></i><span>GEN AI</span></div>
+                <div class="stack-item"><i class="fas fa-plug"></i><span>MCP</span></div>
+                <div class="stack-item"><i class="fas fa-network-wired"></i><span>PENTESTING</span></div>
+                <div class="stack-item"><i class="fas fa-gear"></i><span>n8n / AUTO</span></div>
+            </div>
+        </section>
 
-<div class="divider"></div>
+        <div class="divider"></div>
 
-<section id="about">
-    <h2>./ Who Am I</h2>
-    <div class="about-wrap">
+        <section id="about">
+            <h2>./ Who Am I</h2>
+            <div class="about-wrap">
 
-        <div class="about-avatar">
-            <img
-                src="Foto_Perfil.png"
-                alt="Lucas Villagra - Cybersecurity Analyst"
-                onerror="this.setAttribute('data-error','true'); this.classList.add('img-error');"
-            >
-            <i class="fas fa-user-secret avatar-fallback"></i>
-        </div>
-
-        <div class="about-text">
-            <p>
-                Analista de ciberseguridad con enfoque en operaciones de <strong class="g">Red Team</strong> y defensa de infraestructuras críticas.
-                Combino auditoría técnica rigurosa con automatización de procesos mediante <strong class="b">n8n, IA generativa y Python</strong> para blindar activos digitales.
-            </p>
-            <p style="margin-top:14px;">
-                Actualmente construyo un <strong class="g">home lab ofensivo</strong> sobre Kali Linux con Metasploit, herramientas de reconocimiento inalámbrico y flujos de inteligencia integrados con <strong class="b">Claude MCP</strong> para respuesta automatizada a incidentes.
-            </p>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="proyectos">
-    <h2>./ Laboratorio y Proyectos</h2>
-    
-    <div class="grid">
-
-        <div class="card">
-            <div class="status-tag">Unit mounted &amp; audit cache verified</div>
-            <h3><i class="fas fa-wifi"></i> Auditoría Wireless · Alfa AWUS036ACS</h3>
-            <p>Reconocimiento de espectro 2.4/5 GHz en modo monitor con hardware avanzado. Captura de handshakes WPA2, análisis con <code style="color:var(--accent);font-size:0.85em;">aircrack-ng</code> y almacenamiento estructurado en <code style="color:var(--accent);font-size:0.85em;">KALI_AUDIT</code>.</p>
-            <div class="terminal-window" style="margin-top: auto;">
-                <div class="terminal-header">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                    <span class="terminal-title">kali@kali: /media/kali/KALI_AUDIT — ls -la</span>
+                <div class="about-avatar">
+                    <img src="Foto_Perfil.png" alt="Lucas Villagra - Cybersecurity Analyst"
+                        onerror="this.setAttribute('data-error','true'); this.classList.add('img-error');">
+                    <i class="fas fa-user-secret avatar-fallback"></i>
                 </div>
-                <div class="terminal-content" id="tc-wifi">
-                    <img
-                        src="Captura01.png"
-                        alt="Kali Linux KALI_AUDIT directory listing"
-                        data-placeholder-id="ph-wifi"
-                        onerror="handleImgError(this)"
-                    >
-                    <div class="img-placeholder hidden" id="ph-wifi">
-                        <div class="placeholder-text">[ KALI_AUDIT · ls -la ]</div>
-                        <div class="scan-line"></div>
-                        <div class="placeholder-grid">
-                            <div class="placeholder-bar" style="grid-column: span 6; height:12px;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 2;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 4;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 3;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 3;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 5;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 1;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 4;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 2;"></div>
+
+                <div class="about-text">
+                    <p>
+                        Analista de ciberseguridad con enfoque en operaciones de <strong class="g">Red Team</strong> y
+                        defensa de infraestructuras críticas.
+                        Combino auditoría técnica rigurosa con automatización de procesos mediante <strong
+                            class="b">n8n, IA generativa y Python</strong> para blindar activos digitales.
+                    </p>
+                    <p style="margin-top:14px;">
+                        Actualmente construyo un <strong class="g">home lab ofensivo</strong> sobre Kali Linux con
+                        Metasploit, herramientas de reconocimiento inalámbrico y flujos de inteligencia integrados con
+                        <strong class="b">Claude MCP</strong> para respuesta automatizada a incidentes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="proyectos">
+            <h2>./ Laboratorio y Proyectos</h2>
+
+            <div class="grid">
+
+                <div class="card">
+                    <div class="status-tag">Unit mounted &amp; audit cache verified</div>
+                    <h3><i class="fas fa-wifi"></i> Auditoría Wireless · Alfa AWUS036ACS</h3>
+                    <p>Reconocimiento de espectro 2.4/5 GHz en modo monitor con hardware avanzado. Captura de handshakes
+                        WPA2, análisis con <code style="color:var(--accent);font-size:0.85em;">aircrack-ng</code> y
+                        almacenamiento estructurado en <code
+                            style="color:var(--accent);font-size:0.85em;">KALI_AUDIT</code>.</p>
+                    <div class="terminal-window" style="margin-top: auto;">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="terminal-title">kali@kali: /media/kali/KALI_AUDIT — ls -la</span>
                         </div>
-                        <div class="placeholder-text" style="color:var(--accent); animation: blink 2s infinite;">● IMAGEN: Captura01.png</div>
+                        <div class="terminal-content" id="tc-wifi">
+                            <img src="Captura01.png" alt="Kali Linux KALI_AUDIT directory listing"
+                                data-placeholder-id="ph-wifi" onerror="handleImgError(this)">
+                            <div class="img-placeholder hidden" id="ph-wifi">
+                                <div class="placeholder-text">[ KALI_AUDIT · ls -la ]</div>
+                                <div class="scan-line"></div>
+                                <div class="placeholder-grid">
+                                    <div class="placeholder-bar" style="grid-column: span 6; height:12px;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 2;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 4;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 3;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 3;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 5;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 1;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 4;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 2;"></div>
+                                </div>
+                                <div class="placeholder-text"
+                                    style="color:var(--accent); animation: blink 2s infinite;">● IMAGEN: Captura01.png
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="status-tag">Protocol: WireGuard (UDP) | Kill Switch ON</div>
+                    <h3><i class="fas fa-user-secret"></i> OpSec · Infraestructura VPN Anónima</h3>
+                    <p>Túneles cifrados <strong style="color:var(--accent2);">WireGuard (UDP)</strong> con Proton VPN
+                        para auditorías con identidad operativa protegida. Kill Switch activo y split tunneling
+                        configurado por scope de objetivo.</p>
+                    <div class="terminal-window" style="margin-top: auto;">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="terminal-title">ProtonVPN — WireGuard · US-FREE#37</span>
+                        </div>
+                        <div class="terminal-content" id="tc-vpn">
+                            <img src="Captura02.png" alt="Proton VPN WireGuard connected" data-placeholder-id="ph-vpn"
+                                onerror="handleImgError(this)">
+                            <div class="img-placeholder hidden" id="ph-vpn">
+                                <div class="placeholder-text">[ PROTONVPN · WIREGUARD ]</div>
+                                <div class="scan-line"></div>
+                                <div class="placeholder-grid">
+                                    <div class="placeholder-bar"
+                                        style="grid-column: span 6; height:14px; background: rgba(0,200,255,0.3);">
+                                    </div>
+                                    <div class="placeholder-bar"
+                                        style="grid-column: span 3; background: rgba(0,200,255,0.2);"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 3;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 2;"></div>
+                                    <div class="placeholder-bar"
+                                        style="grid-column: span 4; background: rgba(0,200,255,0.15);"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 6; height:10px;"></div>
+                                </div>
+                                <div class="placeholder-text"
+                                    style="color:var(--accent2); animation: blink 2s infinite 0.5s;">● IMAGEN:
+                                    Captura02.png</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-mcp">
+                    <div class="status-tag" style="color: #b088ff;">MCP ACTIVE — claude-sonnet-4</div>
+                    <h3><i class="fas fa-brain"></i> Claude MCP · AI Agent Integration</h3>
+                    <p>Integración de Claude como agente inteligente vía <strong style="color:#b088ff;">Model Context
+                            Protocol</strong>, conectando Gmail, Google Calendar, Slack y Canva con razonamiento
+                        avanzado y contexto persistente.</p>
+                    <div class="mcp-diagram" style="margin-top: auto;">
+                        <svg viewBox="0 0 560 310" xmlns="http://www.w3.org/2000/svg"
+                            font-family="'Share Tech Mono', monospace">
+                            <defs>
+                                <marker id="arr-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                                    <path d="M0,0 L0,6 L8,3 z" fill="#00ff88" />
+                                </marker>
+                                <marker id="arr-p" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                                    <path d="M0,0 L0,6 L8,3 z" fill="#7b2fff" />
+                                </marker>
+                                <marker id="arr-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                                    <path d="M0,0 L0,6 L8,3 z" fill="#00c8ff" />
+                                </marker>
+                            </defs>
+                            <rect width="560" height="310" fill="#020810" rx="6" />
+                            <text x="280" y="22" text-anchor="middle" fill="#1a3a50" font-size="9"
+                                letter-spacing="3">MCP WORKFLOW</text>
+                            <rect x="20" y="48" width="100" height="52" rx="5" fill="#05131e" stroke="#00c8ff"
+                                stroke-width="1.2" />
+                            <text x="70" y="69" text-anchor="middle" fill="#00c8ff" font-size="8">USER</text>
+                            <line x1="120" y1="74" x2="168" y2="74" stroke="#00c8ff" stroke-width="1.5"
+                                marker-end="url(#arr-b)" />
+                            <rect x="168" y="48" width="112" height="52" rx="5" fill="#05131e" stroke="#00c8ff"
+                                stroke-width="1.2" />
+                            <text x="224" y="69" text-anchor="middle" fill="#00c8ff" font-size="8">MCP CLIENT</text>
+                            <line x1="280" y1="74" x2="328" y2="74" stroke="#7b2fff" stroke-width="1.5"
+                                marker-end="url(#arr-p)" />
+                            <rect x="328" y="36" width="124" height="78" rx="6" fill="#0d0520" stroke="#7b2fff"
+                                stroke-width="1.8" />
+                            <text x="390" y="60" text-anchor="middle" fill="#b088ff" font-size="9">CLAUDE</text>
+                            <text x="280" y="143" text-anchor="middle" fill="#1a3a50" font-size="8">── MCP SERVERS
+                                ──</text>
+                            <rect x="18" y="153" width="88" height="44" rx="4" fill="#000d12" stroke="#00ff88"
+                                stroke-width="1" />
+                            <text x="62" y="171" text-anchor="middle" fill="#00ff88" font-size="7.5">GMAIL</text>
+                            <rect x="116" y="153" width="88" height="44" rx="4" fill="#000d12" stroke="#00ff88"
+                                stroke-width="1" />
+                            <text x="160" y="171" text-anchor="middle" fill="#00ff88" font-size="7.5">CALENDAR</text>
+                            <rect x="214" y="153" width="88" height="44" rx="4" fill="#000d12" stroke="#00ff88"
+                                stroke-width="1" />
+                            <text x="258" y="171" text-anchor="middle" fill="#00ff88" font-size="7.5">SLACK</text>
+                            <rect x="312" y="153" width="88" height="44" rx="4" fill="#000d12" stroke="#00ff88"
+                                stroke-width="1" />
+                            <text x="356" y="171" text-anchor="middle" fill="#00ff88" font-size="7.5">CANVA</text>
+                            <rect x="410" y="153" width="130" height="44" rx="4" fill="#000d12" stroke="#00c8ff"
+                                stroke-width="1" stroke-dasharray="3,2" />
+                            <text x="475" y="171" text-anchor="middle" fill="#00c8ff" font-size="7.5">WEB SEARCH</text>
+                            <line x1="390" y1="114" x2="62" y2="153" stroke="#00ff88" stroke-width="1"
+                                marker-end="url(#arr-g)" />
+                            <line x1="390" y1="114" x2="160" y2="153" stroke="#00ff88" stroke-width="1"
+                                marker-end="url(#arr-g)" />
+                            <line x1="390" y1="114" x2="258" y2="153" stroke="#00ff88" stroke-width="1"
+                                marker-end="url(#arr-g)" />
+                            <line x1="390" y1="114" x2="356" y2="153" stroke="#00ff88" stroke-width="1"
+                                marker-end="url(#arr-g)" />
+                            <line x1="452" y1="114" x2="475" y2="153" stroke="#00c8ff" stroke-width="1"
+                                marker-end="url(#arr-b)" />
+                        </svg>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
+                        <div class="mcp-badge">PYTHON</div>
+                        <div class="mcp-badge">INTEGRATION</div>
+                    </div>
+                </div>
+
+                <div class="card card-mcp">
+                    <div class="status-tag" style="color: #b088ff;">MCP SERVER</div>
+                    <h3><i class="fas fa-project-diagram"></i> n8n Security Node</h3>
+                    <p>Desarrollo de un servidor MCP para conectar Claude Desktop con n8n. Permite la ejecución de
+                        flujos de trabajo complejos y auditorías automatizadas mediante lenguaje natural.</p>
+                    <div class="mcp-diagram" style="margin-top: auto;">
+                        <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="35" width="80" height="50" rx="4" fill="none" stroke="#7b2fff"
+                                stroke-width="1.5" />
+                            <text x="50" y="65" fill="#b088ff" font-family="Share Tech Mono" font-size="10"
+                                text-anchor="middle">CLAUDE</text>
+                            <path d="M 90 60 L 150 60" stroke="#7b2fff" stroke-width="1" stroke-dasharray="4" />
+                            <rect x="150" y="35" width="100" height="50" rx="4" fill="rgba(123,47,255,0.1)"
+                                stroke="#7b2fff" stroke-width="2" />
+                            <text x="200" y="65" fill="#fff" font-family="Share Tech Mono" font-size="11"
+                                text-anchor="middle">MCP SERVER</text>
+                            <path d="M 250 60 L 310 60" stroke="#7b2fff" stroke-width="1" stroke-dasharray="4" />
+                            <rect x="310" y="35" width="80" height="50" rx="4" fill="none" stroke="#00ff88"
+                                stroke-width="1.5" />
+                            <text x="350" y="65" fill="#00ff88" font-family="Share Tech Mono" font-size="10"
+                                text-anchor="middle">n8n API</text>
+                        </svg>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <a href="https://github.com/lucas18062025" class="btn btn-b" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span>Ver Código</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="status-tag">ACTIVE MONITORING</div>
+                    <h3><i class="fas fa-shield-halved"></i> SIEM v4.0 | Threat Intel</h3>
+                    <p>Ecosistema de monitoreo en tiempo real basado en Python. Procesa eventos críticos de seguridad,
+                        clasifica riesgos mediante CVSS v3.1 y realiza consultas de CVEs automatizadas.</p>
+                    <div class="terminal-window" style="margin-top: auto;">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <div class="terminal-title">security_monitor.py — SIEM v4.0</div>
+                        </div>
+                        <div class="terminal-content" id="tc-siem">
+                            <img src="Captura de pantalla 2026-04-02 051805.png" alt="SIEM Dashboard Preview"
+                                data-placeholder-id="ph-siem" onerror="handleImgError(this)">
+                            <div class="img-placeholder hidden" id="ph-siem">
+                                <div class="placeholder-text">[ SECURITY_MONITOR.PY · SIEM v4.0 ]</div>
+                                <div class="scan-line"></div>
+                                <div class="placeholder-grid">
+                                    <div class="placeholder-bar"
+                                        style="grid-column: span 6; height:14px; background: rgba(0,255,136,0.3);">
+                                    </div>
+                                    <div class="placeholder-bar"
+                                        style="grid-column: span 1; background: rgba(255,95,86,0.4);"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 5;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 3;"></div>
+                                    <div class="placeholder-bar"
+                                        style="grid-column: span 2; background: rgba(255,189,46,0.3);"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 1;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 4;"></div>
+                                    <div class="placeholder-bar" style="grid-column: span 2;"></div>
+                                    <div class="placeholder-bar"
+                                        style="grid-column: span 6; height:10px; background: rgba(0,255,136,0.2);">
+                                    </div>
+                                </div>
+                                <div class="placeholder-text"
+                                    style="color:var(--accent); animation: blink 2s infinite 1s;">● IMAGEN: Captura de
+                                    pantalla 2026-04-02 051805.png</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
+                        <div class="mcp-badge"
+                            style="background: rgba(0,255,136,0.1); border-color: rgba(0,255,136,0.3); color: var(--accent);">
+                            PYTHON 3.10+</div>
+                        <div class="mcp-badge" style="border-color: var(--accent2); color: var(--accent2);">TELEGRAM API
+                        </div>
+                        <div class="mcp-badge" style="border-color: #ff5f56; color: #ff5f56;">CVSS v3.1</div>
+                        <div class="mcp-badge" style="border-color: var(--text-muted); color: var(--text-muted);">NIST
+                            DATABASE</div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <a href="https://github.com/lucas18062025/SIEM_Windows_11" class="btn btn-b" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span>Explorar Repo</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="servicios">
+            <h2>./ Servicios Profesionales</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3><i class="fas fa-user-shield"></i> Auditoría &amp; Hardening</h3>
+                    <p>Endurecimiento de sistemas operativos y análisis de configuraciones para minimizar superficie de
+                        ataque y elevar la resiliencia ante amenazas reales.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-crosshairs"></i> Pentesting · Red Team</h3>
+                    <p>Simulación controlada de ciberataques para identificar vulnerabilidades explotables antes que los
+                        adversarios. Reportes técnicos con evidencia y remediación.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="certificaciones">
+            <h2>./ Certificaciones</h2>
+
+            <div class="grid">
+                <div class="cert-card">
+                    <div class="cert-preview">
+                        <img src="Captura de pantalla 2026-04-02 161333.png" alt="Google Cybersecurity Certificate"
+                            loading="lazy" onerror="handleCertError(this)">
+                    </div>
+                    <div class="cert-body">
+                        <h3><i class="fab fa-google"></i> Google Cybersecurity</h3>
+                        <p class="cert-meta">9 CURSOS &nbsp;·&nbsp; <span>FEB 5, 2026</span> &nbsp;·&nbsp; COURSERA</p>
+                        <p>Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis · Incident
+                            response.</p>
+                        <a href="Google AI Essentials.pdf" class="btn btn-b" target="_blank" rel="noopener"
+                            style="margin-top:16px;">
+                            <i class="fas fa-file-pdf"></i><span>Ver Credencial</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-preview">
+                        <img src="Captura de pantalla 2026-04-02 161409.png" alt="Google AI Essentials Certificate"
+                            loading="lazy" onerror="handleCertError(this)">
+                    </div>
+                    <div class="cert-body">
+                        <h3><i class="fab fa-google"></i> Google AI Essentials</h3>
+                        <p class="cert-meta">5 CURSOS &nbsp;·&nbsp; <span>FEB 6, 2026</span> &nbsp;·&nbsp; COURSERA</p>
+                        <p>AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con
+                            Generative AI.</p>
+                        <a href="Cybersecutity Analist.pdf" class="btn btn-b" target="_blank" rel="noopener"
+                            style="margin-top:16px;">
+                            <i class="fas fa-file-pdf"></i><span>Ver Credencial</span>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <div class="status-tag">Protocol: WireGuard (UDP) | Kill Switch ON</div>
-            <h3><i class="fas fa-user-secret"></i> OpSec · Infraestructura VPN Anónima</h3>
-            <p>Túneles cifrados <strong style="color:var(--accent2);">WireGuard (UDP)</strong> con Proton VPN para auditorías con identidad operativa protegida. Kill Switch activo y split tunneling configurado por scope de objetivo.</p>
-            <div class="terminal-window" style="margin-top: auto;">
-                <div class="terminal-header">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                    <span class="terminal-title">ProtonVPN — WireGuard · US-FREE#37</span>
-                </div>
-                <div class="terminal-content" id="tc-vpn">
-                    <img
-                        src="Captura02.png"
-                        alt="Proton VPN WireGuard connected"
-                        data-placeholder-id="ph-vpn"
-                        onerror="handleImgError(this)"
-                    >
-                    <div class="img-placeholder hidden" id="ph-vpn">
-                        <div class="placeholder-text">[ PROTONVPN · WIREGUARD ]</div>
-                        <div class="scan-line"></div>
-                        <div class="placeholder-grid">
-                            <div class="placeholder-bar" style="grid-column: span 6; height:14px; background: rgba(0,200,255,0.3);"></div>
-                            <div class="placeholder-bar" style="grid-column: span 3; background: rgba(0,200,255,0.2);"></div>
-                            <div class="placeholder-bar" style="grid-column: span 3;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 2;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 4; background: rgba(0,200,255,0.15);"></div>
-                            <div class="placeholder-bar" style="grid-column: span 6; height:10px;"></div>
-                        </div>
-                        <div class="placeholder-text" style="color:var(--accent2); animation: blink 2s infinite 0.5s;">● IMAGEN: Captura02.png</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="divider"></div>
 
-        <div class="card card-mcp">
-            <div class="status-tag" style="color: #b088ff;">MCP ACTIVE — claude-sonnet-4</div>
-            <h3><i class="fas fa-brain"></i> Claude MCP · AI Agent Integration</h3>
-            <p>Integración de Claude como agente inteligente vía <strong style="color:#b088ff;">Model Context Protocol</strong>, conectando Gmail, Google Calendar, Slack y Canva con razonamiento avanzado y contexto persistente.</p>
-            <div class="mcp-diagram" style="margin-top: auto;">
-                <svg viewBox="0 0 560 310" xmlns="http://www.w3.org/2000/svg" font-family="'Share Tech Mono', monospace">
-                    <defs>
-                        <marker id="arr-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#00ff88"/></marker>
-                        <marker id="arr-p" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#7b2fff"/></marker>
-                        <marker id="arr-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#00c8ff"/></marker>
-                    </defs>
-                    <rect width="560" height="310" fill="#020810" rx="6"/>
-                    <text x="280" y="22" text-anchor="middle" fill="#1a3a50" font-size="9" letter-spacing="3">MCP WORKFLOW</text>
-                    <rect x="20" y="48" width="100" height="52" rx="5" fill="#05131e" stroke="#00c8ff" stroke-width="1.2"/>
-                    <text x="70" y="69" text-anchor="middle" fill="#00c8ff" font-size="8">USER</text>
-                    <line x1="120" y1="74" x2="168" y2="74" stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arr-b)"/>
-                    <rect x="168" y="48" width="112" height="52" rx="5" fill="#05131e" stroke="#00c8ff" stroke-width="1.2"/>
-                    <text x="224" y="69" text-anchor="middle" fill="#00c8ff" font-size="8">MCP CLIENT</text>
-                    <line x1="280" y1="74" x2="328" y2="74" stroke="#7b2fff" stroke-width="1.5" marker-end="url(#arr-p)"/>
-                    <rect x="328" y="36" width="124" height="78" rx="6" fill="#0d0520" stroke="#7b2fff" stroke-width="1.8"/>
-                    <text x="390" y="60" text-anchor="middle" fill="#b088ff" font-size="9">CLAUDE</text>
-                    <text x="280" y="143" text-anchor="middle" fill="#1a3a50" font-size="8">── MCP SERVERS ──</text>
-                    <rect x="18" y="153" width="88" height="44" rx="4" fill="#000d12" stroke="#00ff88" stroke-width="1"/>
-                    <text x="62" y="171" text-anchor="middle" fill="#00ff88" font-size="7.5">GMAIL</text>
-                    <rect x="116" y="153" width="88" height="44" rx="4" fill="#000d12" stroke="#00ff88" stroke-width="1"/>
-                    <text x="160" y="171" text-anchor="middle" fill="#00ff88" font-size="7.5">CALENDAR</text>
-                    <rect x="214" y="153" width="88" height="44" rx="4" fill="#000d12" stroke="#00ff88" stroke-width="1"/>
-                    <text x="258" y="171" text-anchor="middle" fill="#00ff88" font-size="7.5">SLACK</text>
-                    <rect x="312" y="153" width="88" height="44" rx="4" fill="#000d12" stroke="#00ff88" stroke-width="1"/>
-                    <text x="356" y="171" text-anchor="middle" fill="#00ff88" font-size="7.5">CANVA</text>
-                    <rect x="410" y="153" width="130" height="44" rx="4" fill="#000d12" stroke="#00c8ff" stroke-width="1" stroke-dasharray="3,2"/>
-                    <text x="475" y="171" text-anchor="middle" fill="#00c8ff" font-size="7.5">WEB SEARCH</text>
-                    <line x1="390" y1="114" x2="62"  y2="153" stroke="#00ff88" stroke-width="1" marker-end="url(#arr-g)"/>
-                    <line x1="390" y1="114" x2="160" y2="153" stroke="#00ff88" stroke-width="1" marker-end="url(#arr-g)"/>
-                    <line x1="390" y1="114" x2="258" y2="153" stroke="#00ff88" stroke-width="1" marker-end="url(#arr-g)"/>
-                    <line x1="390" y1="114" x2="356" y2="153" stroke="#00ff88" stroke-width="1" marker-end="url(#arr-g)"/>
-                    <line x1="452" y1="114" x2="475" y2="153" stroke="#00c8ff" stroke-width="1" marker-end="url(#arr-b)"/>
-                </svg>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
-                <div class="mcp-badge">PYTHON</div>
-                <div class="mcp-badge">INTEGRATION</div>
-            </div>
-        </div>
+        <section id="reflexiones" style="text-align:center;">
+            <h2 style="justify-content:center;">./ Reflexiones</h2>
 
-        <div class="card card-mcp">
-            <div class="status-tag" style="color: #b088ff;">MCP SERVER</div>
-            <h3><i class="fas fa-project-diagram"></i> n8n Security Node</h3>
-            <p>Desarrollo de un servidor MCP para conectar Claude Desktop con n8n. Permite la ejecución de flujos de trabajo complejos y auditorías automatizadas mediante lenguaje natural.</p>
-            <div class="mcp-diagram" style="margin-top: auto;">
-                <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="10" y="35" width="80" height="50" rx="4" fill="none" stroke="#7b2fff" stroke-width="1.5"/>
-                    <text x="50" y="65" fill="#b088ff" font-family="Share Tech Mono" font-size="10" text-anchor="middle">CLAUDE</text>
-                    <path d="M 90 60 L 150 60" stroke="#7b2fff" stroke-width="1" stroke-dasharray="4"/>
-                    <rect x="150" y="35" width="100" height="50" rx="4" fill="rgba(123,47,255,0.1)" stroke="#7b2fff" stroke-width="2"/>
-                    <text x="200" y="65" fill="#fff" font-family="Share Tech Mono" font-size="11" text-anchor="middle">MCP SERVER</text>
-                    <path d="M 250 60 L 310 60" stroke="#7b2fff" stroke-width="1" stroke-dasharray="4"/>
-                    <rect x="310" y="35" width="80" height="50" rx="4" fill="none" stroke="#00ff88" stroke-width="1.5"/>
-                    <text x="350" y="65" fill="#00ff88" font-family="Share Tech Mono" font-size="10" text-anchor="middle">n8n API</text>
-                </svg>
-            </div>
-            <div style="margin-top: 20px;">
-                <a href="https://github.com/lucas18062025" class="btn btn-b" target="_blank">
-                    <i class="fab fa-github"></i>
-                    <span>Ver Código</span>
-                </a>
-            </div>
-        </div>
+            <div style="
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        max-width: 780px;
+        margin: 0 auto;
+    ">
 
-        <div class="card">
-            <div class="status-tag">ACTIVE MONITORING</div>
-            <h3><i class="fas fa-shield-halved"></i> SIEM v4.0 | Threat Intel</h3>
-            <p>Ecosistema de monitoreo en tiempo real basado en Python. Procesa eventos críticos de seguridad, clasifica riesgos mediante CVSS v3.1 y realiza consultas de CVEs automatizadas.</p>
-            <div class="terminal-window" style="margin-top: auto;">
-                <div class="terminal-header">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                    <div class="terminal-title">security_monitor.py — SIEM v4.0</div>
+                <div style="
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
+            padding: 26px 32px;
+            text-align: left;
+            position: relative;
+            transition: all 0.35s ease;
+        " onmouseover="this.style.borderColor='var(--accent)'; this.style.background='var(--card-bg2)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 36px rgba(0,0,0,0.4)'"
+                    onmouseout="this.style.borderColor='var(--border)'; this.style.borderLeftColor='var(--accent)'; this.style.background='var(--card-bg)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <span style="
+                font-family: 'Share Tech Mono', monospace;
+                font-size: 0.68rem;
+                color: var(--accent);
+                letter-spacing: 3px;
+                display: block;
+                margin-bottom: 14px;
+            ">[ REF_001 // RED TEAM MINDSET ]</span>
+                    <p style="
+                font-family: 'Rajdhani', sans-serif;
+                font-size: 1.12rem;
+                color: #c0d8e8;
+                line-height: 1.8;
+                font-style: italic;
+            ">" Pensar como atacante te enseña a defender… pero actuar con ética define quién sos. "</p>
                 </div>
-                <div class="terminal-content" id="tc-siem">
-                    <img
-                        src="Captura de pantalla 2026-04-02 051805.png"
-                        alt="SIEM Dashboard Preview"
-                        data-placeholder-id="ph-siem"
-                        onerror="handleImgError(this)"
-                    >
-                    <div class="img-placeholder hidden" id="ph-siem">
-                        <div class="placeholder-text">[ SECURITY_MONITOR.PY · SIEM v4.0 ]</div>
-                        <div class="scan-line"></div>
-                        <div class="placeholder-grid">
-                            <div class="placeholder-bar" style="grid-column: span 6; height:14px; background: rgba(0,255,136,0.3);"></div>
-                            <div class="placeholder-bar" style="grid-column: span 1; background: rgba(255,95,86,0.4);"></div>
-                            <div class="placeholder-bar" style="grid-column: span 5;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 3;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 2; background: rgba(255,189,46,0.3);"></div>
-                            <div class="placeholder-bar" style="grid-column: span 1;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 4;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 2;"></div>
-                            <div class="placeholder-bar" style="grid-column: span 6; height:10px; background: rgba(0,255,136,0.2);"></div>
-                        </div>
-                        <div class="placeholder-text" style="color:var(--accent); animation: blink 2s infinite 1s;">● IMAGEN: Captura de pantalla 2026-04-02 051805.png</div>
-                    </div>
+
+                <div style="
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent2);
+            border-radius: 8px;
+            padding: 26px 32px;
+            text-align: left;
+            position: relative;
+            transition: all 0.35s ease;
+        " onmouseover="this.style.borderColor='var(--accent2)'; this.style.background='var(--card-bg2)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 36px rgba(0,0,0,0.4)'"
+                    onmouseout="this.style.borderColor='var(--border)'; this.style.borderLeftColor='var(--accent2)'; this.style.background='var(--card-bg)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <span style="
+                font-family: 'Share Tech Mono', monospace;
+                font-size: 0.68rem;
+                color: var(--accent2);
+                letter-spacing: 3px;
+                display: block;
+                margin-bottom: 14px;
+            ">[ REF_002 // CONTINUOUS LEARNING ]</span>
+                    <p style="
+                font-family: 'Rajdhani', sans-serif;
+                font-size: 1.12rem;
+                color: #c0d8e8;
+                line-height: 1.8;
+                font-style: italic;
+            ">" En el mundo de la ciberseguridad, la curiosidad es tu mejor herramienta. Cada vulnerabilidad es una
+                        oportunidad para aprender y cada ataque es una lección para mejorar. Mantente siempre un paso
+                        adelante, porque en este juego, el conocimiento es poder. "</p>
                 </div>
+
+                <div style="
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent3);
+            border-radius: 8px;
+            padding: 26px 32px;
+            text-align: left;
+            position: relative;
+            transition: all 0.35s ease;
+        " onmouseover="this.style.borderColor='var(--accent3)'; this.style.background='var(--card-bg2)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 36px rgba(0,0,0,0.4)'"
+                    onmouseout="this.style.borderColor='var(--border)'; this.style.borderLeftColor='var(--accent3)'; this.style.background='var(--card-bg)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <span style="
+                font-family: 'Share Tech Mono', monospace;
+                font-size: 0.68rem;
+                color: #b088ff;
+                letter-spacing: 3px;
+                display: block;
+                margin-bottom: 14px;
+            ">[ REF_003 // VM ISOLATION PRINCIPLE ]</span>
+                    <p style="
+                font-family: 'Rajdhani', sans-serif;
+                font-size: 1.12rem;
+                color: #c0d8e8;
+                line-height: 1.8;
+                font-style: italic;
+            ">" El aislamiento de una VM no es absoluto, es probabilístico. La seguridad real viene de entender cada
+                        vector de contacto entre la VM y el host, y eliminar los que no necesitás activamente. "</p>
+                </div>
+
             </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
-                <div class="mcp-badge" style="background: rgba(0,255,136,0.1); border-color: rgba(0,255,136,0.3); color: var(--accent);">PYTHON 3.10+</div>
-                <div class="mcp-badge" style="border-color: var(--accent2); color: var(--accent2);">TELEGRAM API</div>
-                <div class="mcp-badge" style="border-color: #ff5f56; color: #ff5f56;">CVSS v3.1</div>
-                <div class="mcp-badge" style="border-color: var(--text-muted); color: var(--text-muted);">NIST DATABASE</div>
-            </div>
-            <div style="margin-top: 20px;">
-                <a href="https://github.com/lucas18062025/SIEM_Windows_11" class="btn btn-b" target="_blank">
-                    <i class="fab fa-github"></i>
-                    <span>Explorar Repo</span>
-                </a>
-            </div>
-        </div>
+            <section id="contacto" style="text-align:center;">
+                <h2 style="justify-content:center;">./ Conectar</h2>
+                <div class="contact-area">
+                    <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn btn-b" target="_blank"
+                        rel="noopener">
+                        <i class="fab fa-linkedin"></i><span>LINKEDIN</span>
+                    </a>
+                    <a href="https://wa.me/543814764474" class="btn" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i><span>WHATSAPP</span>
+                    </a>
+
+                    <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad."
+                        class="btn btn-gmail" target="_blank" rel="noopener" onclick="return handleGmailClick();">
+                        <i class="fab fa-google"></i><span>GMAIL</span>
+                    </a>
+
+                    <a href="mailto:lucaslean1806@gmail.com?subject=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad."
+                        class="btn btn-b">
+                        <i class="fas fa-envelope"></i><span>EMAIL</span>
+                    </a>
+                </div>
+            </section>
+            <div class="divider"></div>
+
+        </section>
+
+        <footer>
+            <p>© 2026 Lucas Villagra &nbsp;·&nbsp; System Secured &nbsp;·&nbsp; Built on GitHub Pages</p>
+            <p style="font-size:0.6rem; opacity:0.22; margin-top:10px;">[ uptime: ∞ &nbsp;|&nbsp; threat level:
+                monitored &nbsp;|&nbsp; status: operational ]</p>
+        </footer>
 
     </div>
-</section>
 
-<div class="divider"></div>
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [], grid = [];
 
-<section id="servicios">
-    <h2>./ Servicios Profesionales</h2>
-    <div class="grid">
-        <div class="card">
-            <h3><i class="fas fa-user-shield"></i> Auditoría &amp; Hardening</h3>
-            <p>Endurecimiento de sistemas operativos y análisis de configuraciones para minimizar superficie de ataque y elevar la resiliencia ante amenazas reales.</p>
-        </div>
-        <div class="card">
-            <h3><i class="fas fa-crosshairs"></i> Pentesting · Red Team</h3>
-            <p>Simulación controlada de ciberataques para identificar vulnerabilidades explotables antes que los adversarios. Reportes técnicos con evidencia y remediación.</p>
-        </div>
-    </div>
-</section>
+        function resize() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+            grid = [];
+            const s = 48;
+            for (let x = 0; x < W; x += s) for (let y = 0; y < H; y += s) grid.push({ x, y });
+        }
+        window.addEventListener('resize', resize);
+        resize();
 
-<div class="divider"></div>
-
-<section id="certificaciones">
-    <h2>./ Certificaciones</h2>
-
-    <div class="grid">
-        <div class="cert-card">
-            <div class="cert-preview">
-                <iframe src="Cybersecutity Analist.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" width="100%" height="100%" style="border: none; pointer-events: none;" title="Google Cybersecurity Certificate"></iframe>
-                <div class="cert-placeholder">
-                    <i class="fas fa-file-pdf"></i>
-                    <div class="cert-placeholder-text">PDF PREVIEW</div>
-                </div>
-            </div>
-            <div class="cert-body">
-                <h3><i class="fab fa-google"></i> Google Cybersecurity</h3>
-                <p class="cert-meta">9 CURSOS &nbsp;·&nbsp; <span>FEB 5, 2026</span> &nbsp;·&nbsp; COURSERA</p>
-                <p>Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis · Incident response.</p>
-                <a href="Cybersecutity Analist.pdf" class="btn btn-b" target="_blank" rel="noopener" style="margin-top:16px;">
-                    <i class="fas fa-file-pdf"></i><span>Ver Credencial</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="cert-card">
-            <div class="cert-preview">
-                <iframe src="Google AI Essentials.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" width="100%" height="100%" style="border: none; pointer-events: none;" title="Google AI Essentials Certificate"></iframe>
-                <div class="cert-placeholder">
-                    <i class="fas fa-file-pdf"></i>
-                    <div class="cert-placeholder-text">PDF PREVIEW</div>
-                </div>
-            </div>
-            <div class="cert-body">
-                <h3><i class="fab fa-google"></i> Google AI Essentials</h3>
-                <p class="cert-meta">5 CURSOS &nbsp;·&nbsp; <span>FEB 6, 2026</span> &nbsp;·&nbsp; COURSERA</p>
-                <p>AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con Generative AI.</p>
-                <a href="Google AI Essentials.pdf" class="btn btn-b" target="_blank" rel="noopener" style="margin-top:16px;">
-                    <i class="fas fa-file-pdf"></i><span>Ver Credencial</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="contacto" style="text-align:center;">
-    <h2 style="justify-content:center;">./ Conectar</h2>
-    <div class="contact-area">
-        <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn btn-b" target="_blank" rel="noopener">
-            <i class="fab fa-linkedin"></i><span>LINKEDIN</span>
-        </a>
-        <a href="https://wa.me/543814764474" class="btn" target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp"></i><span>WHATSAPP</span>
-        </a>
-
-        <a
-            href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad."
-            class="btn btn-gmail"
-            target="_blank"
-            rel="noopener"
-            onclick="return handleGmailClick();"
-        >
-            <i class="fab fa-google"></i><span>GMAIL</span>
-        </a>
-
-        <a href="mailto:lucaslean1806@gmail.com?subject=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad." class="btn btn-b">
-            <i class="fas fa-envelope"></i><span>EMAIL</span>
-        </a>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 Lucas Villagra &nbsp;·&nbsp; System Secured &nbsp;·&nbsp; Built on GitHub Pages</p>
-    <p style="font-size:0.6rem; opacity:0.22; margin-top:10px;">[ uptime: ∞ &nbsp;|&nbsp; threat level: monitored &nbsp;|&nbsp; status: operational ]</p>
-</footer>
-
-</div>
-
-<script>
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let W, H, particles=[], grid=[];
-
-    function resize(){
-        W = canvas.width  = window.innerWidth;
-        H = canvas.height = window.innerHeight;
-        grid=[];
-        const s=48;
-        for(let x=0;x<W;x+=s) for(let y=0;y<H;y+=s) grid.push({x,y});
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    const COLS=['#00ff88','#00c8ff','#7b2fff'];
-    for(let i=0;i<55;i++) particles.push({
-        x:Math.random()*W, y:Math.random()*H,
-        r:Math.random()*1.5+0.3,
-        vx:(Math.random()-0.5)*0.3, vy:(Math.random()-0.5)*0.3,
-        color:COLS[Math.floor(Math.random()*COLS.length)],
-        alpha:Math.random()*0.5+0.1
-    });
-
-    let t=0;
-    function draw(){
-        ctx.clearRect(0,0,W,H);
-        const g=ctx.createRadialGradient(W*.5,H*.1,0,W*.5,H*.5,H*.9);
-        g.addColorStop(0,'rgba(0,30,20,0.18)');
-        g.addColorStop(.5,'rgba(0,10,20,0.10)');
-        g.addColorStop(1,'rgba(2,4,8,0)');
-        ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-
-        grid.forEach(p=>{
-            const f=0.08+0.06*Math.sin(t*.4+p.x*.05+p.y*.05);
-            ctx.beginPath(); ctx.arc(p.x,p.y,.8,0,Math.PI*2);
-            ctx.fillStyle=`rgba(0,200,80,${f})`; ctx.fill();
+        const COLS = ['#00ff88', '#00c8ff', '#7b2fff'];
+        for (let i = 0; i < 55; i++) particles.push({
+            x: Math.random() * W, y: Math.random() * H,
+            r: Math.random() * 1.5 + 0.3,
+            vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+            color: COLS[Math.floor(Math.random() * COLS.length)],
+            alpha: Math.random() * 0.5 + 0.1
         });
 
-        const sy=(H*(t*.3%100))/100;
-        const sg=ctx.createLinearGradient(0,sy-60,0,sy+60);
-        sg.addColorStop(0,'rgba(0,255,136,0)');
-        sg.addColorStop(.5,'rgba(0,255,136,0.025)');
-        sg.addColorStop(1,'rgba(0,255,136,0)');
-        ctx.fillStyle=sg; ctx.fillRect(0,sy-60,W,120);
+        let t = 0;
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            const g = ctx.createRadialGradient(W * .5, H * .1, 0, W * .5, H * .5, H * .9);
+            g.addColorStop(0, 'rgba(0,30,20,0.18)');
+            g.addColorStop(.5, 'rgba(0,10,20,0.10)');
+            g.addColorStop(1, 'rgba(2,4,8,0)');
+            ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 
-        particles.forEach(p=>{
-            p.x+=p.vx; p.y+=p.vy;
-            if(p.x<0)p.x=W; if(p.x>W)p.x=0;
-            if(p.y<0)p.y=H; if(p.y>H)p.y=0;
-            ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-            ctx.fillStyle=p.color;
-            ctx.globalAlpha = p.alpha;
-            ctx.fill();
-            ctx.globalAlpha = 1;
-        });
+            grid.forEach(p => {
+                const f = 0.08 + 0.06 * Math.sin(t * .4 + p.x * .05 + p.y * .05);
+                ctx.beginPath(); ctx.arc(p.x, p.y, .8, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0,200,80,${f})`; ctx.fill();
+            });
 
-        for(let i=0;i<particles.length;i++){
-            for(let j=i+1;j<particles.length;j++){
-                const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
-                const d=Math.sqrt(dx*dx+dy*dy);
-                if(d<120){
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x,particles[i].y);
-                    ctx.lineTo(particles[j].x,particles[j].y);
-                    ctx.strokeStyle=`rgba(0,255,136,${0.06*(1-d/120)})`;
-                    ctx.lineWidth=.5; ctx.stroke();
+            const sy = (H * (t * .3 % 100)) / 100;
+            const sg = ctx.createLinearGradient(0, sy - 60, 0, sy + 60);
+            sg.addColorStop(0, 'rgba(0,255,136,0)');
+            sg.addColorStop(.5, 'rgba(0,255,136,0.025)');
+            sg.addColorStop(1, 'rgba(0,255,136,0)');
+            ctx.fillStyle = sg; ctx.fillRect(0, sy - 60, W, 120);
+
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+                if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.alpha;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            });
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+                    const d = Math.sqrt(dx * dx + dy * dy);
+                    if (d < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(0,255,136,${0.06 * (1 - d / 120)})`;
+                        ctx.lineWidth = .5; ctx.stroke();
+                    }
+                }
+            }
+            t++;
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        function handleImgError(img) {
+            img.setAttribute('data-error', 'true');
+            const placeholderId = img.getAttribute('data-placeholder-id');
+            if (placeholderId) {
+                const ph = document.getElementById(placeholderId);
+                if (ph) ph.classList.remove('hidden');
+            }
+        }
+
+        function handleCertError(img) {
+            img.setAttribute('data-error', 'true');
+            const certPreview = img.closest('.cert-preview');
+            if (certPreview) {
+                const placeholder = certPreview.querySelector('.cert-placeholder');
+                if (placeholder) {
+                    placeholder.classList.add('visible');
                 }
             }
         }
-        t++;
-        requestAnimationFrame(draw);
-    }
-    draw();
 
-    function handleImgError(img) {
-        img.setAttribute('data-error', 'true');
-        const placeholderId = img.getAttribute('data-placeholder-id');
-        if (placeholderId) {
-            const ph = document.getElementById(placeholderId);
-            if (ph) ph.classList.remove('hidden');
+        function openPDF(filename) {
+            // Abre el PDF en una nueva pestaña
+            const url = window.location.origin + window.location.pathname.replace('index.html', '') + filename;
+            window.open(url, '_blank');
         }
-    }
 
-    function handleCertError(img) {
-        img.setAttribute('data-error', 'true');
-        const certPreview = img.closest('.cert-preview');
-        if (certPreview) {
-            const placeholder = certPreview.querySelector('.cert-placeholder');
-            if (placeholder) {
-                placeholder.classList.add('visible');
-            }
+        function handleGmailClick() {
+            // Fallback para navegadores donde mailto no funciona bien
+            return true;
         }
-    }
-
-    function openPDF(filename) {
-        // Abre el PDF en una nueva pestaña
-        const url = window.location.origin + window.location.pathname.replace('index.html', '') + filename;
-        window.open(url, '_blank');
-    }
-
-    function handleGmailClick() {
-        // Fallback para navegadores donde mailto no funciona bien
-        return true;
-    }
-</script>
+    </script>
 
 </body>
-</html>
 
+</html>
