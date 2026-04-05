@@ -14,27 +14,33 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        :root {
-            --bg: #020408;
-            --card-bg: #080f16;
-            --card-bg2: #0a1520;
-            --accent: #00ff88;
-            --accent2: #00c8ff;
-            --accent3: #7b2fff;
-            --text-main: #d0e8f0;
-            --text-muted: #6a8fa8;
-            --border: #0f2030;
-            --border-bright: #1a3a50;
-            --glow: rgba(0, 255, 136, 0.12);
-        }
+<style>
+    :root {
+        /* Fondos: Azules muy oscuros y profundos (más modernos que el negro puro) */
+        --bg: #0f172a;           /* Fondo general */
+        --card-bg: #1e293b;      /* Tarjetas nivel 1 */
+        --card-bg2: #334155;     /* Tarjetas nivel 2 o hover */
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /* Acentos: Un cyan suave y un azul acero (adiós al verde neón) */
+        --accent: #38bdf8;       /* Color principal (Cyan profesional) */
+        --accent2: #60a5fa;      /* Color secundario (Azul suave) */
+        --accent3: #818cf8;      /* Color terciario (Violeta apagado) */
 
+        /* Textos: Blancos azulados para no cansar la vista */
+        --text-main: #f1f5f9;    /* Texto principal */
+        --text-muted: #94a3b8;   /* Texto secundario/descripciones */
+
+        /* Bordes y Efectos: Sutiles, sin brillar en exceso */
+        --border: #1e293b;
+        --border-bright: #334155;
+        --glow: rgba(56, 189, 248, 0.1); /* Resplandor muy suave en azul */
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
         html {
             scroll-behavior: smooth;
         }
