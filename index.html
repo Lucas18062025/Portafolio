@@ -16,25 +16,25 @@
 
 <style>
     :root {
-        /* Fondos: Azules muy oscuros y profundos (más modernos que el negro puro) */
-        --bg: #0f172a;           /* Fondo general */
-        --card-bg: #1e293b;      /* Tarjetas nivel 1 */
-        --card-bg2: #334155;     /* Tarjetas nivel 2 o hover */
+    /* Fondos sólidos y profundos */
+    --bg: #0b0f1a;           /* Un azul casi negro, muy elegante */
+    --card-bg: #161b2a;      /* Azul marino oscuro para tarjetas */
+    --card-bg2: #1f2937;     /* Gris azulado para destacar */
 
-        /* Acentos: Un cyan suave y un azul acero (adiós al verde neón) */
-        --accent: #38bdf8;       /* Color principal (Cyan profesional) */
-        --accent2: #60a5fa;      /* Color secundario (Azul suave) */
-        --accent3: #818cf8;      /* Color terciario (Violeta apagado) */
+    /* Acentos profesionales (Azul Eléctrico y Cyan) */
+    --accent: #3b82f6;       /* Azul brillante tipo Azure/Microsoft */
+    --accent2: #06b6d4;      /* Cyan limpio para detalles */
+    --accent3: #6366f1;      /* Indigo para un toque de Red Team */
 
-        /* Textos: Blancos azulados para no cansar la vista */
-        --text-main: #f1f5f9;    /* Texto principal */
-        --text-muted: #94a3b8;   /* Texto secundario/descripciones */
+    /* Texto con alto contraste */
+    --text-main: #ffffff;    /* Blanco puro para títulos */
+    --text-muted: #94a3b8;   /* Gris frío para descripciones */
 
-        /* Bordes y Efectos: Sutiles, sin brillar en exceso */
-        --border: #1e293b;
-        --border-bright: #334155;
-        --glow: rgba(56, 189, 248, 0.1); /* Resplandor muy suave en azul */
-    }
+    /* Bordes y resplandores */
+    --border: #1e293b;
+    --border-bright: #3b82f6;
+    --glow: rgba(59, 130, 246, 0.15); 
+}
 
     * {
         box-sizing: border-box;
@@ -77,7 +77,7 @@
             content: '';
             position: fixed;
             inset: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.04) 2px, rgba(0, 0, 0, 0.04) 4px);
+            background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(59, 130, 246, 0.01) 1px, transparent 2px);
             pointer-events: none;
             z-index: 1;
         }
