@@ -14,33 +14,34 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<style>
-    :root {
-    /* Fondos: Cambiamos el #0b0f1a por uno más profundo y menos gris */
-    --bg: #020617;           /* Azul noche profundo (Slate 950) */
-    --card-bg: #0f172a;      /* Azul marino (Slate 900) */
-    --card-bg2: #1e293b;     /* Azul grisáceo para hovers */
-
-    /* Acentos: Cyan y Azul Azure para máxima nitidez */
-    --accent: #38bdf8;       /* Cyan brillante */
-    --accent2: #60a5fa;      /* Azul suave */
-    --accent3: #818cf8;      /* Indigo para Red Team */
-
-    /* Texto: Blanco nieve y Gris Slate */
-    --text-main: #f8fafc;    /* Blanco casi puro */
-    --text-muted: #94a3b8;   /* Gris frío legible */
-
-    /* Bordes: Sutiles para evitar que se vea cargado */
-    --border: rgba(56, 189, 248, 0.1); 
-    --border-bright: rgba(56, 189, 248, 0.4);
-    --glow: rgba(56, 189, 248, 0.05); 
-}
+    <style>
+        :root {
+            /* Paleta GitHub Dark Profundo */
+            --bg-main: #0d1117;       /* Fondo principal */
+            --bg-card: #161b22;       /* Fondo de tarjetas */
+            --bg-terminal: #010409;   /* Fondo negro puro para contraste */
+            
+            /* Textos */
+            --text-main: #f8fafc;     /* Blanco nieve para títulos */
+            --text-muted: #8b949e;    /* Gris para descripciones */
+            
+            /* Acentos Blue Neon */
+            --accent: #4493f8;        /* Azul brillante */
+            --accent-dim: rgba(68, 147, 248, 0.15); 
+            
+            /* Bordes y Glow */
+            --border: rgba(68, 147, 248, 0.1); 
+            --border-bright: rgba(68, 147, 248, 0.4);
+            --glow: rgba(68, 147, 248, 0.05); 
+        }
 
         body {
-            background-color: var(--bg);
+            background-color: var(--bg-main);
             color: var(--text-main);
             font-family: 'Rajdhani', sans-serif;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
         }
 
@@ -54,25 +55,25 @@
             pointer-events: none;
         }
 
-       body::before {
+        /* Capa de ruido fractal desactivada para mantener el negro limpio */
+        body::before {
             content: '';
             position: fixed;
             inset: 0;
-            /* Hemos desactivado el ruido fractal que daba el tono verdoso/sucio */
             display: none; 
             pointer-events: none;
             z-index: 1;
         }
 
-       body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    /* Luz desde la esquina superior para dar dimensión */
-    background: radial-gradient(circle at 50% -10%, rgba(56, 189, 248, 0.12), transparent 70%);
-    pointer-events: none;
-    z-index: 1; /* Esto debe estar por encima del fondo pero por debajo del contenido */
-}
+        /* Resplandor superior para dar profundidad */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% -10%, rgba(68, 147, 248, 0.2), transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
 
         .wrapper {
             position: relative;
@@ -89,6 +90,7 @@
             text-align: center;
             position: relative;
             padding: 60px 20px;
+            box-sizing: border-box;
             overflow: hidden;
         }
 
