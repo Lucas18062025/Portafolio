@@ -16,34 +16,25 @@
 
 <style>
     :root {
-    /* Fondos sólidos y profundos */
-    --bg: #0b0f1a;           /* Un azul casi negro, muy elegante */
-    --card-bg: #161b2a;      /* Azul marino oscuro para tarjetas */
-    --card-bg2: #1f2937;     /* Gris azulado para destacar */
+    /* Fondos: Cambiamos el #0b0f1a por uno más profundo y menos gris */
+    --bg: #020617;           /* Azul noche profundo (Slate 950) */
+    --card-bg: #0f172a;      /* Azul marino (Slate 900) */
+    --card-bg2: #1e293b;     /* Azul grisáceo para hovers */
 
-    /* Acentos profesionales (Azul Eléctrico y Cyan) */
-    --accent: #3b82f6;       /* Azul brillante tipo Azure/Microsoft */
-    --accent2: #06b6d4;      /* Cyan limpio para detalles */
-    --accent3: #6366f1;      /* Indigo para un toque de Red Team */
+    /* Acentos: Cyan y Azul Azure para máxima nitidez */
+    --accent: #38bdf8;       /* Cyan brillante */
+    --accent2: #60a5fa;      /* Azul suave */
+    --accent3: #818cf8;      /* Indigo para Red Team */
 
-    /* Texto con alto contraste */
-    --text-main: #ffffff;    /* Blanco puro para títulos */
-    --text-muted: #94a3b8;   /* Gris frío para descripciones */
+    /* Texto: Blanco nieve y Gris Slate */
+    --text-main: #f8fafc;    /* Blanco casi puro */
+    --text-muted: #94a3b8;   /* Gris frío legible */
 
-    /* Bordes y resplandores */
-    --border: #1e293b;
-    --border-bright: #3b82f6;
-    --glow: rgba(59, 130, 246, 0.15); 
+    /* Bordes: Sutiles para evitar que se vea cargado */
+    --border: rgba(56, 189, 248, 0.1); 
+    --border-bright: rgba(56, 189, 248, 0.4);
+    --glow: rgba(56, 189, 248, 0.05); 
 }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-        html {
-            scroll-behavior: smooth;
-        }
 
         body {
             background-color: var(--bg);
@@ -63,24 +54,25 @@
             pointer-events: none;
         }
 
-        body::before {
+       body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            /* Hemos desactivado el ruido fractal que daba el tono verdoso/sucio */
+            display: none; 
             pointer-events: none;
             z-index: 1;
-            opacity: 0.5;
         }
 
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(59, 130, 246, 0.01) 1px, transparent 2px);
-            pointer-events: none;
-            z-index: 1;
-        }
+       body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    /* Luz desde la esquina superior para dar dimensión */
+    background: radial-gradient(circle at 50% -10%, rgba(56, 189, 248, 0.12), transparent 70%);
+    pointer-events: none;
+    z-index: 1; /* Esto debe estar por encima del fondo pero por debajo del contenido */
+}
 
         .wrapper {
             position: relative;
