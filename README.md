@@ -8,7 +8,7 @@
 [![Stack](https://img.shields.io/badge/stack-HTML_%7C_CSS_%7C_JS-00c8ff?style=for-the-badge)](https://lucas18062025.github.io/Portafolio/)
 
 > *Portafolio profesional de ciberseguridad.*
-> *Red Team · Blue Team · AI Integration · Tucumán, Argentina.*
+> *Red Team · Blue Team · AI Integration · Tucumán, Argentina·*
 
 **[→ Ver sitio en vivo](https://lucas18062025.github.io/Portafolio/)**
 
