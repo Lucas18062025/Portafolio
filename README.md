@@ -7,7 +7,7 @@
 [![Platform](https://img.shields.io/badge/platform-GitHub_Pages-30363d?style=for-the-badge&logo=github&logoColor=white)](https://lucas18062025.github.io/Portafolio/)
 [![Stack](https://img.shields.io/badge/stack-HTML_%7C_CSS_%7C_JS-00c8ff?style=for-the-badge)](https://lucas18062025.github.io/Portafolio/)
 
-> *Portafolio profesional de ciberseguridad con estética cyberpunk/terminal.*
+> *Portafolio profesional de ciberseguridad con estética.*
 > *Red Team · Blue Team · AI Integration · Tucumán, Argentina.*
 
 **[→ Ver sitio en vivo](https://lucas18062025.github.io/Portafolio/)**
