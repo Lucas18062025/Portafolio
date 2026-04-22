@@ -2,6 +2,7 @@
 
 # 🌐 Portafolio · Lucas Villagra
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/caa0879e-3e0b-4271-a1b5-8ff440b89b86/deploy-status)](https://app.netlify.com/projects/unique-boba-c67ffd/deploys)
 [![Status](https://img.shields.io/badge/status-live-22c55e?style=for-the-badge&logo=github&logoColor=white)](https://lucas18062025.github.io/Portafolio/)
 [![License](https://img.shields.io/badge/license-MIT-7b2fff?style=for-the-badge)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-GitHub_Pages-30363d?style=for-the-badge&logo=github&logoColor=white)](https://lucas18062025.github.io/Portafolio/)
