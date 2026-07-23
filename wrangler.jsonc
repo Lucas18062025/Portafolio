@@ -1,0 +1,9 @@
+{
+  // Worker name, must match the one already deployed in Cloudflare dashboard
+  "name": "portafolio",
+  "compatibility_date": "2026-07-01",
+  // Tells Cloudflare this is a static site served from the repo root
+  "assets": {
+    "directory": "./"
+  }
+}
