@@ -1,9 +1,14 @@
 {
-  // Worker name, must match the one already deployed in Cloudflare dashboard
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "portafolio",
-  "compatibility_date": "2026-07-01",
-  // Tells Cloudflare this is a static site served from the repo root
+  "compatibility_date": "2026-07-23",
+  "observability": {
+    "enabled": true
+  },
   "assets": {
-    "directory": "./"
-  }
+    "directory": "."
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
 }
