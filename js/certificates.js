@@ -1,4 +1,4 @@
-const CERTIFICATES_URL = "/data/certificates.json";
+const CERTIFICATES_URL = "./data/certificates.json";
 
 function createCertificateCard(certificate) {
     const card = document.createElement("div");
