@@ -1,0 +1,41 @@
+[
+    {
+        "id": "google-cybersecurity",
+        "title": "Google Cybersecurity",
+        "icon": "fab fa-google",
+        "meta": "9 CURSOS",
+        "date": "2026-02-05",
+        "dateLabel": "FEB 5, 2026",
+        "issuer": "COURSERA",
+        "description": "Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis · Incident response.",
+        "preview": "assets/certificates/google-cybersecurity.jpg",
+        "document": "Cybersecutity Analist.pdf",
+        "alt": "Google Cybersecurity Certificate — Coursera"
+    },
+    {
+        "id": "google-ai-essentials",
+        "title": "Google AI Essentials",
+        "icon": "fab fa-google",
+        "meta": "5 CURSOS",
+        "date": "2026-02-06",
+        "dateLabel": "FEB 6, 2026",
+        "issuer": "COURSERA",
+        "description": "AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con Generative AI.",
+        "preview": "assets/certificates/google-ai-essentials.jpg",
+        "document": "Google AI Essentials.pdf",
+        "alt": "Google AI Essentials Certificate — Coursera"
+    },
+    {
+        "id": "big-school-cybersecurity",
+        "title": "Ciberseguridad y Hacking Ético",
+        "icon": "fas fa-user-shield",
+        "meta": "6 HORAS",
+        "date": "2026-04-11",
+        "dateLabel": "ABR 11, 2026",
+        "issuer": "BIG SCHOOL",
+        "description": "Técnicas de detección de vulnerabilidades y defensa digital.",
+        "preview": "assets/certificates/big-school-cybersecurity.jpg",
+        "document": "Certificado-Lucas-Villagra-rgan09hf.pdf",
+        "alt": "Certificado BIG School — Ciberseguridad y Hacking Ético"
+    }
+]
