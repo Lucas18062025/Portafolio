@@ -1,0 +1,14 @@
+.git
+.git/**
+.wrangler
+.wrangler/**
+.vscode
+.vscode/**
+.dev.vars*
+.env*
+.gitignore
+.assetsignore
+LICENSE
+README.md
+update_portfolio.py
+wrangler.jsonc
