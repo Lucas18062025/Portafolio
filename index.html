@@ -14,6 +14,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/hero.css">
 
     <style>
         :root {
@@ -902,14 +903,23 @@
             box-shadow: 0 0 25px rgba(234, 67, 53, .45);
         }
 
-        .btn-email {
-            border-color: #FFFFFF;
-            color: #FFFFFF;
+        .btn-facebook {
+            border-color: #1877F2;
+            color: #4DA3FF;
         }
 
-        .btn-email:hover {
-            border-color: #FFFFFF;
-            box-shadow: 0 0 25px rgba(255, 255, 255, .30);
+        .btn-facebook::before {
+            background: #1877F2;
+        }
+
+        .btn-facebook:hover {
+            border-color: #1877F2;
+
+            box-shadow:
+                0 0 25px rgba(24,
+                    119,
+                    242,
+                    0.45);
         }
 
 
@@ -1001,12 +1011,133 @@
 
     <div class="wrapper">
 
-        <header>
-            <div class="header-content">
-                <p class="header-eyebrow">[ LUXURY TECH PORTAFOLIO // ACCESS GRANTED // 2026 ]</p>
-                <p class="tagline">CYBERSECURITY ANALYST &nbsp;|&nbsp; ETHICAL HACKER &nbsp;|&nbsp; AI INTEGRATOR</p>
-                <p class="location"><i class="fas fa-map-marker-alt"></i> San Miguel de Tucumán, Argentina</p>
+        <header class="hero">
+
+            <div class="hero-container">
+
+                <div class="hero-main">
+
+                    <div class="hero-copy">
+
+                        <div class="hero-eyebrow">
+                            Security Engineering / 2026
+                        </div>
+
+                        <h1 class="hero-title">
+                            LUCAS<br>
+                            VILLAGRA
+                        </h1>
+
+                        <div class="hero-roles">
+                            <span>CYBERSECURITY ANALYST</span>
+                            <span>ETHICAL HACKER</span>
+                            <span>AI INTEGRATOR</span>
+                        </div>
+
+                        <p class="hero-description">
+                            <strong>Building secure systems.</strong><br>
+                            Testing real attack surfaces.<br>
+                            Automating security workflows.
+                        </p>
+
+                        <div class="hero-actions">
+
+                            <a href="#proyectos" class="hero-btn hero-btn-primary">
+
+                                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+
+                                EXPLORE PROJECTS
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <aside class="system-card" aria-label="System status">
+
+                        <div class="system-header">
+
+                            <span class="system-title">
+                                SYSTEM STATUS
+                            </span>
+
+                            <span class="system-index">
+                                SYS / 01
+                            </span>
+
+                        </div>
+
+                        <div class="system-operational">
+
+                            <span class="status-dot"></span>
+
+                            OPERATIONAL
+
+                        </div>
+
+                        <div class="system-list">
+
+                            <div class="system-row">
+                                <span>WEB SECURITY</span>
+                                <span class="system-check">✓</span>
+                            </div>
+
+                            <div class="system-row">
+                                <span>PENTESTING</span>
+                                <span class="system-check">✓</span>
+                            </div>
+
+                            <div class="system-row">
+                                <span>SIEM</span>
+                                <span class="system-check">✓</span>
+                            </div>
+
+                            <div class="system-row">
+                                <span>AUTOMATION</span>
+                                <span class="system-check">✓</span>
+                            </div>
+
+                            <div class="system-row">
+                                <span>AI</span>
+                                <span class="system-check">✓</span>
+                            </div>
+
+                        </div>
+
+                        <div class="system-location">
+                            TUCUMÁN / ARGENTINA
+                        </div>
+
+                    </aside>
+
+                </div>
+
+                <div class="security-stack">
+
+                    <div class="security-stack-label">
+                        Security Stack
+                    </div>
+
+                    <div class="security-stack-list">
+
+                        <span class="security-stack-item">KALI</span>
+                        <span class="security-stack-item">PYTHON</span>
+                        <span class="security-stack-item">NMAP</span>
+                        <span class="security-stack-item">BURP</span>
+                        <span class="security-stack-item">WIRESHARK</span>
+                        <span class="security-stack-item">POWERSHELL</span>
+                        <span class="security-stack-item">DOCKER</span>
+                        <span class="security-stack-item">GITHUB</span>
+                        <span class="security-stack-item">CLOUDFLARE</span>
+                        <span class="security-stack-item">N8N</span>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </header>
 
         <section id="stack">
@@ -1430,8 +1561,8 @@
             <section id="contacto" style="text-align:center;">
                 <h2 style="justify-content:center;">./ Conectar</h2>
                 <div class="contact-area">
-                    <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn btn-linkedin" target="_blank"
-                        rel="noopener">
+                    <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn btn-linkedin"
+                        target="_blank" rel="noopener">
                         <i class="fab fa-linkedin"></i><span>LINKEDIN</span>
                     </a>
                     <a href="https://wa.me/543814764474" class="btn btn-whatsapp" target="_blank" rel="noopener">
@@ -1443,9 +1574,15 @@
                         <i class="fab fa-google"></i><span>GMAIL</span>
                     </a>
 
-                    <a href="mailto:lucaslean1806@gmail.com?subject=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad."
-                        class="btn btn-b">
-                        <i class="fas fa-envelope"></i><span>EMAIL</span>
+                    <a href="https://www.facebook.com/CyberAnalystTucuman" class="btn btn-facebook" target="_blank"
+                        rel="noopener noreferrer">
+
+                        <i class="fab fa-facebook"></i>
+
+                        <span>
+                            FACEBOOK
+                        </span>
+
                     </a>
                 </div>
             </section>
