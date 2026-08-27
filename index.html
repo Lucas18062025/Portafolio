@@ -364,6 +364,22 @@
             gap: 26px;
         }
 
+        #proyectos .grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 900px) {
+            #proyectos .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            #proyectos .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -1425,6 +1441,327 @@
                         <a href="https://github.com/lucas18062025/SIEM_Windows_11" class="btn btn-b" target="_blank">
                             <i class="fab fa-github"></i>
                             <span>Explorar Repo</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- =========================================================
+                     SENTINEL V5 APEX
+                     ========================================================= -->
+
+                <div class="card">
+                    <div class="status-tag">SECURITY AUTOMATION · ACTIVE</div>
+
+                    <h3>
+                        <i class="fas fa-shield-halved"></i>
+                        Sentinel V5 Apex
+                    </h3>
+
+                    <p>
+                        Plataforma de automatización defensiva para Windows orientada a
+                        detección, monitoreo y respuesta ante eventos de seguridad.
+                        Integra PowerShell, controles de seguridad del sistema,
+                        validaciones y mecanismos de protección operativa.
+                    </p>
+
+                    <div class="terminal-window" style="margin-top: auto;">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="terminal-title">
+                                Sentinel V5 Apex · PowerShell
+                            </span>
+                        </div>
+
+                        <div class="terminal-content">
+                            <div class="placeholder-text">
+                                [ SENTINEL V5 APEX ]
+                            </div>
+
+                            <div class="scan-line"></div>
+
+                            <div class="placeholder-grid">
+                                <div class="placeholder-bar" style="grid-column: span 6; height:14px;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 3;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 5;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 2;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 4;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="mcp-badge">POWERSHELL</div>
+                        <div class="mcp-badge">WINDOWS</div>
+                        <div class="mcp-badge">DEFENSIVE SECURITY</div>
+                        <div class="mcp-badge">AUTOMATION</div>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <a href="https://github.com/Lucas18062025/Sentinel" class="btn btn-b" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                            <span>Explorar Repo</span>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- =========================================================
+                     GOPHISH LAB
+                     ========================================================= -->
+
+                <div class="card">
+                    <div class="status-tag">SECURITY AWARENESS · LAB</div>
+
+                    <h3>
+                        <i class="fas fa-fish"></i>
+                        Gophish Lab
+                    </h3>
+
+                    <p>
+                        Laboratorio controlado de simulación de campañas de phishing
+                        para estudiar vectores de ingeniería social, concientización
+                        de usuarios, métricas y respuesta defensiva. Proyecto
+                        desarrollado exclusivamente con fines educativos y de
+                        laboratorio autorizado.
+                    </p>
+
+                    <div class="terminal-window" style="margin-top:auto;">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="terminal-title">
+                                Gophish-Lab · Authorized Environment
+                            </span>
+                        </div>
+
+                        <div class="terminal-content">
+                            <div class="placeholder-text">
+                                [ GOPHISH LAB ]
+                            </div>
+
+                            <div class="scan-line"></div>
+
+                            <div class="placeholder-grid">
+                                <div class="placeholder-bar" style="grid-column: span 5; height:14px;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 3;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 4;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 2;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 5;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="mcp-badge">GOPHISH</div>
+                        <div class="mcp-badge">SOCIAL ENGINEERING</div>
+                        <div class="mcp-badge">SECURITY AWARENESS</div>
+                        <div class="mcp-badge">LAB</div>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <a href="https://github.com/Lucas18062025/Gophish-Lab" class="btn btn-b" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                            <span>Explorar Repo</span>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- =========================================================
+                     NETWORK EGRESS MONITOR
+                     ========================================================= -->
+
+                <div class="card">
+                    <div class="status-tag">NETWORK DEFENSE · MONITORING</div>
+
+                    <h3>
+                        <i class="fas fa-network-wired"></i>
+                        Network Egress Monitor
+                    </h3>
+
+                    <p>
+                        Monitor orientado a detectar y analizar conexiones salientes
+                        de red, proporcionando visibilidad sobre tráfico egress y
+                        posibles comportamientos anómalos. Diseñado como herramienta
+                        defensiva para mejorar la supervisión de endpoints y redes.
+                    </p>
+
+                    <div class="terminal-window" style="margin-top:auto;">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="terminal-title">
+                                NETWORK-EGRESS-MONITOR
+                            </span>
+                        </div>
+
+                        <div class="terminal-content">
+                            <div class="placeholder-text">
+                                [ NETWORK EGRESS MONITOR ]
+                            </div>
+
+                            <div class="scan-line"></div>
+
+                            <div class="placeholder-grid">
+                                <div class="placeholder-bar" style="grid-column: span 6; height:14px;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 2;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 4;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 3;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 5;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="mcp-badge">NETWORK SECURITY</div>
+                        <div class="mcp-badge">MONITORING</div>
+                        <div class="mcp-badge">EGRESS</div>
+                        <div class="mcp-badge">DEFENSIVE</div>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <a href="https://github.com/Lucas18062025/NETWORK-EGRESS-MONITOR-" class="btn btn-b"
+                            target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                            <span>Explorar Repo</span>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- =========================================================
+                     SECURE WEB PLATFORM
+                     ========================================================= -->
+
+                <div class="card">
+                    <div class="status-tag">WEB SECURITY · FULL STACK</div>
+
+                    <h3>
+                        <i class="fas fa-globe"></i>
+                        Secure Web Platform
+                    </h3>
+
+                    <p>
+                        Plataforma web orientada a seguridad que combina desarrollo
+                        full-stack, análisis automatizado y arquitectura defensiva.
+                        Implementada con Next.js, TypeScript y Cloudflare Workers
+                        para construir una superficie web moderna y segura.
+                    </p>
+
+                    <div class="terminal-window" style="margin-top:auto;">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="terminal-title">
+                                secure-web-platform · Cloudflare
+                            </span>
+                        </div>
+
+                        <div class="terminal-content">
+                            <div class="placeholder-text">
+                                [ SECURE WEB PLATFORM ]
+                            </div>
+
+                            <div class="scan-line"></div>
+
+                            <div class="placeholder-grid">
+                                <div class="placeholder-bar" style="grid-column: span 6; height:14px;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 4;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 2;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 5;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="mcp-badge">NEXT.JS</div>
+                        <div class="mcp-badge">TYPESCRIPT</div>
+                        <div class="mcp-badge">CLOUDFLARE</div>
+                        <div class="mcp-badge">WEB SECURITY</div>
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;">
+
+                        <a href="https://github.com/Lucas18062025/secure-web-platform" class="btn btn-b" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+
+                        <a href="https://frontend.lucaslean1806.workers.dev/" class="btn btn-b" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Live Demo</span>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- =========================================================
+                     ZENHUB DASHBOARD
+                     ========================================================= -->
+
+                <div class="card">
+                    <div class="status-tag">WEB DEVELOPMENT · DASHBOARD</div>
+
+                    <h3>
+                        <i class="fas fa-chart-line"></i>
+                        ZenHub Dashboard
+                    </h3>
+
+                    <p>
+                        Dashboard web orientado a la visualización y gestión de
+                        información de proyectos. Proyecto enfocado en interfaces
+                        modernas, organización de datos y desarrollo de herramientas
+                        web con una arquitectura preparada para evolucionar.
+                    </p>
+
+                    <div class="terminal-window" style="margin-top:auto;">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="terminal-title">
+                                zenhub-dashboard · web application
+                            </span>
+                        </div>
+
+                        <div class="terminal-content">
+                            <div class="placeholder-text">
+                                [ ZENHUB DASHBOARD ]
+                            </div>
+
+                            <div class="scan-line"></div>
+
+                            <div class="placeholder-grid">
+                                <div class="placeholder-bar" style="grid-column: span 5; height:14px;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 3;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 4;"></div>
+                                <div class="placeholder-bar" style="grid-column: span 2;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="mcp-badge">PROJECT MANAGEMENT</div>
+                        <div class="mcp-badge">DATA VISUALIZATION</div>
+                        <div class="mcp-badge">WEB DEVELOPMENT</div>
+                        <div class="mcp-badge">DASHBOARD</div>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <a href="https://github.com/Lucas18062025/zenhub-dashboard" class="btn btn-b" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                            <span>Ver GitHub</span>
                         </a>
                     </div>
                 </div>
