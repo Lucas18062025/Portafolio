@@ -466,6 +466,11 @@
             filter: brightness(1.08);
         }
 
+        .project-preview-contain img {
+            object-fit: contain;
+            padding: 8px;
+        }
+
         .terminal-window {
             background: #040810;
             border-radius: 12px;
@@ -1214,35 +1219,8 @@
                         WPA2, análisis con <code style="color:var(--accent);font-size:0.85em;">aircrack-ng</code> y
                         almacenamiento estructurado en <code
                             style="color:var(--accent);font-size:0.85em;">KALI_AUDIT</code>.</p>
-                    <div class="terminal-window" style="margin-top: auto;">
-                        <div class="terminal-header">
-                            <div class="dot red"></div>
-                            <div class="dot yellow"></div>
-                            <div class="dot green"></div>
-                            <span class="terminal-title">kali@kali: /media/kali/KALI_AUDIT — ls -la</span>
-                        </div>
-                        <div class="terminal-content" id="tc-wifi">
-                            <img src="Captura01.png" alt="Kali Linux KALI_AUDIT directory listing"
-                                data-placeholder-id="ph-wifi" onerror="handleImgError(this)">
-                            <div class="img-placeholder hidden" id="ph-wifi">
-                                <div class="placeholder-text">[ KALI_AUDIT · ls -la ]</div>
-                                <div class="scan-line"></div>
-                                <div class="placeholder-grid">
-                                    <div class="placeholder-bar" style="grid-column: span 6; height:12px;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 2;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 4;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 3;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 3;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 5;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 1;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 4;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 2;"></div>
-                                </div>
-                                <div class="placeholder-text"
-                                    style="color:var(--accent); animation: blink 2s infinite;">● IMAGEN: Captura01.png
-                                </div>
-                            </div>
-                        </div>
+                    <div class="project-preview">
+                        <img src="Captura01.png" alt="Auditoría Wireless — Alfa AWUS036ACS" loading="lazy">
                     </div>
                 </div>
 
@@ -1252,36 +1230,8 @@
                     <p>Túneles cifrados <strong style="color:var(--accent2);">WireGuard (UDP)</strong> con Proton VPN
                         para auditorías con identidad operativa protegida. Kill Switch activo y split tunneling
                         configurado por scope de objetivo.</p>
-                    <div class="terminal-window" style="margin-top: auto;">
-                        <div class="terminal-header">
-                            <div class="dot red"></div>
-                            <div class="dot yellow"></div>
-                            <div class="dot green"></div>
-                            <span class="terminal-title">ProtonVPN — WireGuard · US-FREE#37</span>
-                        </div>
-                        <div class="terminal-content" id="tc-vpn">
-                            <img src="Captura02.png" alt="Proton VPN WireGuard connected" data-placeholder-id="ph-vpn"
-                                onerror="handleImgError(this)">
-                            <div class="img-placeholder hidden" id="ph-vpn">
-                                <div class="placeholder-text">[ PROTONVPN · WIREGUARD ]</div>
-                                <div class="scan-line"></div>
-                                <div class="placeholder-grid">
-                                    <div class="placeholder-bar"
-                                        style="grid-column: span 6; height:14px; background: rgba(171,180,191,0.3);">
-                                    </div>
-                                    <div class="placeholder-bar"
-                                        style="grid-column: span 3; background: rgba(171,180,191,0.2);"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 3;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 2;"></div>
-                                    <div class="placeholder-bar"
-                                        style="grid-column: span 4; background: rgba(171,180,191,0.15);"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 6; height:10px;"></div>
-                                </div>
-                                <div class="placeholder-text"
-                                    style="color:var(--accent2); animation: blink 2s infinite 0.5s;">● IMAGEN:
-                                    Captura02.png</div>
-                            </div>
-                        </div>
+                    <div class="project-preview">
+                        <img src="Captura02.png" alt="OpSec — infraestructura VPN WireGuard" loading="lazy">
                     </div>
                 </div>
 
@@ -1392,41 +1342,9 @@
                     <h3><i class="fas fa-shield-halved"></i> SIEM v4.0 | Threat Intel</h3>
                     <p>Ecosistema de monitoreo en tiempo real basado en Python. Procesa eventos críticos de seguridad,
                         clasifica riesgos mediante CVSS v3.1 y realiza consultas de CVEs automatizadas.</p>
-                    <div class="terminal-window" style="margin-top: auto;">
-                        <div class="terminal-header">
-                            <div class="dot red"></div>
-                            <div class="dot yellow"></div>
-                            <div class="dot green"></div>
-                            <div class="terminal-title">security_monitor.py — SIEM v4.0</div>
-                        </div>
-                        <div class="terminal-content" id="tc-siem">
-                            <img src="Captura de pantalla 2026-04-02 051805.png" alt="SIEM Dashboard Preview"
-                                data-placeholder-id="ph-siem" onerror="handleImgError(this)">
-                            <div class="img-placeholder hidden" id="ph-siem">
-                                <div class="placeholder-text">[ SECURITY_MONITOR.PY · SIEM v4.0 ]</div>
-                                <div class="scan-line"></div>
-                                <div class="placeholder-grid">
-                                    <div class="placeholder-bar"
-                                        style="grid-column: span 6; height:14px; background: rgba(68,147,248,0.3);">
-                                    </div>
-                                    <div class="placeholder-bar"
-                                        style="grid-column: span 1; background: rgba(255,95,86,0.4);"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 5;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 3;"></div>
-                                    <div class="placeholder-bar"
-                                        style="grid-column: span 2; background: rgba(255,189,46,0.3);"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 1;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 4;"></div>
-                                    <div class="placeholder-bar" style="grid-column: span 2;"></div>
-                                    <div class="placeholder-bar"
-                                        style="grid-column: span 6; height:10px; background: rgba(68,147,248,0.2);">
-                                    </div>
-                                </div>
-                                <div class="placeholder-text"
-                                    style="color:var(--accent); animation: blink 2s infinite 1s;">● IMAGEN: Captura de
-                                    pantalla 2026-04-02 051805.png</div>
-                            </div>
-                        </div>
+                    <div class="project-preview project-preview-contain">
+                        <img src="Captura de pantalla 2026-04-02 051805.png" alt="SIEM v4.0 — Threat Intel"
+                            loading="lazy">
                     </div>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
                         <div class="mcp-badge"
