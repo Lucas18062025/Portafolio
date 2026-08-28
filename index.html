@@ -442,6 +442,30 @@
             font-weight: 300;
         }
 
+        .project-preview {
+            margin: 24px 0 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 212, 255, 0.12);
+            background: #020408;
+            position: relative;
+            height: 220px;
+        }
+
+        .project-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .card:hover .project-preview img {
+            transform: scale(1.025);
+            filter: brightness(1.08);
+        }
+
         .terminal-window {
             background: #040810;
             border-radius: 12px;
@@ -1681,7 +1705,6 @@
                     </div>
                 </div>
 
-
                 <!-- =========================================================
                      ZENHUB DASHBOARD
                      ========================================================= -->
@@ -1701,30 +1724,9 @@
                         web con una arquitectura preparada para evolucionar.
                     </p>
 
-                    <div class="terminal-window" style="margin-top:auto;">
-                        <div class="terminal-header">
-                            <div class="dot red"></div>
-                            <div class="dot yellow"></div>
-                            <div class="dot green"></div>
-                            <span class="terminal-title">
-                                zenhub-dashboard · web application
-                            </span>
-                        </div>
-
-                        <div class="terminal-content">
-                            <div class="placeholder-text">
-                                [ ZENHUB DASHBOARD ]
-                            </div>
-
-                            <div class="scan-line"></div>
-
-                            <div class="placeholder-grid">
-                                <div class="placeholder-bar" style="grid-column: span 5; height:14px;"></div>
-                                <div class="placeholder-bar" style="grid-column: span 3;"></div>
-                                <div class="placeholder-bar" style="grid-column: span 4;"></div>
-                                <div class="placeholder-bar" style="grid-column: span 2;"></div>
-                            </div>
-                        </div>
+                    <div class="project-preview">
+                        <img src="assets/projects/zenhub-dashboard.png"
+                            alt="ZenHub Dashboard — aplicación web desplegada en Cloudflare" loading="lazy">
                     </div>
 
                     <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
