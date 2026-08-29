@@ -1,0 +1,4 @@
+Contact: mailto:lucaslean1806@gmail.com
+Expires: 2027-08-29T00:00:00Z
+Preferred-Languages: es, en
+Canonical: https://portafolio.lucaslean1806.workers.dev/.well-known/security.txt
