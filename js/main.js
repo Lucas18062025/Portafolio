@@ -5,42 +5,51 @@ let W;
 let H;
 let particles = [];
 let grid = [];
+let isAnimating = true;
 
-function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+const COLS = ['#0066FF', '#00D4FF', '#7b2fff'];
 
+function initParticlesAndGrid() {
     grid = [];
+    particles = [];
 
-    const s = 48;
+    const isMobile = W < 768;
+    const s = isMobile ? 64 : 48;
+    const count = isMobile ? 25 : 55;
 
     for (let x = 0; x < W; x += s) {
         for (let y = 0; y < H; y += s) {
             grid.push({ x, y });
         }
     }
+
+    for (let i = 0; i < count; i++) {
+        particles.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            r: Math.random() * 1.5 + 0.3,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            color: COLS[Math.floor(Math.random() * COLS.length)],
+            alpha: Math.random() * 0.5 + 0.1
+        });
+    }
+}
+
+function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    initParticlesAndGrid();
 }
 
 window.addEventListener('resize', resize);
 resize();
 
-const COLS = ['#0066FF', '#00D4FF', '#7b2fff'];
-
-for (let i = 0; i < 55; i++) {
-    particles.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        r: Math.random() * 1.5 + 0.3,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        color: COLS[Math.floor(Math.random() * COLS.length)],
-        alpha: Math.random() * 0.5 + 0.1
-    });
-}
-
 let t = 0;
 
 function draw() {
+    if (!isAnimating) return;
+
     ctx.clearRect(0, 0, W, H);
 
     const g = ctx.createRadialGradient(
@@ -128,6 +137,17 @@ function draw() {
 
     requestAnimationFrame(draw);
 }
+
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        isAnimating = false;
+    } else {
+        if (!isAnimating) {
+            isAnimating = true;
+            draw();
+        }
+    }
+});
 
 draw();
 
