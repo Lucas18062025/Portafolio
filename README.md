@@ -49,6 +49,12 @@ Monitor de eventos en tiempo real. Clasificación de riesgos con CVSS v3.1 y con
 
 ---
 
+**🛡️ Sentinel V7 Apex**
+Plataforma de automatización defensiva y mantenimiento unificado para Windows. Auditoría de servicios, Event Viewer y detección de tráfico sospechoso con PowerShell (`Get-NetTCPConnection`).
+`PowerShell` `Windows Security` `Defensive Security` `V7 Apex`
+
+---
+
 ## 🛠️ Stack Técnico
 
 | Categoría | Tecnología |
