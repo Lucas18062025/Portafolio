@@ -1,5 +1,5 @@
 const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 
 let W;
 let H;
@@ -10,6 +10,7 @@ let isAnimating = true;
 const COLS = ['#0066FF', '#00D4FF', '#7b2fff'];
 
 function initParticlesAndGrid() {
+    if (!canvas) return;
     grid = [];
     particles = [];
 
@@ -37,6 +38,7 @@ function initParticlesAndGrid() {
 }
 
 function resize() {
+    if (!canvas) return;
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
     initParticlesAndGrid();
@@ -48,7 +50,7 @@ resize();
 let t = 0;
 
 function draw() {
-    if (!isAnimating) return;
+    if (!isAnimating || !ctx) return;
 
     ctx.clearRect(0, 0, W, H);
 
