@@ -15,8 +15,8 @@ function initParticlesAndGrid() {
     particles = [];
 
     const isMobile = W < 768;
-    const s = isMobile ? 64 : 48;
-    const count = isMobile ? 25 : 55;
+    const s = isMobile ? 60 : 42;
+    const count = isMobile ? 50 : 110;
 
     for (let x = 0; x < W; x += s) {
         for (let y = 0; y < H; y += s) {
@@ -28,11 +28,11 @@ function initParticlesAndGrid() {
         particles.push({
             x: Math.random() * W,
             y: Math.random() * H,
-            r: Math.random() * 1.5 + 0.3,
-            vx: (Math.random() - 0.5) * 0.3,
-            vy: (Math.random() - 0.5) * 0.3,
+            r: Math.random() * 2.8 + 1.2,
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
             color: COLS[Math.floor(Math.random() * COLS.length)],
-            alpha: Math.random() * 0.5 + 0.1
+            alpha: Math.random() * 0.5 + 0.35
         });
     }
 }
@@ -72,15 +72,15 @@ function draw() {
 
     grid.forEach((p) => {
         const f =
-            0.05 +
-            0.04 * Math.sin(
+            0.08 +
+            0.06 * Math.sin(
                 t * 0.4 +
                 p.x * 0.05 +
                 p.y * 0.05
             );
 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 0.7, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, 1.0, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(0,102,255,${f})`;
         ctx.fill();
     });
@@ -113,7 +113,7 @@ function draw() {
 
             const d = Math.sqrt(dx * dx + dy * dy);
 
-            if (d < 120) {
+            if (d < 140) {
                 ctx.beginPath();
 
                 ctx.moveTo(
@@ -127,9 +127,9 @@ function draw() {
                 );
 
                 ctx.strokeStyle =
-                    `rgba(0,212,255,${0.05 * (1 - d / 120)})`;
+                    `rgba(0,212,255,${0.15 * (1 - d / 140)})`;
 
-                ctx.lineWidth = 0.5;
+                ctx.lineWidth = 0.85;
                 ctx.stroke();
             }
         }
