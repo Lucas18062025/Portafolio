@@ -10,6 +10,8 @@ function createCertificateCard(certificate) {
     const image = document.createElement("img");
     image.src = certificate.preview;
     image.alt = certificate.alt;
+    image.width = 400;
+    image.height = 250;
     image.loading = "lazy";
     image.style.objectFit = "cover";
     image.style.objectPosition = "top";
