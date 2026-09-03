@@ -87,6 +87,7 @@
             transition: top 0.2s ease;
             box-shadow: 0 0 15px rgba(0, 102, 255, 0.5);
         }
+
         .skip-link:focus {
             top: 1rem;
             outline: 2px solid #ffffff;
@@ -98,7 +99,10 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *, ::before, ::after {
+
+            *,
+            ::before,
+            ::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
@@ -116,18 +120,36 @@
             position: relative;
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
         }
-        .reflection-card.accent-1 { border-left: 3px solid var(--accent); }
-        .reflection-card.accent-2 { border-left: 3px solid var(--accent2); }
-        .reflection-card.accent-3 { border-left: 3px solid var(--accent3); }
+
+        .reflection-card.accent-1 {
+            border-left: 3px solid var(--accent);
+        }
+
+        .reflection-card.accent-2 {
+            border-left: 3px solid var(--accent2);
+        }
+
+        .reflection-card.accent-3 {
+            border-left: 3px solid var(--accent3);
+        }
 
         .reflection-card:hover {
             background: var(--card-bg2);
             transform: translateY(-3px);
-            box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
         }
-        .reflection-card.accent-1:hover { border-color: var(--accent); }
-        .reflection-card.accent-2:hover { border-color: var(--accent2); }
-        .reflection-card.accent-3:hover { border-color: var(--accent3); }
+
+        .reflection-card.accent-1:hover {
+            border-color: var(--accent);
+        }
+
+        .reflection-card.accent-2:hover {
+            border-color: var(--accent2);
+        }
+
+        .reflection-card.accent-3:hover {
+            border-color: var(--accent3);
+        }
 
         :root {
             --bg: #020408;
@@ -1214,491 +1236,517 @@
 
         <main id="main-content">
 
-        <section id="stack">
-            <h2>./ Stack Tecnológico</h2>
-            <div class="stack-grid">
-                <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
-                <div class="stack-item"><i class="fab fa-linux"></i><span>LINUX</span></div>
-                <div class="stack-item"><i class="fas fa-database"></i><span>SQL</span></div>
-                <div class="stack-item"><i class="fas fa-user-shield"></i><span>SIEM / IDS</span></div>
-                <div class="stack-item"><i class="fas fa-robot"></i><span>GEN AI</span></div>
-                <div class="stack-item"><i class="fas fa-plug"></i><span>MCP</span></div>
-                <div class="stack-item"><i class="fas fa-network-wired"></i><span>PENTESTING</span></div>
-                <div class="stack-item"><i class="fas fa-gear"></i><span>n8n / AUTOMATION</span></div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <section id="about">
-            <h2>./ Who Am I</h2>
-            <div class="about-wrap">
-
-                <div class="about-avatar">
-                    <img src="Foto_Perfil.webp" alt="Lucas Villagra - Cybersecurity Analyst" width="640" height="640" decoding="async">
-                    <i class="fas fa-user-secret avatar-fallback"></i>
+            <section id="stack">
+                <h2>./ Stack Tecnológico</h2>
+                <div class="stack-grid">
+                    <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
+                    <div class="stack-item"><i class="fab fa-linux"></i><span>LINUX</span></div>
+                    <div class="stack-item"><i class="fas fa-database"></i><span>SQL</span></div>
+                    <div class="stack-item"><i class="fas fa-user-shield"></i><span>SIEM / IDS</span></div>
+                    <div class="stack-item"><i class="fas fa-robot"></i><span>GEN AI</span></div>
+                    <div class="stack-item"><i class="fas fa-plug"></i><span>MCP</span></div>
+                    <div class="stack-item"><i class="fas fa-network-wired"></i><span>PENTESTING</span></div>
+                    <div class="stack-item"><i class="fas fa-gear"></i><span>n8n / AUTOMATION</span></div>
                 </div>
+            </section>
 
-                <div class="about-text">
-                    <p>
-                        Analista de ciberseguridad con enfoque en operaciones de <strong class="g">Red Team</strong> y
-                        defensa de infraestructuras críticas.
-                        Combino auditoría técnica rigurosa con automatización de procesos mediante <strong
-                            class="b">n8n, IA generativa y Python</strong> para blindar activos digitales.
-                    </p>
-                    <p style="margin-top:14px;">
-                        Actualmente construyo y administro <strong class="g"> home labs ofensivos / defensivos </strong>
-                        sobre Linux Mint, Ubuntu, Parrot, Kali Linux con
-                        Metasploit, herramientas de reconocimiento inalámbrico y flujos de inteligencia integrados con
-                        <strong class="b">Claude MCP y Gemini CLI</strong> para respuesta automatizada a incidentes.
-                    </p>
-                </div>
-        </section>
+            <div class="divider"></div>
 
-        <div class="divider"></div>
+            <section id="about">
+                <h2>./ Who Am I</h2>
+                <div class="about-wrap">
 
-        <section id="proyectos">
-            <h2>./ Laboratorio y Proyectos</h2>
-
-            <div class="grid">
-
-                <div class="card">
-                    <div class="status-tag">Unit mounted &amp; audit cache verified</div>
-                    <h3><i class="fas fa-wifi"></i> Auditoría Wireless · Alfa AWUS036ACS</h3>
-                    <p>Reconocimiento de espectro 2.4/5 GHz en modo monitor con hardware especializado. Captura y análisis de handshakes WPA2 con <code style="color:var(--accent);font-size:0.85em;">aircrack-ng</code> y almacenamiento estructurado en <code style="color:var(--accent);font-size:0.85em;">KALI_AUDIT</code>.</p>
-                    <div class="project-preview">
-                        <img src="Captura01.webp" alt="Auditoría Wireless — Alfa AWUS036ACS" width="1280" height="675" loading="lazy" decoding="async">
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="status-tag">WireGuard (UDP) | DNS/IP leak checks</div>
-                    <h3><i class="fas fa-user-secret"></i> OpSec · Infraestructura VPN Anónima</h3>
-                    <p>Túneles cifrados <strong style="color:var(--accent2);">WireGuard (UDP)</strong> con Proton VPN, verificados con controles locales de fugas DNS/IP. Kill Switch activo y latencia observada en pruebas de laboratorio.</p>
-                    <div class="project-preview">
-                        <img src="Captura02.png" alt="OpSec — infraestructura VPN WireGuard" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                </div>
-
-                <div class="card">
-
-                    <div class="status-tag">MCP SERVER · N8N AUTOMATION</div>
-
-                    <h3>
-                        <i class="fas fa-project-diagram"></i>
-                        n8n Security Node
-                    </h3>
-
-                    <p>
-                        Desarrollo de un servidor MCP para conectar
-                        <strong style="color: var(--accent2);">Claude Desktop</strong>
-                        con <strong style="color: var(--accent);">n8n</strong>.
-                        Permite interactuar con workflows de automatización
-                        y tareas de seguridad mediante lenguaje natural.
-
-                    </p>
-
-                    <div class="project-preview">
-                        <img src="assets/projects/n8n-Security-Node.png" alt="n8n Security Node — MCP Server"
-                            width="732" height="482" loading="lazy">
+                    <div class="about-avatar">
+                        <img src="Foto_Perfil.webp" alt="Lucas Villagra - Cybersecurity Analyst" width="640"
+                            height="640" decoding="async">
+                        <i class="fas fa-user-secret avatar-fallback"></i>
                     </div>
 
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
-                        <div class="mcp-badge">MCP</div>
-                        <div class="mcp-badge">N8N</div>
-                        <div class="mcp-badge">PYTHON</div>
-                        <div class="mcp-badge">AUTOMATION</div>
+                    <div class="about-text">
+                        <p>
+                            Analista de ciberseguridad con enfoque en operaciones de <strong class="g">Red Team</strong>
+                            y
+                            defensa de infraestructuras críticas.
+                            Combino auditoría técnica rigurosa con automatización de procesos mediante <strong
+                                class="b">n8n, IA generativa y Python</strong> para blindar activos digitales.
+                        </p>
+                        <p style="margin-top:14px;">
+                            Actualmente construyo y administro <strong class="g"> home labs ofensivos / defensivos
+                            </strong>
+                            sobre Linux Mint, Ubuntu, Parrot, Kali Linux con
+                            Metasploit, herramientas de reconocimiento inalámbrico y flujos de inteligencia integrados
+                            con
+                            <strong class="b">Claude MCP y Gemini CLI</strong> para respuesta automatizada a incidentes.
+                        </p>
+                    </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <section id="proyectos">
+                <h2>./ Laboratorio y Proyectos</h2>
+
+                <div class="grid">
+
+                    <div class="card">
+                        <div class="status-tag">Unit mounted &amp; audit cache verified</div>
+                        <h3><i class="fas fa-wifi"></i> Auditoría Wireless · Alfa AWUS036ACS</h3>
+                        <p>Reconocimiento de espectro 2.4/5 GHz en modo monitor con hardware especializado. Captura y
+                            análisis de handshakes WPA2 con <code
+                                style="color:var(--accent);font-size:0.85em;">aircrack-ng</code> y almacenamiento
+                            estructurado en <code style="color:var(--accent);font-size:0.85em;">KALI_AUDIT</code>.</p>
+                        <div class="project-preview">
+                            <img src="Captura01.webp" alt="Auditoría Wireless — Alfa AWUS036ACS" width="1280"
+                                height="675" loading="lazy" decoding="async">
+                        </div>
                     </div>
 
-                    <div style="margin-top: 20px;">
-                        <a href="https://github.com/Lucas18062025" class="btn btn-b" target="_blank"
-                            rel="noopener noreferrer">
+                    <div class="card">
+                        <div class="status-tag">WireGuard (UDP) | DNS/IP leak checks</div>
+                        <h3><i class="fas fa-user-secret"></i> OpSec · Infraestructura VPN Anónima</h3>
+                        <p>Túneles cifrados <strong style="color:var(--accent2);">WireGuard (UDP)</strong> con Proton
+                            VPN, verificados con controles locales de fugas DNS/IP. Kill Switch activo y latencia
+                            observada en pruebas de laboratorio.</p>
+                        <div class="project-preview">
+                            <img src="Captura02.png" alt="OpSec — infraestructura VPN WireGuard" width="800"
+                                height="450" loading="lazy" decoding="async">
+                        </div>
+                    </div>
 
-                            <i class="fab fa-github"></i>
-                            <span>Ver código de n8n Security Node</span>
-                        </a>
-                    </div>
-                </div>
+                    <div class="card">
 
-                <div class="card">
-                    <div class="status-tag">ACTIVE MONITORING</div>
-                    <h3><i class="fas fa-shield-halved"></i> SIEM v4.0 | Threat Intel</h3>
-                    <p>Ecosistema de monitoreo en tiempo real basado en Python. Procesa eventos de seguridad, clasifica riesgos según CVSS v3.1 y genera alertas automáticas a Telegram.</p>
-                    <div class="project-preview">
-                        <img src="assets/projects/siem-windows-11-1280.webp"
-                            srcset="assets/projects/siem-windows-11-640.webp 640w, assets/projects/siem-windows-11-1280.webp 1280w, assets/projects/siem-windows-11-1920.webp 1920w"
-                            sizes="(max-width: 900px) 100vw, 430px"
-                            alt="SIEM v4.0 — Threat Intel" width="2752" height="1536" loading="lazy" decoding="async">
-                    </div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
-                        <div class="mcp-badge">PYTHON 3.10+</div>
-                        <div class="mcp-badge">TELEGRAM API</div>
-                        <div class="mcp-badge">CVSS v3.1</div>
-                        <div class="mcp-badge">NIST DATABASE</div>
-                    </div>
-                    <div style="margin-top: 20px;">
-                        <a href="https://github.com/Lucas18062025/SIEM_Windows_11" class="btn btn-b" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
-                            <span>Ver código del SIEM en Python</span>
-                        </a>
-                    </div>
-                </div>
+                        <div class="status-tag">MCP SERVER · N8N AUTOMATION</div>
 
-                <!-- =========================================================
+                        <h3>
+                            <i class="fas fa-project-diagram"></i>
+                            n8n Security Node
+                        </h3>
+
+                        <p>
+                            Desarrollo de un servidor MCP para conectar
+                            <strong style="color: var(--accent2);">Claude Desktop</strong>
+                            con <strong style="color: var(--accent);">n8n</strong>.
+                            Permite interactuar con workflows de automatización
+                            y tareas de seguridad mediante lenguaje natural.
+
+                        </p>
+
+                        <div class="project-preview">
+                            <img src="assets/projects/n8n-Security-Node.png" alt="n8n Security Node — MCP Server"
+                                width="732" height="482" loading="lazy">
+                        </div>
+
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
+                            <div class="mcp-badge">MCP</div>
+                            <div class="mcp-badge">N8N</div>
+                            <div class="mcp-badge">PYTHON</div>
+                            <div class="mcp-badge">AUTOMATION</div>
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <a href="https://github.com/Lucas18062025" class="btn btn-b" target="_blank"
+                                rel="noopener noreferrer">
+
+                                <i class="fab fa-github"></i>
+                                <span>Ver código de n8n Security Node</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="status-tag">ACTIVE MONITORING</div>
+                        <h3><i class="fas fa-shield-halved"></i> SIEM v4.0 | Threat Intel</h3>
+                        <p>Ecosistema de monitoreo en tiempo real basado en Python. Procesa eventos de seguridad,
+                            clasifica riesgos según CVSS v3.1 y genera alertas automáticas a Telegram.</p>
+                        <div class="project-preview">
+                            <img src="assets/projects/siem-windows-11-1280.webp"
+                                srcset="assets/projects/siem-windows-11-640.webp 640w, assets/projects/siem-windows-11-1280.webp 1280w, assets/projects/siem-windows-11-1920.webp 1920w"
+                                sizes="(max-width: 900px) 100vw, 430px" alt="SIEM v4.0 — Threat Intel" width="2752"
+                                height="1536" loading="lazy" decoding="async">
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
+                            <div class="mcp-badge">PYTHON 3.10+</div>
+                            <div class="mcp-badge">TELEGRAM API</div>
+                            <div class="mcp-badge">CVSS v3.1</div>
+                            <div class="mcp-badge">NIST DATABASE</div>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <a href="https://github.com/Lucas18062025/SIEM_Windows_11" class="btn btn-b" target="_blank"
+                                rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                                <span>Ver código del SIEM en Python</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- =========================================================
                      SENTINEL V7 APEX
                      ========================================================= -->
 
-                <div class="card">
+                    <div class="card">
 
-                    <div class="status-tag">SECURITY AUTOMATION · ACTIVE</div>
+                        <div class="status-tag">SECURITY AUTOMATION · ACTIVE</div>
 
-                    <h3>
-                        <i class="fas fa-shield-halved"></i>
-                        Sentinel V7 Apex
-                    </h3>
+                        <h3>
+                            <i class="fas fa-shield-halved"></i>
+                            Sentinel V7 Apex
+                        </h3>
 
-                    <p>
-                        Plataforma de automatización defensiva y mantenimiento unificado para Windows.
-                        Integra auditoría de servicios, integración con Event Viewer y
-                        detección proactiva de conexiones de red sospechosas con PowerShell.
-                    </p>
+                        <p>
+                            Plataforma de automatización defensiva y mantenimiento unificado para Windows.
+                            Integra auditoría de servicios, integración con Event Viewer y
+                            detección proactiva de conexiones de red sospechosas con PowerShell.
+                        </p>
 
-                    <div class="project-preview">
-                        <img src="assets/projects/sentinel-v7-1280.webp"
-                            srcset="assets/projects/sentinel-v7-640.webp 640w, assets/projects/sentinel-v7-1280.webp 1280w, assets/projects/sentinel-v7-1920.webp 1920w"
-                            sizes="(max-width: 900px) 100vw, 430px"
-                            alt="Sentinel V7 Apex — plataforma de automatización defensiva y mantenimiento unificado"
-                            width="2752" height="1536" loading="lazy">
+                        <div class="project-preview">
+                            <img src="assets/projects/sentinel-v7-1280.webp"
+                                srcset="assets/projects/sentinel-v7-640.webp 640w, assets/projects/sentinel-v7-1280.webp 1280w, assets/projects/sentinel-v7-1920.webp 1920w"
+                                sizes="(max-width: 900px) 100vw, 430px"
+                                alt="Sentinel V7 Apex — plataforma de automatización defensiva y mantenimiento unificado"
+                                width="2752" height="1536" loading="lazy">
+                        </div>
+
+                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                            <div class="mcp-badge">POWERSHELL</div>
+                            <div class="mcp-badge">WINDOWS</div>
+                            <div class="mcp-badge">DEFENSIVE SECURITY</div>
+                            <div class="mcp-badge">NETWORK DETECTION</div>
+                            <div class="mcp-badge">V7 APEX</div>
+                        </div>
+
+                        <div style="margin-top:20px;">
+                            <a href="https://github.com/Lucas18062025/Sentinel" class="btn btn-b" target="_blank"
+                                rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                                <span>Ver código de Sentinel V7 Apex</span>
+                            </a>
+
+                            <a href="https://sentinel.lucaslean1806.workers.dev/" class="btn btn-b" target="_blank"
+                                rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
                     </div>
-
-                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
-                        <div class="mcp-badge">POWERSHELL</div>
-                        <div class="mcp-badge">WINDOWS</div>
-                        <div class="mcp-badge">DEFENSIVE SECURITY</div>
-                        <div class="mcp-badge">NETWORK DETECTION</div>
-                        <div class="mcp-badge">V7 APEX</div>
-                    </div>
-
-                    <div style="margin-top:20px;">
-                        <a href="https://github.com/Lucas18062025/Sentinel" class="btn btn-b" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
-                            <span>Ver código de Sentinel V7 Apex</span>
-                        </a>
-
-                        <a href="https://sentinel.lucaslean1806.workers.dev/" class="btn btn-b" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i>
-                            <span>Live Demo</span>
-                        </a>
-                    </div>
-                </div>
-                <!-- =========================================================
+                    <!-- =========================================================
                      Gophish Lab
                      ========================================================= -->
 
-                <div class="card">
+                    <div class="card">
 
-                    <div class="status-tag">SECURITY AWARENESS · LAB</div>
-                    <h3>
-                        <i class="fas fa-fish"></i>
-                        Gophish Lab
-                    </h3>
-                    <p>
-                        Laboratorio controlado de simulación de campañas de phishing
-                        para estudiar vectores de ingeniería social, concientización
-                        de usuarios, métricas y respuesta defensiva. Proyecto
-                        desarrollado exclusivamente con fines educativos y de
-                        laboratorio autorizado.
-                    </p>
+                        <div class="status-tag">SECURITY AWARENESS · LAB</div>
+                        <h3>
+                            <i class="fas fa-fish"></i>
+                            Gophish Lab
+                        </h3>
+                        <p>
+                            Laboratorio controlado de simulación de campañas de phishing
+                            para estudiar vectores de ingeniería social, concientización
+                            de usuarios, métricas y respuesta defensiva. Proyecto
+                            desarrollado exclusivamente con fines educativos y de
+                            laboratorio autorizado.
+                        </p>
 
-                    <div class="project-preview">
-                        <img src="assets/projects/gopish.png"
-                            alt="Gophish Lab — laboratorio controlado de simulación de phishing y concientización de seguridad"
-                            width="597" height="653" loading="lazy">
+                        <div class="project-preview">
+                            <img src="assets/projects/gopish.png"
+                                alt="Gophish Lab — laboratorio controlado de simulación de phishing y concientización de seguridad"
+                                width="597" height="653" loading="lazy">
+                        </div>
+
+                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                            <div class="mcp-badge">GOPHISH</div>
+                            <div class="mcp-badge">SOCIAL ENGINEERING</div>
+                            <div class="mcp-badge">SECURITY AWARENESS</div>
+                            <div class="mcp-badge">LAB</div>
+                        </div>
+
+                        <div style="margin-top:20px;">
+                            <a href="https://github.com/Lucas18062025/Gophish-Lab" class="btn btn-b" target="_blank"
+                                rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                                <span>Ver código de Gophish Lab</span>
+                            </a>
+                        </div>
                     </div>
 
-                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
-                        <div class="mcp-badge">GOPHISH</div>
-                        <div class="mcp-badge">SOCIAL ENGINEERING</div>
-                        <div class="mcp-badge">SECURITY AWARENESS</div>
-                        <div class="mcp-badge">LAB</div>
-                    </div>
 
-                    <div style="margin-top:20px;">
-                        <a href="https://github.com/Lucas18062025/Gophish-Lab" class="btn btn-b" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
-                            <span>Ver código de Gophish Lab</span>
-                        </a>
-                    </div>
-                </div>
-
-
-                <!-- =========================================================
+                    <!-- =========================================================
                      NETWORK EGRESS MONITOR
                      ========================================================= -->
 
-                <div class="card">
+                    <div class="card">
 
-                    <div class="status-tag">NETWORK DEFENSE · MONITORING</div>
+                        <div class="status-tag">NETWORK DEFENSE · MONITORING</div>
 
-                    <h3>
-                        <i class="fas fa-network-wired"></i>
-                        Network Egress Monitor
-                    </h3>
+                        <h3>
+                            <i class="fas fa-network-wired"></i>
+                            Network Egress Monitor
+                        </h3>
 
-                    <p>
-                        Monitor orientado a detectar y analizar conexiones salientes
-                        de red, proporcionando visibilidad sobre tráfico egress y
-                        posibles comportamientos anómalos. Diseñado como herramienta
-                        defensiva para mejorar la supervisión de endpoints y redes.
-                    </p>
+                        <p>
+                            Monitor orientado a detectar y analizar conexiones salientes
+                            de red, proporcionando visibilidad sobre tráfico egress y
+                            posibles comportamientos anómalos. Diseñado como herramienta
+                            defensiva para mejorar la supervisión de endpoints y redes.
+                        </p>
 
-                    <div class="project-preview">
-                        <img src="assets/projects/NETWORK-EGRESS-MONITOR-.png"
-                            alt="Network Egress Monitor — monitorización defensiva de conexiones salientes de red"
-                            width="597" height="558" loading="lazy">
+                        <div class="project-preview">
+                            <img src="assets/projects/NETWORK-EGRESS-MONITOR-.png"
+                                alt="Network Egress Monitor — monitorización defensiva de conexiones salientes de red"
+                                width="597" height="558" loading="lazy">
+                        </div>
+
+                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                            <div class="mcp-badge">NETWORK SECURITY</div>
+                            <div class="mcp-badge">MONITORING</div>
+                            <div class="mcp-badge">EGRESS</div>
+                            <div class="mcp-badge">DEFENSIVE</div>
+                        </div>
+
+                        <div style="margin-top:20px;">
+                            <a href="https://github.com/Lucas18062025/NETWORK-EGRESS-MONITOR-" class="btn btn-b"
+                                target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                                <span>Ver código de Network Egress Monitor</span>
+                            </a>
+                        </div>
+
                     </div>
 
-                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
-                        <div class="mcp-badge">NETWORK SECURITY</div>
-                        <div class="mcp-badge">MONITORING</div>
-                        <div class="mcp-badge">EGRESS</div>
-                        <div class="mcp-badge">DEFENSIVE</div>
-                    </div>
 
-                    <div style="margin-top:20px;">
-                        <a href="https://github.com/Lucas18062025/NETWORK-EGRESS-MONITOR-" class="btn btn-b"
-                            target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
-                            <span>Ver código de Network Egress Monitor</span>
-                        </a>
-                    </div>
-
-                </div>
-
-
-                <!-- =========================================================
+                    <!-- =========================================================
                      SECURE WEB PLATFORM
                      ========================================================= -->
 
-                <div class="card">
-                    <div class="status-tag">WEB SECURITY · FULL STACK</div>
+                    <div class="card">
+                        <div class="status-tag">WEB SECURITY · FULL STACK</div>
 
-                    <h3>
-                        <i class="fas fa-globe"></i>
-                        Secure Web Platform
-                    </h3>
+                        <h3>
+                            <i class="fas fa-globe"></i>
+                            Secure Web Platform
+                        </h3>
 
-                    <p>
-                        Plataforma web orientada a seguridad que combina desarrollo
-                        full-stack, análisis automatizado y arquitectura defensiva.
-                        Implementada con Next.js, TypeScript y Cloudflare Workers
-                        para construir una superficie web moderna y segura.
-                    </p>
+                        <p>
+                            Plataforma web orientada a seguridad que combina desarrollo
+                            full-stack, análisis automatizado y arquitectura defensiva.
+                            Implementada con Next.js, TypeScript y Cloudflare Workers
+                            para construir una superficie web moderna y segura.
+                        </p>
 
-                    <div class="project-preview">
-                        <img src="assets/projects/secure-web-platform.png"
-                            alt="Secure Web Platform — aplicación web desplegada en Cloudflare" width="657" height="627" loading="lazy">
+                        <div class="project-preview">
+                            <img src="assets/projects/secure-web-platform.png"
+                                alt="Secure Web Platform — aplicación web desplegada en Cloudflare" width="657"
+                                height="627" loading="lazy">
+                        </div>
+
+                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                            <div class="mcp-badge">NEXT.JS</div>
+                            <div class="mcp-badge">TYPESCRIPT</div>
+                            <div class="mcp-badge">CLOUDFLARE</div>
+                            <div class="mcp-badge">WEB SECURITY</div>
+                        </div>
+
+                        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;">
+
+                            <a href="https://github.com/Lucas18062025/secure-web-platform" class="btn btn-b"
+                                target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                                <span>Ver código de Secure Web Platform</span>
+                            </a>
+
+                            <a href="https://frontend.lucaslean1806.workers.dev/" class="btn btn-b" target="_blank"
+                                rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+
+                        </div>
                     </div>
 
-                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
-                        <div class="mcp-badge">NEXT.JS</div>
-                        <div class="mcp-badge">TYPESCRIPT</div>
-                        <div class="mcp-badge">CLOUDFLARE</div>
-                        <div class="mcp-badge">WEB SECURITY</div>
-                    </div>
-
-                    <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;">
-
-                        <a href="https://github.com/Lucas18062025/secure-web-platform" class="btn btn-b" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
-                            <span>Ver código de Secure Web Platform</span>
-                        </a>
-
-                        <a href="https://frontend.lucaslean1806.workers.dev/" class="btn btn-b" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i>
-                            <span>Live Demo</span>
-                        </a>
-
-                    </div>
-                </div>
-
-                <!-- =========================================================
+                    <!-- =========================================================
                      ZENHUB DASHBOARD
                      ========================================================= -->
 
-                <div class="card">
-                    <div class="status-tag">WEB DEVELOPMENT · DASHBOARD</div>
+                    <div class="card">
+                        <div class="status-tag">WEB DEVELOPMENT · DASHBOARD</div>
 
-                    <h3>
-                        <i class="fas fa-chart-line"></i>
-                        ZenHub Dashboard
-                    </h3>
+                        <h3>
+                            <i class="fas fa-chart-line"></i>
+                            ZenHub Dashboard
+                        </h3>
 
-                    <p>
-                        Dashboard web orientado a la visualización y gestión de
-                        información de proyectos. Proyecto enfocado en interfaces
-                        modernas, organización de datos y desarrollo de herramientas
-                        web con una arquitectura preparada para evolucionar.
-                    </p>
+                        <p>
+                            Dashboard web orientado a la visualización y gestión de
+                            información de proyectos. Proyecto enfocado en interfaces
+                            modernas, organización de datos y desarrollo de herramientas
+                            web con una arquitectura preparada para evolucionar.
+                        </p>
 
-                    <div class="project-preview">
-                        <img src="assets/projects/zenhub-dashboard.png"
-                            alt="ZenHub Dashboard — aplicación web desplegada en Cloudflare"                             width="1513" height="728" loading="lazy">
+                        <div class="project-preview">
+                            <img src="assets/projects/zenhub-dashboard.png"
+                                alt="ZenHub Dashboard — aplicación web desplegada en Cloudflare" width="1513"
+                                height="728" loading="lazy">
+                        </div>
+
+                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                            <div class="mcp-badge">PROJECT MANAGEMENT</div>
+                            <div class="mcp-badge">DATA VISUALIZATION</div>
+                            <div class="mcp-badge">WEB DEVELOPMENT</div>
+                            <div class="mcp-badge">DASHBOARD</div>
+                        </div>
+
+                        <div style="margin-top:20px;">
+                            <a href="https://github.com/Lucas18062025/zenhub-dashboard" class="btn btn-b"
+                                target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                                <span>Ver código de ZenHub Dashboard</span>
+                            </a>
+                        </div>
                     </div>
 
-                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
-                        <div class="mcp-badge">PROJECT MANAGEMENT</div>
-                        <div class="mcp-badge">DATA VISUALIZATION</div>
-                        <div class="mcp-badge">WEB DEVELOPMENT</div>
-                        <div class="mcp-badge">DASHBOARD</div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <section id="servicios">
+                <h2>./ Servicios Profesionales</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3><i class="fas fa-user-shield"></i> Auditoría &amp; Hardening</h3>
+                        <p>Endurecimiento de sistemas operativos y análisis de configuraciones para minimizar superficie
+                            de
+                            ataque y elevar la resiliencia ante amenazas reales.</p>
+                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                            <div class="mcp-badge">PyMEs · NOA</div>
+                            <div class="mcp-badge">INFORME EJECUTIVO + TÉCNICO</div>
+                        </div>
+                        <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
+                            <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20una%20auditor%C3%ADa%20de%20hardening"
+                                class="btn btn-whatsapp" target="_blank" rel="noopener">
+                                <i class="fab fa-whatsapp"></i><span>Solicitar Auditoría</span>
+                            </a>
+                            <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Consulta%20Auditor%C3%ADa%20y%20Hardening&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20auditor%C3%ADa%20y%20hardening."
+                                class="btn btn-gmail" target="_blank" rel="noopener">
+                                <i class="fab fa-google"></i><span>Consultar por Email</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-crosshairs"></i> Pentesting · Red Team</h3>
+                        <p>Simulación controlada de ciberataques para identificar vulnerabilidades explotables antes que
+                            los
+                            adversarios. Reportes técnicos con evidencia y remediación.</p>
+                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                            <div class="mcp-badge">PyMEs · NOA</div>
+                            <div class="mcp-badge">EVIDENCIA + REMEDIACIÓN</div>
+                        </div>
+                        <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
+                            <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20un%20pentest"
+                                class="btn btn-whatsapp" target="_blank" rel="noopener">
+                                <i class="fab fa-whatsapp"></i><span>Solicitar Pentest</span>
+                            </a>
+                            <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Consulta%20Pentest%20%2F%20Red%20Team&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20pentesting%20y%20Red%20Team."
+                                class="btn btn-gmail" target="_blank" rel="noopener">
+                                <i class="fab fa-google"></i><span>Consultar por Email</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-user-shield"></i> Concientización &amp; Phishing Simulation</h3>
+                        <p>Campañas controladas de simulación de phishing para medir exposición real del personal
+                            y capacitar en detección de ingeniería social, con métricas de clics y reportes accionables.
+                        </p>
+                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                            <div class="mcp-badge">PyMEs · NOA</div>
+                            <div class="mcp-badge">MÉTRICAS + CAPACITACIÓN</div>
+                        </div>
+                        <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
+                            <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20una%20simulaci%C3%B3n%20de%20phishing"
+                                class="btn btn-whatsapp" target="_blank" rel="noopener">
+                                <i class="fab fa-whatsapp"></i><span>Solicitar Simulación</span>
+                            </a>
+                            <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Consulta%20Simulaci%C3%B3n%20de%20Phishing&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20concientizaci%C3%B3n%20y%20simulaci%C3%B3n%20de%20phishing."
+                                class="btn btn-gmail" target="_blank" rel="noopener">
+                                <i class="fab fa-google"></i><span>Consultar por Email</span>
+                            </a>
+                        </div>
+                    </div>
+            </section>
+
+            <div class="divider"></div>
+            <!-- ══ CERTIFICACIONES ══ -->
+            <section id="certificaciones">
+                <h2>./ Certificaciones</h2>
+                <div class="grid">
+                    <div class="cert-card">
+                        <div class="cert-preview">
+                            <img src="assets/certificates/google-cybersecurity.jpg"
+                                alt="Google Cybersecurity Certificate — Coursera"
+                                style="object-fit:cover; object-position:top;" width="400" height="250" loading="lazy"
+                                decoding="async">
+                        </div>
+                        <div class="cert-body">
+                            <h3><i class="fab fa-google" aria-hidden="true"></i> Google Cybersecurity</h3>
+                            <p class="cert-meta">9 CURSOS &nbsp;·&nbsp; <span>FEB 5, 2026</span> &nbsp;·&nbsp; COURSERA
+                            </p>
+                            <p>Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis ·
+                                Incident
+                                response.</p>
+                            <a href="assets/certificates/cybersecurity-analyst.pdf" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-b">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
+                            </a>
+                        </div>
                     </div>
 
-                    <div style="margin-top:20px;">
-                        <a href="https://github.com/Lucas18062025/zenhub-dashboard" class="btn btn-b" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
-                            <span>Ver código de ZenHub Dashboard</span>
-                        </a>
+                    <div class="card">
+                        <div class="cert-preview">
+                            <img src="assets/certificates/google-ai-essentials.jpg"
+                                alt="Google AI Essentials Certificate — Coursera"
+                                style="object-fit:cover; object-position:top;" width="400" height="250" loading="lazy"
+                                decoding="async">
+                        </div>
+                        <div class="cert-body">
+                            <h3><i class="fab fa-google" aria-hidden="true"></i> Google AI Essentials</h3>
+                            <p class="cert-meta">5 CURSOS &nbsp;·&nbsp; <span>FEB 6, 2026</span> &nbsp;·&nbsp; COURSERA
+                            </p>
+                            <p>AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con
+                                Generative AI.</p>
+                            <a href="assets/certificates/google-ai-essentials.pdf" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-b">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="cert-preview">
+                            <img src="assets/certificates/big-school-cybersecurity.jpg"
+                                alt="Certificado BIG School — Ciberseguridad y Hacking Ético"
+                                style="object-fit:cover; object-position:top;" width="400" height="250" loading="lazy"
+                                decoding="async">
+                        </div>
+                        <div class="cert-body">
+                            <h3><i class="fas fa-user-shield" aria-hidden="true"></i> Ciberseguridad y Hacking Ético
+                            </h3>
+                            <p class="cert-meta"><span>ABR 11, 2026</span> &nbsp;·&nbsp; BIG SCHOOL</p>
+                            <p>Técnicas de detección de vulnerabilidades y defensa digital.</p>
+                            <a href="assets/certificates/certificado-lucas-villagra-bigschool.pdf" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-b">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-            </div>
-        </section>
+            <div class="divider"></div>
 
-        <div class="divider"></div>
+            <section id="reflexiones" style="text-align:center;">
+                <h2 style="justify-content:center;">./ Reflexiones</h2>
 
-        <section id="servicios">
-            <h2>./ Servicios Profesionales</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3><i class="fas fa-user-shield"></i> Auditoría &amp; Hardening</h3>
-                    <p>Endurecimiento de sistemas operativos y análisis de configuraciones para minimizar superficie de
-                        ataque y elevar la resiliencia ante amenazas reales.</p>
-                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
-                        <div class="mcp-badge">PyMEs · NOA</div>
-                        <div class="mcp-badge">INFORME EJECUTIVO + TÉCNICO</div>
-                    </div>
-                    <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
-                        <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20una%20auditor%C3%ADa%20de%20hardening"
-                            class="btn btn-whatsapp" target="_blank" rel="noopener">
-                            <i class="fab fa-whatsapp"></i><span>Solicitar Auditoría</span>
-                        </a>
-                        <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Consulta%20Auditor%C3%ADa%20y%20Hardening&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20auditor%C3%ADa%20y%20hardening."
-                            class="btn btn-gmail" target="_blank" rel="noopener">
-                            <i class="fab fa-google"></i><span>Consultar por Email</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-crosshairs"></i> Pentesting · Red Team</h3>
-                    <p>Simulación controlada de ciberataques para identificar vulnerabilidades explotables antes que los
-                        adversarios. Reportes técnicos con evidencia y remediación.</p>
-                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
-                        <div class="mcp-badge">PyMEs · NOA</div>
-                        <div class="mcp-badge">EVIDENCIA + REMEDIACIÓN</div>
-                    </div>
-                    <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
-                        <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20un%20pentest"
-                            class="btn btn-whatsapp" target="_blank" rel="noopener">
-                            <i class="fab fa-whatsapp"></i><span>Solicitar Pentest</span>
-                        </a>
-                        <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Consulta%20Pentest%20%2F%20Red%20Team&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20pentesting%20y%20Red%20Team."
-                            class="btn btn-gmail" target="_blank" rel="noopener">
-                            <i class="fab fa-google"></i><span>Consultar por Email</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-user-shield"></i> Concientización &amp; Phishing Simulation</h3>
-                    <p>Campañas controladas de simulación de phishing para medir exposición real del personal
-                        y capacitar en detección de ingeniería social, con métricas de clics y reportes accionables.</p>
-                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
-                        <div class="mcp-badge">PyMEs · NOA</div>
-                        <div class="mcp-badge">MÉTRICAS + CAPACITACIÓN</div>
-                    </div>
-                    <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
-                        <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20una%20simulaci%C3%B3n%20de%20phishing"
-                            class="btn btn-whatsapp" target="_blank" rel="noopener">
-                            <i class="fab fa-whatsapp"></i><span>Solicitar Simulación</span>
-                        </a>
-                        <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Consulta%20Simulaci%C3%B3n%20de%20Phishing&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20concientizaci%C3%B3n%20y%20simulaci%C3%B3n%20de%20phishing."
-                            class="btn btn-gmail" target="_blank" rel="noopener">
-                            <i class="fab fa-google"></i><span>Consultar por Email</span>
-                        </a>
-                    </div>
-                </div>
-        </section>
-
-        <div class="divider"></div>
-        <!-- ══ CERTIFICACIONES ══ -->
-        <section id="certificaciones">
-            <h2>./ Certificaciones</h2>
-            <div class="grid">
-                <div class="cert-card">
-                    <div class="cert-preview">
-                        <img src="assets/certificates/google-cybersecurity.jpg"
-                            alt="Google Cybersecurity Certificate — Coursera"
-                            style="object-fit:cover; object-position:top;" width="400" height="250" loading="lazy" decoding="async">
-                    </div>
-                    <div class="cert-body">
-                        <h3><i class="fab fa-google" aria-hidden="true"></i> Google Cybersecurity</h3>
-                        <p class="cert-meta">9 CURSOS &nbsp;·&nbsp; <span>FEB 5, 2026</span> &nbsp;·&nbsp; COURSERA</p>
-                        <p>Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis · Incident
-                            response.</p>
-                        <a href="assets/certificates/cybersecurity-analyst.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-b">
-                            <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="cert-preview">
-                        <img src="assets/certificates/google-ai-essentials.jpg"
-                            alt="Google AI Essentials Certificate — Coursera"
-                            style="object-fit:cover; object-position:top;" width="400" height="250" loading="lazy" decoding="async">
-                    </div>
-                    <div class="cert-body">
-                        <h3><i class="fab fa-google" aria-hidden="true"></i> Google AI Essentials</h3>
-                        <p class="cert-meta">5 CURSOS &nbsp;·&nbsp; <span>FEB 6, 2026</span> &nbsp;·&nbsp; COURSERA</p>
-                        <p>AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con
-                            Generative AI.</p>
-                        <a href="assets/certificates/google-ai-essentials.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-b">
-                            <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="cert-preview">
-                        <img src="assets/certificates/big-school-cybersecurity.jpg"
-                            alt="Certificado BIG School — Ciberseguridad y Hacking Ético"
-                            style="object-fit:cover; object-position:top;" width="400" height="250" loading="lazy" decoding="async">
-                    </div>
-                    <div class="cert-body">
-                        <h3><i class="fas fa-user-shield" aria-hidden="true"></i> Ciberseguridad y Hacking Ético</h3>
-                        <p class="cert-meta"><span>ABR 11, 2026</span> &nbsp;·&nbsp; BIG SCHOOL</p>
-                        <p>Técnicas de detección de vulnerabilidades y defensa digital.</p>
-                        <a href="assets/certificates/certificado-lucas-villagra-bigschool.pdf" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-b">
-                            <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <section id="reflexiones" style="text-align:center;">
-            <h2 style="justify-content:center;">./ Reflexiones</h2>
-
-            <div style="
+                <div style="
         display: flex;
         flex-direction: column;
         gap: 24px;
@@ -1706,8 +1754,8 @@
         margin: 0 auto;
     ">
 
-                <div class="reflection-card accent-1">
-                    <span style="
+                    <div class="reflection-card accent-1">
+                        <span style="
                 font-family: 'Share Tech Mono', monospace;
                 font-size: 0.68rem;
                 color: var(--accent);
@@ -1715,17 +1763,17 @@
                 display: block;
                 margin-bottom: 14px;
             ">[ RED TEAM MINDSET ]</span>
-                    <p style="
+                        <p style="
                 font-family: 'Rajdhani', sans-serif;
                 font-size: 1.12rem;
                 color: #c0d8e8;
                 line-height: 1.8;
                 font-style: italic;
             ">" Pensar como atacante te enseña a defender… pero actuar con ética define quién sos. "</p>
-                </div>
+                    </div>
 
-                <div class="reflection-card accent-2">
-                    <span style="
+                    <div class="reflection-card accent-2">
+                        <span style="
                 font-family: 'Share Tech Mono', monospace;
                 font-size: 0.68rem;
                 color: var(--accent2);
@@ -1733,19 +1781,20 @@
                 display: block;
                 margin-bottom: 14px;
             ">[ CONTINUOUS LEARNING ]</span>
-                    <p style="
+                        <p style="
                 font-family: 'Rajdhani', sans-serif;
                 font-size: 1.12rem;
                 color: #c0d8e8;
                 line-height: 1.8;
                 font-style: italic;
             ">" En el mundo de la ciberseguridad, la curiosidad es tu mejor herramienta. Cada vulnerabilidad es una
-                        oportunidad para aprender y cada ataque es una lección para mejorar. Mantente siempre un paso
-                        adelante, porque en este juego, el conocimiento es poder. "</p>
-                </div>
+                            oportunidad para aprender y cada ataque es una lección para mejorar. Mantente siempre un
+                            paso
+                            adelante, porque en este juego, el conocimiento es poder. "</p>
+                    </div>
 
-                <div class="reflection-card accent-3">
-                    <span style="
+                    <div class="reflection-card accent-3">
+                        <span style="
                 font-family: 'Share Tech Mono', monospace;
                 font-size: 0.68rem;
                 color: #c9d1d9;
@@ -1753,47 +1802,47 @@
                 display: block;
                 margin-bottom: 14px;
             ">[ VM ISOLATION PRINCIPLE ]</span>
-                    <p style="
+                        <p style="
                 font-family: 'Rajdhani', sans-serif;
                 font-size: 1.12rem;
                 color: #c0d8e8;
                 line-height: 1.8;
                 font-style: italic;
             ">" El aislamiento de una VM no es absoluto, es probabilístico. La seguridad real viene de entender cada
-                        vector de contacto entre la VM y el host, y eliminar los que no necesitás activamente. "</p>
+                            vector de contacto entre la VM y el host, y eliminar los que no necesitás activamente. "</p>
+                    </div>
+
                 </div>
+            </section>
+            <div class="divider"></div>
 
-            </div>
-        </section>
-        <div class="divider"></div>
+            <section id="contacto" style="text-align:center;">
+                <h2 style="justify-content:center;">./ Conectar</h2>
+                <div class="contact-area">
+                    <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn btn-linkedin"
+                        target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin"></i><span>LINKEDIN</span>
+                    </a>
+                    <a href="https://wa.me/543814764474" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i><span>WHATSAPP</span>
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad."
+                        class="btn btn-gmail" target="_blank" rel="noopener">
+                        <i class="fab fa-google"></i><span>GMAIL</span>
+                    </a>
+                    <a href="https://www.facebook.com/CyberAnalystTucuman" class="btn btn-facebook" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i><span>FACEBOOK</span>
+                    </a>
+                </div>
+            </section>
+            <div class="divider"></div>
 
-        <section id="contacto" style="text-align:center;">
-            <h2 style="justify-content:center;">./ Conectar</h2>
-            <div class="contact-area">
-                <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn btn-linkedin"
-                    target="_blank" rel="noopener">
-                    <i class="fab fa-linkedin"></i><span>LINKEDIN</span>
-                </a>
-                <a href="https://wa.me/543814764474" class="btn btn-whatsapp" target="_blank" rel="noopener">
-                    <i class="fab fa-whatsapp"></i><span>WHATSAPP</span>
-                </a>
-                <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad."
-                    class="btn btn-gmail" target="_blank" rel="noopener">
-                    <i class="fab fa-google"></i><span>GMAIL</span>
-                </a>
-                <a href="https://www.facebook.com/CyberAnalystTucuman" class="btn btn-facebook" target="_blank"
-                    rel="noopener noreferrer">
-                    <i class="fab fa-facebook"></i><span>FACEBOOK</span>
-                </a>
-            </div>
-        </section>
-        <div class="divider"></div>
-
-        <footer>
-            <p>© 2026 Lucas Villagra &nbsp;·&nbsp; System Secured &nbsp;·&nbsp; Built on Cloudflare Workers</p>
-            <p style="font-size:0.6rem; opacity:0.22; margin-top:10px;">[ uptime: ∞ &nbsp;|&nbsp; threat level:
-                monitored &nbsp;|&nbsp; status: operational ]</p>
-        </footer>
+            <footer>
+                <p>© 2026 Lucas Villagra &nbsp;·&nbsp; System Secured &nbsp;·&nbsp; Built on Cloudflare Workers</p>
+                <p style="font-size:0.6rem; opacity:0.22; margin-top:10px;">[ uptime: ∞ &nbsp;|&nbsp; threat level:
+                    monitored &nbsp;|&nbsp; status: operational ]</p>
+            </footer>
 
         </main>
 
