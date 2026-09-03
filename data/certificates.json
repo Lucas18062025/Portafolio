@@ -9,7 +9,7 @@
         "issuer": "COURSERA",
         "description": "Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis · Incident response.",
         "preview": "assets/certificates/google-cybersecurity.jpg",
-        "document": "Cybersecurity Analyst.pdf",
+        "document": "assets/certificates/cybersecurity-analyst.pdf",
         "alt": "Google Cybersecurity Certificate — Coursera"
     },
     {
@@ -22,7 +22,7 @@
         "issuer": "COURSERA",
         "description": "AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con Generative AI.",
         "preview": "assets/certificates/google-ai-essentials.jpg",
-        "document": "Google AI Essentials.pdf",
+        "document": "assets/certificates/google-ai-essentials.pdf",
         "alt": "Google AI Essentials Certificate — Coursera"
     },
     {
@@ -35,7 +35,7 @@
         "issuer": "BIG SCHOOL",
         "description": "Técnicas de detección de vulnerabilidades y defensa digital.",
         "preview": "assets/certificates/big-school-cybersecurity.jpg",
-        "document": "Certificado-Lucas-Villagra-rgan09hf.pdf",
+        "document": "assets/certificates/certificado-lucas-villagra-bigschool.pdf",
         "alt": "Certificado BIG School — Ciberseguridad y Hacking Ético"
     }
 ]

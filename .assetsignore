@@ -12,3 +12,6 @@ LICENSE
 README.md
 update_portfolio.py
 wrangler.jsonc
+.github
+.github/**
+deploy.ps1

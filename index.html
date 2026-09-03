@@ -224,14 +224,6 @@
         header::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(2, 4, 8, 0) 60%, rgba(2, 4, 8, 1) 100%);
-            z-index: 1;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
@@ -961,11 +953,6 @@
             background: rgba(255, 255, 255, 0.08);
         }
 
-        .btn-b:hover {
-            border-color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
         /* ===== BOTONES DE CONTACTO ===== */
 
         .btn-linkedin {
@@ -1248,7 +1235,7 @@
             <div class="about-wrap">
 
                 <div class="about-avatar">
-                    <img src="Foto_Perfil.png" alt="Lucas Villagra - Cybersecurity Analyst" width="320" height="320" decoding="async">
+                    <img src="Foto_Perfil.webp" alt="Lucas Villagra - Cybersecurity Analyst" width="640" height="640" decoding="async">
                     <i class="fas fa-user-secret avatar-fallback"></i>
                 </div>
 
@@ -1266,7 +1253,6 @@
                         <strong class="b">Claude MCP y Gemini CLI</strong> para respuesta automatizada a incidentes.
                     </p>
                 </div>
-            </div>
         </section>
 
         <div class="divider"></div>
@@ -1277,18 +1263,18 @@
             <div class="grid">
 
                 <div class="card">
-                    <div class="status-tag">Unit mounted &amp; audit cache verified | 98.4% Catch Rate</div>
+                    <div class="status-tag">Unit mounted &amp; audit cache verified</div>
                     <h3><i class="fas fa-wifi"></i> Auditoría Wireless · Alfa AWUS036ACS</h3>
-                    <p>Reconocimiento de espectro 2.4/5 GHz en modo monitor con hardware especializado. Captura de handshakes WPA2 con tasa de efectividad del 98.4%, análisis automatizado con <code style="color:var(--accent);font-size:0.85em;">aircrack-ng</code> y almacenamiento estructurado en <code style="color:var(--accent);font-size:0.85em;">KALI_AUDIT</code>.</p>
+                    <p>Reconocimiento de espectro 2.4/5 GHz en modo monitor con hardware especializado. Captura y análisis de handshakes WPA2 con <code style="color:var(--accent);font-size:0.85em;">aircrack-ng</code> y almacenamiento estructurado en <code style="color:var(--accent);font-size:0.85em;">KALI_AUDIT</code>.</p>
                     <div class="project-preview">
-                        <img src="Captura01.png" alt="Auditoría Wireless — Alfa AWUS036ACS" width="800" height="450" loading="lazy" decoding="async">
+                        <img src="Captura01.webp" alt="Auditoría Wireless — Alfa AWUS036ACS" width="1280" height="675" loading="lazy" decoding="async">
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="status-tag">WireGuard (UDP) | 0 Leak / 100% Anonymity</div>
+                    <div class="status-tag">WireGuard (UDP) | DNS/IP leak checks</div>
                     <h3><i class="fas fa-user-secret"></i> OpSec · Infraestructura VPN Anónima</h3>
-                    <p>Túneles cifrados <strong style="color:var(--accent2);">WireGuard (UDP)</strong> con Proton VPN, reduciendo la superficie de exposición a 0 fugas DNS/IP. Kill Switch activo y latencia optimizada a &lt;45ms en auditorías ofensivas.</p>
+                    <p>Túneles cifrados <strong style="color:var(--accent2);">WireGuard (UDP)</strong> con Proton VPN, verificados con controles locales de fugas DNS/IP. Kill Switch activo y latencia observada en pruebas de laboratorio.</p>
                     <div class="project-preview">
                         <img src="Captura02.png" alt="OpSec — infraestructura VPN WireGuard" width="800" height="450" loading="lazy" decoding="async">
                     </div>
@@ -1314,7 +1300,7 @@
 
                     <div class="project-preview">
                         <img src="assets/projects/n8n-Security-Node.png" alt="n8n Security Node — MCP Server"
-                            loading="lazy">
+                            width="732" height="482" loading="lazy">
                     </div>
 
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
@@ -1337,19 +1323,15 @@
                 <div class="card">
                     <div class="status-tag">ACTIVE MONITORING</div>
                     <h3><i class="fas fa-shield-halved"></i> SIEM v4.0 | Threat Intel</h3>
-                    <p>Ecosistema de monitoreo en tiempo real basado en Python. Procesa 10,000+ eventos de seguridad/día, clasifica riesgos según CVSS v3.1 y genera alertas automáticas a Telegram en &lt;1.5 segundos.</p>
+                    <p>Ecosistema de monitoreo en tiempo real basado en Python. Procesa eventos de seguridad, clasifica riesgos según CVSS v3.1 y genera alertas automáticas a Telegram.</p>
                     <div class="project-preview">
-                        <img src="assets/projects/SIEM_Windows%2011.jpeg" alt="SIEM v4.0 — Threat Intel" width="800" height="450" loading="lazy" decoding="async">
+                        <img src="assets/projects/SIEM_Windows_11.jpeg" alt="SIEM v4.0 — Threat Intel" width="2752" height="1536" loading="lazy" decoding="async">
                     </div>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
-                        <div class="mcp-badge"
-                            style="background: rgba(68,147,248,0.1); border-color: rgba(68,147,248,0.3); color: var(--accent);">
-                            PYTHON 3.10+</div>
-                        <div class="mcp-badge" style="border-color: var(--accent2); color: var(--accent2);">TELEGRAM API
-                        </div>
-                        <div class="mcp-badge" style="border-color: #ff5f56; color: #ff5f56;">CVSS v3.1</div>
-                        <div class="mcp-badge" style="border-color: var(--text-muted); color: var(--text-muted);">NIST
-                            DATABASE</div>
+                        <div class="mcp-badge">PYTHON 3.10+</div>
+                        <div class="mcp-badge">TELEGRAM API</div>
+                        <div class="mcp-badge">CVSS v3.1</div>
+                        <div class="mcp-badge">NIST DATABASE</div>
                     </div>
                     <div style="margin-top: 20px;">
                         <a href="https://github.com/Lucas18062025/SIEM_Windows_11" class="btn btn-b" target="_blank"
@@ -1382,7 +1364,7 @@
                     <div class="project-preview">
                         <img src="assets/projects/Sentinel_V7.jpeg"
                             alt="Sentinel V7 Apex — plataforma de automatización defensiva y mantenimiento unificado"
-                            loading="lazy">
+                            width="2752" height="1536" loading="lazy">
                     </div>
 
                     <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
@@ -1429,7 +1411,7 @@
                     <div class="project-preview">
                         <img src="assets/projects/gopish.png"
                             alt="Gophish Lab — laboratorio controlado de simulación de phishing y concientización de seguridad"
-                            loading="lazy">
+                            width="597" height="653" loading="lazy">
                     </div>
 
                     <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
@@ -1472,7 +1454,7 @@
                     <div class="project-preview">
                         <img src="assets/projects/NETWORK-EGRESS-MONITOR-.png"
                             alt="Network Egress Monitor — monitorización defensiva de conexiones salientes de red"
-                            loading="lazy">
+                            width="597" height="558" loading="lazy">
                     </div>
 
                     <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
@@ -1514,7 +1496,7 @@
 
                     <div class="project-preview">
                         <img src="assets/projects/secure-web-platform.png"
-                            alt="Secure Web Platform — aplicación web desplegada en Cloudflare" loading="lazy">
+                            alt="Secure Web Platform — aplicación web desplegada en Cloudflare" width="657" height="627" loading="lazy">
                     </div>
 
                     <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
@@ -1562,7 +1544,7 @@
 
                     <div class="project-preview">
                         <img src="assets/projects/zenhub-dashboard.png"
-                            alt="ZenHub Dashboard — aplicación web desplegada en Cloudflare" loading="lazy">
+                            alt="ZenHub Dashboard — aplicación web desplegada en Cloudflare"                             width="1513" height="728" loading="lazy">
                     </div>
 
                     <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
@@ -1646,7 +1628,6 @@
                         </a>
                     </div>
                 </div>
-            </div>
         </section>
 
         <div class="divider"></div>
@@ -1778,37 +1759,30 @@
                 </div>
 
             </div>
-            <section id="contacto" style="text-align:center;">
-                <h2 style="justify-content:center;">./ Conectar</h2>
-                <div class="contact-area">
-                    <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn btn-linkedin"
-                        target="_blank" rel="noopener">
-                        <i class="fab fa-linkedin"></i><span>LINKEDIN</span>
-                    </a>
-                    <a href="https://wa.me/543814764474" class="btn btn-whatsapp" target="_blank" rel="noopener">
-                        <i class="fab fa-whatsapp"></i><span>WHATSAPP</span>
-                    </a>
-
-                    <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad."
-                        class="btn btn-gmail" target="_blank" rel="noopener">
-                        <i class="fab fa-google"></i><span>GMAIL</span>
-                    </a>
-
-                    <a href="https://www.facebook.com/CyberAnalystTucuman" class="btn btn-facebook" target="_blank"
-                        rel="noopener noreferrer">
-
-                        <i class="fab fa-facebook"></i>
-
-                        <span>
-                            FACEBOOK
-                        </span>
-
-                    </a>
-                </div>
-            </section>
-            <div class="divider"></div>
-
         </section>
+        <div class="divider"></div>
+
+        <section id="contacto" style="text-align:center;">
+            <h2 style="justify-content:center;">./ Conectar</h2>
+            <div class="contact-area">
+                <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn btn-linkedin"
+                    target="_blank" rel="noopener">
+                    <i class="fab fa-linkedin"></i><span>LINKEDIN</span>
+                </a>
+                <a href="https://wa.me/543814764474" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i><span>WHATSAPP</span>
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&to=lucaslean1806@gmail.com&su=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad."
+                    class="btn btn-gmail" target="_blank" rel="noopener">
+                    <i class="fab fa-google"></i><span>GMAIL</span>
+                </a>
+                <a href="https://www.facebook.com/CyberAnalystTucuman" class="btn btn-facebook" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fab fa-facebook"></i><span>FACEBOOK</span>
+                </a>
+            </div>
+        </section>
+        <div class="divider"></div>
 
         <footer>
             <p>© 2026 Lucas Villagra &nbsp;·&nbsp; System Secured &nbsp;·&nbsp; Built on Cloudflare Workers</p>

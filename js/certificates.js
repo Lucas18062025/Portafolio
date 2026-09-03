@@ -4,43 +4,55 @@ function createCertificateCard(certificate) {
     const card = document.createElement("div");
     card.className = "cert-card";
 
-    card.innerHTML = `
-        <div class="cert-preview">
-            <img
-                src="${certificate.preview}"
-                alt="${certificate.alt}"
-                style="object-fit:cover; object-position:top;"
-                loading="lazy"
-            >
-        </div>
+    const preview = document.createElement("div");
+    preview.className = "cert-preview";
 
-        <div class="cert-body">
-            <h3>
-                <i class="${certificate.icon}" aria-hidden="true"></i>
-                ${certificate.title}
-            </h3>
+    const image = document.createElement("img");
+    image.src = certificate.preview;
+    image.alt = certificate.alt;
+    image.loading = "lazy";
+    image.style.objectFit = "cover";
+    image.style.objectPosition = "top";
+    preview.appendChild(image);
 
-            <p class="cert-meta">
-                ${certificate.meta}
-                &nbsp;·&nbsp;
-                <span>${certificate.dateLabel}</span>
-                &nbsp;·&nbsp;
-                ${certificate.issuer}
-            </p>
+    const body = document.createElement("div");
+    body.className = "cert-body";
 
-            <p>${certificate.description}</p>
+    const title = document.createElement("h3");
+    const titleIcon = document.createElement("i");
+    titleIcon.className = certificate.icon;
+    titleIcon.setAttribute("aria-hidden", "true");
+    title.append(titleIcon, ` ${certificate.title}`);
 
-            <a
-                href="${certificate.document}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-b"
-            >
-                <i class="fas fa-file-pdf" aria-hidden="true"></i>
-                <span>VER CREDENCIAL</span>
-            </a>
-        </div>
-    `;
+    const meta = document.createElement("p");
+    meta.className = "cert-meta";
+    meta.append(
+        certificate.meta,
+        " · ",
+        Object.assign(document.createElement("span"), {
+            textContent: certificate.dateLabel
+        }),
+        " · ",
+        certificate.issuer
+    );
+
+    const description = document.createElement("p");
+    description.textContent = certificate.description;
+
+    const link = document.createElement("a");
+    link.href = certificate.document;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.className = "btn btn-b";
+
+    const linkIcon = document.createElement("i");
+    linkIcon.className = "fas fa-file-pdf";
+    linkIcon.setAttribute("aria-hidden", "true");
+    link.append(linkIcon, document.createElement("span"));
+    link.lastElementChild.textContent = "VER CREDENCIAL";
+
+    body.append(title, meta, description, link);
+    card.append(preview, body);
 
     return card;
 }
@@ -49,7 +61,6 @@ async function loadCertificates() {
     const container = document.querySelector("#certificaciones .grid");
 
     if (!container) {
-        console.error("No se encontró #certificaciones .grid");
         return;
     }
 
@@ -70,10 +81,6 @@ async function loadCertificates() {
             );
         }
 
-        console.info(
-            `Certificados cargados desde JSON: ${certificates.length}`
-        );
-
         const fragment = document.createDocumentFragment();
 
         certificates.forEach((certificate) => {
@@ -88,15 +95,9 @@ async function loadCertificates() {
 
         container.dataset.dynamicCertificates = "true";
 
-        console.info(
-            "Certificados renderizados correctamente."
-        );
-
     } catch (error) {
-        console.error(
-            "Error cargando certificados:",
-            error
-        );
+        container.replaceChildren();
+        container.dataset.certificatesError = "true";
     }
 }
 

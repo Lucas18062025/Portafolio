@@ -20,13 +20,13 @@
 ## 🚀 Laboratorio y Proyectos
 
 **📡 Auditoría Wireless · Alfa AWUS036ACS**
-Reconocimiento de espectro 2.4/5 GHz en modo monitor. Captura de handshakes WPA2 con tasa de efectividad del 98.4% y análisis automatizado con aircrack-ng.
+Reconocimiento de espectro 2.4/5 GHz en modo monitor. Captura y análisis de handshakes WPA2 con aircrack-ng.
 `Kali Linux` `aircrack-ng` `Alfa AWUS036ACS`
 
 ---
 
 **🔒 OpSec · Infraestructura VPN Anónima**
-Túneles cifrados WireGuard con Proton VPN, reduciendo la superficie de exposición a 0 fugas DNS/IP. Kill Switch activo, latencia <45ms y split tunneling por scope.
+Túneles cifrados WireGuard con Proton VPN, verificados con controles locales de fugas DNS/IP. Kill Switch activo y split tunneling por scope.
 `WireGuard` `ProtonVPN` `OpSec`
 
 ---
@@ -44,7 +44,7 @@ Servidor MCP para conectar Claude Desktop con n8n y ejecutar flujos de auditorí
 ---
 
 **🛡️ SIEM v4.0 · Threat Intel**
-Monitor de eventos en tiempo real. Procesa 10,000+ eventos de seguridad/día, clasifica riesgos con CVSS v3.1 y genera alertas automáticas a Telegram en <1.5s.
+Monitor de eventos en tiempo real. Procesa eventos de seguridad, clasifica riesgos con CVSS v3.1 y genera alertas automáticas a Telegram.
 `Python` `Telegram API` `CVSS v3.1` `NIST`
 
 ---
