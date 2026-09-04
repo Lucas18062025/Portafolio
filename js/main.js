@@ -202,3 +202,40 @@ document.querySelectorAll('img').forEach((img) => {
         handleImgError(img);
     });
 });
+
+// Stack tabs: una sola línea + desplegable sincronizados (CSP-safe: sin inline handlers)
+(function () {
+    function showStackFallback(img) {
+        img.classList.add('s-img-error');
+        const fb = img.parentElement ? img.parentElement.querySelector('.s-fallback') : null;
+        if (fb) fb.style.display = 'block';
+    }
+    document.querySelectorAll('.s-icon-box img').forEach((img) => {
+        img.addEventListener('error', () => showStackFallback(img));
+        if (img.complete && img.naturalWidth === 0) showStackFallback(img);
+    });
+    const tabs = Array.from(document.querySelectorAll('.stack-tab'));
+    const panels = Array.from(document.querySelectorAll('.stack-panel'));
+    const select = document.getElementById('stack-select');
+    if (!tabs.length || !panels.length) return;
+    function activate(key) {
+        tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.stack === key ? 'true' : 'false'));
+        panels.forEach(p => {
+            const show = p.id === 'panel-' + key;
+            if (show) p.removeAttribute('hidden');
+            else p.setAttribute('hidden', '');
+        });
+        if (select && select.value !== key) select.value = key;
+    }
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.stack)));
+    if (select) select.addEventListener('change', () => activate(select.value));
+    const tablist = document.querySelector('.stack-tabs');
+    if (tablist) tablist.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+        const n = e.key === 'ArrowRight' ? (i + 1) % tabs.length : (i - 1 + tabs.length) % tabs.length;
+        tabs[n].focus();
+        activate(tabs[n].dataset.stack);
+        e.preventDefault();
+    });
+})();
