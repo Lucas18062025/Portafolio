@@ -419,6 +419,176 @@
             z-index: 1;
         }
 
+        /* ===== STACK TABS: una sola línea horizontal + panel desplegable ===== */
+        .stack-tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .stack-tabs::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .stack-tabs::-webkit-scrollbar-thumb {
+            background: var(--border-bright);
+            border-radius: 2px;
+        }
+
+        .stack-tab {
+            flex: 0 0 auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 10px 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .stack-tab:hover {
+            color: var(--text-main);
+            border-color: var(--border-bright);
+            transform: translateY(-2px);
+        }
+
+        .stack-tab[aria-selected="true"] {
+            color: #fff;
+            background: rgba(0, 102, 255, 0.14);
+            border-color: var(--tab-accent, var(--accent2));
+            box-shadow: 0 0 0 1px var(--tab-accent, var(--accent2)), 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .stack-select {
+            display: none;
+            width: 100%;
+            margin-bottom: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            background: var(--card-bg2);
+            border: 1px solid var(--border-bright);
+            border-radius: 8px;
+            padding: 12px 14px;
+            cursor: pointer;
+        }
+
+        .stack-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--panel-accent, var(--accent2));
+            border-radius: 8px;
+            padding: 24px;
+            min-height: 190px;
+        }
+
+        .stack-panel-head {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stack-panel-head h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .stack-panel-head .sub {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--panel-accent, var(--accent2));
+            letter-spacing: 1px;
+        }
+
+        #stack .stack-grid {
+            grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+            gap: 18px 12px;
+        }
+
+        .stack-panel[hidden] {
+            display: none;
+        }
+
+        /* Opción B blindada: skillicons + SVG custom con fallback FA */
+        .s-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: transform .15s ease;
+        }
+
+        .s-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .s-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(0, 20, 50, 0.5);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .s-icon-box img {
+            width: 26px;
+            height: 26px;
+        }
+
+        .s-icon-box img.s-img-error {
+            display: none;
+        }
+
+        .s-icon-box svg {
+            width: 22px;
+            height: 22px;
+            color: var(--panel-accent, var(--accent2));
+        }
+
+        .s-icon-box .s-fallback {
+            display: none;
+            font-size: 1.3rem;
+            color: var(--panel-accent, var(--accent2));
+        }
+
+        .s-item span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            line-height: 1.3;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .stack-tabs {
+                display: none;
+            }
+
+            .stack-select {
+                display: block;
+            }
+        }
+
         .about-wrap {
             display: flex;
             gap: 48px;
@@ -1243,23 +1413,112 @@
 
             <section id="stack">
                 <h2>./ Stack Tecnológico</h2>
-                <div class="stack-grid">
-                    <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
-                    <div class="stack-item"><i class="fab fa-linux"></i><span>LINUX</span></div>
-                    <div class="stack-item"><i class="fas fa-database"></i><span>SQL</span></div>
-                    <div class="stack-item"><i class="fas fa-user-shield"></i><span>SIEM / IDS</span></div>
-                    <div class="stack-item"><i class="fas fa-robot"></i><span>GEN AI</span></div>
-                    <div class="stack-item"><i class="fas fa-plug"></i><span>MCP</span></div>
-                    <div class="stack-item"><i class="fas fa-network-wired"></i><span>PENTESTING</span></div>
-                    <div class="stack-item"><i class="fas fa-gear"></i><span>n8n / AUTOMATION</span></div>
-                    <div class="stack-item"><img class="stack-icon" src="https://cdn.simpleicons.org/github/00aaff"
-                            alt=""><span>GITHUB</span></div>
-                    <div class="stack-item"><img class="stack-icon" src="https://cdn.simpleicons.org/vercel/00aaff"
-                            alt=""><span>VERCEL</span></div>
-                    <div class="stack-item"><img class="stack-icon" src="https://cdn.simpleicons.org/netlify/00aaff"
-                            alt=""><span>NETLIFY</span></div>
-                    <div class="stack-item"><img class="stack-icon" src="https://cdn.simpleicons.org/gitlab/00aaff"
-                            alt=""><span>GITLAB</span></div>
+
+                <!-- Tab bar: una sola línea horizontal (scroll en desktop) -->
+                <div class="stack-tabs" role="tablist" aria-label="Áreas del stack tecnológico">
+                    <button class="stack-tab" role="tab" id="tab-base" aria-controls="panel-base"
+                        aria-selected="true" data-stack="base" style="--tab-accent:#5b8dae">Base
+                        técnica</button>
+                    <button class="stack-tab" role="tab" id="tab-infra" aria-controls="panel-infra"
+                        aria-selected="false" data-stack="infra" style="--tab-accent:#7c8797">Infraestructura
+                        &amp; Deploy</button>
+                    <button class="stack-tab" role="tab" id="tab-red" aria-controls="panel-red"
+                        aria-selected="false" data-stack="red" style="--tab-accent:#d97706">Red Team</button>
+                    <button class="stack-tab" role="tab" id="tab-blue" aria-controls="panel-blue"
+                        aria-selected="false" data-stack="blue" style="--tab-accent:#2f9e8f">Blue Team</button>
+                    <button class="stack-tab" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="false"
+                        data-stack="ai" style="--tab-accent:#8b7fd1">IA &amp; Automatización</button>
+                </div>
+
+                <!-- Desplegable (mobile + alternativa accesible) -->
+                <label for="stack-select" class="sr-only"
+                    style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Seleccionar área
+                    del stack</label>
+                <select id="stack-select" class="stack-select" aria-label="Seleccionar área del stack">
+                    <option value="base" selected>Base técnica — lenguajes &amp; sistemas</option>
+                    <option value="infra">Infraestructura &amp; Deploy</option>
+                    <option value="red">Red Team — ofensivo</option>
+                    <option value="blue">Blue Team — defensivo · sysadmin</option>
+                    <option value="ai">IA &amp; Automatización</option>
+                </select>
+
+                <!-- PANEL: BASE (skillicons + fallback FA) -->
+                <div class="stack-panel" id="panel-base" role="tabpanel" aria-labelledby="tab-base"
+                    style="--panel-accent:#5b8dae">
+                    <div class="stack-panel-head">
+                        <h3>Base técnica</h3><span class="sub">lenguajes &amp; sistemas</span>
+                    </div>
+                    <div class="stack-grid">
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=kali" alt="Kali Linux" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fab fa-linux s-fallback"></i></div><span>Kali Linux</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=ubuntu" alt="Ubuntu" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fab fa-ubuntu s-fallback"></i></div><span>Ubuntu</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=windows" alt="Windows" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fab fa-windows s-fallback"></i></div><span>Windows</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=py" alt="Python" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fab fa-python s-fallback"></i></div><span>Python</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=html" alt="HTML" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fab fa-html5 s-fallback"></i></div><span>HTML</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=css" alt="CSS" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fab fa-css3-alt s-fallback"></i></div><span>CSS</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=vscode" alt="VS Code" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fas fa-code s-fallback"></i></div><span>VS Code</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=github" alt="GitHub" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fab fa-github s-fallback"></i></div><span>GitHub</span></div>
+                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-database" style="font-size:1.3rem;color:var(--panel-accent,#5b8dae)"></i></div><span>SQL</span></div>
+                    </div>
+                </div>
+
+                <!-- PANEL: INFRA -->
+                <div class="stack-panel" id="panel-infra" role="tabpanel" aria-labelledby="tab-infra" hidden
+                    style="--panel-accent:#7c8797">
+                    <div class="stack-panel-head">
+                        <h3>Infraestructura &amp; Deploy</h3><span class="sub">contenedores · versionado ·
+                            hosting</span>
+                    </div>
+                    <div class="stack-grid">
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=docker" alt="Docker" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fab fa-docker s-fallback"></i></div><span>Docker</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=gitlab" alt="GitLab" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fab fa-gitlab s-fallback"></i></div><span>GitLab</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=vercel" alt="Vercel" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fas fa-cloud s-fallback"></i></div><span>Vercel</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=netlify" alt="Netlify" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fas fa-globe s-fallback"></i></div><span>Netlify</span></div>
+                    </div>
+                </div>
+
+                <!-- PANEL: RED (SVG custom, sin dependencia externa) -->
+                <div class="stack-panel" id="panel-red" role="tabpanel" aria-labelledby="tab-red" hidden
+                    style="--panel-accent:#d97706">
+                    <div class="stack-panel-head">
+                        <h3>Red Team</h3><span class="sub">ofensivo</span>
+                    </div>
+                    <div class="stack-grid">
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="7" /><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></svg></div><span>Red Team</span></div>
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6" /><path d="M20 20l-4.3-4.3" /></svg></div><span>Ethical Hacking</span></div>
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="4" /><path d="M11 12h10M17 12v3M20 12v3" /></svg></div><span>Pentesting</span></div>
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></svg></div><span>Phishing<br />simulado</span></div>
+                    </div>
+                </div>
+
+                <!-- PANEL: BLUE -->
+                <div class="stack-panel" id="panel-blue" role="tabpanel" aria-labelledby="tab-blue" hidden
+                    style="--panel-accent:#2f9e8f">
+                    <div class="stack-panel-head">
+                        <h3>Blue Team</h3><span class="sub">defensivo · sysadmin</span>
+                    </div>
+                    <div class="stack-grid">
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9-8 11-4.6-2-8-6-8-11V5z" /></svg></div><span>Blue Team</span></div>
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg></div><span>Hardening</span></div>
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" /></svg></div><span>IDS</span></div>
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="6" y="4" width="12" height="16" rx="2" /><rect x="9" y="2" width="6" height="3" rx="1" /><path d="M9 10h6M9 14h6M9 18h3" /></svg></div><span>Auditorías</span></div>
+                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-user-shield" style="font-size:1.3rem;color:var(--panel-accent,#2f9e8f)"></i></div><span>SIEM</span></div>
+                    </div>
+                </div>
+
+                <!-- PANEL: IA -->
+                <div class="stack-panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" hidden
+                    style="--panel-accent:#8b7fd1">
+                    <div class="stack-panel-head">
+                        <h3>IA &amp; Automatización</h3><span class="sub">ai engineering</span>
+                    </div>
+                    <div class="stack-grid">
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><circle cx="6" cy="18" r="2.2" /><circle cx="18" cy="18" r="2.2" /><circle cx="12" cy="6" r="2.2" /><path d="M7.8 16.6L11 8M16.2 16.6L13 8M8 18h8" /></svg></div><span>AI Engineering</span></div>
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="4" width="16" height="4.5" rx="1.5" /><rect x="4" y="10" width="16" height="4.5" rx="1.5" /><rect x="4" y="16" width="12" height="4.5" rx="1.5" /></svg></div><span>Machine<br />Learning</span></div>
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v5M15 4v5M7 9h10l-1 4a4 4 0 0 1-8 0z" /><path d="M12 17v3" /></svg></div><span>MCP</span></div>
+                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://cdn.simpleicons.org/n8n/8b7fd1" alt="n8n" onerror="this.classList.add('s-img-error');this.nextElementSibling.style.display='block'"><i class="fas fa-gear s-fallback"></i></div><span>n8n</span></div>
+                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 9l3 3-3 3" /><path d="M13 15h4" /></svg></div><span>OpenCode</span></div>
+                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-robot" style="font-size:1.3rem;color:var(--panel-accent,#8b7fd1)"></i></div><span>Gen AI</span></div>
+                    </div>
                 </div>
             </section>
 
@@ -1861,6 +2120,34 @@
 
     </div>
 
+    <script>
+        // Stack tabs: una sola línea + desplegable sincronizados
+        (function () {
+            const tabs = Array.from(document.querySelectorAll('.stack-tab'));
+            const panels = Array.from(document.querySelectorAll('.stack-panel'));
+            const select = document.getElementById('stack-select');
+            if (!tabs.length || !panels.length) return;
+            function activate(key) {
+                tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.stack === key ? 'true' : 'false'));
+                panels.forEach(p => {
+                    const show = p.id === 'panel-' + key;
+                    if (show) p.removeAttribute('hidden');
+                    else p.setAttribute('hidden', '');
+                });
+                if (select && select.value !== key) select.value = key;
+            }
+            tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.stack)));
+            if (select) select.addEventListener('change', () => activate(select.value));
+            document.querySelector('.stack-tabs')?.addEventListener('keydown', (e) => {
+                if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+                const n = e.key === 'ArrowRight' ? (i + 1) % tabs.length : (i - 1 + tabs.length) % tabs.length;
+                tabs[n].focus();
+                activate(tabs[n].dataset.stack);
+                e.preventDefault();
+            });
+        })();
+    </script>
     <script src="./js/main.js" defer></script>
     <script src="./js/certificates.js" defer></script>
 </body>
