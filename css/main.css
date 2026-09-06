@@ -1237,7 +1237,8 @@
 .text-accent2{color:var(--accent2)}
 .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
 .action-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.action-row .btn{flex:1 1 120px;justify-content:center;text-align:center;margin-top:0;min-height:50px;padding:8px;font-size:.65rem;letter-spacing:1px;line-height:1.5}
+#proyectos .action-row{flex-wrap:nowrap;gap:8px}
+.action-row .btn{flex:1 1 0;min-width:0;justify-content:center;text-align:center;margin-top:0;min-height:50px;padding:8px 4px;font-size:.6rem;letter-spacing:.5px;line-height:1.5}
 .img-cover-top{object-fit:cover;object-position:top}
 .section-center{text-align:center}
 .h2-center{justify-content:center}
