@@ -70,1226 +70,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./css/hero.css">
 
-    <style>
-        /* Accessibility & Focus Standards */
-        .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 1rem;
-            background: var(--accent, #0066FF);
-            color: #ffffff;
-            padding: 0.75rem 1.25rem;
-            font-weight: 700;
-            font-family: 'Share Tech Mono', monospace;
-            z-index: 9999;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: top 0.2s ease;
-            box-shadow: 0 0 15px rgba(0, 102, 255, 0.5);
-        }
-
-        .skip-link:focus {
-            top: 1rem;
-            outline: 2px solid #ffffff;
-        }
-
-        *:focus-visible {
-            outline: 2px solid var(--accent, #0066FF);
-            outline-offset: 3px;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            ::before,
-            ::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        /* Reflection Cards CSS Migration */
-        .reflection-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 26px 32px;
-            text-align: left;
-            position: relative;
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
-        }
-
-        .reflection-card.accent-1 {
-            border-left: 3px solid var(--accent);
-        }
-
-        .reflection-card.accent-2 {
-            border-left: 3px solid var(--accent2);
-        }
-
-        .reflection-card.accent-3 {
-            border-left: 3px solid var(--accent3);
-        }
-
-        .reflection-card:hover {
-            background: var(--card-bg2);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
-        }
-
-        .reflection-card.accent-1:hover {
-            border-color: var(--accent);
-        }
-
-        .reflection-card.accent-2:hover {
-            border-color: var(--accent2);
-        }
-
-        .reflection-card.accent-3:hover {
-            border-color: var(--accent3);
-        }
-
-        :root {
-            --bg: #020408;
-            --bg2: #060c14;
-            --bg3: #080e1a;
-            --card-bg: rgba(8, 14, 26, 0.85);
-            --card-bg2: rgba(10, 18, 32, 0.95);
-            --accent: #0066FF;
-            --accent2: #00D4FF;
-            --accent3: #3388ff;
-            --text-main: #f0f4f8;
-            --text-muted: #8899aa;
-            --text-subtle: #4a5a6a;
-            --border: rgba(0, 102, 255, 0.12);
-            --border-bright: rgba(0, 212, 255, 0.18);
-            --glow: rgba(0, 102, 255, 0.08);
-            --glow2: rgba(0, 212, 255, 0.06);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg);
-            background-image:
-                radial-gradient(ellipse 120% 60% at 50% -10%, rgba(0, 102, 255, 0.06) 0%, transparent 65%),
-                radial-gradient(ellipse 80% 40% at 90% 110%, rgba(0, 212, 255, 0.04) 0%, transparent 60%);
-            color: var(--text-main);
-            font-family: 'Inter', 'Space Grotesk', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* Capa de ruido fractal desactivada para mantener el negro limpio */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.6;
-        }
-
-        .wrapper {
-            position: relative;
-            z-index: 2;
-        }
-
-        header {
-            min-height: 70vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            padding: 60px 20px;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('hero_bg_dark_luxury_1775744568119.png');
-            background-size: cover;
-            background-position: center bottom;
-            opacity: 0.6;
-            z-index: 0;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .header-eyebrow {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            color: var(--accent2);
-            letter-spacing: 5px;
-            opacity: 0;
-            text-transform: uppercase;
-            font-weight: 400;
-            animation: fadeDown 0.9s 0.2s forwards;
-        }
-
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.8rem, 6.5vw, 5.2rem);
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            line-height: 1.0;
-            text-shadow: 0 0 60px rgba(0, 102, 255, 0.15), 0 2px 4px rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            animation: fadeDown 0.9s 0.4s forwards;
-        }
-
-        .tagline {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.65rem, 1.2vw, 0.82rem);
-            color: var(--text-muted);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 300;
-            opacity: 0;
-            animation: fadeDown 0.9s 0.6s forwards;
-        }
-
-        .location {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            opacity: 0;
-            animation: fadeDown 0.8s 0.8s forwards;
-        }
-
-        .location i {
-            color: var(--accent);
-            margin-right: 6px;
-        }
-
-        section {
-            padding: 80px 20px;
-            max-width: 1140px;
-            margin: auto;
-        }
-
-        h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            color: #ffffff;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 5px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        h2::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 22px;
-            background: linear-gradient(180deg, var(--accent), var(--accent2));
-            border-radius: 2px;
-            box-shadow: 0 0 10px var(--accent);
-            flex-shrink: 0;
-        }
-
-        h2::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--border-bright), transparent);
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.15), transparent);
-            max-width: 1140px;
-            margin: 0 auto;
-            opacity: 0.5;
-        }
-
-        .stack-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
-            gap: 18px;
-            text-align: center;
-        }
-
-        .stack-item {
-            background: var(--card-bg);
-            padding: 22px 14px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            transition: all 0.35s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .stack-icon {
-            width: 2rem;
-            height: 2rem;
-        }
-
-        .stack-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--glow), transparent);
-            opacity: 0;
-            transition: opacity 0.35s;
-            z-index: 0;
-        }
-
-        .stack-item:hover {
-            border-color: rgba(0, 102, 255, 0.5);
-            transform: translateY(-5px);
-            box-shadow: 0 12px 32px rgba(0, 102, 255, 0.1), 0 0 0 1px rgba(0, 102, 255, 0.2);
-            background: rgba(0, 40, 100, 0.2);
-        }
-
-        .stack-item:hover::before {
-            opacity: 1;
-        }
-
-        .stack-item i {
-            font-size: 2rem;
-            color: var(--accent);
-            position: relative;
-            z-index: 1;
-        }
-
-        .stack-item span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.62rem;
-            font-weight: 500;
-            color: var(--text-main);
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ===== STACK TABS: una sola línea horizontal + panel desplegable ===== */
-        .stack-tabs {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 12px;
-            margin-bottom: 20px;
-            scrollbar-width: thin;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .stack-tabs::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        .stack-tabs::-webkit-scrollbar-thumb {
-            background: var(--border-bright);
-            border-radius: 2px;
-        }
-
-        .stack-tab {
-            flex: 0 0 auto;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            padding: 10px 18px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .stack-tab:hover {
-            color: var(--text-main);
-            border-color: var(--border-bright);
-            transform: translateY(-2px);
-        }
-
-        .stack-tab[aria-selected="true"] {
-            color: #fff;
-            background: rgba(0, 102, 255, 0.14);
-            border-color: var(--tab-accent, var(--accent2));
-            box-shadow: 0 0 0 1px var(--tab-accent, var(--accent2)), 0 8px 24px rgba(0, 0, 0, 0.35);
-        }
-
-        .stack-select {
-            display: none;
-            width: 100%;
-            margin-bottom: 16px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            color: var(--text-main);
-            background: var(--card-bg2);
-            border: 1px solid var(--border-bright);
-            border-radius: 8px;
-            padding: 12px 14px;
-            cursor: pointer;
-        }
-
-        .stack-panel {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--panel-accent, var(--accent2));
-            border-radius: 8px;
-            padding: 24px;
-            min-height: 190px;
-        }
-
-        .stack-panel-head {
-            display: flex;
-            align-items: baseline;
-            gap: 12px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .stack-panel-head h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-main);
-            margin: 0;
-        }
-
-        .stack-panel-head .sub {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            color: var(--panel-accent, var(--accent2));
-            letter-spacing: 1px;
-        }
-
-        #stack .stack-grid {
-            grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
-            gap: 18px 12px;
-        }
-
-        .stack-panel[hidden] {
-            display: none;
-        }
-
-        /* Opción B blindada: skillicons + SVG custom con fallback FA */
-        .s-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            transition: transform .15s ease;
-        }
-
-        .s-item:hover {
-            transform: translateY(-3px);
-        }
-
-        .s-icon-box {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: rgba(0, 20, 50, 0.5);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .s-icon-box img {
-            width: 26px;
-            height: 26px;
-        }
-
-        .s-icon-box img.s-img-error {
-            display: none;
-        }
-
-        .s-icon-box svg {
-            width: 22px;
-            height: 22px;
-            color: var(--panel-accent, var(--accent2));
-        }
-
-        .s-icon-box .s-fallback {
-            display: none;
-            font-size: 1.3rem;
-            color: var(--panel-accent, var(--accent2));
-        }
-
-        .s-item span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            line-height: 1.3;
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        @media (max-width: 640px) {
-            .stack-tabs {
-                display: none;
-            }
-
-            .stack-select {
-                display: block;
-            }
-        }
-
-        .about-wrap {
-            display: flex;
-            gap: 48px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .about-avatar {
-            width: 160px;
-            height: 160px;
-            border-radius: 14px;
-            flex-shrink: 0;
-            border: 1px solid rgba(0, 102, 255, 0.3);
-            box-shadow: 0 0 40px rgba(0, 102, 255, 0.1), 0 0 80px rgba(0, 102, 255, 0.04), 0 20px 60px rgba(0, 0, 0, 0.6);
-            overflow: hidden;
-            background: var(--card-bg2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .about-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .about-avatar:hover img {
-            transform: scale(1.06);
-        }
-
-        .about-avatar .avatar-fallback {
-            display: none;
-            font-size: 4rem;
-            color: var(--accent);
-        }
-
-        .about-avatar img.img-error {
-            display: none;
-        }
-
-        .about-avatar img.img-error~.avatar-fallback {
-            display: flex;
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 280px;
-        }
-
-        .about-text p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        .about-text strong.g {
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        .about-text strong.b {
-            color: var(--accent2);
-            font-weight: 500;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 26px;
-        }
-
-        #proyectos .grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        @media (max-width: 900px) {
-            #proyectos .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            #proyectos .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 32px;
-            border-radius: 16px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(12px);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent2), transparent);
-            opacity: 0.1;
-            transition: opacity 0.4s;
-        }
-
-        .card:hover {
-            border-color: rgba(0, 212, 255, 0.3);
-            background: var(--card-bg2);
-            transform: translateY(-8px);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 212, 255, 0.1);
-        }
-
-        .card:hover::before {
-            opacity: 0.8;
-        }
-
-        .card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            color: #ffffff;
-            margin-bottom: 14px;
-            font-size: 1.15rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .card h3 i {
-            font-size: 0.9rem;
-            color: var(--accent2);
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.7;
-            flex-grow: 1;
-            font-weight: 300;
-        }
-
-        .project-preview {
-            margin: 24px 0 16px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(0, 212, 255, 0.12);
-            background: #020408;
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            min-height: 220px;
-            display: block;
-        }
-
-        .project-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-            transition: transform 0.4s ease, filter 0.4s ease;
-        }
-
-        .card:hover .project-preview img {
-            transform: scale(1.025);
-            filter: brightness(1.08);
-        }
-
-        .project-preview-contain img {
-            object-fit: contain;
-            padding: 8px;
-        }
-
-        .terminal-window {
-            background: #040810;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            margin: 24px 0 16px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-
-        .terminal-header {
-            background: rgba(10, 20, 40, 0.5);
-            padding: 10px 16px;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            opacity: 0.6;
-        }
-
-        .red {
-            background: #ff5f56;
-        }
-
-        .yellow {
-            background: #ffbd2e;
-        }
-
-        .green {
-            background: #27c93f;
-        }
-
-        .terminal-title {
-            font-family: 'JetBrains Mono', monospace;
-            color: #556677;
-            font-size: 0.65rem;
-            margin-left: 8px;
-            letter-spacing: 1px;
-            font-weight: 400;
-        }
-
-        .terminal-content {
-            min-height: 160px;
-            background: #020408;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .terminal-content img {
-            width: 100%;
-            display: block;
-            filter: brightness(0.85) contrast(1.1);
-            transition: opacity 0.5s ease;
-        }
-
-        .scan-line {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.05) 0%, transparent 70%);
-            animation: volumetricPulse 4s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .placeholder-text {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-align: center;
-        }
-
-        .placeholder-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 3px;
-            width: 90%;
-        }
-
-        .placeholder-bar {
-            height: 8px;
-            border-radius: 2px;
-            background: var(--border-bright);
-            animation: barPulse 1.5s ease-in-out infinite;
-        }
-
-        .placeholder-bar:nth-child(even) {
-            background: rgba(68, 147, 248, 0.2);
-            animation-delay: 0.3s;
-        }
-
-        .placeholder-bar:nth-child(3n) {
-            background: rgba(0, 200, 255, 0.15);
-            animation-delay: 0.6s;
-        }
-
-        @keyframes volumetricPulse {
-
-            0%,
-            100% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.7;
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes scanMove {
-            0% {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 0.1;
-            }
-
-            100% {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-        }
-
-        @keyframes barPulse {
-
-            0%,
-            100% {
-                opacity: 0.4;
-            }
-
-            50% {
-                opacity: 1;
-            }
-        }
-
-        .status-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.62rem;
-            color: var(--accent2);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-            opacity: 0.8;
-        }
-
-        .status-tag::before {
-            content: '';
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--accent2);
-            box-shadow: 0 0 10px var(--accent2);
-            animation: statusPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        @keyframes statusPulse {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.3;
-                transform: scale(1.5);
-            }
-        }
-
-        .cert-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-            backdrop-filter: blur(10px);
-        }
-
-        .cert-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent2), transparent);
-            opacity: 0.1;
-            transition: opacity 0.4s;
-            z-index: 2;
-        }
-
-        .cert-card:hover {
-            border-color: rgba(0, 212, 255, 0.3);
-            background: var(--card-bg2);
-            transform: translateY(-8px);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
-        }
-
-        .cert-card:hover::before {
-            opacity: 0.8;
-        }
-
-        .cert-preview {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            background: linear-gradient(135deg, #020408, #0a1020);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .cert-preview::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.05), transparent 75%);
-        }
-
-        .cert-preview img {
-            height: 160px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 20px rgba(0, 200, 255, 0.25));
-            transition: transform 0.4s ease, filter 0.4s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cert-preview img[data-error="true"] {
-            display: none;
-        }
-
-        .cert-card:hover .cert-preview img {
-            transform: scale(1.08);
-            filter: drop-shadow(0 4px 28px rgba(0, 200, 255, 0.45));
-        }
-
-        .cert-placeholder {
-            display: none;
-            position: absolute;
-            inset: 0;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            padding: 20px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .cert-placeholder.visible {
-            display: flex;
-        }
-
-        .cert-placeholder i {
-            font-size: 3.5rem;
-            color: var(--accent2);
-            opacity: 0.6;
-        }
-
-        .cert-placeholder-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-subtle);
-            letter-spacing: 1px;
-        }
-
-        .cert-body {
-            padding: 28px;
-        }
-
-        .cert-body h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            color: #ffffff;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .cert-body p {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .cert-meta {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--text-subtle);
-            letter-spacing: 1px;
-            margin-bottom: 18px;
-        }
-
-        .cert-meta span {
-            color: var(--accent2);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 8px;
-            padding: 12px 26px;
-            border: 1px solid rgba(0, 102, 255, 0.4);
-            color: #ffffff;
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            background: rgba(0, 102, 255, 0.05);
-            cursor: pointer;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, var(--accent), var(--accent2));
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: -1;
-        }
-
-        .btn:hover {
-            color: #fff;
-            border-color: var(--accent2);
-            box-shadow: 0 0 30px rgba(0, 102, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .btn:hover::before {
-            opacity: 0.2;
-        }
-
-        .btn-b {
-            border-color: rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .btn-b:hover {
-            border-color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        /* ===== BOTONES DE CONTACTO ===== */
-
-        .btn-linkedin {
-            border-color: #0A66C2;
-            color: #6EC6FF;
-        }
-
-        .btn-linkedin::before {
-            background: #0A66C2;
-        }
-
-        .btn-linkedin:hover {
-            border-color: #33A8FF;
-            box-shadow: 0 0 25px rgba(10, 102, 194, .45);
-        }
-
-        .btn-whatsapp {
-            border-color: #25D366;
-            color: #25D366;
-        }
-
-        .btn-whatsapp::before {
-            background: #25D366;
-        }
-
-        .btn-whatsapp:hover {
-            border-color: #25D366;
-            box-shadow: 0 0 25px rgba(37, 211, 102, .45);
-        }
-
-        .btn-gmail {
-            border-color: #EA4335;
-            color: #EA4335;
-        }
-
-        .btn-gmail:hover {
-            border-color: #EA4335;
-            box-shadow: 0 0 25px rgba(234, 67, 53, .45);
-        }
-
-        .btn-facebook {
-            border-color: #1877F2;
-            color: #4DA3FF;
-        }
-
-        .btn-facebook::before {
-            background: #1877F2;
-        }
-
-        .btn-facebook:hover {
-            border-color: #1877F2;
-
-            box-shadow:
-                0 0 25px rgba(24,
-                    119,
-                    242,
-                    0.45);
-        }
-
-
-        .contact-area {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-top: 40px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            color: var(--text-subtle);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            position: relative;
-            z-index: 2;
-        }
-
-        footer::before {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 1px;
-            background: var(--accent2);
-            margin: 0 auto 30px;
-            opacity: 0.3;
-        }
-
-        @keyframes fadeDown {
-            from {
-                opacity: 0;
-                transform: translateY(-18px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.3;
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.3rem;
-            }
-
-            header {
-                min-height: 55vh;
-            }
-
-            section {
-                padding: 55px 16px;
-            }
-
-            .about-wrap {
-                flex-direction: column;
-                gap: 24px;
-            }
-
-            .about-avatar {
-                width: 120px;
-                height: 120px;
-                align-self: center;
-            }
-        }
-    </style>
+        <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
@@ -1417,22 +198,22 @@
                 <!-- Tab bar: una sola línea horizontal (scroll en desktop) -->
                 <div class="stack-tabs" role="tablist" aria-label="Áreas del stack tecnológico">
                     <button class="stack-tab" role="tab" id="tab-base" aria-controls="panel-base"
-                        aria-selected="true" data-stack="base" style="--tab-accent:#5b8dae">Base
+                        aria-selected="true" data-stack="base">Base
                         técnica</button>
                     <button class="stack-tab" role="tab" id="tab-infra" aria-controls="panel-infra"
-                        aria-selected="false" data-stack="infra" style="--tab-accent:#7c8797">Infraestructura
+                        aria-selected="false" data-stack="infra">Infraestructura
                         &amp; Deploy</button>
                     <button class="stack-tab" role="tab" id="tab-red" aria-controls="panel-red"
-                        aria-selected="false" data-stack="red" style="--tab-accent:#d97706">Red Team</button>
+                        aria-selected="false" data-stack="red">Red Team</button>
                     <button class="stack-tab" role="tab" id="tab-blue" aria-controls="panel-blue"
-                        aria-selected="false" data-stack="blue" style="--tab-accent:#2f9e8f">Blue Team</button>
+                        aria-selected="false" data-stack="blue">Blue Team</button>
                     <button class="stack-tab" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="false"
-                        data-stack="ai" style="--tab-accent:#8b7fd1">IA &amp; Automatización</button>
+                        data-stack="ai">IA &amp; Automatización</button>
                 </div>
 
                 <!-- Desplegable (mobile + alternativa accesible) -->
                 <label for="stack-select" class="sr-only"
-                    style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Seleccionar área
+                   >Seleccionar área
                     del stack</label>
                 <select id="stack-select" class="stack-select" aria-label="Seleccionar área del stack">
                     <option value="base" selected>Base técnica — lenguajes &amp; sistemas</option>
@@ -1444,7 +225,7 @@
 
                 <!-- PANEL: BASE (skillicons + fallback FA) -->
                 <div class="stack-panel" id="panel-base" role="tabpanel" aria-labelledby="tab-base"
-                    style="--panel-accent:#5b8dae">
+                   >
                     <div class="stack-panel-head">
                         <h3>Base técnica</h3><span class="sub">lenguajes &amp; sistemas</span>
                     </div>
@@ -1462,7 +243,7 @@
 
                 <!-- PANEL: INFRA -->
                 <div class="stack-panel" id="panel-infra" role="tabpanel" aria-labelledby="tab-infra" hidden
-                    style="--panel-accent:#7c8797">
+                   >
                     <div class="stack-panel-head">
                         <h3>Infraestructura &amp; Deploy</h3><span class="sub">contenedores · versionado ·
                             hosting</span>
@@ -1472,13 +253,13 @@
                         <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=gitlab" alt="GitLab"><i class="fab fa-gitlab s-fallback"></i></div><span>GitLab</span></div>
                         <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=vercel" alt="Vercel"><i class="fas fa-cloud s-fallback"></i></div><span>Vercel</span></div>
                         <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=netlify" alt="Netlify"><i class="fas fa-globe s-fallback"></i></div><span>Netlify</span></div>
-                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-database" style="font-size:1.3rem;color:var(--panel-accent,#7c8797)"></i></div><span>SQL</span></div>
+                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-database s-icon-fa"></i></div><span>SQL</span></div>
                     </div>
                 </div>
 
                 <!-- PANEL: RED (SVG custom, sin dependencia externa) -->
                 <div class="stack-panel" id="panel-red" role="tabpanel" aria-labelledby="tab-red" hidden
-                    style="--panel-accent:#d97706">
+                   >
                     <div class="stack-panel-head">
                         <h3>Red Team</h3><span class="sub">ofensivo</span>
                     </div>
@@ -1492,7 +273,7 @@
 
                 <!-- PANEL: BLUE -->
                 <div class="stack-panel" id="panel-blue" role="tabpanel" aria-labelledby="tab-blue" hidden
-                    style="--panel-accent:#2f9e8f">
+                   >
                     <div class="stack-panel-head">
                         <h3>Blue Team</h3><span class="sub">defensivo · sysadmin</span>
                     </div>
@@ -1501,13 +282,13 @@
                         <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg></div><span>Hardening</span></div>
                         <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" /></svg></div><span>IDS</span></div>
                         <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="6" y="4" width="12" height="16" rx="2" /><rect x="9" y="2" width="6" height="3" rx="1" /><path d="M9 10h6M9 14h6M9 18h3" /></svg></div><span>Auditorías</span></div>
-                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-user-shield" style="font-size:1.3rem;color:var(--panel-accent,#2f9e8f)"></i></div><span>SIEM</span></div>
+                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-user-shield s-icon-fa"></i></div><span>SIEM</span></div>
                     </div>
                 </div>
 
                 <!-- PANEL: IA -->
                 <div class="stack-panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" hidden
-                    style="--panel-accent:#8b7fd1">
+                   >
                     <div class="stack-panel-head">
                         <h3>IA &amp; Automatización</h3><span class="sub">ai engineering</span>
                     </div>
@@ -1517,7 +298,7 @@
                         <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v5M15 4v5M7 9h10l-1 4a4 4 0 0 1-8 0z" /><path d="M12 17v3" /></svg></div><span>MCP</span></div>
                         <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://cdn.simpleicons.org/n8n/8b7fd1" alt="n8n"><i class="fas fa-gear s-fallback"></i></div><span>n8n</span></div>
                         <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 9l3 3-3 3" /><path d="M13 15h4" /></svg></div><span>OpenCode</span></div>
-                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-robot" style="font-size:1.3rem;color:var(--panel-accent,#8b7fd1)"></i></div><span>Gen AI</span></div>
+                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-robot s-icon-fa"></i></div><span>Gen AI</span></div>
                     </div>
                 </div>
             </section>
@@ -1542,7 +323,7 @@
                             Combino auditoría técnica rigurosa con automatización de procesos mediante <strong
                                 class="b">n8n, IA generativa y Python</strong> para blindar activos digitales.
                         </p>
-                        <p style="margin-top:14px;">
+                        <p class="mt-14">
                             Actualmente construyo y administro <strong class="g"> home labs ofensivos / defensivos
                             </strong>
                             sobre Linux Mint, Ubuntu, Parrot, Kali Linux con
@@ -1564,9 +345,8 @@
                         <div class="status-tag">Unit mounted &amp; audit cache verified</div>
                         <h3><i class="fas fa-wifi"></i> Auditoría Wireless · Alfa AWUS036ACS</h3>
                         <p>Reconocimiento de espectro 2.4/5 GHz en modo monitor con hardware especializado. Captura y
-                            análisis de handshakes WPA2 con <code
-                                style="color:var(--accent);font-size:0.85em;">aircrack-ng</code> y almacenamiento
-                            estructurado en <code style="color:var(--accent);font-size:0.85em;">KALI_AUDIT</code>.</p>
+                            análisis de handshakes WPA2 con <code class="code-accent">aircrack-ng</code> y almacenamiento
+                            estructurado en <code class="code-accent">KALI_AUDIT</code>.</p>
                         <div class="project-preview">
                             <img src="Captura01.webp" alt="Auditoría Wireless — Alfa AWUS036ACS" width="1280"
                                 height="675" loading="lazy" decoding="async">
@@ -1576,7 +356,7 @@
                     <div class="card">
                         <div class="status-tag">WireGuard (UDP) | DNS/IP leak checks</div>
                         <h3><i class="fas fa-user-secret"></i> OpSec · Infraestructura VPN Anónima</h3>
-                        <p>Túneles cifrados <strong style="color:var(--accent2);">WireGuard (UDP)</strong> con Proton
+                        <p>Túneles cifrados <strong class="text-accent2">WireGuard (UDP)</strong> con Proton
                             VPN, verificados con controles locales de fugas DNS/IP. Kill Switch activo y latencia
                             observada en pruebas de laboratorio.</p>
                         <div class="project-preview">
@@ -1596,8 +376,8 @@
 
                         <p>
                             Desarrollo de un servidor MCP para conectar
-                            <strong style="color: var(--accent2);">Claude Desktop</strong>
-                            con <strong style="color: var(--accent);">n8n</strong>.
+                            <strong class="text-accent2">Claude Desktop</strong>
+                            con <strong class="text-accent">n8n</strong>.
                             Permite interactuar con workflows de automatización
                             y tareas de seguridad mediante lenguaje natural.
 
@@ -1608,14 +388,14 @@
                                 width="732" height="482" loading="lazy">
                         </div>
 
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
+                        <div class="tag-row">
                             <div class="mcp-badge">MCP</div>
                             <div class="mcp-badge">N8N</div>
                             <div class="mcp-badge">PYTHON</div>
                             <div class="mcp-badge">AUTOMATION</div>
                         </div>
 
-                        <div style="margin-top: 20px;">
+                        <div class="mt-20">
                             <a href="https://github.com/Lucas18062025" class="btn btn-b" target="_blank"
                                 rel="noopener noreferrer">
 
@@ -1636,13 +416,13 @@
                                 sizes="(max-width: 900px) 100vw, 430px" alt="SIEM v4.0 — Threat Intel" width="2752"
                                 height="1536" loading="lazy" decoding="async">
                         </div>
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
+                        <div class="tag-row">
                             <div class="mcp-badge">PYTHON 3.10+</div>
                             <div class="mcp-badge">TELEGRAM API</div>
                             <div class="mcp-badge">CVSS v3.1</div>
                             <div class="mcp-badge">NIST DATABASE</div>
                         </div>
-                        <div style="margin-top: 20px;">
+                        <div class="mt-20">
                             <a href="https://github.com/Lucas18062025/SIEM_Windows_11" class="btn btn-b" target="_blank"
                                 rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
@@ -1678,7 +458,7 @@
                                 width="2752" height="1536" loading="lazy">
                         </div>
 
-                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="tag-row">
                             <div class="mcp-badge">POWERSHELL</div>
                             <div class="mcp-badge">WINDOWS</div>
                             <div class="mcp-badge">DEFENSIVE SECURITY</div>
@@ -1686,7 +466,7 @@
                             <div class="mcp-badge">V7 APEX</div>
                         </div>
 
-                        <div style="margin-top:20px;">
+                        <div class="mt-20">
                             <a href="https://github.com/Lucas18062025/Sentinel" class="btn btn-b" target="_blank"
                                 rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
@@ -1725,14 +505,14 @@
                                 width="597" height="653" loading="lazy">
                         </div>
 
-                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="tag-row">
                             <div class="mcp-badge">GOPHISH</div>
                             <div class="mcp-badge">SOCIAL ENGINEERING</div>
                             <div class="mcp-badge">SECURITY AWARENESS</div>
                             <div class="mcp-badge">LAB</div>
                         </div>
 
-                        <div style="margin-top:20px;">
+                        <div class="mt-20">
                             <a href="https://github.com/Lucas18062025/Gophish-Lab" class="btn btn-b" target="_blank"
                                 rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
@@ -1768,14 +548,14 @@
                                 width="597" height="558" loading="lazy">
                         </div>
 
-                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="tag-row">
                             <div class="mcp-badge">NETWORK SECURITY</div>
                             <div class="mcp-badge">MONITORING</div>
                             <div class="mcp-badge">EGRESS</div>
                             <div class="mcp-badge">DEFENSIVE</div>
                         </div>
 
-                        <div style="margin-top:20px;">
+                        <div class="mt-20">
                             <a href="https://github.com/Lucas18062025/NETWORK-EGRESS-MONITOR-" class="btn btn-b"
                                 target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
@@ -1811,14 +591,14 @@
                                 height="627" loading="lazy">
                         </div>
 
-                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="tag-row">
                             <div class="mcp-badge">NEXT.JS</div>
                             <div class="mcp-badge">TYPESCRIPT</div>
                             <div class="mcp-badge">CLOUDFLARE</div>
                             <div class="mcp-badge">WEB SECURITY</div>
                         </div>
 
-                        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;">
+                        <div class="action-row">
 
                             <a href="https://github.com/Lucas18062025/secure-web-platform" class="btn btn-b"
                                 target="_blank" rel="noopener noreferrer">
@@ -1860,14 +640,14 @@
                                 height="728" loading="lazy">
                         </div>
 
-                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="tag-row">
                             <div class="mcp-badge">PROJECT MANAGEMENT</div>
                             <div class="mcp-badge">DATA VISUALIZATION</div>
                             <div class="mcp-badge">WEB DEVELOPMENT</div>
                             <div class="mcp-badge">DASHBOARD</div>
                         </div>
 
-                        <div style="margin-top:20px;">
+                        <div class="mt-20">
                             <a href="https://github.com/Lucas18062025/zenhub-dashboard" class="btn btn-b"
                                 target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
@@ -1889,11 +669,11 @@
                         <p>Endurecimiento de sistemas operativos y análisis de configuraciones para minimizar superficie
                             de
                             ataque y elevar la resiliencia ante amenazas reales.</p>
-                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="tag-row">
                             <div class="mcp-badge">PyMEs · NOA</div>
                             <div class="mcp-badge">INFORME EJECUTIVO + TÉCNICO</div>
                         </div>
-                        <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
+                        <div class="action-row">
                             <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20una%20auditor%C3%ADa%20de%20hardening"
                                 class="btn btn-whatsapp" target="_blank" rel="noopener">
                                 <i class="fab fa-whatsapp"></i><span>Solicitar Auditoría</span>
@@ -1909,11 +689,11 @@
                         <p>Simulación controlada de ciberataques para identificar vulnerabilidades explotables antes que
                             los
                             adversarios. Reportes técnicos con evidencia y remediación.</p>
-                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="tag-row">
                             <div class="mcp-badge">PyMEs · NOA</div>
                             <div class="mcp-badge">EVIDENCIA + REMEDIACIÓN</div>
                         </div>
-                        <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
+                        <div class="action-row">
                             <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20un%20pentest"
                                 class="btn btn-whatsapp" target="_blank" rel="noopener">
                                 <i class="fab fa-whatsapp"></i><span>Solicitar Pentest</span>
@@ -1929,11 +709,11 @@
                         <p>Campañas controladas de simulación de phishing para medir exposición real del personal
                             y capacitar en detección de ingeniería social, con métricas de clics y reportes accionables.
                         </p>
-                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
+                        <div class="tag-row">
                             <div class="mcp-badge">PyMEs · NOA</div>
                             <div class="mcp-badge">MÉTRICAS + CAPACITACIÓN</div>
                         </div>
-                        <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
+                        <div class="action-row">
                             <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20una%20simulaci%C3%B3n%20de%20phishing"
                                 class="btn btn-whatsapp" target="_blank" rel="noopener">
                                 <i class="fab fa-whatsapp"></i><span>Solicitar Simulación</span>
@@ -1955,7 +735,7 @@
                         <div class="cert-preview">
                             <img src="assets/certificates/google-cybersecurity.jpg"
                                 alt="Google Cybersecurity Certificate — Coursera"
-                                style="object-fit:cover; object-position:top;" width="400" height="250" loading="lazy"
+                                class="img-cover-top" width="400" height="250" loading="lazy"
                                 decoding="async">
                         </div>
                         <div class="cert-body">
@@ -1976,7 +756,7 @@
                         <div class="cert-preview">
                             <img src="assets/certificates/google-ai-essentials.jpg"
                                 alt="Google AI Essentials Certificate — Coursera"
-                                style="object-fit:cover; object-position:top;" width="400" height="250" loading="lazy"
+                                class="img-cover-top" width="400" height="250" loading="lazy"
                                 decoding="async">
                         </div>
                         <div class="cert-body">
@@ -1996,7 +776,7 @@
                         <div class="cert-preview">
                             <img src="assets/certificates/big-school-cybersecurity.jpg"
                                 alt="Certificado BIG School — Ciberseguridad y Hacking Ético"
-                                style="object-fit:cover; object-position:top;" width="400" height="250" loading="lazy"
+                                class="img-cover-top" width="400" height="250" loading="lazy"
                                 decoding="async">
                         </div>
                         <div class="cert-body">
@@ -2015,72 +795,27 @@
 
             <div class="divider"></div>
 
-            <section id="reflexiones" style="text-align:center;">
-                <h2 style="justify-content:center;">./ Reflexiones y Principios</h2>
+            <section id="reflexiones" class="section-center">
+                <h2 class="h2-center">./ Reflexiones y Principios</h2>
 
-                <div style="
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        max-width: 780px;
-        margin: 0 auto;
-    ">
+                <div class="reflection-list">
 
                     <div class="reflection-card accent-1">
-                        <span style="
-                font-family: 'Share Tech Mono', monospace;
-                font-size: 0.68rem;
-                color: var(--accent);
-                letter-spacing: 3px;
-                display: block;
-                margin-bottom: 14px;
-            ">[ RED TEAM MINDSET ]</span>
-                        <p style="
-                font-family: 'Rajdhani', sans-serif;
-                font-size: 1.12rem;
-                color: #c0d8e8;
-                line-height: 1.8;
-                font-style: italic;
-            ">" Pensar como atacante te enseña a defender… pero actuar con ética define quién sos. "</p>
+                        <span class="ref-kicker kicker-1">[ RED TEAM MINDSET ]</span>
+                        <p class="ref-quote">" Pensar como atacante te enseña a defender… pero actuar con ética define quién sos. "</p>
                     </div>
 
                     <div class="reflection-card accent-2">
-                        <span style="
-                font-family: 'Share Tech Mono', monospace;
-                font-size: 0.68rem;
-                color: var(--accent2);
-                letter-spacing: 3px;
-                display: block;
-                margin-bottom: 14px;
-            ">[ CONTINUOUS LEARNING ]</span>
-                        <p style="
-                font-family: 'Rajdhani', sans-serif;
-                font-size: 1.12rem;
-                color: #c0d8e8;
-                line-height: 1.8;
-                font-style: italic;
-            ">" En el mundo de la ciberseguridad, la curiosidad es tu mejor herramienta. Cada vulnerabilidad es una
+                        <span class="ref-kicker kicker-2">[ CONTINUOUS LEARNING ]</span>
+                        <p class="ref-quote">" En el mundo de la ciberseguridad, la curiosidad es tu mejor herramienta. Cada vulnerabilidad es una
                             oportunidad para aprender y cada ataque es una lección para mejorar. Mantente siempre un
                             paso
                             adelante, porque en este juego, el conocimiento es poder. "</p>
                     </div>
 
                     <div class="reflection-card accent-3">
-                        <span style="
-                font-family: 'Share Tech Mono', monospace;
-                font-size: 0.68rem;
-                color: #c9d1d9;
-                letter-spacing: 3px;
-                display: block;
-                margin-bottom: 14px;
-            ">[ VM ISOLATION PRINCIPLE ]</span>
-                        <p style="
-                font-family: 'Rajdhani', sans-serif;
-                font-size: 1.12rem;
-                color: #c0d8e8;
-                line-height: 1.8;
-                font-style: italic;
-            ">" El aislamiento de una VM no es absoluto, es probabilístico. La seguridad real viene de entender cada
+                        <span class="ref-kicker kicker-3">[ VM ISOLATION PRINCIPLE ]</span>
+                        <p class="ref-quote">" El aislamiento de una VM no es absoluto, es probabilístico. La seguridad real viene de entender cada
                             vector de contacto entre la VM y el host, y eliminar los que no necesitás activamente. "</p>
                     </div>
 
@@ -2088,8 +823,8 @@
             </section>
             <div class="divider"></div>
 
-            <section id="contacto" style="text-align:center;">
-                <h2 style="justify-content:center;">./ Conectar</h2>
+            <section id="contacto" class="section-center">
+                <h2 class="h2-center">./ Conectar</h2>
                 <div class="contact-area">
                     <a href="https://www.linkedin.com/in/lucas-villagra-9b5097147/" class="btn btn-linkedin"
                         target="_blank" rel="noopener" aria-label="LinkedIn de Lucas Villagra">
@@ -2112,7 +847,7 @@
 
             <footer>
                 <p>© 2026 Lucas Villagra &nbsp;·&nbsp; System Secured &nbsp;·&nbsp; Built on Cloudflare Workers</p>
-                <p style="font-size:0.6rem; opacity:0.22; margin-top:10px;">[ uptime: ∞ &nbsp;|&nbsp; threat level:
+                <p class="foot-meta">[ uptime: ∞ &nbsp;|&nbsp; threat level:
                     monitored &nbsp;|&nbsp; status: operational ]</p>
             </footer>
 

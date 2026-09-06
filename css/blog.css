@@ -436,3 +436,11 @@
         padding: 30px 22px;
     }
 }
+/* ===== Fase 3: utilidades migradas desde style= inline (blog posts) ===== */
+.blog-meta{margin-top:28px;color:#63798d;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:1px}
+.blog-quote{margin:35px 0;padding:25px 28px;background:var(--blog-card);border-left:3px solid var(--blog-accent2);color:#c0d8e8;font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-style:italic;line-height:1.7}
+.mt-70{margin-top:70px}
+.blog-nav{display:flex;justify-content:space-between;gap:20px;margin:70px 0;padding-top:30px;border-top:1px solid var(--blog-border);font-family:'JetBrains Mono',monospace;font-size:.68rem}
+.blog-nav-link{text-decoration:none}
+.blog-nav-prev{color:var(--blog-muted)}
+.blog-nav-next{color:var(--blog-accent2)}
