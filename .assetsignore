@@ -15,3 +15,6 @@ wrangler.jsonc
 .github
 .github/**
 deploy.ps1
+.gstack
+.gstack/**
+vercel.json
