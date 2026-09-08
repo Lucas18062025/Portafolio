@@ -6,8 +6,6 @@ let H;
 let particles = [];
 let grid = [];
 let isAnimating = true;
-// ponytail: static single frame when OS requests reduced motion, full loop otherwise
-const REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const COLS = ['#0066FF', '#00D4FF', '#7b2fff'];
 
@@ -139,11 +137,10 @@ function draw() {
 
     t++;
 
-    if (!REDUCED) requestAnimationFrame(draw);
+    requestAnimationFrame(draw);
 }
 
 document.addEventListener('visibilitychange', () => {
-    if (REDUCED) return;
     if (document.hidden) {
         isAnimating = false;
     } else {
