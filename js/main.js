@@ -48,9 +48,14 @@ window.addEventListener('resize', resize);
 resize();
 
 let t = 0;
+let last = 0;
 
-function draw() {
+function draw(now) {
     if (!isAnimating || !ctx) return;
+
+    // ponytail: frame-rate independent motion, same speed at any FPS
+    const dt = (now && last) ? Math.min((now - last) / 16.67, 3) : 1;
+    last = now || 0;
 
     ctx.clearRect(0, 0, W, H);
 
@@ -86,8 +91,8 @@ function draw() {
     });
 
     particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
 
         if (p.x < 0) p.x = W;
         if (p.x > W) p.x = 0;
@@ -135,7 +140,7 @@ function draw() {
         }
     }
 
-    t++;
+    t += dt;
 
     requestAnimationFrame(draw);
 }
