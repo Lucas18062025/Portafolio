@@ -1238,6 +1238,7 @@
 .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
 .action-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .action-row-center{justify-content:center}
+.action-row-center .btn{flex:0 0 auto;padding:12px 34px}
 #proyectos .action-row{flex-wrap:nowrap;gap:8px}
 .action-row .btn{flex:1 1 0;min-width:0;justify-content:center;text-align:center;margin-top:0;min-height:50px;padding:8px 4px;font-size:.6rem;letter-spacing:.5px;line-height:1.5}
 .img-cover-top{object-fit:cover;object-position:top}
