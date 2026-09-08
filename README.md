@@ -60,7 +60,7 @@ Plataforma de automatización defensiva y mantenimiento unificado para Windows. 
 | Categoría | Tecnología |
 |---|---|
 | **Frontend** | `HTML5` `CSS3` `JavaScript (Vanilla)` |
-| **Tipografía** | `Rajdhani` `Share Tech Mono` |
+| **Tipografía** | `Inter` `Space Grotesk` `JetBrains Mono` |
 | **Iconos** | `Font Awesome 6.4` |
 | **Deploy** | `GitHub Pages` |
 | **Efectos** | `Canvas API` `CSS Animations` |
