@@ -29,8 +29,8 @@ function initParticlesAndGrid() {
             x: Math.random() * W,
             y: Math.random() * H,
             r: Math.random() * 2.8 + 1.2,
-            vx: (Math.random() - 0.5) * 0.4,
-            vy: (Math.random() - 0.5) * 0.4,
+            vx: (Math.random() - 0.5) * 0.9,
+            vy: (Math.random() - 0.5) * 0.9,
             color: COLS[Math.floor(Math.random() * COLS.length)],
             alpha: Math.random() * 0.5 + 0.35
         });
