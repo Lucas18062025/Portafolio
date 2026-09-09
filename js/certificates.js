@@ -28,9 +28,10 @@ function createCertificateCard(certificate) {
 
     const meta = document.createElement("p");
     meta.className = "cert-meta";
+    if (certificate.meta) {
+        meta.append(certificate.meta, " · ");
+    }
     meta.append(
-        certificate.meta,
-        " · ",
         Object.assign(document.createElement("span"), {
             textContent: certificate.dateLabel
         }),
