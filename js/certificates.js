@@ -99,8 +99,14 @@ async function loadCertificates() {
         container.dataset.dynamicCertificates = "true";
 
     } catch (error) {
-        container.replaceChildren();
+        // Si falla la carga dinámica, se conservan las tarjetas
+        // hardcodeadas del HTML como respaldo: la sección nunca
+        // queda vacía frente al visitante.
         container.dataset.certificatesError = "true";
+        console.error(
+            "No se pudieron cargar los certificados dinámicos, se mantiene el contenido estático:",
+            error
+        );
     }
 }
 
