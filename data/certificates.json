@@ -1,5 +1,18 @@
 [
     {
+        "id": "cisco-ethical-hacker",
+        "title": "Hacker Ético",
+        "icon": "fas fa-user-secret",
+        "meta": "CERTIFICACIÓN",
+        "date": "2026-09-08",
+        "dateLabel": "SEP 8, 2026",
+        "issuer": "CISCO",
+        "description": "Curso oficial Cisco Networking Academy: metodología de hacking ético, detección de vulnerabilidades y defensa digital.",
+        "preview": "assets/certificates/cisco-ethical-hacker.jpg",
+        "document": "assets/certificates/cisco-ethical-hacker.pdf",
+        "alt": "Certificado Cisco Networking Academy — Hacker Ético"
+    },
+    {
         "id": "google-cybersecurity",
         "title": "Google Cybersecurity",
         "icon": "fab fa-google",
@@ -37,18 +50,5 @@
         "preview": "assets/certificates/big-school-cybersecurity.jpg",
         "document": "assets/certificates/certificado-lucas-villagra-bigschool.pdf",
         "alt": "Certificado BIG School — Ciberseguridad y Hacking Ético"
-    },
-    {
-        "id": "cisco-ethical-hacker",
-        "title": "Hacker Ético",
-        "icon": "fas fa-user-secret",
-        "meta": "CERTIFICACIÓN",
-        "date": "2026-09-08",
-        "dateLabel": "SEP 8, 2026",
-        "issuer": "CISCO",
-        "description": "Curso oficial Cisco Networking Academy: metodología de hacking ético, detección de vulnerabilidades y defensa digital.",
-        "preview": "assets/certificates/cisco-ethical-hacker.jpg",
-        "document": "assets/certificates/cisco-ethical-hacker.pdf",
-        "alt": "Certificado Cisco Networking Academy — Hacker Ético"
     }
 ]
