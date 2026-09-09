@@ -8,7 +8,7 @@
         "dateLabel": "SEP 8, 2026",
         "issuer": "CISCO",
         "description": "Curso oficial Cisco Networking Academy: metodología de hacking ético, detección de vulnerabilidades y defensa digital.",
-        "preview": "assets/certificates/cisco-ethical-hacker.jpg",
+        "preview": "assets/certificates/cisco-ethical-hacker.webp",
         "document": "assets/certificates/cisco-ethical-hacker.pdf",
         "alt": "Certificado Cisco Networking Academy — Hacker Ético"
     },
@@ -21,7 +21,7 @@
         "dateLabel": "FEB 5, 2026",
         "issuer": "COURSERA",
         "description": "Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis · Incident response.",
-        "preview": "assets/certificates/google-cybersecurity.jpg",
+        "preview": "assets/certificates/google-cybersecurity.webp",
         "document": "assets/certificates/cybersecurity-analyst.pdf",
         "alt": "Google Cybersecurity Certificate — Coursera"
     },
@@ -34,7 +34,7 @@
         "dateLabel": "FEB 6, 2026",
         "issuer": "COURSERA",
         "description": "AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con Generative AI.",
-        "preview": "assets/certificates/google-ai-essentials.jpg",
+        "preview": "assets/certificates/google-ai-essentials.webp",
         "document": "assets/certificates/google-ai-essentials.pdf",
         "alt": "Google AI Essentials Certificate — Coursera"
     },
@@ -47,7 +47,7 @@
         "dateLabel": "ABR 11, 2026",
         "issuer": "BIG SCHOOL",
         "description": "Técnicas de detección de vulnerabilidades y defensa digital.",
-        "preview": "assets/certificates/big-school-cybersecurity.jpg",
+        "preview": "assets/certificates/big-school-cybersecurity.webp",
         "document": "assets/certificates/certificado-lucas-villagra-bigschool.pdf",
         "alt": "Certificado BIG School — Ciberseguridad y Hacking Ético"
     }
