@@ -112,17 +112,37 @@
         0 0 50px rgba(0, 102, 255, 0.10);
 }
 
-.hero-roles {
+.hero-title-line {
+    display: block;
+}
+
+.hero-availability {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 18px;
+    align-items: center;
+    gap: 12px 16px;
+
+    margin-top: 22px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: clamp(0.72rem, 1vw, 0.88rem);
+    letter-spacing: 1px;
+
+    color: #9fb3c8;
+}
+
+.hero-roles {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px 26px;
 
     margin-top: 26px;
 
     font-family: "JetBrains Mono", monospace;
     font-size: clamp(0.72rem, 1vw, 0.92rem);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
+    white-space: nowrap;
 
     color: var(--text-muted);
 }
@@ -134,7 +154,7 @@
 .hero-roles span:not(:last-child)::after {
     content: "/";
     position: absolute;
-    right: -12px;
+    right: -16px;
 
     color: var(--accent);
 }
@@ -452,8 +472,14 @@
     }
 
     .hero-roles {
+        flex-wrap: wrap;
+        white-space: normal;
         gap: 8px 14px;
         font-size: 0.68rem;
+    }
+
+    .hero-roles span:not(:last-child)::after {
+        right: -11px;
     }
 
     .hero-description {

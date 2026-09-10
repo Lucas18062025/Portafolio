@@ -177,31 +177,6 @@ function handleImgError(img) {
 }
 
 
-function handleCertError(img) {
-    img.setAttribute('data-error', 'true');
-
-    const certPreview =
-        img.closest('.cert-preview');
-
-    if (certPreview) {
-        const placeholder =
-            certPreview.querySelector('.cert-placeholder');
-
-        if (placeholder) {
-            placeholder.classList.add('visible');
-        }
-    }
-}
-
-
-function openPDF(filename) {
-    const url =
-        window.location.origin +
-        window.location.pathname.replace('index.html', '') +
-        filename;
-
-    window.open(url, '_blank');
-}
 document.querySelectorAll('img').forEach((img) => {
     img.addEventListener('error', () => {
         handleImgError(img);
