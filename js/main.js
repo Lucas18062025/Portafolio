@@ -7,6 +7,10 @@ let particles = [];
 let grid = [];
 let isAnimating = true;
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const DPR = Math.min(window.devicePixelRatio || 1, 2);
+let heroVisible = true;
+
 const COLS = ['#0066FF', '#00D4FF', '#7b2fff'];
 
 function initParticlesAndGrid() {
@@ -38,9 +42,14 @@ function initParticlesAndGrid() {
 }
 
 function resize() {
-    if (!canvas) return;
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+    if (!canvas || !ctx) return;
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.floor(W * DPR);
+    canvas.height = Math.floor(H * DPR);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     initParticlesAndGrid();
 }
 
@@ -142,21 +151,47 @@ function draw(now) {
 
     t += dt;
 
-    requestAnimationFrame(draw);
+    if (isAnimating) {
+        requestAnimationFrame(draw);
+    }
+}
+
+function playCanvas() {
+    if (!isAnimating && !prefersReducedMotion) {
+        isAnimating = true;
+        last = 0;
+        requestAnimationFrame(draw);
+    }
+}
+
+function pauseCanvas() {
+    isAnimating = false;
 }
 
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        isAnimating = false;
-    } else {
-        if (!isAnimating) {
-            isAnimating = true;
-            draw();
-        }
+        pauseCanvas();
+    } else if (heroVisible) {
+        playCanvas();
     }
 });
 
+if ('IntersectionObserver' in window) {
+    const heroEl = document.querySelector('.hero');
+    if (heroEl) {
+        new IntersectionObserver((entries) => {
+            heroVisible = entries[0].isIntersecting;
+            if (document.hidden) return;
+            if (heroVisible) playCanvas();
+            else pauseCanvas();
+        }, { threshold: 0 }).observe(heroEl);
+    }
+}
+
 draw();
+if (prefersReducedMotion) {
+    pauseCanvas();
+}
 
 
 function handleImgError(img) {
@@ -211,9 +246,13 @@ document.querySelectorAll('img').forEach((img) => {
     if (select) select.addEventListener('change', () => activate(select.value));
     const tablist = document.querySelector('.stack-tabs');
     if (tablist) tablist.addEventListener('keydown', (e) => {
-        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
         const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
-        const n = e.key === 'ArrowRight' ? (i + 1) % tabs.length : (i - 1 + tabs.length) % tabs.length;
+        let n = null;
+        if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') n = 0;
+        else if (e.key === 'End') n = tabs.length - 1;
+        else return;
         tabs[n].focus();
         activate(tabs[n].dataset.stack);
         e.preventDefault();
