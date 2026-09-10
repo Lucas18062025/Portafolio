@@ -68,9 +68,7 @@ async function loadCertificates() {
     }
 
     try {
-        const response = await fetch(CERTIFICATES_URL, {
-            cache: "no-store"
-        });
+        const response = await fetch(CERTIFICATES_URL);
 
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
