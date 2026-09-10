@@ -1,3 +1,5 @@
+<!-- ⚠️ NO BORRAR: google*.html en la raíz = verificación de Google Search Console.
+     Sin ese archivo se pierde la propiedad verificada. deploy.ps1 aborta si falta. -->
 <div align="center">
 
 # 🌐 Portafolio · Lucas Villagra
