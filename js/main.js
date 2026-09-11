@@ -10,6 +10,7 @@ let isAnimating = true;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DPR = Math.min(window.devicePixelRatio || 1, 2);
 let heroVisible = true;
+let ambientTick = 0;
 
 const COLS = ['#0066FF', '#00D4FF', '#7b2fff'];
 
@@ -66,6 +67,18 @@ function draw(now) {
     const dt = (now && last) ? Math.min((now - last) / 16.67, 3) : 1;
     last = now || 0;
 
+    // ambient: fuera del hero el fondo sigue vivo pero barato:
+    // deriva lenta a ~12fps, sin grid ni lineas (el O(n2) descansa)
+    const ambient = !heroVisible && !prefersReducedMotion;
+    const step = ambient ? dt * 0.6 : dt;
+    if (ambient) {
+        ambientTick++;
+        if (ambientTick % 5 !== 0) {
+            requestAnimationFrame(draw);
+            return;
+        }
+    }
+
     ctx.clearRect(0, 0, W, H);
 
     const g = ctx.createRadialGradient(
@@ -84,7 +97,7 @@ function draw(now) {
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
 
-    grid.forEach((p) => {
+    if (!ambient) grid.forEach((p) => {
         const f =
             0.08 +
             0.06 * Math.sin(
@@ -100,8 +113,8 @@ function draw(now) {
     });
 
     particles.forEach((p) => {
-        p.x += p.vx * dt;
-        p.y += p.vy * dt;
+        p.x += p.vx * step;
+        p.y += p.vy * step;
 
         if (p.x < 0) p.x = W;
         if (p.x > W) p.x = 0;
@@ -119,7 +132,7 @@ function draw(now) {
         ctx.globalAlpha = 1;
     });
 
-    for (let i = 0; i < particles.length; i++) {
+    if (!ambient) for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
 
             const dx = particles[i].x - particles[j].x;
@@ -149,7 +162,7 @@ function draw(now) {
         }
     }
 
-    t += dt;
+    t += step;
 
     if (isAnimating) {
         requestAnimationFrame(draw);
@@ -181,9 +194,6 @@ if ('IntersectionObserver' in window) {
     if (heroEl) {
         new IntersectionObserver((entries) => {
             heroVisible = entries[0].isIntersecting;
-            if (document.hidden) return;
-            if (heroVisible) playCanvas();
-            else pauseCanvas();
         }, { threshold: 0 }).observe(heroEl);
     }
 }
