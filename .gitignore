@@ -4,3 +4,6 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# session transcripts (auto-generated, not project code)
+session-*.md
