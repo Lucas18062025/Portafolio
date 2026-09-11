@@ -7,10 +7,7 @@ let particles = [];
 let grid = [];
 let isAnimating = true;
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DPR = Math.min(window.devicePixelRatio || 1, 2);
-let heroVisible = true;
-let ambientTick = 0;
 
 const COLS = ['#0066FF', '#00D4FF', '#7b2fff'];
 
@@ -68,18 +65,7 @@ function draw(now) {
     // con tope de 5 para no entrar en espiral de la muerte.
     const elapsed = (now && last) ? Math.min(now - last, 83.35) : 16.67;
     last = now || 0;
-
-    // ambient: fuera del hero el fondo sigue vivo pero barato:
-    // deriva a ~20fps sin grid ni lineas (el O(n2) descansa)
-    const ambient = !heroVisible && !prefersReducedMotion;
-    if (ambient) {
-        ambientTick++;
-        if (ambientTick % 3 !== 0) {
-            requestAnimationFrame(draw);
-            return;
-        }
-    }
-    const step = ambient ? (elapsed / 16.67) * 0.85 : elapsed / 16.67;
+    const step = elapsed / 16.67;
 
     ctx.clearRect(0, 0, W, H);
 
@@ -99,7 +85,7 @@ function draw(now) {
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
 
-    if (!ambient) grid.forEach((p) => {
+    grid.forEach((p) => {
         const f =
             0.08 +
             0.06 * Math.sin(
@@ -134,7 +120,7 @@ function draw(now) {
         ctx.globalAlpha = 1;
     });
 
-    if (!ambient) for (let i = 0; i < particles.length; i++) {
+    for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
 
             const dx = particles[i].x - particles[j].x;
@@ -175,7 +161,7 @@ function draw(now) {
 }
 
 function playCanvas() {
-    if (!isAnimating && !prefersReducedMotion) {
+    if (!isAnimating) {
         isAnimating = true;
         last = 0;
         requestAnimationFrame(draw);
@@ -189,23 +175,10 @@ function pauseCanvas() {
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
         pauseCanvas();
-    } else if (heroVisible) {
+    } else {
         playCanvas();
     }
 });
-
-if ('IntersectionObserver' in window) {
-    const heroEl = document.querySelector('.hero');
-    if (heroEl) {
-        new IntersectionObserver((entries) => {
-            const visible = entries[0].isIntersecting;
-            if (visible !== heroVisible) {
-                heroVisible = visible;
-                logCanvasMode(visible ? 'full' : 'ambient');
-            }
-        }, { threshold: 0 }).observe(heroEl);
-    }
-}
 
 function logCanvasMode(mode) {
     if (typeof console !== 'undefined' && console.info) {
@@ -214,12 +187,7 @@ function logCanvasMode(mode) {
 }
 
 draw();
-if (prefersReducedMotion) {
-    pauseCanvas();
-    logCanvasMode('static (prefers-reduced-motion)');
-} else {
-    logCanvasMode('full');
-}
+logCanvasMode('full');
 
 
 function handleImgError(img) {
