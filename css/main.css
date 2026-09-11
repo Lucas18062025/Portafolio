@@ -665,7 +665,9 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(0, 212, 255, 0.12);
-            background: #020408;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 102, 255, 0.10) 0%, transparent 70%),
+                #020408;
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;

@@ -73,7 +73,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./css/hero.css">
 
-        <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
@@ -209,23 +209,22 @@
 
                 <!-- Tab bar: una sola línea horizontal (scroll en desktop) -->
                 <div class="stack-tabs" role="tablist" aria-label="Áreas del stack tecnológico">
-                    <button class="stack-tab" role="tab" id="tab-base" aria-controls="panel-base"
-                        aria-selected="true" data-stack="base">Base
+                    <button class="stack-tab" role="tab" id="tab-base" aria-controls="panel-base" aria-selected="true"
+                        data-stack="base">Base
                         técnica</button>
                     <button class="stack-tab" role="tab" id="tab-infra" aria-controls="panel-infra"
                         aria-selected="false" data-stack="infra">Infraestructura
                         &amp; Deploy</button>
-                    <button class="stack-tab" role="tab" id="tab-red" aria-controls="panel-red"
-                        aria-selected="false" data-stack="red">Red Team</button>
-                    <button class="stack-tab" role="tab" id="tab-blue" aria-controls="panel-blue"
-                        aria-selected="false" data-stack="blue">Blue Team</button>
+                    <button class="stack-tab" role="tab" id="tab-red" aria-controls="panel-red" aria-selected="false"
+                        data-stack="red">Red Team</button>
+                    <button class="stack-tab" role="tab" id="tab-blue" aria-controls="panel-blue" aria-selected="false"
+                        data-stack="blue">Blue Team</button>
                     <button class="stack-tab" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="false"
                         data-stack="ai">IA &amp; Automatización</button>
                 </div>
 
                 <!-- Desplegable (mobile + alternativa accesible) -->
-                <label for="stack-select" class="sr-only"
-                   >Seleccionar área
+                <label for="stack-select" class="sr-only">Seleccionar área
                     del stack</label>
                 <select id="stack-select" class="stack-select" aria-label="Seleccionar área del stack">
                     <option value="base" selected>Base técnica — lenguajes &amp; sistemas</option>
@@ -236,81 +235,200 @@
                 </select>
 
                 <!-- PANEL: BASE (skillicons + fallback FA) -->
-                <div class="stack-panel" id="panel-base" role="tabpanel" tabindex="0" aria-labelledby="tab-base"
-                   >
+                <div class="stack-panel" id="panel-base" role="tabpanel" tabindex="0" aria-labelledby="tab-base">
                     <div class="stack-panel-head">
                         <h3>Base técnica</h3><span class="sub">lenguajes &amp; sistemas</span>
                     </div>
                     <div class="stack-grid">
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=kali" alt="Kali Linux"><i class="fab fa-linux s-fallback"></i></div><span>Kali Linux</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=ubuntu" alt="Ubuntu"><i class="fab fa-ubuntu s-fallback"></i></div><span>Ubuntu</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=windows" alt="Windows"><i class="fab fa-windows s-fallback"></i></div><span>Windows</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=py" alt="Python"><i class="fab fa-python s-fallback"></i></div><span>Python</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=html" alt="HTML"><i class="fab fa-html5 s-fallback"></i></div><span>HTML</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=css" alt="CSS"><i class="fab fa-css3-alt s-fallback"></i></div><span>CSS</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=vscode" alt="VS Code"><i class="fas fa-code s-fallback"></i></div><span>VS Code</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=github" alt="GitHub"><i class="fab fa-github s-fallback"></i></div><span>GitHub</span></div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=kali"
+                                    alt="Kali Linux"><i class="fab fa-linux s-fallback"></i></div><span>Kali
+                                Linux</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=ubuntu"
+                                    alt="Ubuntu"><i class="fab fa-ubuntu s-fallback"></i></div><span>Ubuntu</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=windows"
+                                    alt="Windows"><i class="fab fa-windows s-fallback"></i></div><span>Windows</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=py"
+                                    alt="Python"><i class="fab fa-python s-fallback"></i></div><span>Python</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=html"
+                                    alt="HTML"><i class="fab fa-html5 s-fallback"></i></div><span>HTML</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=css"
+                                    alt="CSS"><i class="fab fa-css3-alt s-fallback"></i></div><span>CSS</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=vscode"
+                                    alt="VS Code"><i class="fas fa-code s-fallback"></i></div><span>VS Code</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=github"
+                                    alt="GitHub"><i class="fab fa-github s-fallback"></i></div><span>GitHub</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- PANEL: INFRA -->
-                <div class="stack-panel" id="panel-infra" role="tabpanel" tabindex="0" aria-labelledby="tab-infra" hidden
-                   >
+                <div class="stack-panel" id="panel-infra" role="tabpanel" tabindex="0" aria-labelledby="tab-infra"
+                    hidden>
                     <div class="stack-panel-head">
                         <h3>Infraestructura &amp; Deploy</h3><span class="sub">contenedores · versionado ·
                             hosting</span>
                     </div>
                     <div class="stack-grid">
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=docker" alt="Docker"><i class="fab fa-docker s-fallback"></i></div><span>Docker</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=gitlab" alt="GitLab"><i class="fab fa-gitlab s-fallback"></i></div><span>GitLab</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=vercel" alt="Vercel"><i class="fas fa-cloud s-fallback"></i></div><span>Vercel</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=netlify" alt="Netlify"><i class="fas fa-globe s-fallback"></i></div><span>Netlify</span></div>
-                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-database s-icon-fa"></i></div><span>SQL</span></div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=docker"
+                                    alt="Docker"><i class="fab fa-docker s-fallback"></i></div><span>Docker</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=gitlab"
+                                    alt="GitLab"><i class="fab fa-gitlab s-fallback"></i></div><span>GitLab</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=vercel"
+                                    alt="Vercel"><i class="fas fa-cloud s-fallback"></i></div><span>Vercel</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=netlify"
+                                    alt="Netlify"><i class="fas fa-globe s-fallback"></i></div><span>Netlify</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><i class="fas fa-database s-icon-fa"></i></div><span>SQL</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- PANEL: RED (SVG custom, sin dependencia externa) -->
-                <div class="stack-panel" id="panel-red" role="tabpanel" tabindex="0" aria-labelledby="tab-red" hidden
-                   >
+                <div class="stack-panel" id="panel-red" role="tabpanel" tabindex="0" aria-labelledby="tab-red" hidden>
                     <div class="stack-panel-head">
                         <h3>Red Team</h3><span class="sub">ofensivo</span>
                     </div>
                     <div class="stack-grid">
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="7" /><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></svg></div><span>Red Team</span></div>
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6" /><path d="M20 20l-4.3-4.3" /></svg></div><span>Ethical Hacking</span></div>
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="4" /><path d="M11 12h10M17 12v3M20 12v3" /></svg></div><span>Pentesting</span></div>
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></svg></div><span>Phishing<br />simulado</span></div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linecap="round">
+                                    <circle cx="12" cy="12" r="7" />
+                                    <circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none" />
+                                    <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+                                </svg></div><span>Red Team</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="6" />
+                                    <path d="M20 20l-4.3-4.3" />
+                                </svg></div><span>Ethical Hacking</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="8" cy="12" r="4" />
+                                    <path d="M11 12h10M17 12v3M20 12v3" />
+                                </svg></div><span>Pentesting</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                                    <path d="M3 7l9 6 9-6" />
+                                </svg></div><span>Phishing<br />simulado</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- PANEL: BLUE -->
-                <div class="stack-panel" id="panel-blue" role="tabpanel" tabindex="0" aria-labelledby="tab-blue" hidden
-                   >
+                <div class="stack-panel" id="panel-blue" role="tabpanel" tabindex="0" aria-labelledby="tab-blue" hidden>
                     <div class="stack-panel-head">
                         <h3>Blue Team</h3><span class="sub">defensivo · sysadmin</span>
                     </div>
                     <div class="stack-grid">
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9-8 11-4.6-2-8-6-8-11V5z" /></svg></div><span>Blue Team</span></div>
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg></div><span>Hardening</span></div>
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" /></svg></div><span>IDS</span></div>
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="6" y="4" width="12" height="16" rx="2" /><rect x="9" y="2" width="6" height="3" rx="1" /><path d="M9 10h6M9 14h6M9 18h3" /></svg></div><span>Auditorías</span></div>
-                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-user-shield s-icon-fa"></i></div><span>SIEM</span></div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linejoin="round">
+                                    <path d="M12 2l8 3v6c0 5-3.4 9-8 11-4.6-2-8-6-8-11V5z" />
+                                </svg></div><span>Blue Team</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linejoin="round">
+                                    <rect x="5" y="11" width="14" height="9" rx="2" />
+                                    <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                                </svg></div><span>Hardening</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linejoin="round">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg></div><span>IDS</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linejoin="round">
+                                    <rect x="6" y="4" width="12" height="16" rx="2" />
+                                    <rect x="9" y="2" width="6" height="3" rx="1" />
+                                    <path d="M9 10h6M9 14h6M9 18h3" />
+                                </svg></div><span>Auditorías</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><i class="fas fa-user-shield s-icon-fa"></i></div><span>SIEM</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- PANEL: IA -->
-                <div class="stack-panel" id="panel-ai" role="tabpanel" tabindex="0" aria-labelledby="tab-ai" hidden
-                   >
+                <div class="stack-panel" id="panel-ai" role="tabpanel" tabindex="0" aria-labelledby="tab-ai" hidden>
                     <div class="stack-panel-head">
                         <h3>IA &amp; Automatización</h3><span class="sub">ai engineering</span>
                     </div>
                     <div class="stack-grid">
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><circle cx="6" cy="18" r="2.2" /><circle cx="18" cy="18" r="2.2" /><circle cx="12" cy="6" r="2.2" /><path d="M7.8 16.6L11 8M16.2 16.6L13 8M8 18h8" /></svg></div><span>AI Engineering</span></div>
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="4" width="16" height="4.5" rx="1.5" /><rect x="4" y="10" width="16" height="4.5" rx="1.5" /><rect x="4" y="16" width="12" height="4.5" rx="1.5" /></svg></div><span>Machine<br />Learning</span></div>
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v5M15 4v5M7 9h10l-1 4a4 4 0 0 1-8 0z" /><path d="M12 17v3" /></svg></div><span>MCP</span></div>
-                        <div class="s-item"><div class="s-icon-box"><img loading="lazy" src="https://cdn.simpleicons.org/n8n/8b7fd1" alt="n8n"><i class="fas fa-gear s-fallback"></i></div><span>n8n</span></div>
-                        <div class="s-item"><div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 9l3 3-3 3" /><path d="M13 15h4" /></svg></div><span>OpenCode</span></div>
-                        <div class="s-item"><div class="s-icon-box"><i class="fas fa-robot s-icon-fa"></i></div><span>Gen AI</span></div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linejoin="round">
+                                    <circle cx="6" cy="18" r="2.2" />
+                                    <circle cx="18" cy="18" r="2.2" />
+                                    <circle cx="12" cy="6" r="2.2" />
+                                    <path d="M7.8 16.6L11 8M16.2 16.6L13 8M8 18h8" />
+                                </svg></div><span>AI Engineering</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linejoin="round">
+                                    <rect x="4" y="4" width="16" height="4.5" rx="1.5" />
+                                    <rect x="4" y="10" width="16" height="4.5" rx="1.5" />
+                                    <rect x="4" y="16" width="12" height="4.5" rx="1.5" />
+                                </svg></div><span>Machine<br />Learning</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 4v5M15 4v5M7 9h10l-1 4a4 4 0 0 1-8 0z" />
+                                    <path d="M12 17v3" />
+                                </svg></div><span>MCP</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><img loading="lazy" src="https://cdn.simpleicons.org/n8n/8b7fd1"
+                                    alt="n8n"><i class="fas fa-gear s-fallback"></i></div><span>n8n</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="16" rx="2" />
+                                    <path d="M7 9l3 3-3 3" />
+                                    <path d="M13 15h4" />
+                                </svg></div><span>OpenCode</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><i class="fas fa-robot s-icon-fa"></i></div><span>Gen AI</span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -323,8 +441,8 @@
 
                     <div class="about-avatar">
                         <img src="Foto_Perfil.webp" srcset="Foto_Perfil-320.webp 320w, Foto_Perfil.webp 640w"
-                            sizes="160px" alt="Lucas Villagra - Cybersecurity Analyst" width="640"
-                            height="640" loading="eager" fetchpriority="high" decoding="async">
+                            sizes="160px" alt="Lucas Villagra - Cybersecurity Analyst" width="640" height="640"
+                            loading="eager" fetchpriority="high" decoding="async">
                         <i class="fas fa-user-secret avatar-fallback"></i>
                     </div>
 
@@ -334,8 +452,8 @@
                                 Team</strong>
                             y
                             defensa de infraestructuras críticas.
-                            Combino auditoría técnica rigurosa con automatización mediante <strong
-                                class="b">n8n, IA generativa y Python</strong> para blindar activos digitales.
+                            Combino auditoría técnica rigurosa con automatización mediante <strong class="b">n8n, IA
+                                generativa y Python</strong> para blindar activos digitales.
                         </p>
                         <p class="mt-14">
                             Certificado por <strong class="b">Cisco (Hacker Ético) y Google
@@ -362,13 +480,14 @@
                         <div class="status-tag">Unidad montada y caché verificada</div>
                         <h3><i class="fas fa-wifi"></i> Auditoría Wireless · Alfa AWUS036ACS</h3>
                         <p>Reconocimiento de espectro 2.4/5 GHz en modo monitor con hardware especializado. Captura y
-                            análisis de handshakes WPA2 con <code class="code-accent">aircrack-ng</code> y almacenamiento
+                            análisis de handshakes WPA2 con <code class="code-accent">aircrack-ng</code> y
+                            almacenamiento
                             estructurado en <code class="code-accent">KALI_AUDIT</code>.</p>
                         <div class="project-preview">
                             <img src="assets/projects/captura01.webp"
                                 srcset="assets/projects/captura01-640.webp 640w, assets/projects/captura01.webp 1280w"
-                                sizes="(max-width: 900px) 100vw, 430px" alt="Auditoría Wireless — Alfa AWUS036ACS" width="1280"
-                                height="675" loading="lazy" decoding="async">
+                                sizes="(max-width: 900px) 100vw, 430px" alt="Auditoría Wireless — Alfa AWUS036ACS"
+                                width="1280" height="675" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -381,8 +500,8 @@
                         <div class="project-preview">
                             <img src="assets/projects/captura02-1280.webp"
                                 srcset="assets/projects/captura02-640.webp 640w, assets/projects/captura02-1280.webp 1280w"
-                                sizes="(max-width: 900px) 100vw, 430px" alt="OpSec — infraestructura VPN WireGuard" width="1280"
-                                height="675" loading="lazy" decoding="async">
+                                sizes="(max-width: 900px) 100vw, 430px" alt="OpSec — infraestructura VPN WireGuard"
+                                width="1280" height="675" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -407,8 +526,8 @@
                         <div class="project-preview">
                             <img src="assets/projects/n8n-security-node.webp"
                                 srcset="assets/projects/n8n-security-node-640.webp 640w, assets/projects/n8n-security-node.webp 732w"
-                                sizes="(max-width: 900px) 100vw, 430px" alt="n8n Security Node — MCP Server"
-                                width="732" height="482" loading="lazy" decoding="async">
+                                sizes="(max-width: 900px) 100vw, 430px" alt="n8n Security Node — MCP Server" width="732"
+                                height="482" loading="lazy" decoding="async">
                         </div>
 
                         <div class="tag-row">
@@ -835,9 +954,8 @@
                     <div class="cert-card">
                         <div class="cert-preview">
                             <img src="assets/certificates/cisco-ethical-hacker.webp"
-                                alt="Certificado Cisco Networking Academy — Hacker Ético"
-                                class="img-cover-top" width="400" height="250" loading="lazy"
-                                decoding="async">
+                                alt="Certificado Cisco Networking Academy — Hacker Ético" class="img-cover-top"
+                                width="400" height="250" loading="lazy" decoding="async">
                         </div>
                         <div class="cert-body">
                             <h3><i class="fas fa-user-secret" aria-hidden="true"></i> Hacker Ético</h3>
@@ -853,9 +971,8 @@
                     <div class="cert-card">
                         <div class="cert-preview">
                             <img src="assets/certificates/google-cybersecurity.webp"
-                                alt="Google Cybersecurity Certificate — Coursera"
-                                class="img-cover-top" width="400" height="250" loading="lazy"
-                                decoding="async">
+                                alt="Google Cybersecurity Certificate — Coursera" class="img-cover-top" width="400"
+                                height="250" loading="lazy" decoding="async">
                         </div>
                         <div class="cert-body">
                             <h3><i class="fab fa-google" aria-hidden="true"></i> Google Cybersecurity</h3>
@@ -874,9 +991,8 @@
                     <div class="cert-card">
                         <div class="cert-preview">
                             <img src="assets/certificates/google-ai-essentials.webp"
-                                alt="Google AI Essentials Certificate — Coursera"
-                                class="img-cover-top" width="400" height="250" loading="lazy"
-                                decoding="async">
+                                alt="Google AI Essentials Certificate — Coursera" class="img-cover-top" width="400"
+                                height="250" loading="lazy" decoding="async">
                         </div>
                         <div class="cert-body">
                             <h3><i class="fab fa-google" aria-hidden="true"></i> Google AI Essentials</h3>
@@ -894,9 +1010,8 @@
                     <div class="cert-card">
                         <div class="cert-preview">
                             <img src="assets/certificates/big-school-cybersecurity.webp"
-                                alt="Certificado BIG School — Ciberseguridad y Hacking Ético"
-                                class="img-cover-top" width="400" height="250" loading="lazy"
-                                decoding="async">
+                                alt="Certificado BIG School — Ciberseguridad y Hacking Ético" class="img-cover-top"
+                                width="400" height="250" loading="lazy" decoding="async">
                         </div>
                         <div class="cert-body">
                             <h3><i class="fas fa-user-shield" aria-hidden="true"></i> Ciberseguridad y Hacking Ético
@@ -921,12 +1036,14 @@
 
                     <div class="reflection-card accent-1">
                         <span class="ref-kicker kicker-1">[ RED TEAM MINDSET ]</span>
-                        <p class="ref-quote">" Pensar como atacante te enseña a defender… pero actuar con ética define quién sos. "</p>
+                        <p class="ref-quote">" Pensar como atacante te enseña a defender… pero actuar con ética define
+                            quién sos. "</p>
                     </div>
 
                     <div class="reflection-card accent-2">
                         <span class="ref-kicker kicker-2">[ CONTINUOUS LEARNING ]</span>
-                        <p class="ref-quote">" En el mundo de la ciberseguridad, la curiosidad es tu mejor herramienta. Cada vulnerabilidad es una
+                        <p class="ref-quote">" En el mundo de la ciberseguridad, la curiosidad es tu mejor herramienta.
+                            Cada vulnerabilidad es una
                             oportunidad para aprender y cada ataque es una lección para mejorar. Mantente siempre un
                             paso
                             adelante, porque en este juego, el conocimiento es poder. "</p>
@@ -934,7 +1051,8 @@
 
                     <div class="reflection-card accent-3">
                         <span class="ref-kicker kicker-3">[ VM ISOLATION PRINCIPLE ]</span>
-                        <p class="ref-quote">" El aislamiento de una VM no es absoluto, es probabilístico. La seguridad real viene de entender cada
+                        <p class="ref-quote">" El aislamiento de una VM no es absoluto, es probabilístico. La seguridad
+                            real viene de entender cada
                             vector de contacto entre la VM y el host, y eliminar los que no necesitás activamente. "</p>
                     </div>
 
@@ -949,7 +1067,8 @@
                         target="_blank" rel="noopener" aria-label="LinkedIn de Lucas Villagra">
                         <i class="fab fa-linkedin" aria-hidden="true"></i><span>LINKEDIN</span>
                     </a>
-                    <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20vengo%20de%20tu%20portafolio" class="btn btn-whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+                    <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20vengo%20de%20tu%20portafolio"
+                        class="btn btn-whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
                         <i class="fab fa-whatsapp" aria-hidden="true"></i><span>WHATSAPP</span>
                     </a>
                     <a href="mailto:lucaslean1806@gmail.com?subject=Contacto%20desde%20Portafolio%20-%20Lucas%20Villagra&body=Bienvenido%20a%20mi%20portafolio%20de%20ciberseguridad."
