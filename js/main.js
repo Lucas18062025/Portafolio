@@ -63,21 +63,23 @@ let last = 0;
 function draw(now) {
     if (!isAnimating || !ctx) return;
 
-    // ponytail: frame-rate independent motion, same speed at any FPS
-    const dt = (now && last) ? Math.min((now - last) / 16.67, 3) : 1;
+    // Reloj de paso fijo: velocidad constante en cualquier hardware.
+    // Si un frame tarda mas (PC lenta), se avanza en pasos de 16.67ms
+    // con tope de 5 para no entrar en espiral de la muerte.
+    const elapsed = (now && last) ? Math.min(now - last, 83.35) : 16.67;
     last = now || 0;
 
     // ambient: fuera del hero el fondo sigue vivo pero barato:
-    // deriva lenta a ~12fps, sin grid ni lineas (el O(n2) descansa)
+    // deriva a ~20fps sin grid ni lineas (el O(n2) descansa)
     const ambient = !heroVisible && !prefersReducedMotion;
-    const step = ambient ? dt * 0.6 : dt;
     if (ambient) {
         ambientTick++;
-        if (ambientTick % 5 !== 0) {
+        if (ambientTick % 3 !== 0) {
             requestAnimationFrame(draw);
             return;
         }
     }
+    const step = ambient ? (elapsed / 16.67) * 0.85 : elapsed / 16.67;
 
     ctx.clearRect(0, 0, W, H);
 
@@ -138,9 +140,12 @@ function draw(now) {
             const dx = particles[i].x - particles[j].x;
             const dy = particles[i].y - particles[j].y;
 
-            const d = Math.sqrt(dx * dx + dy * dy);
+            // Comparar distancia al cuadrado evita ~6000 sqrt por frame;
+            // el sqrt solo se calcula para los pares que si se dibujan.
+            const d2 = dx * dx + dy * dy;
 
-            if (d < 140) {
+            if (d2 < 19600) {
+                const d = Math.sqrt(d2);
                 ctx.beginPath();
 
                 ctx.moveTo(
@@ -193,14 +198,27 @@ if ('IntersectionObserver' in window) {
     const heroEl = document.querySelector('.hero');
     if (heroEl) {
         new IntersectionObserver((entries) => {
-            heroVisible = entries[0].isIntersecting;
+            const visible = entries[0].isIntersecting;
+            if (visible !== heroVisible) {
+                heroVisible = visible;
+                logCanvasMode(visible ? 'full' : 'ambient');
+            }
         }, { threshold: 0 }).observe(heroEl);
+    }
+}
+
+function logCanvasMode(mode) {
+    if (typeof console !== 'undefined' && console.info) {
+        console.info('[canvas] mode=' + mode);
     }
 }
 
 draw();
 if (prefersReducedMotion) {
     pauseCanvas();
+    logCanvasMode('static (prefers-reduced-motion)');
+} else {
+    logCanvasMode('full');
 }
 
 
