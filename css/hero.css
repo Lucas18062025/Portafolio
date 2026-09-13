@@ -116,6 +116,15 @@
     display: block;
 }
 
+/* Degradado solo en VILLAGRA — misma Space Grotesk, deriva de accent2 */
+.hero-title-accent {
+    background: linear-gradient(90deg, #ffffff 0%, #7cc4ff 45%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
 .hero-roles {
     display: flex;
     flex-wrap: nowrap;

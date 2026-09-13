@@ -1137,6 +1137,56 @@
             margin-top: 40px;
         }
 
+        /* ===== MEDIA KIT — banner OG como tarjeta en Conectar ===== */
+        #contacto .media-kit {
+            margin-bottom: 26px;
+        }
+
+        #contacto .h2-center {
+            margin-bottom: 26px;
+        }
+
+        #contacto .contact-area {
+            margin-top: 0;
+        }
+
+        .media-kit {
+            max-width: 300px;
+            margin: 8px auto 32px;
+            padding: 10px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
+        }
+
+        .media-kit-preview {
+            display: block;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .media-kit-preview img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .media-kit-preview:hover img {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 768px) {
+            .media-kit {
+                max-width: 260px;
+                padding: 8px;
+            }
+        }
+
         footer {
             text-align: center;
             padding: 60px 20px;
