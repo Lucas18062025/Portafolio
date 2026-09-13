@@ -1128,6 +1128,27 @@
                     0.45);
         }
 
+        /* GitHub: neutro blanco — equilibra la fila de colores de marca */
+        .btn-github {
+            border-color: rgba(230, 237, 243, 0.35);
+            color: #e6edf3;
+        }
+
+        .btn-github::before {
+            background: rgba(230, 237, 243, 0.9);
+        }
+
+        .btn-github:hover {
+            border-color: #e6edf3;
+            box-shadow: 0 0 25px rgba(230, 237, 243, 0.25);
+        }
+
+        /* Ancho parejo solo en Conectar — fila simétrica con 5 botones */
+        #contacto .contact-area .btn {
+            min-width: 158px;
+            justify-content: center;
+        }
+
 
         .contact-area {
             display: flex;
