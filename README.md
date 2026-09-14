@@ -28,9 +28,9 @@ Reconocimiento de espectro 2.4/5 GHz en modo monitor. Captura y análisis de han
 Túneles cifrados WireGuard (UDP) con Proton VPN, verificados con controles locales de fugas DNS/IP. Kill Switch activo.
 `WireGuard` `ProtonVPN` `OpSec`
 
-**⚙️ n8n Security Node**
-Servidor MCP para conectar Claude Desktop con n8n y operar workflows de automatización y seguridad con lenguaje natural.
-`MCP` `n8n` `Python` `Automation`
+**🔐 Security Audit Checker** — [ver despliegue](https://security-audit-checker.lucaslean1806.workers.dev/)
+Auditoría rápida de infraestructura para PyMEs del NOA con captura de leads y aviso instantáneo por Telegram. Backend en Cloudflare Workers con validación server-side y fallback local.
+`Cloudflare` `Workers` `Telegram` `JavaScript`
 
 **🛡️ SIEM v4.0 · Threat Intel**
 Monitoreo en vivo cada 10s sobre Security + System: 9 Event IDs críticos con scoring CVSS v3.1 y alertas a Telegram con rate-limit anti-spam.
