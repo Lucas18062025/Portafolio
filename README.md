@@ -3,15 +3,14 @@
 <div align="center">
 
 # 🌐 Portafolio · Lucas Villagra
-[![Netlify Status](https://api.netlify.com/api/v1/badges/caa0879e-3e0b-4271-a1b5-8ff440b89b86/deploy-status)](https://app.netlify.com/projects/unique-boba-c67ffd/deploys)
 
-[![Status](https://img.shields.io/badge/status-live-22c55e?style=for-the-badge&logo=github&logoColor=white)](https://lucas18062025.github.io/Portafolio/)
+[![Status](https://img.shields.io/badge/status-live-22c55e?style=for-the-badge&logo=cloudflare&logoColor=white)](https://portafolio.lucaslean1806.workers.dev/)
 [![License](https://img.shields.io/badge/license-MIT-7b2fff?style=for-the-badge)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-GitHub_Pages-30363d?style=for-the-badge&logo=github&logoColor=white)](https://lucas18062025.github.io/Portafolio/)
-[![Stack](https://img.shields.io/badge/stack-HTML_%7C_CSS_%7C_JS-00c8ff?style=for-the-badge)](https://lucas18062025.github.io/Portafolio/)
+[![Platform](https://img.shields.io/badge/platform-Cloudflare_Workers-F6821F?style=for-the-badge&logo=cloudflare&logoColor=white)](https://portafolio.lucaslean1806.workers.dev/)
+[![Stack](https://img.shields.io/badge/stack-HTML_%7C_CSS_%7C_JS-00c8ff?style=for-the-badge)](https://portafolio.lucaslean1806.workers.dev/)
 
 > *Portafolio profesional de ciberseguridad ·*
-> *Red Team · Blue Team · AI Orchestrator · Tucumán, Argentina ·*
+> *Red Team · Blue Team · AI Orchestrator · Tucumán, Argentina*
 
 **[→ Ver sitio en vivo](https://portafolio.lucaslean1806.workers.dev/)**
 
@@ -25,35 +24,47 @@
 Reconocimiento de espectro 2.4/5 GHz en modo monitor. Captura y análisis de handshakes WPA2 con aircrack-ng.
 `Kali Linux` `aircrack-ng` `Alfa AWUS036ACS`
 
----
-
 **🔒 OpSec · Infraestructura VPN Anónima**
-Túneles cifrados WireGuard con Proton VPN, verificados con controles locales de fugas DNS/IP. Kill Switch activo y split tunneling por scope.
+Túneles cifrados WireGuard (UDP) con Proton VPN, verificados con controles locales de fugas DNS/IP. Kill Switch activo.
 `WireGuard` `ProtonVPN` `OpSec`
 
----
-
-**🧠 Claude MCP · Agente de IA**
-Claude como agente inteligente conectado a Gmail, Google Calendar, Slack y Canva vía Model Context Protocol para orquestación automatizada de flujos.
-`Python` `MCP` `Claude API`
-
----
-
 **⚙️ n8n Security Node**
-Servidor MCP para conectar Claude Desktop con n8n y ejecutar flujos de auditoría automatizada con lenguaje natural.
-`n8n` `MCP` `Python`
-
----
+Servidor MCP para conectar Claude Desktop con n8n y operar workflows de automatización y seguridad con lenguaje natural.
+`MCP` `n8n` `Python` `Automation`
 
 **🛡️ SIEM v4.0 · Threat Intel**
-Monitor de eventos en tiempo real. Procesa eventos de seguridad, clasifica riesgos con CVSS v3.1 y genera alertas automáticas a Telegram.
-`Python` `Telegram API` `CVSS v3.1` `NIST`
+Monitoreo en vivo cada 10s sobre Security + System: 9 Event IDs críticos con scoring CVSS v3.1 y alertas a Telegram con rate-limit anti-spam.
+`Python 3.10+` `Telegram API` `CVSS v3.1` `NIST`
+
+**🛡️ Sentinel V7 Apex** — [ver despliegue](https://sentinel.lucaslean1806.workers.dev/)
+Mantenimiento y auditoría Windows en ~11s: firewall en 3 perfiles, Event Viewer y detección de conexiones TCP sospechosas, todo con log de evidencia.
+`PowerShell` `Windows Security` `Defensive Security` `V7 Apex`
+
+**🎣 Gophish Lab** — [ver despliegue](https://gophishlab.lucaslean1806.workers.dev/)
+Laboratorio controlado de simulación de campañas de phishing: vectores de ingeniería social, métricas y respuesta defensiva. Fines educativos y laboratorio autorizado.
+`Gophish` `Social Engineering` `Security Awareness` `Lab`
+
+**🌐 Network Egress Monitor**
+Monitor defensivo de conexiones salientes: visibilidad sobre tráfico egress y comportamientos anómalos en endpoints y redes.
+`Network Security` `Monitoring` `Egress` `Defensive`
+
+**🔐 Secure Web Platform** — [ver despliegue](https://frontend.lucaslean1806.workers.dev/)
+Plataforma web con arquitectura defensiva: Next.js + TypeScript sobre Cloudflare Workers.
+`Next.js` `TypeScript` `Cloudflare` `Web Security`
+
+**📊 ZenHub Dashboard** — [ver despliegue](https://zenhub-dashboard.lucaslean1806.workers.dev/)
+Dashboard web para visualización y gestión de información de proyectos.
+`Project Management` `Data Visualization` `Web Development`
 
 ---
 
-**🛡️ Sentinel V7 Apex**
-Plataforma de automatización defensiva y mantenimiento unificado para Windows. Auditoría de servicios, Event Viewer y detección proactiva de tráfico sospechoso con PowerShell (`Get-NetTCPConnection`).
-`PowerShell` `Windows Security` `Defensive Security` `V7 Apex`
+## 🔬 Investigación
+
+Artículos propios en [`/blog`](https://portafolio.lucaslean1806.workers.dev/blog/): mentalidad Red Team, aprendizaje continuo y aislamiento en máquinas virtuales.
+
+## 📜 Certificaciones
+
+`Cisco · Hacker Ético` `Google · Cybersecurity (Coursera)` `Google · AI Essentials (Coursera)` `BIG School · Ciberseguridad y Hacking Ético`
 
 ---
 
@@ -64,18 +75,38 @@ Plataforma de automatización defensiva y mantenimiento unificado para Windows. 
 | **Frontend** | `HTML5` `CSS3` `JavaScript (Vanilla)` |
 | **Tipografía** | `Inter` `Space Grotesk` `JetBrains Mono` |
 | **Iconos** | `Font Awesome 6.4` |
-| **Deploy** | `GitHub Pages` |
+| **Deploy** | `Cloudflare Workers` (espejo legacy: `Vercel`) |
 | **Efectos** | `Canvas API` `CSS Animations` |
+| **SEO** | `Sitemap` `robots.txt` `JSON-LD` `Open Graph` |
 
 ---
 
 ## 💼 Servicios Profesionales
 
 **🛡️ Auditoría & Hardening**
-Endurecimiento de sistemas operativos y análisis de configuraciones para minimizar superficie de ataque y elevar la resiliencia ante amenazas reales.
+Endurecimiento de sistemas y análisis de configuraciones. Informe ejecutivo + técnico. `PyMEs · NOA`
 
 **🎯 Pentesting · Red Team**
-Simulación controlada de ciberataques para identificar vulnerabilidades explotables antes que los adversarios. Reportes técnicos con evidencia y remediación.
+Simulación controlada de ciberataques con evidencia y remediación. `PyMEs · NOA`
+
+**🎣 Concientización & Phishing Simulation**
+Campañas controladas de phishing: métricas de clics, reportes accionables y capacitación. `PyMEs · NOA`
+
+Contacto: [WhatsApp](https://wa.me/543814764474) · [Email](mailto:lucaslean1806@gmail.com) · [LinkedIn](https://www.linkedin.com/in/lucas-villagra-9b5097147/)
+
+---
+
+## 🧑‍💻 Desarrollo local y deploy
+
+```powershell
+# Vista previa local
+npx serve .
+
+# Deploy a Cloudflare Workers
+.\deploy.ps1   # aborta si falta google*.html (ver nota arriba)
+```
+
+Estructura: `index.html` · `css/` · `js/` · `assets/` (projects, certificates, cv, og) · `blog/` · `data/certificates.json` · `wrangler.jsonc` · `_headers` / `vercel.json` (headers y caché).
 
 ---
 
@@ -87,12 +118,8 @@ Distribuido bajo licencia **MIT**. Ver [`LICENSE`](LICENSE) para más detalles.
 
 <div align="center">
 
-*© 2026 Lucas Villagra · System Secured · Built on GitHub Pages*
+*© 2026 Lucas Villagra · System Secured · Built on Cloudflare Workers*
 
 `[ uptime: ∞ | threat level: monitored | status: operational ]`
 
 </div>
-
----
-
-README.md
