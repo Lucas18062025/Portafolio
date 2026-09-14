@@ -107,7 +107,7 @@
     text-transform: uppercase;
     font-weight: 700;
 
-    color: #ffffff;
+    color: #F3EEE2;
     text-shadow:
         0 0 50px rgba(0, 102, 255, 0.10);
 }
@@ -116,9 +116,9 @@
     display: block;
 }
 
-/* Degradado solo en VILLAGRA — misma Space Grotesk, deriva de accent2 */
+/* Degradado solo en VILLAGRA: marfil -> azul profundo, sin cyan */
 .hero-title-accent {
-    background: linear-gradient(90deg, #ffffff 0%, #7cc4ff 45%, var(--accent2) 100%);
+    background: linear-gradient(90deg, #F3EEE2 0%, #6EA8F2 48%, var(--accent) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
