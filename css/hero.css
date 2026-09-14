@@ -214,16 +214,16 @@
 }
 
 .hero-btn-primary {
-    border-color: var(--accent);
-    background: var(--accent);
+    border-color: #2b3160;
+    background: #1e2249;
     color: #ffffff;
-    box-shadow: 0 0 24px rgba(0, 102, 255, 0.35);
+    box-shadow: 0 0 24px rgba(30, 34, 73, 0.55);
 }
 
 .hero-btn-primary:hover {
-    background: var(--accent3, #3388ff);
-    border-color: var(--accent3, #3388ff);
-    box-shadow: 0 0 28px rgba(0, 102, 255, 0.45);
+    background: #2b3160;
+    border-color: #2b3160;
+    box-shadow: 0 0 28px rgba(43, 49, 96, 0.6);
 }
 
 .hero-btn-primary i {
