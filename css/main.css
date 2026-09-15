@@ -1281,11 +1281,13 @@
         }
 
 /* ===== Fase 3: utilidades migradas desde atributos style= inline ===== */
+.stack-tab[data-stack="frameworks"]{--tab-accent:var(--accent2)}
 .stack-tab[data-stack="base"]{--tab-accent:#5b8dae}
 .stack-tab[data-stack="infra"]{--tab-accent:#7c8797}
 .stack-tab[data-stack="red"]{--tab-accent:#d97706}
 .stack-tab[data-stack="blue"]{--tab-accent:#2f9e8f}
 .stack-tab[data-stack="ai"]{--tab-accent:#8b7fd1}
+#panel-frameworks{--panel-accent:var(--accent2)}
 #panel-base{--panel-accent:#5b8dae}
 #panel-infra{--panel-accent:#7c8797}
 #panel-red{--panel-accent:#d97706}

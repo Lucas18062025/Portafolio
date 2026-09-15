@@ -201,11 +201,14 @@
         <main id="main-content">
 
             <section id="stack">
-                <h2>./ Stack Tecnológico</h2>
+                <h2>./ Marcos y Metodología</h2>
 
                 <!-- Tab bar: una sola línea horizontal (scroll en desktop) -->
                 <div class="stack-tabs" role="tablist" aria-label="Áreas del stack tecnológico">
-                    <button class="stack-tab" role="tab" id="tab-base" aria-controls="panel-base" aria-selected="true"
+                    <button class="stack-tab" role="tab" id="tab-frameworks" aria-controls="panel-frameworks"
+                        aria-selected="true" data-stack="frameworks">Marcos
+                        y metodología</button>
+                    <button class="stack-tab" role="tab" id="tab-base" aria-controls="panel-base" aria-selected="false"
                         data-stack="base">Base
                         técnica</button>
                     <button class="stack-tab" role="tab" id="tab-infra" aria-controls="panel-infra"
@@ -223,15 +226,87 @@
                 <label for="stack-select" class="sr-only">Seleccionar área
                     del stack</label>
                 <select id="stack-select" class="stack-select" aria-label="Seleccionar área del stack">
-                    <option value="base" selected>Base técnica — lenguajes &amp; sistemas</option>
+                    <option value="frameworks" selected>Marcos y metodología — estándares</option>
+                    <option value="base">Base técnica — lenguajes &amp; sistemas</option>
                     <option value="infra">Infraestructura &amp; Deploy</option>
                     <option value="red">Red Team — ofensivo</option>
                     <option value="blue">Blue Team — defensivo · sysadmin</option>
                     <option value="ai">IA &amp; Automatización</option>
                 </select>
 
+                <!-- PANEL: MARCOS Y METODOLOGÍA (estándares destacados) -->
+                <div class="stack-panel" id="panel-frameworks" role="tabpanel" tabindex="0"
+                    aria-labelledby="tab-frameworks">
+                    <div class="stack-panel-head">
+                        <h3>Marcos y Metodología</h3><span class="sub">estándares internacionales</span>
+                    </div>
+                    <div class="stack-grid">
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#e63946"
+                                    stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="6.5" />
+                                    <circle cx="12" cy="12" r="1.6" fill="#e63946" stroke="none" />
+                                    <path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3" />
+                                </svg></div><span>MITRE
+                                ATT&amp;CK</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <path d="M12 2.5l7.5 2.8v5.4c0 4.6-3.2 8.3-7.5 10.3-4.3-2-7.5-5.7-7.5-10.3V5.3z" />
+                                    <path d="M8.8 12l2.2 2.2 4.2-4.4" />
+                                </svg></div><span>OWASP
+                                Top 10</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#5aa9e6"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <circle cx="12" cy="12" r="8.5" />
+                                    <path d="M8.5 12.2l2.5 2.5 4.8-5.2" />
+                                </svg></div><span>NIST
+                                CSF</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#8b9cf0"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <circle cx="12" cy="12" r="8.5" stroke-dasharray="3 2.2" />
+                                    <path d="M8.5 12.2l2.5 2.5 4.8-5.2" />
+                                </svg></div>
+                            <span>ISO/IEC 27001</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#7bc950"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <rect x="6" y="4.5" width="12" height="15" rx="2" />
+                                    <rect x="9" y="2.5" width="6" height="3" rx="1" />
+                                    <path d="M9 11h6M9 14.5h6M9 18h3.5" />
+                                </svg></div>
+                            <span>CIS Benchmarks</span>
+                        </div>
+                        <div class="s-item">
+                            <div class="s-icon-box"><svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 15a8 8 0 0 1 16 0" fill="none" stroke="#334155"
+                                        stroke-width="3.4" stroke-linecap="round" />
+                                    <path d="M4 15a8 8 0 0 1 5.2-7.4" fill="none" stroke="#22c55e"
+                                        stroke-width="3.4" stroke-linecap="round" />
+                                    <path d="M12 7.2A8 8 0 0 1 17.5 9" fill="none" stroke="#eab308"
+                                        stroke-width="3.4" stroke-linecap="round" />
+                                    <path d="M12 15l4.2-4.2" stroke="#e63946" stroke-width="2.2"
+                                        stroke-linecap="round" />
+                                    <circle cx="12" cy="15" r="1.8" fill="#e63946" />
+                                </svg></div><span>CVSS
+                                v3.1</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- PANEL: BASE (skillicons + fallback FA) -->
-                <div class="stack-panel" id="panel-base" role="tabpanel" tabindex="0" aria-labelledby="tab-base">
+                <div class="stack-panel" id="panel-base" role="tabpanel" tabindex="0" aria-labelledby="tab-base"
+                    hidden>
                     <div class="stack-panel-head">
                         <h3>Base técnica</h3><span class="sub">lenguajes &amp; sistemas</span>
                     </div>
