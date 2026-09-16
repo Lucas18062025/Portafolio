@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ley 25.326: lo que una PyME debe saber sobre datos personales | Lucas Villagra</title>
+
+    <meta name="description"
+        content="Guía práctica de la Ley 25.326 de Protección de Datos Personales para PyMEs argentinas: consentimiento, derechos de los clientes, registro de bases de datos, seguridad y la reforma en debate.">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://portafolio.lucaslean1806.workers.dev/blog/ley-25326-datos-personales/">
+
+    <!-- Open Graph -->
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ley 25.326: lo que una PyME debe saber sobre datos personales | Lucas Villagra">
+    <meta property="og:description"
+        content="Consentimiento, derechos de los titulares, registro de bases de datos y medidas de seguridad: la Ley 25.326 explicada para PyMEs del NOA.">
+    <meta property="og:url" content="https://portafolio.lucaslean1806.workers.dev/blog/ley-25326-datos-personales/">
+    <meta property="og:site_name" content="Lucas Villagra | Security Research">
+    <meta property="og:image" content="https://portafolio.lucaslean1806.workers.dev/assets/og/og-portfolio.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="800">
+
+    <!-- Twitter -->
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ley 25.326: lo que una PyME debe saber sobre datos personales">
+    <meta name="twitter:description"
+        content="Obligaciones prácticas de la Ley de Protección de Datos Personales para PyMEs argentinas y la reforma que se debate en el Congreso.">
+    <meta name="twitter:image" content="https://portafolio.lucaslean1806.workers.dev/assets/og/og-portfolio.jpg">
+
+    <!-- Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Blog stylesheet -->
+
+    <link rel="stylesheet" href="../../css/blog.css">
+
+    <!-- Article structured data -->
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Ley 25.326: lo que una PyME debe saber sobre datos personales",
+    "description": "Guía práctica de la Ley 25.326 de Protección de Datos Personales para PyMEs argentinas: consentimiento, derechos de los clientes, registro de bases de datos, seguridad y la reforma en debate.",
+    "author": {
+        "@type": "Person",
+        "name": "Lucas Villagra",
+        "url": "https://portafolio.lucaslean1806.workers.dev/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Lucas Villagra"
+    },
+    "datePublished": "2026-09-16",
+    "dateModified": "2026-09-16",
+    "image": "https://portafolio.lucaslean1806.workers.dev/assets/og/og-portfolio.jpg",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portafolio.lucaslean1806.workers.dev/blog/ley-25326-datos-personales/"
+    },
+    "articleSection": "Datos Personales",
+    "keywords": [
+        "Ley 25.326",
+        "protección de datos personales",
+        "habeas data",
+        "PyMEs Argentina",
+        "AAIP",
+        "privacidad",
+        "ciberseguridad",
+        "NOA",
+        "reforma datos personales"
+    ]
+}
+</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Portafolio", "item": "https://portafolio.lucaslean1806.workers.dev/"},
+            {"@type": "ListItem", "position": 2, "name": "Security Research", "item": "https://portafolio.lucaslean1806.workers.dev/blog/"},
+            {"@type": "ListItem", "position": 3, "name": "Ley 25.326", "item": "https://portafolio.lucaslean1806.workers.dev/blog/ley-25326-datos-personales/"}
+        ]
+    }
+    </script>
+
+
+</head>
+
+<body class="blog-page">
+
+    <!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
+
+    <header class="blog-nav">
+
+        <div class="blog-container blog-nav-inner">
+
+            <a href="../../" class="blog-brand">
+                LUCAS<span>VILLAGRA</span> // SECURITY RESEARCH
+            </a>
+
+            <a href="../" class="blog-back">
+                ← SECURITY RESEARCH
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+     ARTICLE
+     ===================================================== -->
+
+    <main>
+
+        <article class="blog-container">
+
+            <!-- ARTICLE HEADER -->
+
+            <header class="blog-hero">
+
+                <span class="blog-kicker">
+                    [ DATOS PERSONALES · ARGENTINA ]
+                </span>
+
+                <h1>
+                    Ley 25.326: lo que una <span>PyME</span>
+                    debe saber sobre datos personales
+                </h1>
+
+                <p>
+                    Si tu empresa guarda nombres, teléfonos, emails o
+                    filmaciones de clientes y empleados, esta ley ya te
+                    alcanza. Qué exige hoy, qué se debate para mañana y
+                    qué medidas conviene tomar igual.
+                </p>
+
+                <div class="blog-meta">
+                    <time datetime="2026-09-16">16 SEP 2026</time> · 9 MIN DE LECTURA · POR LUCAS VILLAGRA
+                </div>
+
+            </header>
+
+
+            <div class="blog-divider"></div>
+
+
+            <!-- =================================================
+             ARTICLE CONTENT
+             ================================================= -->
+
+            <section class="blog-article-content">
+
+                <p>
+                    Existe una idea extendida entre las PyMEs: que la
+                    protección de datos personales es un tema de bancos,
+                    telefónicas y grandes plataformas. La realidad es más
+                    incómoda: <strong>cualquier empresa que guarde una
+                        planilla de clientes, un grupo de WhatsApp comercial,
+                        cámaras de seguridad o legajos de empleados ya está
+                        tratando datos personales</strong> y ya está alcanzada
+                    por la Ley 25.326.
+                </p>
+
+                <p>
+                    Este artículo explica la ley vigente en términos
+                    prácticos, sin jerga jurídica innecesaria. Una aclaración
+                    honesta antes de empezar: soy analista de ciberseguridad,
+                    no abogado. Esto es contenido educativo para entender el
+                    riesgo y ordenar la casa; <strong>no reemplaza el
+                        asesoramiento legal</strong>.
+                </p>
+
+
+                <h2>
+                    Qué es la Ley 25.326 y a quién alcanza
+                </h2>
+
+                <p>
+                    La Ley 25.326, sancionada en el año 2000, regula la
+                    protección integral de los datos personales asentados en
+                    archivos, registros y bancos de datos. Es la norma que
+                    reglamenta el <em>habeas data</em> del artículo 43 de la
+                    Constitución Nacional: el derecho de toda persona a
+                    conocer qué datos tienen sobre ella, para qué se usan y a
+                    exigir su corrección o eliminación.
+                </p>
+
+                <p>
+                    Su alcance es amplio por diseño. Se aplica al tratamiento
+                    de datos realizado por <strong>personas humanas o
+                        jurídicas, públicas o privadas</strong>, en todo el
+                    territorio argentino. No distingue por tamaño de empresa:
+                    una PyME tucumana con 200 contactos en el celular de
+                    ventas entra en el mismo marco que una corporación.
+                </p>
+
+                <p>
+                    Y sigue plenamente vigente. Como veremos al final, hay
+                    proyectos de reforma en debate, pero <strong>ninguno está
+                        en vigor hoy</strong>: las obligaciones que describo
+                    aquí son exigibles ahora.
+                </p>
+
+
+                <h2>
+                    Consentimiento: la base de casi todo
+                </h2>
+
+                <p>
+                    El artículo 5 establece la regla de oro: tratar datos
+                    personales requiere el <strong>consentimiento previo,
+                        expreso e informado</strong> del titular, otorgado por
+                    escrito o por un medio equiparable.
+                </p>
+
+                <p>
+                    En la práctica de una PyME esto significa preguntas
+                    concretas. Cuando un cliente deja su número en tu
+                    WhatsApp comercial, ¿sabe para qué lo vas a usar? ¿Solo
+                    para responder su consulta o también para mandarle
+                    promociones? ¿Cuando un proveedor te pasa su lista de
+                    precios con datos de contacto, tenés autorización para
+                    cargarla en tu sistema?
+                </p>
+
+                <p>
+                    El artículo 6 refuerza el punto: al recolectar datos hay
+                    que informar <strong>la finalidad del tratamiento y quiénes
+                        pueden ser sus destinatarios</strong>. Un cartel en el
+                    local, una línea en el formulario web o un mensaje inicial
+                    en el chat comercial cumplen esa función. No es
+                    burocracia: es la diferencia entre un tratamiento lícito
+                    y uno que no lo es.
+                </p>
+
+
+                <h2>
+                    Los datos no son un activo libre: finalidad y calidad
+                </h2>
+
+                <p>
+                    Los artículos 3 y 4 fijan dos límites que muchas empresas
+                    desconocen. Primero, los datos deben usarse para
+                    <strong>finalidades determinadas, explícitas y
+                        legítimas</strong>: si pediste el email para enviar
+                    una factura, no podés reutilizarlo para una campaña de
+                    marketing sin una nueva base de consentimiento.
+                </p>
+
+                <p>
+                    Segundo, los datos deben ser <strong>ciertos, adecuados,
+                        pertinentes y no excesivos</strong> en relación con
+                    esa finalidad. Pedir el DNI, la fecha de nacimiento y el
+                    estado civil en un formulario de contacto genérico viola
+                    este principio: se recolecta más de lo necesario.
+                </p>
+
+                <p>
+                    La regla práctica es simple y barata de aplicar:
+                    <strong>pedí solo lo que necesitás y usalo solo para lo
+                        que dijiste</strong>.
+                </p>
+
+
+                <h2>
+                    Tus clientes tienen derechos (y pueden ejercerlos contra vos)
+                </h2>
+
+                <p>
+                    Los artículos 13 a 16 reconocen derechos que cualquier
+                    persona puede ejercer frente a tu empresa:
+                </p>
+
+                <p>
+                    <strong>1. Derecho de acceso:</strong>
+                    saber qué datos tenés sobre ella y para qué los usás.
+                </p>
+
+                <p>
+                    <strong>2. Derecho de rectificación y actualización:</strong>
+                    corregir datos falsos o desactualizados.
+                </p>
+
+                <p>
+                    <strong>3. Derecho de supresión:</strong>
+                    pedir que elimines sus datos cuando el tratamiento sea
+                    ilícito o ya no tenga fundamento.
+                </p>
+
+                <p>
+                    El artículo 19 agrega que el acceso es <strong>gratuito
+                        para el titular</strong>. Traducido a operaciones:
+                    si un ex cliente te escribe pidiendo que borres su número
+                    de tu base, necesitás un procedimiento para hacerlo y
+                    responder. Las empresas que no pueden ubicar los datos de
+                    una persona en sus propios sistemas suelen descubrir en
+                    ese momento que tienen un problema mayor.
+                </p>
+
+
+                <h2>
+                    Seguridad y confidencialidad: donde entra la ciberseguridad
+                </h2>
+
+                <p>
+                    El artículo 9 obliga a adoptar <strong>las medidas
+                        técnicas y organizativas necesarias para garantizar la
+                        seguridad y confidencialidad</strong> de los datos, de
+                    modo de evitar su adulteración, pérdida, consulta o
+                    tratamiento no autorizado. Y el artículo 10 impone el
+                    <strong>deber de confidencialidad</strong>, que subsiste
+                    incluso después de terminada la relación con el titular.
+                </p>
+
+                <p>
+                    Este es el punto donde la ley y la ciberseguridad se
+                    tocan directamente. Contraseñas compartidas en el equipo
+                    de ventas, la base de clientes en una planilla sin
+                    control de accesos, backups sin cifrar, notebooks sin
+                    bloqueo: todo eso no es solo mala higiene técnica,
+                    <strong>es incumplimiento del deber de seguridad de la
+                        ley</strong>.
+                </p>
+
+                <p>
+                    La ley también exige destruir los datos cuando dejen de
+                    ser necesarios para la finalidad que motivó su
+                    recolección. Conservar por años bases de ex clientes
+                    “por las dudas” es exactamente lo contrario de lo que
+                    pide la norma.
+                </p>
+
+
+                <h2>
+                    El Registro Nacional de Bases de Datos
+                </h2>
+
+                <p>
+                    El artículo 21 establece que los archivos y bases de
+                    datos deben inscribirse en el <strong>Registro Nacional
+                        de Bases de Datos</strong>, que hoy administra la
+                    Agencia de Acceso a la Información Pública (AAIP),
+                    autoridad de aplicación de la ley.
+                </p>
+
+                <p>
+                    Es una de las obligaciones más ignoradas por las PyMEs y
+                    también una de las más sencillas de verificar: si tu
+                    empresa maneja bases de clientes, empleados o
+                    proveedores y nunca inscribió nada, hay un frente de
+                    cumplimiento abierto. La inscripción no resuelve la
+                    seguridad, pero es el primer paso visible de que la
+                    empresa reconoce que trata datos.
+                </p>
+
+
+                <h2>
+                    Ojo con la nube: transferencia internacional de datos
+                </h2>
+
+                <p>
+                    El artículo 12 prohíbe transferir datos personales a
+                    países que no ofrezcan niveles adecuados de protección,
+                    con excepciones puntuales (cooperación judicial, salud,
+                    transferencias bancarias, entre otras).
+                </p>
+
+                <p>
+                    Para una PyME moderna esto tiene una consecuencia
+                    directa: <strong>tu CRM en la nube, tu sistema de
+                        facturación online o tu herramienta de email
+                        marketing pueden estar alojados fuera del
+                        país</strong>. Usar servicios internacionales no está
+                    prohibido automáticamente, pero la empresa debe saber
+                    dónde están sus datos y bajo qué garantías viajan. Es
+                    una pregunta que casi nadie hace al contratar un SaaS y
+                    que la ley sí exige responder.
+                </p>
+
+
+                <h2>
+                    Listas de difusión y publicidad: el artículo que casi nadie lee
+                </h2>
+
+                <p>
+                    El artículo 27 regula los archivos con fines
+                    publicitarios y tiene una consecuencia práctica inmediata:
+                    los titulares pueden exigir el <strong>retiro o bloqueo
+                        de sus datos de los bancos de datos con fines de
+                        publicidad</strong>.
+                </p>
+
+                <p>
+                    Cada lista de difusión de WhatsApp o base de emails para
+                    promociones debería tener una vía clara de baja. “Responder
+                    STOP” no es cortesía: es el mecanismo operativo de un
+                    derecho legal. Y comprar bases de datos de terceros para
+                    ofrecer productos es una de las prácticas de mayor riesgo
+                    bajo esta ley.
+                </p>
+
+
+                <h2>
+                    La reforma en camino: qué se debate
+                </h2>
+
+                <p>
+                    La Ley 25.326 tiene más de 25 años y fue escrita antes de
+                    las redes sociales, la nube y la inteligencia artificial.
+                    Por eso hay proyectos en el Congreso para reemplazarla:
+                    el más reciente ingresó en julio de 2026 como expediente
+                    3397-D-2026, elaborado a partir del proceso participativo
+                    impulsado por la AAIP.
+                </p>
+
+                <p>
+                    Entre los ejes que se discuten están la notificación
+                    obligatoria de brechas de seguridad, la figura del
+                    delegado de protección de datos, la portabilidad, la
+                    regulación de decisiones automatizadas y reglas más
+                    estrictas para transferencias internacionales.
+                </p>
+
+                <p>
+                    Repito lo importante: <strong>es un proyecto, no una ley
+                        vigente</strong>. No genera obligaciones actuales. Pero
+                    es una señal del rumbo: todo lo que una PyME haga hoy en
+                    seguridad, registro e higiene de datos le va a servir
+                    igual cuando la reforma salga. Cumplir la ley actual es,
+                    además, prepararse para la próxima.
+                </p>
+
+
+                <h2>
+                    Checklist PyME: 10 medidas accionables
+                </h2>
+
+                <p>
+                    Cerramos con lo operativo. Si tu empresa hiciera solo
+                    esto, ya estaría por encima del promedio:
+                </p>
+
+                <p>
+                    <strong>1. Inventariar:</strong>
+                    listar qué datos personales maneja la empresa y dónde
+                    están (planillas, celular comercial, sistema de gestión,
+                    cámaras).
+                </p>
+
+                <p>
+                    <strong>2. Reducir:</strong>
+                    eliminar lo que no se necesita y dejar de pedir datos de
+                    más en formularios.
+                </p>
+
+                <p>
+                    <strong>3. Informar:</strong>
+                    explicar al recolectar para qué se usarán los datos
+                    (cartel, formulario, mensaje inicial).
+                </p>
+
+                <p>
+                    <strong>4. Ordenar el consentimiento:</strong>
+                    separar el consentimiento de contacto del consentimiento
+                    de marketing.
+                </p>
+
+                <p>
+                    <strong>5. Canal de derechos:</strong>
+                    definir quién responde cuando un cliente pide acceso,
+                    corrección o borrado, y en qué plazo.
+                </p>
+
+                <p>
+                    <strong>6. Vía de baja:</strong>
+                    toda lista de difusión o newsletter con mecanismo claro
+                    de desuscripción.
+                </p>
+
+                <p>
+                    <strong>7. Accesos:</strong>
+                    cada empleado accede solo a los datos que necesita; sin
+                    contraseñas compartidas.
+                </p>
+
+                <p>
+                    <strong>8. Backups y cifrado:</strong>
+                    copias de las bases con cifrado y prueba de
+                    restauración.
+                </p>
+
+                <p>
+                    <strong>9. Mapear la nube:</strong>
+                    saber en qué país están alojados el CRM, la facturación
+                    y el email marketing.
+                </p>
+
+                <p>
+                    <strong>10. Inscribir las bases:</strong>
+                    iniciar el trámite ante el Registro Nacional de Bases de
+                    Datos de la AAIP.
+                </p>
+
+
+                <h2>
+                    Conclusión
+                </h2>
+
+                <p>
+                    La Ley 25.326 no es un trámite para grandes empresas: es
+                    el marco que regula algo que toda PyME ya hace todos los
+                    días, que es tratar datos de personas. La buena noticia
+                    es que cumplirla no requiere un departamento legal ni
+                    una inversión enorme. Requiere inventario, criterio y
+                    medidas básicas de seguridad.
+                </p>
+
+                <p>
+                    Y hay un efecto secundario que me interesa como técnico:
+                    <strong>una empresa que ordena sus datos para cumplir la
+                        ley queda automáticamente más difícil de atacar y
+                        más rápida para recuperarse</strong>. Menos datos
+                    dispersos, menos accesos innecesarios, backups probados.
+                    El cumplimiento y la seguridad, bien hechos, son el mismo
+                    trabajo.
+                </p>
+
+                <blockquote class="blog-quote">
+                    Pedí solo los datos que necesitás, usalos solo para lo
+                    que dijiste y protegé lo que guardás. Eso es la Ley
+                    25.326 en una frase.
+                </blockquote>
+
+            </section>
+
+
+            <!-- =================================================
+             TAGS
+             ================================================= -->
+
+            <div class="blog-categories">
+
+                <span class="blog-tag">#LEY25326</span>
+                <span class="blog-tag">#DATOSPERSONALES</span>
+                <span class="blog-tag">#HABEASDATA</span>
+                <span class="blog-tag">#PYMES</span>
+                <span class="blog-tag">#AAIP</span>
+                <span class="blog-tag">#PRIVACIDAD</span>
+                <span class="blog-tag">#CIBERSEGURIDAD</span>
+
+            </div>
+
+
+            <!-- =================================================
+             RELATED CONTENT
+             ================================================= -->
+
+            <section class="mt-70">
+
+                <div class="blog-section-title">
+
+                    <span>[ RELATED RESEARCH ]</span>
+
+                    <h2>
+                        Continuar investigando
+                    </h2>
+
+                </div>
+
+
+                <div class="blog-grid">
+
+                    <a href="../red-team-mindset/" class="blog-card">
+
+                        <div class="blog-card-category">
+                            RED TEAM · ETHICS
+                        </div>
+
+                        <h3>
+                            Pensar como atacante para aprender a defender
+                        </h3>
+
+                        <p>
+                            Cómo desarrollar una mentalidad ofensiva sin
+                            perder de vista la ética y la defensa.
+                        </p>
+
+                        <div class="blog-card-footer">
+
+                            <span class="blog-card-meta">
+                                RED TEAM
+                            </span>
+
+                            <span class="blog-card-read">
+                                LEER →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="../vm-isolation/" class="blog-card">
+
+                        <div class="blog-card-category">
+                            LAB SECURITY · VIRTUALIZATION
+                        </div>
+
+                        <h3>
+                            El principio de aislamiento en máquinas virtuales
+                        </h3>
+
+                        <p>
+                            Cómo diseñar laboratorios controlados para
+                            experimentar de forma segura y reproducible.
+                        </p>
+
+                        <div class="blog-card-footer">
+
+                            <span class="blog-card-meta">
+                                LABS
+                            </span>
+
+                            <span class="blog-card-read">
+                                LEER →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+             NAVIGATION
+             ================================================= -->
+
+            <nav class="blog-nav">
+
+                <a href="../vm-isolation/" class="blog-nav-link blog-nav-prev">
+                    ← ANTERIOR: VM ISOLATION
+                </a>
+
+                <a href="../" class="blog-nav-link blog-nav-next">
+                    SECURITY RESEARCH →
+                </a>
+
+            </nav>
+
+
+        </article>
+
+    </main>
+
+
+    <!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+    <footer class="blog-footer">
+
+        <div class="blog-container">
+
+            <p>
+                © 2026 Lucas Villagra · Security Research
+            </p>
+
+            <p>
+                EDUCATION · ETHICAL SECURITY · CONTINUOUS LEARNING
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
