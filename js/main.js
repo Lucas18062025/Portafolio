@@ -19,6 +19,7 @@ function initParticlesAndGrid() {
     const isMobile = W < 768;
     const s = isMobile ? 60 : 42;
     const count = isMobile ? 50 : 110;
+    const vScale = isMobile ? 2.0 : 0.9;
 
     for (let x = 0; x < W; x += s) {
         for (let y = 0; y < H; y += s) {
@@ -31,8 +32,8 @@ function initParticlesAndGrid() {
             x: Math.random() * W,
             y: Math.random() * H,
             r: Math.random() * 2.8 + 1.2,
-            vx: (Math.random() - 0.5) * 0.9,
-            vy: (Math.random() - 0.5) * 0.9,
+            vx: (Math.random() - 0.5) * vScale,
+            vy: (Math.random() - 0.5) * vScale,
             color: COLS[Math.floor(Math.random() * COLS.length)],
             alpha: Math.random() * 0.5 + 0.35
         });
