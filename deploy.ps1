@@ -12,6 +12,20 @@ if (-not $verifyFile) {
   exit 1
 }
 
+# 0b. Guardia: binding ASSETS declarado (causa del incidente sep-2026).
+#     Sin esto env.ASSETS es undefined y el Worker crashea con
+#     "Cannot read properties of undefined (reading 'fetch')".
+if (-not (Select-String -Path ./wrangler.jsonc -Pattern '"binding"\s*:\s*"ASSETS"' -Quiet)) {
+  Write-Error "ABORTADO: falta `"binding`": `"ASSETS`" en wrangler.jsonc (assets). Agregalo antes de deployar."
+  exit 1
+}
+
+# 0c. Guardia: worker.js no debe exponerse como asset público.
+if (-not (Select-String -Path ./.assetsignore -Pattern '^worker\.js$' -Quiet)) {
+  Write-Error "ABORTADO: falta `worker.js` en .assetsignore. El código quedaría descargable en /worker.js."
+  exit 1
+}
+
 # 1. Ver qué cambió
 git status --short
 git diff --stat
@@ -29,5 +43,35 @@ if ($changes) {
 $branch = (git rev-parse --abbrev-ref HEAD).Trim()
 git push origin $branch
 
+# 4b. Dry-run: el Worker debe ver el binding ASSETS. Si sale vacío, no deployar.
+$dryRun = npx wrangler deploy --dry-run 2>&1 | Out-String
+if ($dryRun -notmatch 'env\.ASSETS') {
+  Write-Error "ABORTADO: dry-run sin binding env.ASSETS. Revisa wrangler.jsonc antes de deployar.`n$dryRun"
+  exit 1
+}
+Write-Host "Dry-run OK: binding env.ASSETS presente."
+
 # 5. Deploy Cloudflare
 npx wrangler deploy
+
+# 6. Health-check post-deploy: sano = 200 en /, 200 en /manifest.json,
+#    404 en /worker.js (no exponer código) y 404 (nunca 500) en URL inexistente.
+$base = "https://portafolio.lucaslean1806.workers.dev"
+$checks = @(
+  @{ Path = "/"; Want = 200 },
+  @{ Path = "/manifest.json?v=health"; Want = 200 },
+  @{ Path = "/worker.js"; Want = 404 },
+  @{ Path = "/no-existo-healthcheck"; Want = 404 }
+)
+$fail = $false
+foreach ($c in $checks) {
+  $code = [int](curl.exe -s -o NUL -w "%{http_code}" "$base$($c.Path)")
+  $ok = ($code -eq $c.Want)
+  if (-not $ok) { $fail = $true }
+  Write-Host ("{0} -> {1} (esperado {2}) {3}" -f $c.Path, $code, $c.Want, ($(if ($ok) { "OK" } else { "FALLO" })))
+}
+if ($fail) {
+  Write-Error "Health-check con fallos. Revisa Observability -> Logs -> Error (cero scriptThrewException = sano)."
+  exit 1
+}
+Write-Host "Deploy sano: sin scriptThrewException esperado. Verifica en Observability -> Logs -> Error en 5 min."

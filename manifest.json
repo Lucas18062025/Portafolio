@@ -1,0 +1,18 @@
+{
+  "name": "Lucas Villagra | Cybersecurity Analyst",
+  "short_name": "Lucas Villagra",
+  "description": "Portafolio de Lucas Villagra, analista de ciberseguridad: Red Team, pentesting, SIEM y automatización.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
