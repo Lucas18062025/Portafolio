@@ -32,7 +32,7 @@ Túneles cifrados WireGuard (UDP) con Proton VPN, verificados con controles loca
 Auditoría rápida de infraestructura para PyMEs del NOA con captura de leads y aviso instantáneo por Telegram. Backend en Cloudflare Workers con validación server-side y fallback local.
 `Cloudflare` `Workers` `Telegram` `JavaScript`
 
-**🛡️ SIEM v4.0 · Threat Intel**
+**🛡️ SIEM v4.0 · Threat Intel** — [ver despliegue](https://siem-windows-11.lucaslean1806.workers.dev/)
 Monitoreo en vivo cada 10s sobre Security + System: 9 Event IDs críticos con scoring CVSS v3.1 y alertas a Telegram con rate-limit anti-spam.
 `Python 3.10+` `Telegram API` `CVSS v3.1` `NIST`
 
