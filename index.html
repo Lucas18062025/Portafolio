@@ -37,25 +37,71 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Lucas Villagra",
-      "url": "https://portafolio.lucaslean1806.workers.dev/",
-      "jobTitle": "Cybersecurity Analyst",
-      "description": "Red Team Operations, Pentesting & AI Orchestration",
-      "knowsAbout": [
-        "Cybersecurity",
-        "Red Team Operations",
-        "Penetration Testing",
-        "AI Orchestration",
-        "Incident Response",
-        "Threat Intelligence",
-        "Python Automation",
-        "Linux Security"
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/in/lucas-villagra-9b5097147/",
-        "https://github.com/Lucas18062025",
-        "https://www.facebook.com/CyberAnalystTucuman"
+      "@graph": [
+        {
+          "@type": "ProfilePage",
+          "@id": "https://portafolio.lucaslean1806.workers.dev/#profile",
+          "url": "https://portafolio.lucaslean1806.workers.dev/",
+          "name": "Lucas Villagra | Cybersecurity Analyst",
+          "inLanguage": "es-AR",
+          "isPartOf": { "@id": "https://portafolio.lucaslean1806.workers.dev/#website" },
+          "mainEntity": { "@id": "https://portafolio.lucaslean1806.workers.dev/#person" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://portafolio.lucaslean1806.workers.dev/#person",
+          "name": "Lucas Villagra",
+          "url": "https://portafolio.lucaslean1806.workers.dev/",
+          "image": "https://portafolio.lucaslean1806.workers.dev/Foto_Perfil.webp",
+          "jobTitle": "Cybersecurity Analyst",
+          "description": "Analista en ciberseguridad: Red Team, pentesting, SIEM y automatización con Python, n8n e IA.",
+          "homeLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Tucumán",
+              "addressCountry": "AR"
+            }
+          },
+          "knowsAbout": [
+            "Cybersecurity",
+            "Red Team Operations",
+            "Penetration Testing",
+            "SIEM",
+            "Threat Intelligence",
+            "Python Automation",
+            "Linux Security",
+            "AI Orchestration"
+          ],
+          "alumniOf": [
+            { "@type": "Organization", "name": "Cisco Networking Academy" },
+            { "@type": "Organization", "name": "Google / Coursera" }
+          ],
+          "hasCredential": [
+            { "@type": "EducationalOccupationalCredential", "name": "Hacker Ético", "recognizedBy": { "@type": "Organization", "name": "Cisco" } },
+            { "@type": "EducationalOccupationalCredential", "name": "Google Cybersecurity Professional", "recognizedBy": { "@type": "Organization", "name": "Google" } },
+            { "@type": "EducationalOccupationalCredential", "name": "Google AI Essentials", "recognizedBy": { "@type": "Organization", "name": "Google" } }
+          ],
+          "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Cybersecurity Analyst",
+            "occupationLocation": { "@type": "Country", "name": "Argentina" },
+            "skills": "Pentesting, SIEM, Incident Response, Python, n8n"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/lucas-villagra-9b5097147/",
+            "https://github.com/Lucas18062025",
+            "https://www.facebook.com/CyberAnalystTucuman"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://portafolio.lucaslean1806.workers.dev/#website",
+          "url": "https://portafolio.lucaslean1806.workers.dev/",
+          "name": "Lucas Villagra Cybersecurity Portfolio",
+          "inLanguage": "es-AR",
+          "author": { "@id": "https://portafolio.lucaslean1806.workers.dev/#person" }
+        }
       ]
     }
     </script>
