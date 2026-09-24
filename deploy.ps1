@@ -44,7 +44,17 @@ $branch = (git rev-parse --abbrev-ref HEAD).Trim()
 git push origin $branch
 
 # 4b. Dry-run: el Worker debe ver el binding ASSETS. Si sale vacío, no deployar.
+#     Nota: npx escribe avisos por stderr aun con exit 0; con $ErrorActionPreference="Stop"
+#     eso abortaría como falso fallo. Se aísla a "Continue" y se decide por $LASTEXITCODE.
+$oldEAPDry = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
 $dryRun = npx wrangler deploy --dry-run 2>&1 | Out-String
+$dryExit = $LASTEXITCODE
+$ErrorActionPreference = $oldEAPDry
+if ($dryExit -ne 0) {
+  Write-Error "ABORTADO: dry-run falló (exit $dryExit). Revisa wrangler.jsonc antes de deployar.`n$dryRun"
+  exit 1
+}
 if ($dryRun -notmatch 'env\.ASSETS') {
   Write-Error "ABORTADO: dry-run sin binding env.ASSETS. Revisa wrangler.jsonc antes de deployar.`n$dryRun"
   exit 1
@@ -52,7 +62,15 @@ if ($dryRun -notmatch 'env\.ASSETS') {
 Write-Host "Dry-run OK: binding env.ASSETS presente."
 
 # 5. Deploy Cloudflare
+$oldEAPDeploy = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
 npx wrangler deploy
+$deployExit = $LASTEXITCODE
+$ErrorActionPreference = $oldEAPDeploy
+if ($deployExit -ne 0) {
+  Write-Error "ABORTADO: wrangler deploy falló (exit $deployExit)."
+  exit 1
+}
 
 # 6. Health-check post-deploy: sano = 200 en /, 200 en /manifest.json,
 #    404 en /worker.js (no exponer código) y 404 (nunca 500) en URL inexistente.
