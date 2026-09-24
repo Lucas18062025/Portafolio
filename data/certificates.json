@@ -1,5 +1,18 @@
 [
     {
+        "id": "aws-cloud-security-essentials-executives",
+        "title": "Cloud Security Essentials for Executives",
+        "icon": "fab fa-aws",
+        "meta": "",
+        "date": "2026-09-24",
+        "dateLabel": "SEP 24, 2026",
+        "issuer": "AWS",
+        "description": "Fundamentos de seguridad en la nube para decisiones ejecutivas: riesgo, compliance y cultura de seguridad en AWS.",
+        "preview": "assets/certificates/aws-cloud-security-essentials.webp",
+        "document": "assets/certificates/aws-cloud-security-essentials-executives.pdf",
+        "alt": "Certificado AWS Training & Certification — Cloud Security Essentials for Executives (Español LATAM)"
+    },
+    {
         "id": "cisco-ethical-hacker",
         "title": "Hacker Ético",
         "icon": "fas fa-user-secret",
