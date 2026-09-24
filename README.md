@@ -92,7 +92,7 @@ Simulación controlada de ciberataques con evidencia y remediación. `PyMEs · N
 **🎣 Concientización & Phishing Simulation**
 Campañas controladas de phishing: métricas de clics, reportes accionables y capacitación. `PyMEs · NOA`
 
-Contacto: [WhatsApp](https://wa.me/543814764474) · [Email](mailto:lucaslean1806@gmail.com) · [LinkedIn](https://www.linkedin.com/in/lucas-villagra-9b5097147/)
+Contacto: [WhatsApp](https://wa.me/543814764474) · [Email](mailto:lucaslean1806@gmail.com) · [LinkedIn](https://www.linkedin.com/in/lucas-villagra-cybersecurity/)
 
 ---
 
