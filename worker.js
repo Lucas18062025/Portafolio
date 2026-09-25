@@ -27,7 +27,7 @@ export default {
       const res = await env.ASSETS.fetch(request);
       // 404 brandeado: sirve /404.html manteniendo el estado 404 (SEO correcto).
       if (res.status === 404 && url.pathname !== "/404.html") {
-        const page = await env.ASSETS.fetch(new Request(new URL("/404.html", url), request));
+        const page = await env.ASSETS.fetch(new Request(new URL("/404.html", url)));
         if (page.status === 200) {
           return new Response(await page.text(), {
             status: 404,
