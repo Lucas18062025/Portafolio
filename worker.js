@@ -24,7 +24,18 @@ export default {
         console.error("[worker] env.ASSETS is undefined — falta \"binding\": \"ASSETS\" en wrangler.jsonc");
         return new Response("Internal Server Error: ASSETS binding missing", { status: 500 });
       }
-      return await env.ASSETS.fetch(request);
+      const res = await env.ASSETS.fetch(request);
+      // 404 brandeado: sirve /404.html manteniendo el estado 404 (SEO correcto).
+      if (res.status === 404 && url.pathname !== "/404.html") {
+        const page = await env.ASSETS.fetch(new Request(new URL("/404.html", url), request));
+        if (page.status === 200) {
+          return new Response(await page.text(), {
+            status: 404,
+            headers: { "content-type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+      return res;
     } catch (e) {
       console.error("[worker] ASSETS.fetch failed:", e?.message ?? e);
       return new Response("Not Found", { status: 404 });
