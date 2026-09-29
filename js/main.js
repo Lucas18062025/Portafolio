@@ -232,12 +232,20 @@ document.querySelectorAll('img').forEach((img) => {
     }
     document.querySelectorAll('.s-icon-box img').forEach((img) => {
         img.addEventListener('error', () => showStackFallback(img));
-        if (img.complete && img.naturalWidth === 0) showStackFallback(img);
+        // Solo imgs con src ya asignado: los data-src aún no cargaron.
+        if (img.hasAttribute('src') && img.complete && img.naturalWidth === 0) showStackFallback(img);
     });
     const tabs = Array.from(document.querySelectorAll('.stack-tab'));
     const panels = Array.from(document.querySelectorAll('.stack-panel'));
     const select = document.getElementById('stack-select');
     if (!tabs.length || !panels.length) return;
+    function loadStackImgs(panel) {
+        // Lazy real: los iconos externos se descargan al abrir su tab.
+        panel.querySelectorAll('img[data-src]').forEach((img) => {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+        });
+    }
     function activate(key) {
         tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.stack === key ? 'true' : 'false'));
         panels.forEach(p => {
@@ -245,10 +253,14 @@ document.querySelectorAll('img').forEach((img) => {
             if (show) p.removeAttribute('hidden');
             else p.setAttribute('hidden', '');
         });
+        const active = document.getElementById('panel-' + key);
+        if (active) loadStackImgs(active);
         if (select && select.value !== key) select.value = key;
     }
     tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.stack)));
     if (select) select.addEventListener('change', () => activate(select.value));
+    const initial = panels.find(p => !p.hasAttribute('hidden')) || panels[0];
+    if (initial) loadStackImgs(initial);
     const tablist = document.querySelector('.stack-tabs');
     if (tablist) tablist.addEventListener('keydown', (e) => {
         const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
