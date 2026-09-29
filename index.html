@@ -1050,95 +1050,130 @@
             <!-- ══ CERTIFICACIONES ══ -->
             <section id="certificaciones">
                 <h2>./ Certificaciones</h2>
-                <div class="grid">
-                    <div class="cert-card">
-                        <div class="cert-preview">
-                            <img src="assets/certificates/aws-cloud-security-essentials.webp"
-                                alt="Certificado AWS Training & Certification — Cloud Security Essentials for Executives (Español LATAM)" class="img-cover-top"
-                                width="400" height="250" loading="lazy" decoding="async">
+                <!-- Tabs: mismo patrón que ./ Marcos y Metodología -->
+                <div class="cert-tabs" role="tablist" aria-label="Tipos de certificaciones">
+                    <button class="cert-tab" role="tab" id="tab-certificaciones" aria-controls="panel-certificaciones"
+                        aria-selected="true" data-cert="certificaciones">Certificaciones
+                        profesionales</button>
+                    <button class="cert-tab" role="tab" id="tab-logros" aria-controls="panel-logros"
+                        aria-selected="false" data-cert="logros">Logros</button>
+                </div>
+                <!-- PANEL: CERTIFICACIONES PROFESIONALES -->
+                <div class="cert-panel" id="panel-certificaciones" role="tabpanel" tabindex="0"
+                    aria-labelledby="tab-certificaciones">
+                    <div class="grid" id="grid-certificaciones">
+                        <div class="cert-card">
+                            <div class="cert-preview">
+                                <img src="assets/certificates/cisco-ethical-hacker.webp"
+                                    alt="Certificado Cisco Networking Academy — Hacker Ético" class="img-cover-top"
+                                    width="400" height="250" loading="lazy" decoding="async">
+                            </div>
+                            <div class="cert-body">
+                                <h3><i class="fas fa-user-secret" aria-hidden="true"></i> Hacker Ético</h3>
+                                <p class="cert-meta"><span>SEP 8, 2026</span> &nbsp;·&nbsp; CISCO</p>
+                                <p>Metodología de hacking ético, detección de vulnerabilidades y defensa digital.</p>
+                                <a href="assets/certificates/cisco-ethical-hacker.pdf" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-b">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="cert-body">
-                            <h3><i class="fab fa-aws" aria-hidden="true"></i> Cloud Security</h3>
-                            <p class="cert-meta"><span>SEP 24, 2026</span> &nbsp;·&nbsp; AWS</p>
-                            <p>Fundamentos de seguridad en la nube para decisiones ejecutivas: riesgo, compliance y cultura de seguridad en AWS.</p>
-                            <a href="assets/certificates/aws-cloud-security-essentials-executives.pdf" target="_blank"
-                                rel="noopener noreferrer" class="btn btn-b">
-                                <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
-                            </a>
+
+                        <div class="cert-card">
+                            <div class="cert-preview">
+                                <img src="assets/certificates/google-cybersecurity.webp"
+                                    alt="Google Cybersecurity Certificate — Coursera" class="img-cover-top" width="400"
+                                    height="250" loading="lazy" decoding="async">
+                            </div>
+                            <div class="cert-body">
+                                <h3><i class="fab fa-google" aria-hidden="true"></i> Google Cybersecurity</h3>
+                                <p class="cert-meta"><span>FEB 5, 2026</span> &nbsp;·&nbsp; COURSERA
+                                </p>
+                                <p>Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis ·
+                                    Incident
+                                    response.</p>
+                                <a href="assets/certificates/cybersecurity-analyst.pdf" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-b">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="cert-card">
+                            <div class="cert-preview">
+                                <img src="assets/certificates/google-ai-essentials.webp"
+                                    alt="Google AI Essentials Certificate — Coursera" class="img-cover-top" width="400"
+                                    height="250" loading="lazy" decoding="async">
+                            </div>
+                            <div class="cert-body">
+                                <h3><i class="fab fa-google" aria-hidden="true"></i> Google AI Essentials</h3>
+                                <p class="cert-meta"><span>FEB 6, 2026</span> &nbsp;·&nbsp; COURSERA
+                                </p>
+                                <p>AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con
+                                    Generative AI.</p>
+                                <a href="assets/certificates/google-ai-essentials.pdf" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-b">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <!-- PANEL: LOGROS -->
+                <div class="cert-panel" id="panel-logros" role="tabpanel" tabindex="0"
+                    aria-labelledby="tab-logros" hidden>
+                    <div class="grid" id="grid-logros">
+                        <div class="cert-card">
+                            <div class="cert-preview">
+                                <img src="assets/certificates/microsoft-proteccion-datos-confidenciales.webp"
+                                    alt="Logro Microsoft Learn — Protección de datos confidenciales en un mundo digital (Lucas Villagra, 28 sep 2026). Módulo completado, no es certificación profesional por examen."
+                                    class="img-cover-top" width="400" height="250" loading="lazy" decoding="async">
+                            </div>
+                            <div class="cert-body">
+                                <h3><i class="fab fa-microsoft" aria-hidden="true"></i> Protección de datos</h3>
+                                <p class="cert-meta"><span>SEP 28, 2026</span> &nbsp;·&nbsp; MICROSOFT</p>
+                                <p>Clasificación de datos sensibles, cifrado, DLP, control de accesos y buenas prácticas
+                                    de protección de la información.</p>
+                                <a href="assets/certificates/microsoft-proteccion-datos-confidenciales.pdf" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-b">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER LOGRO</span>
+                                </a>
+                            </div>
+                        </div>
 
-                    <div class="cert-card">
-                        <div class="cert-preview">
-                            <img src="assets/certificates/cisco-ethical-hacker.webp"
-                                alt="Certificado Cisco Networking Academy — Hacker Ético" class="img-cover-top"
-                                width="400" height="250" loading="lazy" decoding="async">
+                        <div class="cert-card">
+                            <div class="cert-preview">
+                                <img src="assets/certificates/aws-cloud-security-essentials.webp"
+                                    alt="Certificado AWS Training & Certification — Cloud Security Essentials for Executives (Español LATAM)" class="img-cover-top"
+                                    width="400" height="250" loading="lazy" decoding="async">
+                            </div>
+                            <div class="cert-body">
+                                <h3><i class="fab fa-aws" aria-hidden="true"></i> Cloud Security</h3>
+                                <p class="cert-meta"><span>SEP 24, 2026</span> &nbsp;·&nbsp; AWS</p>
+                                <p>Fundamentos de seguridad en la nube para decisiones ejecutivas: riesgo, compliance y cultura de seguridad en AWS.</p>
+                                <a href="assets/certificates/aws-cloud-security-essentials-executives.pdf" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-b">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER LOGRO</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="cert-body">
-                            <h3><i class="fas fa-user-secret" aria-hidden="true"></i> Hacker Ético</h3>
-                            <p class="cert-meta"><span>SEP 8, 2026</span> &nbsp;·&nbsp; CISCO</p>
-                            <p>Metodología de hacking ético, detección de vulnerabilidades y defensa digital.</p>
-                            <a href="assets/certificates/cisco-ethical-hacker.pdf" target="_blank"
-                                rel="noopener noreferrer" class="btn btn-b">
-                                <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
-                            </a>
-                        </div>
-                    </div>
 
-                    <div class="cert-card">
-                        <div class="cert-preview">
-                            <img src="assets/certificates/google-cybersecurity.webp"
-                                alt="Google Cybersecurity Certificate — Coursera" class="img-cover-top" width="400"
-                                height="250" loading="lazy" decoding="async">
-                        </div>
-                        <div class="cert-body">
-                            <h3><i class="fab fa-google" aria-hidden="true"></i> Google Cybersecurity</h3>
-                            <p class="cert-meta"><span>FEB 5, 2026</span> &nbsp;·&nbsp; COURSERA
-                            </p>
-                            <p>Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis ·
-                                Incident
-                                response.</p>
-                            <a href="assets/certificates/cybersecurity-analyst.pdf" target="_blank"
-                                rel="noopener noreferrer" class="btn btn-b">
-                                <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="cert-card">
-                        <div class="cert-preview">
-                            <img src="assets/certificates/google-ai-essentials.webp"
-                                alt="Google AI Essentials Certificate — Coursera" class="img-cover-top" width="400"
-                                height="250" loading="lazy" decoding="async">
-                        </div>
-                        <div class="cert-body">
-                            <h3><i class="fab fa-google" aria-hidden="true"></i> Google AI Essentials</h3>
-                            <p class="cert-meta"><span>FEB 6, 2026</span> &nbsp;·&nbsp; COURSERA
-                            </p>
-                            <p>AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con
-                                Generative AI.</p>
-                            <a href="assets/certificates/google-ai-essentials.pdf" target="_blank"
-                                rel="noopener noreferrer" class="btn btn-b">
-                                <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="cert-card">
-                        <div class="cert-preview">
-                            <img src="assets/certificates/big-school-cybersecurity.webp"
-                                alt="Certificado BIG School — Ciberseguridad y Hacking Ético" class="img-cover-top"
-                                width="400" height="250" loading="lazy" decoding="async">
-                        </div>
-                        <div class="cert-body">
-                            <h3><i class="fas fa-user-shield" aria-hidden="true"></i> Ciberseguridad y Hacking Ético
-                            </h3>
-                            <p class="cert-meta"><span>ABR 11, 2026</span> &nbsp;·&nbsp; BIG SCHOOL</p>
-                            <p>Técnicas de detección de vulnerabilidades y defensa digital.</p>
-                            <a href="assets/certificates/certificado-lucas-villagra-bigschool.pdf" target="_blank"
-                                rel="noopener noreferrer" class="btn btn-b">
-                                <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER CREDENCIAL</span>
-                            </a>
+                        <div class="cert-card">
+                            <div class="cert-preview">
+                                <img src="assets/certificates/big-school-cybersecurity.webp"
+                                    alt="Certificado BIG School — Ciberseguridad y Hacking Ético" class="img-cover-top"
+                                    width="400" height="250" loading="lazy" decoding="async">
+                            </div>
+                            <div class="cert-body">
+                                <h3><i class="fas fa-user-shield" aria-hidden="true"></i> Ciberseguridad y Hacking Ético
+                                </h3>
+                                <p class="cert-meta"><span>ABR 11, 2026</span> &nbsp;·&nbsp; BIG SCHOOL</p>
+                                <p>Técnicas de detección de vulnerabilidades y defensa digital.</p>
+                                <a href="assets/certificates/certificado-lucas-villagra-bigschool.pdf" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-b">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i><span>VER LOGRO</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

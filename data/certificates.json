@@ -4,7 +4,7 @@
         "title": "Protección de datos",
         "icon": "fab fa-microsoft",
         "meta": "",
-        "type": "formacion",
+        "type": "logro",
         "date": "2026-09-28",
         "dateLabel": "SEP 28, 2026",
         "issuer": "MICROSOFT",
@@ -24,7 +24,8 @@
         "description": "Fundamentos de seguridad en la nube para decisiones ejecutivas: riesgo, compliance y cultura de seguridad en AWS.",
         "preview": "assets/certificates/aws-cloud-security-essentials.webp",
         "document": "assets/certificates/aws-cloud-security-essentials-executives.pdf",
-        "alt": "Certificado AWS Training & Certification — Cloud Security Essentials for Executives (Español LATAM)"
+        "alt": "Certificado AWS Training & Certification — Cloud Security Essentials for Executives (Español LATAM)",
+        "type": "logro"
     },
     {
         "id": "cisco-ethical-hacker",
@@ -37,7 +38,8 @@
         "description": "Curso oficial Cisco Networking Academy: metodología de hacking ético, detección de vulnerabilidades y defensa digital.",
         "preview": "assets/certificates/cisco-ethical-hacker.webp",
         "document": "assets/certificates/cisco-ethical-hacker.pdf",
-        "alt": "Certificado Cisco Networking Academy — Hacker Ético"
+        "alt": "Certificado Cisco Networking Academy — Hacker Ético",
+        "type": "certificacion"
     },
     {
         "id": "google-cybersecurity",
@@ -50,7 +52,8 @@
         "description": "Python · Linux · SQL · SIEM (Chronicle/Splunk) · IDS (Suricata) · Threat analysis · Incident response.",
         "preview": "assets/certificates/google-cybersecurity.webp",
         "document": "assets/certificates/cybersecurity-analyst.pdf",
-        "alt": "Google Cybersecurity Certificate — Coursera"
+        "alt": "Google Cybersecurity Certificate — Coursera",
+        "type": "certificacion"
     },
     {
         "id": "google-ai-essentials",
@@ -63,7 +66,8 @@
         "description": "AI Tools · Prompt Engineering · Uso responsable de IA · Productividad aumentada con Generative AI.",
         "preview": "assets/certificates/google-ai-essentials.webp",
         "document": "assets/certificates/google-ai-essentials.pdf",
-        "alt": "Google AI Essentials Certificate — Coursera"
+        "alt": "Google AI Essentials Certificate — Coursera",
+        "type": "certificacion"
     },
     {
         "id": "big-school-cybersecurity",
@@ -76,6 +80,7 @@
         "description": "Técnicas de detección de vulnerabilidades y defensa digital.",
         "preview": "assets/certificates/big-school-cybersecurity.webp",
         "document": "assets/certificates/certificado-lucas-villagra-bigschool.pdf",
-        "alt": "Certificado BIG School — Ciberseguridad y Hacking Ético"
+        "alt": "Certificado BIG School — Ciberseguridad y Hacking Ético",
+        "type": "logro"
     }
 ]

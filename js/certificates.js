@@ -3,7 +3,7 @@ const CERTIFICATES_URL = "./data/certificates.json";
 function createCertificateCard(certificate) {
     const card = document.createElement("div");
     card.className = "cert-card";
-    const isFormacion = certificate.type === "formacion";
+    const isFormacion = certificate.type === "logro";
 
     const preview = document.createElement("div");
     preview.className = "cert-preview";
@@ -62,10 +62,34 @@ function createCertificateCard(certificate) {
 }
 
 async function loadCertificates() {
-    const container = document.querySelector("#certificaciones .grid");
+    const gridCert = document.querySelector("#grid-certificaciones");
+    const gridLogros = document.querySelector("#grid-logros");
+    const legacy = document.querySelector("#certificaciones .grid");
 
-    if (!container) {
-        return;
+    // Agrupa por tipo: certificaciones profesionales vs logros.
+    function renderGrouped(certificates) {
+        const fragCert = document.createDocumentFragment();
+        const fragLogros = document.createDocumentFragment();
+
+        certificates.forEach((certificate) => {
+            const card = createCertificateCard(certificate);
+            if (certificate.type === "logro") {
+                fragLogros.appendChild(card);
+            } else {
+                fragCert.appendChild(card);
+            }
+        });
+
+        gridCert.replaceChildren(fragCert);
+        gridCert.dataset.dynamicCertificates = "true";
+        gridLogros.replaceChildren(fragLogros);
+        gridLogros.dataset.dynamicCertificates = "true";
+    }
+
+    if (!gridCert || !gridLogros) {
+        if (!legacy) {
+            return;
+        }
     }
 
     try {
@@ -83,25 +107,36 @@ async function loadCertificates() {
             );
         }
 
-        const fragment = document.createDocumentFragment();
+        if (gridCert && gridLogros) {
+            // Reemplaza las tarjetas HTML hardcodeadas
+            // por las tarjetas generadas desde certificates.json.
+            renderGrouped(certificates);
+        } else {
+            const fragment = document.createDocumentFragment();
 
-        certificates.forEach((certificate) => {
-            fragment.appendChild(
-                createCertificateCard(certificate)
-            );
-        });
+            certificates.forEach((certificate) => {
+                fragment.appendChild(
+                    createCertificateCard(certificate)
+                );
+            });
 
-        // Reemplaza las tarjetas HTML hardcodeadas
-        // por las tarjetas generadas desde certificates.json.
-        container.replaceChildren(fragment);
-
-        container.dataset.dynamicCertificates = "true";
+            legacy.replaceChildren(fragment);
+            legacy.dataset.dynamicCertificates = "true";
+        }
 
     } catch (error) {
         // Si falla la carga dinámica, se conservan las tarjetas
         // hardcodeadas del HTML como respaldo: la sección nunca
         // queda vacía frente al visitante.
-        container.dataset.certificatesError = "true";
+        if (gridCert) {
+            gridCert.dataset.certificatesError = "true";
+        }
+        if (gridLogros) {
+            gridLogros.dataset.certificatesError = "true";
+        }
+        if (legacy) {
+            legacy.dataset.certificatesError = "true";
+        }
         console.error(
             "No se pudieron cargar los certificados dinámicos, se mantiene el contenido estático:",
             error
@@ -109,7 +144,57 @@ async function loadCertificates() {
     }
 }
 
-document.addEventListener(
-    "DOMContentLoaded",
-    loadCertificates
-);
+function initCertTabs() {
+    const tabs = Array.from(document.querySelectorAll(".cert-tab"));
+    const panels = Array.from(document.querySelectorAll(".cert-panel"));
+    if (!tabs.length || !panels.length) {
+        return;
+    }
+    function activate(key) {
+        tabs.forEach((t) =>
+            t.setAttribute(
+                "aria-selected",
+                t.dataset.cert === key ? "true" : "false"
+            )
+        );
+        panels.forEach((p) => {
+            const show = p.id === "panel-" + key;
+            if (show) {
+                p.removeAttribute("hidden");
+            } else {
+                p.setAttribute("hidden", "");
+            }
+        });
+    }
+    tabs.forEach((t) =>
+        t.addEventListener("click", () => activate(t.dataset.cert))
+    );
+    const tablist = document.querySelector(".cert-tabs");
+    if (tablist) {
+        tablist.addEventListener("keydown", (e) => {
+            const i = tabs.findIndex(
+                (t) => t.getAttribute("aria-selected") === "true"
+            );
+            let n = null;
+            if (e.key === "ArrowRight") {
+                n = (i + 1) % tabs.length;
+            } else if (e.key === "ArrowLeft") {
+                n = (i - 1 + tabs.length) % tabs.length;
+            } else if (e.key === "Home") {
+                n = 0;
+            } else if (e.key === "End") {
+                n = tabs.length - 1;
+            } else {
+                return;
+            }
+            tabs[n].focus();
+            activate(tabs[n].dataset.cert);
+            e.preventDefault();
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadCertificates();
+    initCertTabs();
+});
