@@ -261,6 +261,20 @@ document.querySelectorAll('img').forEach((img) => {
     if (select) select.addEventListener('change', () => activate(select.value));
     const initial = panels.find(p => !p.hasAttribute('hidden')) || panels[0];
     if (initial) loadStackImgs(initial);
+    // Anticipar: precarga el tab al pasar el mouse (antes del clic).
+    tabs.forEach(t => t.addEventListener('mouseenter', () => {
+        const p = document.getElementById('panel-' + t.dataset.stack);
+        if (p) loadStackImgs(p);
+    }, { once: true }));
+    // Red de seguridad: precarga todo en idle (fuera de la carga inicial).
+    function preloadAllStackImgs() {
+        panels.forEach(loadStackImgs);
+    }
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(preloadAllStackImgs, { timeout: 3000 });
+    } else {
+        setTimeout(preloadAllStackImgs, 1500);
+    }
     const tablist = document.querySelector('.stack-tabs');
     if (tablist) tablist.addEventListener('keydown', (e) => {
         const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
