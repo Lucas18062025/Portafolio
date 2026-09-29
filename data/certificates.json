@@ -1,5 +1,19 @@
 [
     {
+        "id": "microsoft-proteccion-datos-confidenciales",
+        "title": "Protección de datos",
+        "icon": "fab fa-microsoft",
+        "meta": "",
+        "type": "formacion",
+        "date": "2026-09-28",
+        "dateLabel": "SEP 28, 2026",
+        "issuer": "MICROSOFT",
+        "description": "Clasificación de datos sensibles, cifrado, DLP, control de accesos y buenas prácticas de protección de la información.",
+        "preview": "assets/certificates/microsoft-proteccion-datos-confidenciales.webp",
+        "document": "assets/certificates/microsoft-proteccion-datos-confidenciales.pdf",
+        "alt": "Logro Microsoft Learn — Protección de datos confidenciales en un mundo digital (Lucas Villagra, 28 sep 2026). Módulo completado, no es certificación profesional por examen."
+    },
+    {
         "id": "aws-cloud-security-essentials-executives",
         "title": "Cloud Security",
         "icon": "fab fa-aws",

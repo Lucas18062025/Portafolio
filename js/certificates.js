@@ -3,6 +3,7 @@ const CERTIFICATES_URL = "./data/certificates.json";
 function createCertificateCard(certificate) {
     const card = document.createElement("div");
     card.className = "cert-card";
+    const isFormacion = certificate.type === "formacion";
 
     const preview = document.createElement("div");
     preview.className = "cert-preview";
@@ -52,7 +53,7 @@ function createCertificateCard(certificate) {
     linkIcon.className = "fas fa-file-pdf";
     linkIcon.setAttribute("aria-hidden", "true");
     link.append(linkIcon, document.createElement("span"));
-    link.lastElementChild.textContent = "VER CREDENCIAL";
+    link.lastElementChild.textContent = isFormacion ? "VER LOGRO" : "VER CREDENCIAL";
 
     body.append(title, meta, description, link);
     card.append(preview, body);

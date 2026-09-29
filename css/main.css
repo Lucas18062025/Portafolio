@@ -1001,6 +1001,8 @@
         .cert-body .btn {
             margin-top: auto;
             align-self: flex-start;
+            min-width: 215px;
+            justify-content: center;
         }
 
         .cert-body h3 {
