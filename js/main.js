@@ -162,6 +162,9 @@ function draw(now) {
 }
 
 function playCanvas() {
+    if (prefersReducedMotion) {
+        return;
+    }
     if (!isAnimating) {
         isAnimating = true;
         last = 0;
@@ -187,8 +190,13 @@ function logCanvasMode(mode) {
     }
 }
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 draw();
-logCanvasMode('full');
+logCanvasMode(prefersReducedMotion ? 'reduced-motion' : 'full');
+if (prefersReducedMotion) {
+    pauseCanvas();
+}
 
 
 function handleImgError(img) {

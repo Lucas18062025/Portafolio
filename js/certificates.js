@@ -14,6 +14,8 @@ function createCertificateCard(certificate) {
     image.width = 400;
     image.height = 250;
     image.loading = "lazy";
+    image.decoding = "async";
+    image.onerror = () => image.setAttribute("data-error", "true");
     image.style.objectFit = "cover";
     image.style.objectPosition = "top";
     preview.appendChild(image);

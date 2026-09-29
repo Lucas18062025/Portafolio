@@ -109,7 +109,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#020408">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://skillicons.dev">
@@ -127,7 +127,7 @@
 
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
-    <canvas id="bg-canvas"></canvas>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
     <div class="wrapper">
 
@@ -208,27 +208,27 @@
 
                             <div class="system-row">
                                 <span>SEGURIDAD WEB</span>
-                                <span class="system-check">✓</span>
+                                <span class="system-check" aria-hidden="true">✓</span>
                             </div>
 
                             <div class="system-row">
                                 <span>PENTESTING</span>
-                                <span class="system-check">✓</span>
+                                <span class="system-check" aria-hidden="true">✓</span>
                             </div>
 
                             <div class="system-row">
                                 <span>SIEM</span>
-                                <span class="system-check">✓</span>
+                                <span class="system-check" aria-hidden="true">✓</span>
                             </div>
 
                             <div class="system-row">
                                 <span>AUTOMATIZACIÓN</span>
-                                <span class="system-check">✓</span>
+                                <span class="system-check" aria-hidden="true">✓</span>
                             </div>
 
                             <div class="system-row">
                                 <span>AI</span>
-                                <span class="system-check">✓</span>
+                                <span class="system-check" aria-hidden="true">✓</span>
                             </div>
 
                         </div>
@@ -272,7 +272,7 @@
                 <!-- Desplegable (mobile + alternativa accesible) -->
                 <label for="stack-select" class="sr-only">Seleccionar área
                     del stack</label>
-                <select id="stack-select" class="stack-select" aria-label="Seleccionar área del stack">
+                <select id="stack-select" class="stack-select">
                     <option value="frameworks" selected>Marcos y metodología — estándares</option>
                     <option value="base">Base técnica — lenguajes &amp; sistemas</option>
                     <option value="infra">Infraestructura &amp; Deploy</option>
@@ -289,7 +289,7 @@
                     </div>
                     <div class="stack-grid">
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#e63946"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#e63946"
                                     stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
                                     <circle cx="12" cy="12" r="6.5" />
                                     <circle cx="12" cy="12" r="1.6" fill="#e63946" stroke="none" />
@@ -298,7 +298,7 @@
                                 ATT&amp;CK</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#38bdf8"
                                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
                                     aria-hidden="true">
                                     <path d="M12 2.5l7.5 2.8v5.4c0 4.6-3.2 8.3-7.5 10.3-4.3-2-7.5-5.7-7.5-10.3V5.3z" />
@@ -307,7 +307,7 @@
                                 Top 10</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#5aa9e6"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#5aa9e6"
                                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
                                     aria-hidden="true">
                                     <circle cx="12" cy="12" r="8.5" />
@@ -316,7 +316,7 @@
                                 CSF</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#8b9cf0"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#8b9cf0"
                                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
                                     aria-hidden="true">
                                     <circle cx="12" cy="12" r="8.5" stroke-dasharray="3 2.2" />
@@ -325,7 +325,7 @@
                             <span>ISO/IEC 27001</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#7bc950"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#7bc950"
                                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
                                     aria-hidden="true">
                                     <rect x="6" y="4.5" width="12" height="15" rx="2" />
@@ -335,7 +335,7 @@
                             <span>CIS Benchmarks</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M4 15a8 8 0 0 1 16 0" fill="none" stroke="#334155"
                                         stroke-width="3.4" stroke-linecap="round" />
                                     <path d="M4 15a8 8 0 0 1 5.2-7.4" fill="none" stroke="#22c55e"
@@ -359,36 +359,36 @@
                     </div>
                     <div class="stack-grid">
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=kali"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=kali"
                                     alt="Kali Linux"><i class="fab fa-linux s-fallback"></i></div><span>Kali
                                 Linux</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=ubuntu"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=ubuntu"
                                     alt="Ubuntu"><i class="fab fa-ubuntu s-fallback"></i></div><span>Ubuntu</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=windows"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=windows"
                                     alt="Windows"><i class="fab fa-windows s-fallback"></i></div><span>Windows</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=py"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=py"
                                     alt="Python"><i class="fab fa-python s-fallback"></i></div><span>Python</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=html"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=html"
                                     alt="HTML"><i class="fab fa-html5 s-fallback"></i></div><span>HTML</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=css"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=css"
                                     alt="CSS"><i class="fab fa-css3-alt s-fallback"></i></div><span>CSS</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=vscode"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=vscode"
                                     alt="VS Code"><i class="fas fa-code s-fallback"></i></div><span>VS Code</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=github"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=github"
                                     alt="GitHub"><i class="fab fa-github s-fallback"></i></div><span>GitHub</span>
                         </div>
                     </div>
@@ -403,23 +403,23 @@
                     </div>
                     <div class="stack-grid">
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=docker"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=docker"
                                     alt="Docker"><i class="fab fa-docker s-fallback"></i></div><span>Docker</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=gitlab"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=gitlab"
                                     alt="GitLab"><i class="fab fa-gitlab s-fallback"></i></div><span>GitLab</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=vercel"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=vercel"
                                     alt="Vercel"><i class="fas fa-cloud s-fallback"></i></div><span>Vercel</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=netlify"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=netlify"
                                     alt="Netlify"><i class="fas fa-globe s-fallback"></i></div><span>Netlify</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://skillicons.dev/icons?i=postgres"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://skillicons.dev/icons?i=postgres"
                                     alt="PostgreSQL"><i class="fas fa-database s-fallback"></i></div><span>PostgreSQL</span>
                         </div>
                     </div>
@@ -432,7 +432,7 @@
                     </div>
                     <div class="stack-grid">
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linecap="round">
                                     <circle cx="12" cy="12" r="7" />
                                     <circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none" />
@@ -440,21 +440,21 @@
                                 </svg></div><span>Red Team</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="11" cy="11" r="6" />
                                     <path d="M20 20l-4.3-4.3" />
                                 </svg></div><span>Ethical Hacking</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="8" cy="12" r="4" />
                                     <path d="M11 12h10M17 12v3M20 12v3" />
                                 </svg></div><span>Pentesting</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="3" y="5" width="18" height="14" rx="2" />
                                     <path d="M3 7l9 6 9-6" />
@@ -470,27 +470,27 @@
                     </div>
                     <div class="stack-grid">
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linejoin="round">
                                     <path d="M12 2l8 3v6c0 5-3.4 9-8 11-4.6-2-8-6-8-11V5z" />
                                 </svg></div><span>Blue Team</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linejoin="round">
                                     <rect x="5" y="11" width="14" height="9" rx="2" />
                                     <path d="M8 11V7a4 4 0 0 1 8 0v4" />
                                 </svg></div><span>Hardening</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linejoin="round">
                                     <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" />
                                     <circle cx="12" cy="12" r="3" />
                                 </svg></div><span>IDS</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linejoin="round">
                                     <rect x="6" y="4" width="12" height="16" rx="2" />
                                     <rect x="9" y="2" width="6" height="3" rx="1" />
@@ -510,7 +510,7 @@
                     </div>
                     <div class="stack-grid">
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linejoin="round">
                                     <circle cx="6" cy="18" r="2.2" />
                                     <circle cx="18" cy="18" r="2.2" />
@@ -519,7 +519,7 @@
                                 </svg></div><span>AI Engineering</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linejoin="round">
                                     <rect x="4" y="4" width="16" height="4.5" rx="1.5" />
                                     <rect x="4" y="10" width="16" height="4.5" rx="1.5" />
@@ -527,18 +527,18 @@
                                 </svg></div><span>Machine<br />Learning</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M9 4v5M15 4v5M7 9h10l-1 4a4 4 0 0 1-8 0z" />
                                     <path d="M12 17v3" />
                                 </svg></div><span>MCP</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><img loading="lazy" src="https://cdn.simpleicons.org/n8n/8b7fd1"
+                            <div class="s-icon-box"><img width="26" height="26" decoding="async" loading="lazy" src="https://cdn.simpleicons.org/n8n/8b7fd1"
                                     alt="n8n"><i class="fas fa-gear s-fallback"></i></div><span>n8n</span>
                         </div>
                         <div class="s-item">
-                            <div class="s-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <div class="s-icon-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="3" y="4" width="18" height="16" rx="2" />
                                     <path d="M7 9l3 3-3 3" />
@@ -760,7 +760,7 @@
                                 srcset="assets/projects/sentinel-v7-640.webp 640w, assets/projects/sentinel-v7-1280.webp 1280w"
                                 sizes="(max-width: 900px) 100vw, 430px"
                                 alt="Sentinel V7 Apex — plataforma de automatización defensiva y mantenimiento unificado"
-                                width="1280" height="714" loading="lazy">
+                                width="1280" height="714" loading="lazy" decoding="async">
                         </div>
 
                         <div class="tag-row">
