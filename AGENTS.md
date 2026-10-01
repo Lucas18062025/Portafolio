@@ -11,7 +11,7 @@ Sitio estático (HTML/CSS/JS vanilla) + `worker.js` Cloudflare Workers con
 
 ## Comandos (usar solo estos)
 - Preview: `npx serve .`
-- Deploy: `.\deploy.ps1 -Message "feat: ..."` (hace dry-run + health-checks solo)
+- Deploy: `.\deploy.ps1 -Message "feat: ..."` (guards + push + dry-run + deploy + health-checks)
 - Diagnóstico: `npx --yes wrangler@4.136.3 deploy --dry-run`
 
 ## Estilo
