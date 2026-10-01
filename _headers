@@ -10,22 +10,79 @@
   Cross-Origin-Resource-Policy: same-origin
   Origin-Agent-Cluster: ?1
   X-Permitted-Cross-Domain-Policies: none
+
+# HTML y contenido dinámico: corto (5 min). Cada ruta matchea UNA sola
+# regla de Cache-Control, asi Cloudflare no fusiona dos valores.
+/
   Cache-Control: public, max-age=300, must-revalidate
 
-/assets/*
-  Cache-Control: public, max-age=31536000, immutable
+/blog/*
+  Cache-Control: public, max-age=300, must-revalidate
 
-/assets/cv/*
-  Cache-Control: public, max-age=86400, must-revalidate
+/data/*
+  Cache-Control: public, max-age=300, must-revalidate
 
+/404.html
+  Cache-Control: public, max-age=300, must-revalidate
+
+/404
+  Cache-Control: public, max-age=300, must-revalidate
+
+# Documentos de descubrimiento: 1 hora.
+/manifest.json
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/robots.txt
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/.well-known/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/google0cbe515c88088343.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# CSS/JS versionados con ?v=: 1 hora.
 /css/*
   Cache-Control: public, max-age=3600, must-revalidate
 
 /js/*
   Cache-Control: public, max-age=3600, must-revalidate
 
-/assets/certificates/*
-  Cache-Control: public, max-age=86400, must-revalidate
+# Inmutables (no cambian sin cambiar de nombre): 1 anio.
+# NOTA: no existe bloque /assets/* generico a proposito.
+/assets/projects/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/og/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/blog/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/hero_bg_dark_luxury.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/Foto_Perfil.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/Foto_Perfil-320.webp
+  Cache-Control: public, max-age=31536000, immutable
 
 /favicon.ico
+  Cache-Control: public, max-age=86400, must-revalidate
+
+# Documentos que se actualizan (CV, certificados): 1 dia.
+/assets/cv/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+/assets/certificates/*
   Cache-Control: public, max-age=86400, must-revalidate
