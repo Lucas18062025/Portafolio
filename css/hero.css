@@ -12,6 +12,7 @@
     isolation: isolate;
     padding: 90px 20px 0;
     box-sizing: border-box;
+    background-color: #02040A;
 }
 
 /* Background */
@@ -31,19 +32,22 @@
     z-index: -2;
 }
 
-/* Technical grid */
+/* Technical grid: cyan #00D4FF visible sobre negro profundo.
+   height:auto pisa el height:2px heredado de header::after (main.css),
+   que la aplastaba en una franja invisible. */
 .hero::after {
     content: "";
     position: absolute;
     inset: 0;
+    height: auto;
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.025) 1px,
+        linear-gradient(rgba(0, 212, 255, 0.28) 1px,
             transparent 1px),
         linear-gradient(90deg,
-            rgba(255, 255, 255, 0.025) 1px,
+            rgba(0, 212, 255, 0.28) 1px,
             transparent 1px);
 
-    background-size: 42px 42px;
+    background-size: 44px 44px;
     mask-image: linear-gradient(to bottom,
             black 0%,
             rgba(0, 0, 0, 0.65) 65%,
