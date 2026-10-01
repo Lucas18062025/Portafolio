@@ -6,6 +6,7 @@
 | T1 | `google*.html` existe | aborta si falta |
 | T2 | `wrangler.jsonc` tiene `"binding": "ASSETS"` | aborta si falta |
 | T3 | `.assetsignore` contiene `^worker\.js$` | aborta si falta |
+| T3b | `.assetsignore` contiene `AGENTS.md`, `SECURITY.md`, `TEST_PLAN.md`, `TOOLS.md` | aborta si falta |
 | T4 | `dry-run` contiene `env.ASSETS` | aborta si falta |
 | T5 | `GET /` → 200, `/manifest.json` → 200, `/worker.js` → 404, `/no-existo` → 404 (nunca 500) | aborta si falla |
 

@@ -16,6 +16,10 @@ worker.js
 .github
 .github/**
 deploy.ps1
+AGENTS.md
+SECURITY.md
+TEST_PLAN.md
+TOOLS.md
 .gstack
 .gstack/**
 vercel.json

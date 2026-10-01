@@ -26,6 +26,17 @@ if (-not (Select-String -Path ./.assetsignore -Pattern '^worker\.js$' -Quiet)) {
   exit 1
 }
 
+# 0d. Guardia: docs internos .md no deben exponerse como assets públicos.
+#     AGENTS.md/SECURITY.md/TEST_PLAN.md/TOOLS.md revelan pipeline y secretos
+#     (hallazgo oct-2026: respondían 200 en producción).
+foreach ($doc in @("AGENTS.md", "SECURITY.md", "TEST_PLAN.md", "TOOLS.md")) {
+  $esc = [regex]::Escape($doc)
+  if (-not (Select-String -Path ./.assetsignore -Pattern "^$esc$" -Quiet)) {
+    Write-Error "ABORTADO: falta `$doc` en .assetsignore. Los docs internos quedarían descargables en /$doc."
+    exit 1
+  }
+}
+
 # 1. Ver qué cambió
 git status --short
 git diff --stat
