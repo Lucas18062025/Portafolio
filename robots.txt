@@ -1,4 +1,5 @@
 ﻿User-agent: *
 Allow: /
+Disallow: /worker.js
 
 Sitemap: https://portafolio.lucaslean1806.workers.dev/sitemap.xml
