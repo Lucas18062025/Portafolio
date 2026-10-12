@@ -24,7 +24,8 @@ if (!cspLine) {
 const csp = cspLine.split('Content-Security-Policy:')[1].trim();
 
 function hasDirective(directive) {
-  return new RegExp(`${directive}\s+`).test(csp);
+  // Accept the directive whether it is followed by whitespace, semicolon or end‑of‑string
+  return new RegExp(`${directive}(\\s+|;)`).test(csp);
 }
 
 const required = ['report-uri', 'report-to'];
