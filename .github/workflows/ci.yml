@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies (if any)
+        run: |
+          if [ -f package.json ]; then npm ci; fi
+      - name: Lint (if lint script exists)
+        run: |
+          if npm run | grep -q lint; then npm run lint; else echo "No lint script"; fi
+      - name: Verify CSP header
+        run: node scripts/verify-csp.js
