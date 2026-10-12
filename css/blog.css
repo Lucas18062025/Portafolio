@@ -201,6 +201,7 @@
     background: var(--blog-card-hover);
     border-color: var(--blog-border-bright);
     box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35);
+    outline: 2px solid var(--blog-accent2);
 }
 
 .blog-card:nth-child(2) {
