@@ -9,6 +9,12 @@ Sitio estático (HTML/CSS/JS vanilla) + `worker.js` Cloudflare Workers con
 - `worker.js`, `wrangler.jsonc`, `deploy.ps1`, `_headers`, `sitemap.xml`, `google*.html`
 - `.agents/rules/workflow.md`: pipeline y convención git (fuente de verdad, no duplicar aquí).
 
+## Mapa de rutas (absolutas, nunca relativas)
+- Real: `C:\Users\HP Ryzen 5\Proyectos\Portafolio`
+- Preview: `C:\Users\HP Ryzen 5\OpenCode\portafolio-preview` (carpeta separada, NO subcarpeta del real)
+- Notas Obsidian: `C:\Users\HP Ryzen 5\Documents\Obsidian Vault\Vault\Portafolio\Actas\`
+- Prohibido crear `OpenCode/` o `Vault/` dentro del repo real.
+
 ## Comandos (usar solo estos)
 - Preview: `npx serve .`
 - Deploy: `.\deploy.ps1 -Message "feat: ..."` (guards + push + dry-run + deploy + health-checks)
@@ -20,7 +26,8 @@ Sitio estático (HTML/CSS/JS vanilla) + `worker.js` Cloudflare Workers con
 
 ## Reglas
 - Orden: este AGENTS.md > `.agents/rules/workflow.md` > `deploy.ps1` > código.
-- Nunca editar el real directo: prototipar en `OpenCode/portafolio-preview` → verificar con usuario → portar.
+- Nunca editar el real directo: prototipar en preview (ver Mapa de rutas) → verificar con usuario → portar.
+- Pre-acción fuera del cwd: resolver ruta absoluta + verificar en disco antes de crear/leer. Nunca asumir subcarpetas.
 - Guardias que abortan deploy: falta `google*.html`, falta `"binding": "ASSETS"`, falta `worker.js` en `.assetsignore`, dry-run sin `env.ASSETS`.
 - Git: fixes chicos push directo ok; cambios grandes rama `feat/...` + PR + merge (respeta protección `main`).
 - Commits firmados `gpg.format=ssh`. Si sale `Unverified`, revisar signing key primero.
