@@ -256,6 +256,36 @@
         margin-bottom: 16px;
     }
 
+    .blog-card-image-wrapper {
+        position: relative;
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .blog-card-title {
+        position: absolute;
+        bottom: 12px;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 0 12px;
+        color: #fff;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-align: left;
+        text-shadow: 0 0 6px rgba(0,0,0,0.7);
+    }
+
+    .blog-card-title::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.25);
+        border-radius: 4px;
+        z-index: -1;
+    }
+
     .blog-card-read {
         color: var(--blog-accent2);
         font-family: 'JetBrains Mono', monospace;
