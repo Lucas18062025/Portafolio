@@ -44,6 +44,11 @@ T1 `google*.html` existe / T2 `binding ASSETS` / T3 `worker.js` en `.assetsignor
 - Pre-acción fuera del cwd: resolver ruta absoluta + verificar en disco. Nunca asumir subcarpetas.
 - Mensajes y contenido en español (`es-AR`). Identificadores de código en inglés.
 
-## Cierre
+## Ritual inicio (obligatorio, antes de responder)
+1. Leer `Sesiones/Indice Sesiones.md` (última fila = última sesión).
+2. Leer la nota de esa última sesión + su sección `## Pendientes`.
+3. Si hay pendientes sin tildar, traerlos a la respuesta actual. No afirmar "sin pendientes" sin haber leído.
+
+## Ritual cierre (nota + pendientes en disco, DURANTE la sesión)
 - Pegar T1–T5 + T8 (`@graph` en prod) + cero `scriptThrewException` a los 5 min.
 - Nota de sesión en disco + `tasklist` sin `gbrain`/`opencode` residual. Nada en background.
