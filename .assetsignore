@@ -23,3 +23,10 @@ TOOLS.md
 .gstack
 .gstack/**
 vercel.json
+CODEOWNERS
+scripts
+scripts/**
+.agents
+.agents/**
+.gbrain
+.gbrain/**
