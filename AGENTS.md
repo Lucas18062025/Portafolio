@@ -13,6 +13,7 @@ Sitio estático (HTML/CSS/JS vanilla) + `worker.js` Cloudflare Workers con
 - Real: `C:\Users\HP Ryzen 5\Proyectos\Portafolio`
 - Preview: `C:\Users\HP Ryzen 5\OpenCode\portafolio-preview` (carpeta separada, NO subcarpeta del real)
 - Notas Obsidian: `C:\Users\HP Ryzen 5\Documents\Obsidian Vault\Vault\Portafolio\Actas\`
+- Sesiones OpenCode (resumen+pendientes, escribir DURANTE la sesión, nunca después del cierre): `C:\Users\HP Ryzen 5\Documents\Obsidian Vault\Sesiones\` — nota `YYYY-MM-DD.md` según `_template-sesion.md` + fila en `Indice Sesiones.md`
 - Prohibido crear `OpenCode/` o `Vault/` dentro del repo real.
 
 ## Comandos (usar solo estos)
@@ -32,6 +33,7 @@ Sitio estático (HTML/CSS/JS vanilla) + `worker.js` Cloudflare Workers con
 - Git: fixes chicos push directo ok; cambios grandes rama `feat/...` + PR + merge (respeta protección `main`).
 - Commits firmados `gpg.format=ssh`. Si sale `Unverified`, revisar signing key primero.
 - No exponer `worker.js` (`404` esperado). No ofuscar email sin pedido explícito (rompió Gmail en Edge, sep-2026).
+- Cierre de sesión: nota completa en disco + cero servicios residuales (verificar `tasklist` sin `gbrain`/`opencode`) antes de cerrar OpenCode. Nada en background gastando RAM del host.
 
 ## Al terminar
 - Correr `.\deploy.ps1`, pegar health-checks (`/` 200, `/manifest.json` 200, `/worker.js` 404, `/no-existo` 404).
