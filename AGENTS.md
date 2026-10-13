@@ -1,40 +1,49 @@
-# AGENTS.md — Portafolio
+# AGENTS.md — Portafolio (única fuente)
 
 ## Proyecto
-Sitio estático (HTML/CSS/JS vanilla) + `worker.js` Cloudflare Workers con
-`binding ASSETS`. Contenido: proyectos, blog, certificados (`data/certificates.json`), SEO JSON-LD.
+Estático HTML/CSS/JS vanilla + `worker.js` (Workers + `binding ASSETS`).
+Contenido: proyectos, blog, `data/certificates.json`, SEO JSON-LD.
 
-## Estructura
-- `index.html`, `css/`, `js/`, `assets/`, `blog/`, `data/certificates.json`
-- `worker.js`, `wrangler.jsonc`, `deploy.ps1`, `_headers`, `sitemap.xml`, `google*.html`
-- `.agents/rules/workflow.md`: pipeline y convención git (fuente de verdad, no duplicar aquí).
+## Orden
+`AGENTS.md > SECURITY.md > TEST_PLAN.md > deploy.ps1 > código`.
+`.agents/rules/workflow.md` es puntero a este archivo, no duplica.
+Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (puerta T1-T8).
 
-## Mapa de rutas (absolutas, nunca relativas)
+## Rutas (absolutas, verificar en disco antes de usar)
 - Real: `C:\Users\HP Ryzen 5\Proyectos\Portafolio`
-- Preview: `C:\Users\HP Ryzen 5\OpenCode\portafolio-preview` (carpeta separada, NO subcarpeta del real)
-- Notas Obsidian: `C:\Users\HP Ryzen 5\Documents\Obsidian Vault\Vault\Portafolio\Actas\`
-- Sesiones OpenCode (resumen+pendientes, escribir DURANTE la sesión, nunca después del cierre): `C:\Users\HP Ryzen 5\Documents\Obsidian Vault\Sesiones\` — nota `YYYY-MM-DD.md` según `_template-sesion.md` + fila en `Indice Sesiones.md`
-- Prohibido crear `OpenCode/` o `Vault/` dentro del repo real.
+- Preview: `C:\Users\HP Ryzen 5\OpenCode\portafolio-preview` (separada, NO subcarpeta del real)
+- Actas: `C:\Users\HP Ryzen 5\Documents\Obsidian Vault\Vault\Portafolio\Actas\`
+- Sesiones (escribir DURANTE la sesión): `C:\Users\HP Ryzen 5\Documents\Obsidian Vault\Sesiones\` — nota `YYYY-MM-DD.md` + fila en `Indice Sesiones.md`
+- Prohibido crear `OpenCode/` o `Vault/` dentro del real.
 
-## Comandos (usar solo estos)
-- Preview: `npx serve .`
+## Pipeline obligatorio
+1. Cambio grande → `specs/YYYY-MM-DD-slug.md` (ver `specs/_template.md`).
+2. Prototipar en preview → verificar con usuario.
+3. Portar al real con paleta `#020408` + `#0066FF`/`#00D4FF` (bordó/dorado del preview NO se copian).
+4. Docs/gobernanza (`AGENTS/SECURITY/TEST_PLAN/TOOLS/specs`) se editan directo en real, sin preview.
+
+## Comandos (únicos)
+- Preview: `npx serve .` (solo en preview)
 - Deploy: `.\deploy.ps1 -Message "feat: ..."` (guards + push + dry-run + deploy + health-checks)
 - Diagnóstico: `npx --yes wrangler@4.136.3 deploy --dry-run`
+- Prohibido: `wrangler deploy` manual (salvo fix documentado), `--force`, instalar deps sin aprobación.
 
-## Estilo
-- Paleta real: fondo `#020408`, acentos `#0066FF` / `#00D4FF`. Tonos preview (bordó/dorado) NO se copian.
-- Mensajes y contenido en español (`es-AR`). Identificadores código en inglés.
+## Git
+- Pre-commit: `git status --short` + `git diff --stat` (+ `git check-ignore <archivo>` ante duda).
+- Nunca `git add .` en manual; solo archivos intencionales. (`deploy.ps1` hace staging propio.)
+- Chico: push directo ok. Grande: rama `feat/...` + PR + merge (respeta protección `main`).
+- Firmados `gpg.format=ssh`. Si `Unverified` → revisar signing key primero.
 
-## Reglas
-- Orden: este AGENTS.md > `.agents/rules/workflow.md` > `deploy.ps1` > código.
-- Nunca editar el real directo: prototipar en preview (ver Mapa de rutas) → verificar con usuario → portar.
-- Pre-acción fuera del cwd: resolver ruta absoluta + verificar en disco antes de crear/leer. Nunca asumir subcarpetas.
-- Guardias que abortan deploy: falta `google*.html`, falta `"binding": "ASSETS"`, falta `worker.js` en `.assetsignore`, dry-run sin `env.ASSETS`.
-- Git: fixes chicos push directo ok; cambios grandes rama `feat/...` + PR + merge (respeta protección `main`).
-- Commits firmados `gpg.format=ssh`. Si sale `Unverified`, revisar signing key primero.
+## Guards (abortan deploy, ver `TEST_PLAN.md`)
+T1 `google*.html` existe / T2 `binding ASSETS` / T3 `worker.js` en `.assetsignore`
++ T3b docs internos + `specs/` ignorados / T4 dry-run con `env.ASSETS`
+/ T5 health-checks `/` 200, `/manifest.json` 200, `/worker.js` 404, `/no-existo` 404 (nunca 500).
+
+## Reglas que no se repiten (ver detalle)
 - No exponer `worker.js` (`404` esperado). No ofuscar email sin pedido explícito (rompió Gmail en Edge, sep-2026).
-- Cierre de sesión: nota completa en disco + cero servicios residuales (verificar `tasklist` sin `gbrain`/`opencode`) antes de cerrar OpenCode. Nada en background gastando RAM del host.
+- Pre-acción fuera del cwd: resolver ruta absoluta + verificar en disco. Nunca asumir subcarpetas.
+- Mensajes y contenido en español (`es-AR`). Identificadores de código en inglés.
 
-## Al terminar
-- Correr `.\deploy.ps1`, pegar health-checks (`/` 200, `/manifest.json` 200, `/worker.js` 404, `/no-existo` 404).
-- Revisar `Observability → Logs → Error` a los 5 min: cero `scriptThrewException` = sano.
+## Cierre
+- Pegar T1–T5 + T8 (`@graph` en prod) + cero `scriptThrewException` a los 5 min.
+- Nota de sesión en disco + `tasklist` sin `gbrain`/`opencode` residual. Nada en background.

@@ -20,6 +20,8 @@ AGENTS.md
 SECURITY.md
 TEST_PLAN.md
 TOOLS.md
+specs
+specs/**
 .gstack
 .gstack/**
 vercel.json

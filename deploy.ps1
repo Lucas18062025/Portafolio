@@ -27,12 +27,18 @@ if (-not (Select-String -Path ./.assetsignore -Pattern '^worker\.js$' -Quiet)) {
 }
 
 # 0d. Guardia: docs internos .md no deben exponerse como assets públicos.
-#     AGENTS.md/SECURITY.md/TEST_PLAN.md/TOOLS.md revelan pipeline y secretos
+#     AGENTS.md/SECURITY.md/TEST_PLAN.md/TOOLS.md/specs revelan pipeline y secretos
 #     (hallazgo oct-2026: respondían 200 en producción).
 foreach ($doc in @("AGENTS.md", "SECURITY.md", "TEST_PLAN.md", "TOOLS.md")) {
   $esc = [regex]::Escape($doc)
   if (-not (Select-String -Path ./.assetsignore -Pattern "^$esc$" -Quiet)) {
     Write-Error "ABORTADO: falta `$doc` en .assetsignore. Los docs internos quedarían descargables en /$doc."
+    exit 1
+  }
+}
+foreach ($pat in @("^specs$", "^specs/\*\*$")) {
+  if (-not (Select-String -Path ./.assetsignore -Pattern $pat -Quiet)) {
+    Write-Error "ABORTADO: falta `specs/` en .assetsignore. Los specs quedarían descargables."
     exit 1
   }
 }
