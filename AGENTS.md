@@ -51,4 +51,4 @@ T1 `google*.html` existe / T2 `binding ASSETS` / T3 `worker.js` en `.assetsignor
 
 ## Ritual cierre (nota + pendientes en disco, DURANTE la sesión)
 - Pegar T1–T5 + T8 (`@graph` en prod) + cero `scriptThrewException` a los 5 min.
-- Nota de sesión en disco + `tasklist` sin `gbrain`/`opencode` residual. Nada en background.
+- Nota de sesión en disco + `tasklist` sin `opencode` residual. Excepción: `bun serve --http --port 3131` (gbrain compartido) DEBE quedar vivo; si no está, levantarlo con `gbrain serve --http --port 3131`.
