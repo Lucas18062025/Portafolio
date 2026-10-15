@@ -28,8 +28,11 @@
     padding: 44px 20px;
     font-size: 14px;
     line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
-  .wrap { max-width: 900px; margin: 0 auto; }
+  .wrap { max-width: 900px; margin: 0 auto; flex: 1; display: flex; flex-direction: column; }
 
   /* ---- Hero ---- */
   .hero { padding: 4px 2px 16px; }
@@ -96,19 +99,27 @@
   .proj .tech { font-family: "Consolas", monospace; font-size: 0.7rem; letter-spacing: 0.6px; color: var(--ivory); opacity: 0.75; }
 
   .footer {
-    margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);
+    margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center; gap: 10px;
     font-size: 0.76rem; color: var(--muted);
   }
   .footer .cta { font-weight: 600; }
 
-  .cta-box { border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; background: rgba(0, 102, 255, 0.10); }
+  .cta-box {
+    border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px;
+    background: rgba(0, 102, 255, 0.10);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .cta-body { min-width: 0; }
   .cta-box h2 { border-bottom: none; padding-bottom: 0; margin-bottom: 6px; color: var(--ivory); letter-spacing: 1.5px; }
   .cta-text { margin: 0 0 10px; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
   .cta-wa {
     display: inline-block; font-weight: 700; font-size: 1rem; color: var(--accent2);
     border-bottom: 1px solid var(--accent2); padding-bottom: 1px;
   }
+  .cta-qr { display: flex; flex-direction: column; align-items: center; gap: 5px; flex-shrink: 0; }
+  .cta-qr img { border-radius: 6px; display: block; background: #fff; }
+  .cta-qr span { font-family: "Consolas", monospace; font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
 
   @media print {
     @page { size: A4; margin: 0; }
@@ -120,6 +131,11 @@
       print-color-adjust: exact;
       -webkit-print-color-adjust: exact;
       zoom: 93%;
+      min-height: 107.5vh;
+    }
+    .footer {
+      position: fixed; bottom: 10mm; left: 18mm; right: 18mm;
+      margin-top: 0 !important;
     }
     .hero, section, article, .metric, .qr-row, .proj, li, .footer { break-inside: avoid; page-break-inside: avoid; orphans: 3; widows: 3; }
     h2, h3 { break-after: avoid; page-break-after: avoid; }
@@ -152,10 +168,6 @@
             <li><span class="k">GitHub</span><a href="https://github.com/Lucas18062025">/Lucas18062025</a></li>
             <li><span class="k">WhatsApp</span><a href="https://wa.me/543814764474">+54 381 476 4474</a></li>
           </ul>
-          <div class="qr-row">
-            <img src="$QR_DATA_URI" width="104" height="104" alt="QR hacia el portafolio online">
-            <span>Escaneá el QR<br>para el portafolio<br>completo con 21 repos.</span>
-          </div>
         </section>
 
         <section>
@@ -203,9 +215,15 @@
         </section>
 
         <section class="cta-box">
-          <h2>Agendá un diagnóstico de 30 minutos</h2>
-          <p class="cta-text">Sin compromiso, para ver qué conviene proteger primero.</p>
-          <a class="cta-wa" href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20de%2030%20minutos">WhatsApp →</a>
+          <div class="cta-body">
+            <h2>Agendá un diagnóstico de 30 minutos</h2>
+            <p class="cta-text">Sin compromiso, para ver qué conviene proteger primero.</p>
+            <a class="cta-wa" href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20de%2030%20minutos">WhatsApp →</a>
+          </div>
+          <div class="cta-qr">
+            <img src="$QR_DATA_URI" width="96" height="96" alt="QR hacia el portafolio online">
+            <span>Portafolio completo</span>
+          </div>
         </section>
       </div>
     </div>
