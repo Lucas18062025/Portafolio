@@ -62,7 +62,7 @@ Dashboard web para visualización y gestión de información de proyectos.
 
 Artículos propios en [`/blog`](https://portafolio.lucaslean1806.workers.dev/blog/): mentalidad Red Team, aprendizaje continuo y aislamiento en máquinas virtuales.
 
-## ��� Certificaciones
+## 📜 Certificaciones
 
 `Cisco · Hacker Ético` `Google · Cybersecurity (Coursera)` `Google · AI Essentials (Coursera)` `BIG School · Ciberseguridad y Hacking Ético`
 
@@ -72,7 +72,7 @@ Artículos propios en [`/blog`](https://portafolio.lucaslean1806.workers.dev/blo
 
 <table>
 <tr>
-  <td valign="top">
+  <td valign="top" style="vertical-align:top;padding:0;">
 
 | Categoría | Tecnología |
 |---|---|
@@ -84,8 +84,8 @@ Artículos propios en [`/blog`](https://portafolio.lucaslean1806.workers.dev/blo
 | **SEO** | `Sitemap` `robots.txt` `JSON-LD` `Open Graph` |
 
   </td>
-  <td valign="top" width="300" align="center">
-    <img src="assets/hero-robot.webp" alt="Robot amarillo estilo futurista" width="260" style="border-radius:8px;" />
+  <td valign="top" width="300" align="center" style="vertical-align:top;padding-top:0;padding-left:18px;">
+    <img src="assets/hero-robot.webp" alt="Robot amarillo estilo futurista" width="260" style="border-radius:8px;display:block;margin:0 auto;vertical-align:top;" />
   </td>
 </tr>
 </table>
