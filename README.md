@@ -70,14 +70,49 @@ Artículos propios en [`/blog`](https://portafolio.lucaslean1806.workers.dev/blo
 
 ## 🛠️ Stack Técnico
 
-| Categoría | Tecnología |
-|---|---|
-| **Frontend** | `HTML5` `CSS3` `JavaScript (Vanilla)` |
-| **Tipografía** | `Inter` `Space Grotesk` `JetBrains Mono` |
-| **Iconos** | `Font Awesome 6.4` |
-| **Deploy** | `Cloudflare Workers` (espejo legacy: `Vercel`) |
-| **Efectos** | `Canvas API` `CSS Animations` |
-| **SEO** | `Sitemap` `robots.txt` `JSON-LD` `Open Graph` |
+<table>
+  <tr>
+    <td valign="top" width="65%">
+      <table>
+        <thead>
+          <tr>
+            <th align="left">Categoría</th>
+            <th align="left">Tecnología</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Frontend</strong></td>
+            <td><code>HTML5</code> <code>CSS3</code> <code>JavaScript (Vanilla)</code></td>
+          </tr>
+          <tr>
+            <td><strong>Tipografía</strong></td>
+            <td><code>Inter</code> <code>Space Grotesk</code> <code>JetBrains Mono</code></td>
+          </tr>
+          <tr>
+            <td><strong>Iconos</strong></td>
+            <td><code>Font Awesome 6.4</code></td>
+          </tr>
+          <tr>
+            <td><strong>Deploy</strong></td>
+            <td><code>Cloudflare Workers</code> (espejo legacy: <code>Vercel</code>)</td>
+          </tr>
+          <tr>
+            <td><strong>Efectos</strong></td>
+            <td><code>Canvas API</code> <code>CSS Animations</code></td>
+          </tr>
+          <tr>
+            <td><strong>SEO</strong></td>
+            <td><code>Sitemap</code> <code>robots.txt</code> <code>JSON-LD</code> <code>Open Graph</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+    <td valign="top" align="center" style="padding-left: 20px;">
+      <img src="assets/hero-robot.webp" alt="Hero Robot" width="300" />
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -106,7 +141,7 @@ npx serve .
 .\deploy.ps1   # aborta si falta google*.html (ver nota arriba)
 ```
 
-Estructura: `index.html` · `css/` · `js/` · `assets/` (projects, certificates, cv, og) · `blog/` · `data/certificates.json` · `wrangler.jsonc` · `_headers` / `vercel.json` (headers y cach�[...]
+Estructura: `index.html` · `css/` · `js/` · `assets/` (projects, certificates, cv, og) · `blog/` · `data/certificates.json` · `wrangler.jsonc` · `_headers` / `vercel.json` (headers y caché, headers para assets, caching y seguridad)
 
 ---
 
