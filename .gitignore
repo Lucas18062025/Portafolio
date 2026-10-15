@@ -7,3 +7,12 @@
 
 # session transcripts (auto-generated, not project code)
 session-*.md
+
+# generados por herramientas locales (no deployar)
+.gbrain/
+.gstack/
+agent.json
+doctor.json
+doctor_output.txt
+state/
+status*.json
