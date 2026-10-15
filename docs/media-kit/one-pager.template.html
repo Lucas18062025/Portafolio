@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucas Villagra · One-Pager de Portafolio</title>
+<style>
+  :root {
+    --bg: #020408;
+    --bg-2: #050a14;
+    --accent: #0066FF;
+    --accent2: #00D4FF;
+    --text: #e8edf7;
+    --muted: #8a96ab;
+    --ivory: #F3EEE2;
+    --border: rgba(255, 255, 255, 0.10);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    background:
+      radial-gradient(1100px 520px at 8% -12%, rgba(0, 102, 255, 0.20), transparent 60%),
+      radial-gradient(860px 460px at 112% 8%, rgba(0, 212, 255, 0.10), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    padding: 44px 20px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+
+  /* ---- Hero ---- */
+  .hero { padding: 4px 2px 16px; }
+  .eyebrow {
+    font-family: "Consolas", "JetBrains Mono", monospace;
+    letter-spacing: 3px; text-transform: uppercase;
+    font-size: 0.72rem; color: var(--accent2);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); }
+  h1 {
+    font-size: 2.7rem; margin: 12px 0 4px; line-height: 1.02;
+    letter-spacing: -1px; text-transform: uppercase; color: var(--ivory);
+  }
+  .headline { font-size: 1.1rem; font-weight: 600; color: var(--accent2); margin: 0 0 8px; }
+  .tagline { font-size: 1rem; color: var(--muted); margin: 0 0 18px; max-width: 760px; }
+
+  /* ---- Métricas: una sola línea ---- */
+  .metrics { display: flex; flex-wrap: nowrap; gap: 10px 16px; padding: 16px 0 8px; border-top: 1px solid var(--border); }
+  .metric { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+  .metric b { font-size: 1.5rem; font-weight: 700; color: var(--ivory); }
+  .metric span { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
+
+  /* ---- Columnas ---- */
+  .cols { display: grid; grid-template-columns: 1fr 1.38fr; gap: 30px; margin-top: 8px; }
+  section { margin-bottom: 30px; }
+  h2 {
+    font-family: "Consolas", "JetBrains Mono", monospace;
+    font-size: 0.74rem; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--accent2); margin: 0 0 10px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  ol, ul { margin: 0; padding-left: 17px; color: var(--muted); }
+  li { margin: 0 0 7px; font-size: 0.9rem; line-height: 1.6; }
+  li strong, li b { color: var(--text); font-weight: 600; }
+
+  .contact { list-style: none; padding: 0; margin: 0; }
+  .contact li { display: flex; gap: 8px; align-items: baseline; margin-bottom: 8px; }
+  .contact .k {
+    font-family: "Consolas", monospace; font-size: 0.62rem; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--accent2); min-width: 70px;
+  }
+  a { color: var(--accent2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .qr-row { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+  .qr-row img { border-radius: 6px; display: block; }
+  .qr-row span { font-size: 0.8rem; color: var(--muted); line-height: 1.35; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: "Consolas", monospace; font-size: 0.7rem; letter-spacing: 0.6px;
+    text-transform: uppercase; padding: 6px 11px; border: 1px solid var(--border);
+    border-radius: 999px; color: var(--ivory); background: rgba(0, 102, 255, 0.10);
+  }
+  .certs { list-style: none; padding: 0; margin: 0; }
+  .certs li { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px dotted rgba(255,255,255,0.08); padding: 7px 0; }
+  .certs .date { font-family: "Consolas", monospace; font-size: 0.62rem; color: var(--muted); white-space: nowrap; }
+
+  .proj { margin-bottom: 16px; }
+  .proj h3 { font-size: 0.98rem; margin: 0 0 3px; color: var(--text); }
+  .proj h3 a { color: var(--accent2); }
+  .proj p { margin: 0 0 2px; font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+  .proj .tech { font-family: "Consolas", monospace; font-size: 0.7rem; letter-spacing: 0.6px; color: var(--ivory); opacity: 0.75; }
+
+  .footer {
+    margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    font-size: 0.76rem; color: var(--muted);
+  }
+  .footer .cta { font-weight: 600; }
+
+  @media print {
+    @page { size: A4; margin: 0; }
+    html, body {
+      background: var(--bg) !important;
+      margin: 0 !important;
+      padding: 9mm !important;
+      font-size: 10.4pt;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+      zoom: 93%;
+    }
+    .hero, section, article, .metric, .qr-row, .proj, li, .footer { break-inside: avoid; page-break-inside: avoid; orphans: 3; widows: 3; }
+    h2, h3 { break-after: avoid; page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="eyebrow">Cybersecurity Analyst · Red Team / Blue Team</div>
+      <h1>Lucas Villagra</h1>
+      <p class="headline">Consultor en Ciberseguridad: Red/Blue Team, automatización defensiva y agentes IA</p>
+      <p class="tagline">Blindo tu superficie de ataque, detecto lo que otros dejan pasar y automatizo la defensa — con evidencia verificable y métricas reales.</p>
+
+      <div class="metrics">
+        <div class="metric"><b>1.486</b><span>archivos analizados</span></div>
+        <div class="metric"><b>658</b><span>archivos optimizados</span></div>
+        <div class="metric"><b>9</b><span>proyectos con sitio propio</span></div>
+        <div class="metric"><b>21</b><span>repositorios públicos</span></div>
+      </div>
+    </header>
+
+    <div class="cols">
+      <div class="col">
+        <section>
+          <h2>Contacto</h2>
+          <ul class="contact">
+            <li><span class="k">Email</span><a href="mailto:lucaslean1806@gmail.com">lucaslean1806@gmail.com</a></li>
+            <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/lucas-villagra-cybersecurity/">/in/lucas-villagra-cybersecurity/</a></li>
+            <li><span class="k">GitHub</span><a href="https://github.com/Lucas18062025">/Lucas18062025</a></li>
+            <li><span class="k">WhatsApp</span><a href="https://wa.me/543814764474">+54 381 476 4474</a></li>
+          </ul>
+          <div class="qr-row">
+            <img src="$QR_DATA_URI" width="104" height="104" alt="QR hacia el portafolio online">
+            <span>Escaneá el QR<br>para el portafolio<br>completo con 21 repos.</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>Habilidades</h2>
+          <div class="chips">
+            <span class="chip">Red Team</span>
+            <span class="chip">Blue Team</span>
+            <span class="chip">Pentesting</span>
+            <span class="chip">Kali Linux</span>
+            <span class="chip">Python</span>
+            <span class="chip">PowerShell</span>
+            <span class="chip">n8n</span>
+            <span class="chip">Agentes IA</span>
+            <span class="chip">SIEM</span>
+            <span class="chip">Cloudflare Workers</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>Certificaciones</h2>
+          <ul class="certs">$CERTS</ul>
+        </section>
+      </div>
+
+      <div class="col">
+        <section>
+          <h2>Servicios</h2>
+          <ol>
+            <li><strong>Auditoría &amp; Hardening</strong> — informe ejecutivo + técnico, checklist y remediación.</li>
+            <li><strong>Pentest · Red Team</strong> — pruebas con evidencia (PoC) y plan de remediación.</li>
+            <li><strong>Phishing Simulation</strong> — métricas de clic/reporte y capacitación al equipo.</li>
+            <li><strong>SIEM &amp; Monitoreo</strong> — alertas, Event IDs críticos y threat intel.</li>
+            <li><strong>Automatización Defensiva</strong> — limpieza, firewall y reporte de evidencia.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Proyectos destacados</h2>
+
+          <div class="proj">
+            <h3><a href="https://security-audit-checker.lucaslean1806.workers.dev/">Security Audit Checker</a></h3>
+            <p>Auditoría rápida de infraestructura para PyMEs con captura de leads y aviso instantáneo por Telegram.</p>
+            <span class="tech">CLOUDFLARE WORKERS · TELEGRAM · JAVASCRIPT</span>
+          </div>
+
+          <div class="proj">
+            <h3><a href="https://siem-windows-11.lucaslean1806.workers.dev/">SIEM Windows 11 · Threat Intel</a></h3>
+            <p>Monitoreo cada 10s: 9 Event IDs críticos con scoring CVSS v3.1 y alertas a Telegram con rate-limit anti-spam.</p>
+            <span class="tech">PYTHON · CVSS v3.1 · TELEGRAM API</span>
+          </div>
+
+          <div class="proj">
+            <h3><a href="https://sentinel.lucaslean1806.workers.dev/">Sentinel V7 Apex</a></h3>
+            <p>Mantenimiento Windows en ~11s: 1.486 archivos analizados, firewall en 3 perfiles y log de evidencia.</p>
+            <span class="tech">POWERSHELL · WINDOWS · DEFENSIVE SECURITY</span>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>Lucas Villagra · Perfil técnico verificable mediante proyectos, labs y credenciales.</span>
+      <a class="cta" href="https://portafolio.lucaslean1806.workers.dev/">Ver portafolio completo →</a>
+    </footer>
+  </div>
+</body>
+</html>
+
