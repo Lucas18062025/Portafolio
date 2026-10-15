@@ -16,3 +16,5 @@ doctor.json
 doctor_output.txt
 state/
 status*.json
+
+docs/media-kit/*.html

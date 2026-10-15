@@ -13,7 +13,7 @@ Blindo tu superficie de ataque, detecto lo que otros dejan pasar y automatizo la
 - 1.486 archivos analizados (Sentinel V7 Apex).
 - 658 archivos optimizados y 52 MB liberados.
 - 9 Event IDs críticos monitoreados en SIEM v4.0.
-- 6 proyectos publicados y varios labs documentados.
+- 9 proyectos con sitio propio de un total de 21 repositorios públicos en GitHub.
 
 ## Servicios
 1. Auditoría & Hardening
