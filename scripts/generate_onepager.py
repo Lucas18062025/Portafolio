@@ -123,7 +123,7 @@ def print_pdf(html_path: Path, pdf_path: Path) -> None:
 
 
 def postprocess_pdf(pdf_path: Path) -> dict:
-    """Setea metadata y verifica paginas + enlaces. Devuelve metricas."""
+    """Setea metadata, incrusta resume.jsonld como embedded file y verifica paginas + enlaces. Devuelve metricas."""
     from pypdf import PdfReader, PdfWriter
 
     reader = PdfReader(str(pdf_path))
@@ -137,6 +137,10 @@ def postprocess_pdf(pdf_path: Path) -> dict:
             "/Creator": "scripts/generate_onepager.py",
         }
     )
+    # Incrustar resume.jsonld como attachment del PDF (API estable pypdf)
+    resume_path = ROOT / "data" / "resume.jsonld"
+    if resume_path.exists():
+        writer.add_attachment(resume_path.name, resume_path.read_bytes())
     with pdf_path.open("wb") as fh:
         writer.write(fh)
 
