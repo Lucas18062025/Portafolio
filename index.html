@@ -154,6 +154,25 @@
                             y automatizo la defensa.
                         </div>
 
+                        <div class="hero-kpis" aria-label="Métricas verificables del laboratorio">
+                            <div class="hero-kpi">
+                                <span class="hero-kpi-value">1.486</span>
+                                <span class="hero-kpi-label">archivos analizados</span>
+                            </div>
+                            <div class="hero-kpi">
+                                <span class="hero-kpi-value">658</span>
+                                <span class="hero-kpi-label">archivos optimizados</span>
+                            </div>
+                            <div class="hero-kpi">
+                                <span class="hero-kpi-value">9</span>
+                                <span class="hero-kpi-label">Event IDs monitoreados</span>
+                            </div>
+                            <div class="hero-kpi">
+                                <span class="hero-kpi-value">6</span>
+                                <span class="hero-kpi-label">proyectos publicados</span>
+                            </div>
+                        </div>
+
                         <div class="hero-roles">
                             <span>CYBERSECURITY ANALYST</span>
                             <span>RED TEAM · BLUE TEAM</span>
@@ -994,69 +1013,97 @@
 
             <div class="divider"></div>
 
-            <section id="servicios">
+                        <section id="servicios">
                 <h2>./ Servicios Profesionales</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3><i class="fas fa-user-shield"></i> Auditoría &amp; Hardening</h3>
-                        <p>Auditoría + endurecimiento de sistemas Windows/Linux, informe ejecutivo +
-                            técnico con evidencia y remediación. Baja superficie de ataque
-                            y deja el sistema listo para operar.</p>
-                        <div class="tag-row">
-                            <div class="mcp-badge">PyMEs · NOA</div>
-                            <div class="mcp-badge">INFORME EJECUTIVO + TÉCNICO</div>
-                        </div>
-                        <div class="action-row">
-                            <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20una%20auditor%C3%ADa%20de%20hardening"
-                                class="btn btn-b" target="_blank" rel="noopener">
-                                <i class="fab fa-whatsapp"></i><span>Solicitar Auditoría</span>
-                            </a>
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lucaslean1806@gmail.com&su=Consulta%20Auditor%C3%ADa%20y%20Hardening&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20auditor%C3%ADa%20y%20hardening."
-                                class="btn btn-b" target="_blank" rel="noopener">
-                                <i class="fab fa-google"></i><span>Consultar por Email</span>
-                            </a>
-                        </div>
+                <p class="section-intro">Mapeo el problema del cliente a una linea de servicio con entregables medibles.</p>
+
+                <div class="svc-tabs" role="tablist" aria-label="Ambitos de servicio profesional">
+                    <button class="svc-tab" role="tab" id="tab-svc-auditoria" aria-controls="panel-auditoria" aria-selected="true" data-svc="auditoria">Auditoria &amp; Hardening</button>
+                    <button class="svc-tab" role="tab" id="tab-svc-pentest" aria-controls="panel-pentest" aria-selected="false" data-svc="pentest">Pentest - Red Team</button>
+                    <button class="svc-tab" role="tab" id="tab-svc-phishing" aria-controls="panel-phishing" aria-selected="false" data-svc="phishing">Phishing &amp; Awareness</button>
+                    <button class="svc-tab" role="tab" id="tab-svc-siem" aria-controls="panel-siem" aria-selected="false" data-svc="siem">SIEM &amp; Monitoreo</button>
+                    <button class="svc-tab" role="tab" id="tab-svc-automation" aria-controls="panel-automation" aria-selected="false" data-svc="automation">Automatizacion Defensiva</button>
+                </div>
+
+                <label for="svc-select" class="sr-only">Seleccionar ambito de servicio</label>
+                <select id="svc-select" class="svc-select">
+                    <option value="auditoria" selected>Auditoria &amp; Hardening</option>
+                    <option value="pentest">Pentest - Red Team</option>
+                    <option value="phishing">Phishing &amp; Awareness</option>
+                    <option value="siem">SIEM &amp; Monitoreo</option>
+                    <option value="automation">Automatizacion Defensiva</option>
+                </select>
+
+                <div class="svc-panel" id="panel-auditoria" role="tabpanel" tabindex="0" aria-labelledby="tab-svc-auditoria">
+                    <div class="stack-panel-head"><h3>Auditoria &amp; Hardening</h3><span class="sub">Reducir superficie de ataque + plan accionable</span></div>
+                    <p>Auditoria + endurecimiento de sistemas Windows/Linux, informe ejecutivo + tecnico con evidencia y remediacion. Baja la superficie de ataque y deja el sistema listo para operar.</p>
+                    <ul class="svc-deliverables">
+                        <li>Informe ejecutivo para toma de decisiones</li>
+                        <li>Informe tecnico con evidencia y remediacion</li>
+                        <li>Checklist de hardening y postura base</li>
+                        <li>Seguimiento de cierre de brechas</li>
+                    </ul>
+                    <div class="tag-row"><div class="mcp-badge">Pymes - NOA</div><div class="mcp-badge">INFORME EJECUTIVO + TECNICO</div></div>
+                    <div class="action-row">
+                        <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20una%20auditoria%20de%20hardening" class="btn btn-b" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><span>Solicitar Auditoria</span></a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lucaslean1806@gmail.com&su=Consulta%20Auditoria%20y%20Hardening&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20auditoria%20y%20hardening." class="btn btn-b" target="_blank" rel="noopener"><i class="fab fa-google"></i><span>Consultar por Email</span></a>
                     </div>
-                    <div class="card">
-                        <h3><i class="fas fa-crosshairs"></i> Pentesting · Red Team</h3>
-                        <p>Simulación controlada de ciberataques para identificar vulnerabilidades explotables antes que
-                            los
-                            adversarios. Reportes técnicos con evidencia y remediación.</p>
-                        <div class="tag-row">
-                            <div class="mcp-badge">PyMEs · NOA</div>
-                            <div class="mcp-badge">EVIDENCIA + REMEDIACIÓN</div>
-                        </div>
-                        <div class="action-row">
-                            <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20un%20pentest"
-                                class="btn btn-b" target="_blank" rel="noopener">
-                                <i class="fab fa-whatsapp"></i><span>Solicitar Pentest</span>
-                            </a>
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lucaslean1806@gmail.com&su=Consulta%20Pentest%20%2F%20Red%20Team&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20pentesting%20y%20Red%20Team."
-                                class="btn btn-b" target="_blank" rel="noopener">
-                                <i class="fab fa-google"></i><span>Consultar por Email</span>
-                            </a>
-                        </div>
+                </div>
+
+                <div class="svc-panel" id="panel-pentest" role="tabpanel" tabindex="0" aria-labelledby="tab-svc-pentest" hidden>
+                    <div class="stack-panel-head"><h3>Pentest - Red Team</h3><span class="sub">Simulacion controlada + remediacion</span></div>
+                    <p>Simulacion controlada de ciberataques para identificar vulnerabilidades explotables antes que los adversarios. Reportes tecnicos con evidencia y remediacion.</p>
+                    <ul class="svc-deliverables">
+                        <li>Plan de ataque y alcance definido</li>
+                        <li>Pruebas con evidencia (PoC)</li>
+                        <li>Reporte tecnico + resumen ejecutivo</li>
+                        <li>Plan de remediacion priorizado</li>
+                    </ul>
+                    <div class="tag-row"><div class="mcp-badge">Pymes - NOA</div><div class="mcp-badge">EVIDENCIA + REMEDIACION</div></div>
+                    <div class="action-row">
+                        <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20un%20pentest" class="btn btn-b" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><span>Solicitar Pentest</span></a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lucaslean1806@gmail.com&su=Consulta%20Pentest%20%2F%20Red%20Team&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20pentesting%20y%20Red%20Team." class="btn btn-b" target="_blank" rel="noopener"><i class="fab fa-google"></i><span>Consultar por Email</span></a>
                     </div>
-                    <div class="card">
-                        <h3><i class="fas fa-user-shield"></i> Concientización &amp; Phishing Simulation</h3>
-                        <p>Campañas controladas de simulación de phishing para medir exposición real del personal
-                            y capacitar en detección de ingeniería social, con métricas de clics y reportes accionables.
-                        </p>
-                        <div class="tag-row">
-                            <div class="mcp-badge">PyMEs · NOA</div>
-                            <div class="mcp-badge">MÉTRICAS + CAPACITACIÓN</div>
-                        </div>
-                        <div class="action-row">
-                            <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20una%20simulaci%C3%B3n%20de%20phishing"
-                                class="btn btn-b" target="_blank" rel="noopener">
-                                <i class="fab fa-whatsapp"></i><span>Solicitar Simulación</span>
-                            </a>
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lucaslean1806@gmail.com&su=Consulta%20Simulaci%C3%B3n%20de%20Phishing&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20concientizaci%C3%B3n%20y%20simulaci%C3%B3n%20de%20phishing."
-                                class="btn btn-b" target="_blank" rel="noopener">
-                                <i class="fab fa-google"></i><span>Consultar por Email</span>
-                            </a>
-                        </div>
+                </div>
+
+                <div class="svc-panel" id="panel-phishing" role="tabpanel" tabindex="0" aria-labelledby="tab-svc-phishing" hidden>
+                    <div class="stack-panel-head"><h3>Concientizacion &amp; Phishing Simulation</h3><span class="sub">Medir exposicion + capacitar</span></div>
+                    <p>Campanas controladas de simulacion de phishing para medir exposicion real del personal y capacitar en deteccion de ingenieria social, con metricas de clics y reportes accionables.</p>
+                    <ul class="svc-deliverables">
+                        <li>Configuracion de campana controlada</li>
+                        <li>Metricas de clic / reporte</li>
+                        <li>Capacitacion de 90 min</li>
+                        <li>Reporte accionable para RRHH/IT</li>
+                    </ul>
+                    <div class="tag-row"><div class="mcp-badge">Pymes - NOA</div><div class="mcp-badge">METRICAS + CAPACITACION</div></div>
+                    <div class="action-row">
+                        <a href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20consultar%20por%20una%20simulacion%20de%20phishing" class="btn btn-b" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><span>Solicitar Simulacion</span></a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lucaslean1806@gmail.com&su=Consulta%20Simulacion%20de%20Phishing&body=Hola%20Lucas%2C%20quisiera%20consultar%20sobre%20el%20servicio%20de%20concientizacion%20y%20simulacion%20de%20phishing." class="btn btn-b" target="_blank" rel="noopener"><i class="fab fa-google"></i><span>Consultar por Email</span></a>
                     </div>
+                </div>
+
+                <div class="svc-panel" id="panel-siem" role="tabpanel" tabindex="0" aria-labelledby="tab-svc-siem" hidden>
+                    <div class="stack-panel-head"><h3>SIEM &amp; Monitoreo</h3><span class="sub">Deteccion continua + alertas</span></div>
+                    <p>Monitoreo en vivo cada 10s sobre Security + System: detecta 9 Event IDs criticos con scoring CVSS v3.1 y alerta a Telegram con rate-limit anti-spam. Validado en produccion local en modo solo-lectura.</p>
+                    <ul class="svc-deliverables">
+                        <li>Definicion de eventos criticos</li>
+                        <li>Reglas de alerta + rate-limit</li>
+                        <li>Salida a Telegram u otro canal</li>
+                        <li>Validacion en modo solo-lectura</li>
+                    </ul>
+                    <div class="tag-row"><div class="mcp-badge">PYTHON 3.10+</div><div class="mcp-badge">TELEGRAM API</div><div class="mcp-badge">CVSS v3.1</div></div>
+                </div>
+
+                <div class="svc-panel" id="panel-automation" role="tabpanel" tabindex="0" aria-labelledby="tab-svc-automation" hidden>
+                    <div class="stack-panel-head"><h3>Automatizacion Defensiva</h3><span class="sub">Mantenimiento + evidencia</span></div>
+                    <p>Mantenimiento y auditoria Windows en ~11s: 1.486 archivos analizados, 658 eliminados (52MB liberados), firewall activo en 3 perfiles, 0 criticos en Event Viewer en 24h y 0 conexiones TCP sospechosas. Todo con log de evidencia.</p>
+                    <ul class="svc-deliverables">
+                        <li>Limpieza automatizada con log</li>
+                        <li>Verificacion de firewall y procesos</li>
+                        <li>Reporte de evidencia</li>
+                        <li>Automatizacion reproducible</li>
+                    </ul>
+                    <div class="tag-row"><div class="mcp-badge">POWERSHELL</div><div class="mcp-badge">WINDOWS</div><div class="mcp-badge">DEFENSIVE SECURITY</div></div>
                 </div>
             </section>
 

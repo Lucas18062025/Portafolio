@@ -516,6 +516,45 @@
 }
 
 /* ---------------------------------------------------------
+   KPI STRIP (Fase 1)
+   --------------------------------------------------------- */
+.hero-kpis {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 28px;
+
+    margin: 26px 0 0;
+    padding: 16px 0;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-kpi {
+    display: flex;
+    flex-direction: column;
+    min-width: 110px;
+}
+
+.hero-kpi-value {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #F3EEE2;
+}
+
+.hero-kpi-label {
+    margin-top: 6px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------
    RESPONSIVE
    --------------------------------------------------------- */
 

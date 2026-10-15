@@ -223,69 +223,91 @@ document.querySelectorAll('img').forEach((img) => {
     });
 });
 
-// Stack tabs: una sola línea + desplegable sincronizados (CSP-safe: sin inline handlers)
-(function () {
-    function showStackFallback(img) {
-        img.classList.add('s-img-error');
-        const fb = img.parentElement ? img.parentElement.querySelector('.s-fallback') : null;
-        if (fb) fb.style.display = 'block';
-    }
-    document.querySelectorAll('.s-icon-box img').forEach((img) => {
-        img.addEventListener('error', () => showStackFallback(img));
-        // Solo imgs con src ya asignado: los data-src aún no cargaron.
-        if (img.hasAttribute('src') && img.complete && img.naturalWidth === 0) showStackFallback(img);
-    });
-    const tabs = Array.from(document.querySelectorAll('.stack-tab'));
-    const panels = Array.from(document.querySelectorAll('.stack-panel'));
-    const select = document.getElementById('stack-select');
+// Tabs reutilizables: una sola linea + desplegable sincronizados (CSP-safe: sin inline handlers)
+function initTabs(config) {
+    var tabs = Array.from(document.querySelectorAll(config.tabSelector));
+    var panels = Array.from(document.querySelectorAll(config.panelSelector));
+    var select = document.getElementById(config.selectId);
     if (!tabs.length || !panels.length) return;
-    function loadStackImgs(panel) {
-        // Lazy real: los iconos externos se descargan al abrir su tab.
-        panel.querySelectorAll('img[data-src]').forEach((img) => {
+
+    function loadPanelImgs(panel) {
+        if (!config.lazyImgs || !panel) return;
+        panel.querySelectorAll('img[data-src]').forEach(function (img) {
             img.src = img.dataset.src;
             img.removeAttribute('data-src');
         });
     }
+
     function activate(key) {
-        tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.stack === key ? 'true' : 'false'));
-        panels.forEach(p => {
-            const show = p.id === 'panel-' + key;
+        tabs.forEach(function (t) {
+            t.setAttribute('aria-selected', t.dataset[config.dataKey] === key ? 'true' : 'false');
+        });
+        panels.forEach(function (p) {
+            var show = p.id === 'panel-' + key;
             if (show) p.removeAttribute('hidden');
             else p.setAttribute('hidden', '');
         });
-        const active = document.getElementById('panel-' + key);
-        if (active) loadStackImgs(active);
+        var active = document.getElementById('panel-' + key);
+        if (active) loadPanelImgs(active);
         if (select && select.value !== key) select.value = key;
     }
-    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.stack)));
-    if (select) select.addEventListener('change', () => activate(select.value));
-    const initial = panels.find(p => !p.hasAttribute('hidden')) || panels[0];
-    if (initial) loadStackImgs(initial);
-    // Anticipar: precarga el tab al pasar el mouse (antes del clic).
-    tabs.forEach(t => t.addEventListener('mouseenter', () => {
-        const p = document.getElementById('panel-' + t.dataset.stack);
-        if (p) loadStackImgs(p);
-    }, { once: true }));
-    // Red de seguridad: precarga todo en idle (fuera de la carga inicial).
-    function preloadAllStackImgs() {
-        panels.forEach(loadStackImgs);
-    }
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(preloadAllStackImgs, { timeout: 3000 });
-    } else {
-        setTimeout(preloadAllStackImgs, 1500);
-    }
-    const tablist = document.querySelector('.stack-tabs');
-    if (tablist) tablist.addEventListener('keydown', (e) => {
-        const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
-        let n = null;
-        if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
-        else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-        else if (e.key === 'Home') n = 0;
-        else if (e.key === 'End') n = tabs.length - 1;
-        else return;
-        tabs[n].focus();
-        activate(tabs[n].dataset.stack);
-        e.preventDefault();
+
+    tabs.forEach(function (t) {
+        t.addEventListener('click', function () { activate(t.dataset[config.dataKey]); });
     });
-})();
+
+    if (select) {
+        select.addEventListener('change', function () { activate(select.value); });
+    }
+
+    var initial = panels.find(function (p) { return !p.hasAttribute('hidden'); }) || panels[0];
+    if (initial) {
+        var initialKey = initial.id.replace('panel-', '');
+        if (config.lazyImgs) loadPanelImgs(initial);
+        activate(initialKey);
+    }
+
+    if (config.lazyImgs) {
+        function preloadAllPanelImgs() {
+            panels.forEach(loadPanelImgs);
+        }
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(preloadAllPanelImgs, { timeout: 3000 });
+        } else {
+            setTimeout(preloadAllPanelImgs, 1500);
+        }
+    }
+
+    var tablist = tabs.length ? tabs[0].parentElement : null;
+    if (tablist) {
+        tablist.addEventListener('keydown', function (e) {
+            var i = tabs.findIndex(function (t) { return t.getAttribute('aria-selected') === 'true'; });
+            var n = null;
+            if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+            else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+            else if (e.key === 'Home') n = 0;
+            else if (e.key === 'End') n = tabs.length - 1;
+            else return;
+            tabs[n].focus();
+            activate(tabs[n].dataset[config.dataKey]);
+            e.preventDefault();
+        });
+    }
+}
+
+// Fallback de iconos (solo stack)
+document.querySelectorAll('.s-icon-box img').forEach(function (img) {
+    img.addEventListener('error', function () {
+        img.classList.add('s-img-error');
+        var fb = img.parentElement ? img.parentElement.querySelector('.s-fallback') : null;
+        if (fb) fb.style.display = 'block';
+    });
+    if (img.hasAttribute('src') && img.complete && img.naturalWidth === 0) {
+        img.classList.add('s-img-error');
+        var fb = img.parentElement ? img.parentElement.querySelector('.s-fallback') : null;
+        if (fb) fb.style.display = 'block';
+    }
+});
+
+initTabs({ tabSelector: '.stack-tab', panelSelector: '.stack-panel', selectId: 'stack-select', dataKey: 'stack', lazyImgs: true });
+initTabs({ tabSelector: '.svc-tab', panelSelector: '.svc-panel', selectId: 'svc-select', dataKey: 'svc', lazyImgs: false });

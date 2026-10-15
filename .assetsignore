@@ -39,3 +39,5 @@ status.json
 status2.json
 state
 state/**
+docs
+docs/**
