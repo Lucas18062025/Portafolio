@@ -62,13 +62,17 @@ Dashboard web para visualización y gestión de información de proyectos.
 
 Artículos propios en [`/blog`](https://portafolio.lucaslean1806.workers.dev/blog/): mentalidad Red Team, aprendizaje continuo y aislamiento en máquinas virtuales.
 
-## 📜 Certificaciones
+## ��� Certificaciones
 
 `Cisco · Hacker Ético` `Google · Cybersecurity (Coursera)` `Google · AI Essentials (Coursera)` `BIG School · Ciberseguridad y Hacking Ético`
 
 ---
 
 ## 🛠️ Stack Técnico
+
+<table>
+<tr>
+  <td valign="top">
 
 | Categoría | Tecnología |
 |---|---|
@@ -78,6 +82,13 @@ Artículos propios en [`/blog`](https://portafolio.lucaslean1806.workers.dev/blo
 | **Deploy** | `Cloudflare Workers` (espejo legacy: `Vercel`) |
 | **Efectos** | `Canvas API` `CSS Animations` |
 | **SEO** | `Sitemap` `robots.txt` `JSON-LD` `Open Graph` |
+
+  </td>
+  <td valign="top" width="300" align="center">
+    <img src="assets/hero-robot.webp" alt="Robot amarillo estilo futurista" width="260" style="border-radius:8px;" />
+  </td>
+</tr>
+</table>
 
 ---
 
@@ -106,7 +117,7 @@ npx serve .
 .\deploy.ps1   # aborta si falta google*.html (ver nota arriba)
 ```
 
-Estructura: `index.html` · `css/` · `js/` · `assets/` (projects, certificates, cv, og) · `blog/` · `data/certificates.json` · `wrangler.jsonc` · `_headers` / `vercel.json` (headers y caché).
+Estructura: `index.html` · `css/` · `js/` · `assets/` (projects, certificates, cv, og) · `blog/` · `data/certificates.json` · `wrangler.jsonc` · `_headers` / `vercel.json` (headers y cach�[...] 
 
 ---
 
