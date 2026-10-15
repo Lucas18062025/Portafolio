@@ -102,6 +102,14 @@
   }
   .footer .cta { font-weight: 600; }
 
+  .cta-box { border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; background: rgba(0, 102, 255, 0.10); }
+  .cta-box h2 { border-bottom: none; padding-bottom: 0; margin-bottom: 6px; color: var(--ivory); letter-spacing: 1.5px; }
+  .cta-text { margin: 0 0 10px; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .cta-wa {
+    display: inline-block; font-weight: 700; font-size: 1rem; color: var(--accent2);
+    border-bottom: 1px solid var(--accent2); padding-bottom: 1px;
+  }
+
   @media print {
     @page { size: A4; margin: 0; }
     html, body {
@@ -185,25 +193,19 @@
         </section>
 
         <section>
-          <h2>Proyectos destacados</h2>
+          <h2>Cómo trabajo</h2>
+          <ol>
+            <li><strong>Diagnóstico inicial (30 min):</strong> objetivos, activos y alcance.</li>
+            <li><strong>Autorización y NDA:</strong> alcance escrito y confidencialidad.</li>
+            <li><strong>Ejecución:</strong> auditoría o prueba, con evidencia de cada hallazgo.</li>
+            <li><strong>Informe y remediación:</strong> prioridades por riesgo y seguimiento.</li>
+          </ol>
+        </section>
 
-          <div class="proj">
-            <h3><a href="https://security-audit-checker.lucaslean1806.workers.dev/">Security Audit Checker</a></h3>
-            <p>Auditoría rápida de infraestructura para PyMEs con captura de leads y aviso instantáneo por Telegram.</p>
-            <span class="tech">CLOUDFLARE WORKERS · TELEGRAM · JAVASCRIPT</span>
-          </div>
-
-          <div class="proj">
-            <h3><a href="https://siem-windows-11.lucaslean1806.workers.dev/">SIEM Windows 11 · Threat Intel</a></h3>
-            <p>Monitoreo cada 10s: 9 Event IDs críticos con scoring CVSS v3.1 y alertas a Telegram con rate-limit anti-spam.</p>
-            <span class="tech">PYTHON · CVSS v3.1 · TELEGRAM API</span>
-          </div>
-
-          <div class="proj">
-            <h3><a href="https://sentinel.lucaslean1806.workers.dev/">Sentinel V7 Apex</a></h3>
-            <p>Mantenimiento Windows en ~11s: 1.486 archivos analizados, firewall en 3 perfiles y log de evidencia.</p>
-            <span class="tech">POWERSHELL · WINDOWS · DEFENSIVE SECURITY</span>
-          </div>
+        <section class="cta-box">
+          <h2>Agendá un diagnóstico de 30 minutos</h2>
+          <p class="cta-text">Sin compromiso, para ver qué conviene proteger primero.</p>
+          <a class="cta-wa" href="https://wa.me/543814764474?text=Hola%20Lucas%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20de%2030%20minutos">WhatsApp →</a>
         </section>
       </div>
     </div>
