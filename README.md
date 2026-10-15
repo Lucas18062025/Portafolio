@@ -22,39 +22,39 @@
 
 **📡 Auditoría Wireless · Alfa AWUS036ACS**
 Reconocimiento de espectro 2.4/5 GHz en modo monitor. Captura y análisis de handshakes WPA2 con aircrack-ng.
-<code>Kali Linux</code> <code>aircrack-ng</code> <code>Alfa AWUS036ACS</code>
+`Kali Linux` `aircrack-ng` `Alfa AWUS036ACS`
 
 **🔒 OpSec · Infraestructura VPN Anónima**
 Túneles cifrados WireGuard (UDP) con Proton VPN, verificados con controles locales de fugas DNS/IP. Kill Switch activo.
-<code>WireGuard</code> <code>ProtonVPN</code> <code>OpSec</code>
+`WireGuard` `ProtonVPN` `OpSec`
 
 **🔐 Security Audit Checker** — [ver despliegue](https://security-audit-checker.lucaslean1806.workers.dev/)
 Auditoría rápida de infraestructura para PyMEs del NOA con captura de leads y aviso instantáneo por Telegram. Backend en Cloudflare Workers con validación server-side y fallback local.
-<code>Cloudflare</code> <code>Workers</code> <code>Telegram</code> <code>JavaScript</code>
+`Cloudflare` `Workers` `Telegram` `JavaScript`
 
 **🛡️ SIEM v4.0 · Threat Intel** — [ver despliegue](https://siem-windows-11.lucaslean1806.workers.dev/)
 Monitoreo en vivo cada 10s sobre Security + System: 9 Event IDs críticos con scoring CVSS v3.1 y alertas a Telegram con rate-limit anti-spam.
-<code>Python 3.10+</code> <code>Telegram API</code> <code>CVSS v3.1</code> <code>NIST</code>
+`Python 3.10+` `Telegram API` `CVSS v3.1` `NIST`
 
 **🛡️ Sentinel V7 Apex** — [ver despliegue](https://sentinel.lucaslean1806.workers.dev/)
 Mantenimiento y auditoría Windows en ~11s: firewall en 3 perfiles, Event Viewer y detección de conexiones TCP sospechosas, todo con log de evidencia.
-<code>PowerShell</code> <code>Windows Security</code> <code>Defensive Security</code> <code>V7 Apex</code>
+`PowerShell` `Windows Security` `Defensive Security` `V7 Apex`
 
 **🎣 Gophish Lab** — [ver despliegue](https://gophishlab.lucaslean1806.workers.dev/)
 Laboratorio controlado de simulación de campañas de phishing: vectores de ingeniería social, métricas y respuesta defensiva. Fines educativos y laboratorio autorizado.
-<code>Gophish</code> <code>Social Engineering</code> <code>Security Awareness</code> <code>Lab</code>
+`Gophish` `Social Engineering` `Security Awareness` `Lab`
 
 **🌐 Network Egress Monitor**
 Monitor defensivo de conexiones salientes: visibilidad sobre tráfico egress y comportamientos anómalos en endpoints y redes.
-<code>Network Security</code> <code>Monitoring</code> <code>Egress</code> <code>Defensive</code>
+`Network Security` `Monitoring` `Egress` `Defensive`
 
 **🔐 Secure Web Platform** — [ver despliegue](https://frontend.lucaslean1806.workers.dev/)
 Plataforma web con arquitectura defensiva: Next.js + TypeScript sobre Cloudflare Workers.
-<code>Next.js</code> <code>TypeScript</code> <code>Cloudflare</code> <code>Web Security</code>
+`Next.js` `TypeScript` `Cloudflare` `Web Security`
 
 **📊 ZenHub Dashboard** — [ver despliegue](https://zenhub-dashboard.lucaslean1806.workers.dev/)
 Dashboard web para visualización y gestión de información de proyectos.
-<code>Project Management</code> <code>Data Visualization</code> <code>Web Development</code>
+`Project Management` `Data Visualization` `Web Development`
 
 ---
 
@@ -64,71 +64,33 @@ Artículos propios en [`/blog`](https://portafolio.lucaslean1806.workers.dev/blo
 
 ## 📜 Certificaciones
 
-<code>Cisco · Hacker Ético</code> <code>Google · Cybersecurity (Coursera)</code> <code>Google · AI Essentials (Coursera)</code> <code>BIG School · Ciberseguridad y Hacking Ético</code>
+`Cisco · Hacker Ético` `Google · Cybersecurity (Coursera)` `Google · AI Essentials (Coursera)` `BIG School · Ciberseguridad y Hacking Ético`
 
 ---
 
 ## 🛠️ Stack Técnico
 
-<table>
-  <tr>
-    <td valign="top" style="padding:0; vertical-align:top;">
-      <!-- Inner HTML table for consistent rendering and alignment -->
-      <table role="presentation" style="border-collapse:collapse;width:100%;max-width:720px;border:1px solid rgba(255,255,255,0.06);">
-        <thead>
-          <tr>
-            <th style="text-align:left;padding:12px;border-bottom:1px solid rgba(255,255,255,0.04);">Categoría</th>
-            <th style="text-align:left;padding:12px;border-bottom:1px solid rgba(255,255,255,0.04);">Tecnología</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);font-weight:600;">Frontend</td>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);">
-              <code>HTML5</code> <code>CSS3</code> <code>JavaScript (Vanilla)</code>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);font-weight:600;">Tipografía</td>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);"><code>Inter</code> <code>Space Grotesk</code> <code>JetBrains Mono</code></td>
-          </tr>
-          <tr>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);font-weight:600;">Iconos</td>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);"><code>Font Awesome 6.4</code></td>
-          </tr>
-          <tr>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);font-weight:600;">Deploy</td>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);"><code>Cloudflare Workers</code> (espejo legacy: <code>Vercel</code>)</td>
-          </tr>
-          <tr>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);font-weight:600;">Efectos</td>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);"><code>Canvas API</code> <code>CSS Animations</code></td>
-          </tr>
-          <tr>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);font-weight:600;">SEO</td>
-            <td style="padding:10px;border-top:1px solid rgba(255,255,255,0.02);"><code>Sitemap</code> <code>robots.txt</code> <code>JSON-LD</code> <code>Open Graph</code></td>
-          </tr>
-        </tbody>
-      </table>
-    </td>
-    <td valign="top" style="padding-left:18px;vertical-align:top;width:320px;">
-      <img src="assets/hero-robot.webp" alt="Robot amarillo estilo futurista" width="260" style="border-radius:8px;display:block;margin:0 auto;" />
-    </td>
-  </tr>
-</table>
+| Categoría | Tecnología |
+|---|---|
+| **Frontend** | `HTML5` `CSS3` `JavaScript (Vanilla)` |
+| **Tipografía** | `Inter` `Space Grotesk` `JetBrains Mono` |
+| **Iconos** | `Font Awesome 6.4` |
+| **Deploy** | `Cloudflare Workers` (espejo legacy: `Vercel`) |
+| **Efectos** | `Canvas API` `CSS Animations` |
+| **SEO** | `Sitemap` `robots.txt` `JSON-LD` `Open Graph` |
 
 ---
 
 ## 💼 Servicios Profesionales
 
 **🛡️ Auditoría & Hardening**
-Endurecimiento de sistemas y análisis de configuraciones. Informe ejecutivo + técnico. <code>PyMEs · NOA</code>
+Endurecimiento de sistemas y análisis de configuraciones. Informe ejecutivo + técnico. `PyMEs · NOA`
 
 **🎯 Pentesting · Red Team**
-Simulación controlada de ciberataques con evidencia y remediación. <code>PyMEs · NOA</code>
+Simulación controlada de ciberataques con evidencia y remediación. `PyMEs · NOA`
 
 **🎣 Concientización & Phishing Simulation**
-Campañas controladas de phishing: métricas de clics, reportes accionables y capacitación. <code>PyMEs · NOA</code>
+Campañas controladas de phishing: métricas de clics, reportes accionables y capacitación. `PyMEs · NOA`
 
 Contacto: [WhatsApp](https://wa.me/543814764474) · [Email](mailto:lucaslean1806@gmail.com) · [LinkedIn](https://www.linkedin.com/in/lucas-villagra-cybersecurity/)
 
