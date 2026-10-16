@@ -12,8 +12,19 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
-      - run: npm i -g wrangler
+      # M1: wrangler pineado igual que deploy.ps1 (deriva = deploys distintos
+      # según la puerta). TODO: SHA-pinear actions/* cuando se fijen SHAs.
+      - run: npm i -g wrangler@4.136.3
       - run: wrangler deploy --config wrangler.jsonc
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      # M1: la puerta ciega también verifica (T5 mínimo, sin deploy.ps1).
+      - name: Health-checks post-deploy (T5)
+        run: |
+          base="https://portafolio.lucaslean1806.workers.dev"
+          check() { code=$(curl -s -o /dev/null -w "%{http_code}" "$base$1"); [ "$code" = "$2" ] || { echo "FALLO $1 -> $code (esperado $2)"; exit 1; }; echo "$1 -> $code OK"; }
+          check "/" 200
+          check "/manifest.json?v=health" 200
+          check "/worker.js" 404
+          check "/no-existo-healthcheck" 404

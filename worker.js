@@ -10,6 +10,16 @@ export default {
       if (request.method !== "POST") {
         return new Response("Method Not Allowed", { status: 405 });
       }
+      // M2: tope de tamaño + tipo esperado (anti log-spam). El rate-limit por IP
+      // va en WAF (dashboard), no en código.
+      const contentType = request.headers.get("content-type") || "";
+      if (!contentType.includes("application/json")) {
+        return new Response("Unsupported Media Type", { status: 415 });
+      }
+      const contentLength = Number(request.headers.get("content-length") || 0);
+      if (contentLength > 8192) {
+        return new Response("Payload Too Large", { status: 413 });
+      }
       try {
         const report = await request.json();
         console.log("[csp-report]", JSON.stringify(report).slice(0, 2000));
