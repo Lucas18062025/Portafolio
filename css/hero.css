@@ -741,8 +741,10 @@
     }
 }
 
-/* Robot hidden on small screens until the gaze animation is integrated */
-@media (max-width: 700px) {
+/* Robot hidden on small screens and touch devices without hover
+   (e.g. mobile "desktop site" mode reports a wide viewport) until
+   the gaze animation is integrated */
+@media (max-width: 700px), (hover: none) {
     .hero-robot-wrapper {
         display: none;
     }
