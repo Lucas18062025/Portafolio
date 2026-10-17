@@ -57,8 +57,21 @@ if ($changes) {
 }
 
 # 4. Push
+#     Nota: `git push` escribe a stderr aun con exit 0 (p. ej. "Everything up-to-date"
+#     cuando el arbol esta limpio y la rama al dia). Con $ErrorActionPreference="Stop"
+#     eso abortaba el script antes del dry-run. Se aisla a "Continue" y se decide
+#     por $LASTEXITCODE, igual que en el dry-run (4b) y el deploy (5).
 $branch = (git rev-parse --abbrev-ref HEAD).Trim()
-git push origin $branch
+$oldEAPPush = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
+$pushOut = git push origin $branch 2>&1 | Out-String
+$pushExit = $LASTEXITCODE
+$ErrorActionPreference = $oldEAPPush
+if ($pushExit -ne 0) {
+  Write-Error "ABORTADO: git push fallo (exit $pushExit).`n$pushOut"
+  exit 1
+}
+Write-Host $pushOut.Trim()
 
 # 4b. Dry-run: el Worker debe ver el binding ASSETS. Si sale vacío, no deployar.
 #     Nota: npx escribe avisos por stderr aun con exit 0; con $ErrorActionPreference="Stop"
