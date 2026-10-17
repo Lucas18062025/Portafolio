@@ -95,7 +95,7 @@ Artículos propios en [`/blog`](https://portafolio.lucaslean1806.workers.dev/blo
           </tr>
           <tr>
             <td><strong>Deploy</strong></td>
-            <td><code>Cloudflare Workers</code> (espejo legacy: <code>Vercel</code>)</td>
+            <td><code>Cloudflare Workers</code></td>
           </tr>
           <tr>
             <td><strong>Efectos</strong></td>
@@ -141,7 +141,7 @@ npx serve .
 .\deploy.ps1   # aborta si falta google*.html (ver nota arriba)
 ```
 
-Estructura: `index.html` · `css/` · `js/` · `assets/` (projects, certificates, cv, og) · `blog/` · `data/certificates.json` · `wrangler.jsonc` · `_headers` / `vercel.json` (headers y caché, headers para assets, caching y seguridad)
+Estructura: `index.html` · `css/` · `js/` · `assets/` (projects, certificates, cv, og) · `blog/` · `data/certificates.json` · `wrangler.jsonc` · `_headers` (headers de seguridad y caché para assets)
 
 ---
 
