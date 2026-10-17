@@ -1,0 +1,307 @@
+/* =========================================================
+   SECURITY RESEARCH / MEDIA KIT (Google Flow)
+   Complemento de css/blog.css.
+   Usa SOLO tokens --blog-* + negro neutro: se ve correcto
+   tanto en la paleta del preview (bordo/dorado) como en la
+   del real (#0066FF / #00D4FF). No define colores propios.
+   ========================================================= */
+
+/* =========================================================
+   SEGURIDAD DE GRID
+   Las imagenes traen width/height de 1280 px. En un grid, el
+   minimo automatico de cada item es su min-content, asi que la
+   columna se infla hasta 1280 px y desborda. min-width: 0 lo
+   corta. Aplica a las tres grillas que usan medios.
+   ========================================================= */
+
+.blog-grid > .blog-card,
+.blog-scene-media,
+.blog-media-card {
+    min-width: 0;
+}
+
+/* ---------- figura inline dentro de un articulo ---------- */
+
+.blog-figure {
+    margin: 36px 0;
+}
+
+.blog-figure img,
+.blog-figure video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #04060c;
+    border: 1px solid var(--blog-border);
+    border-radius: 8px;
+}
+
+/* ---------- caption con procedencia (riel de acento) ---------- */
+
+.blog-media-caption {
+    margin: 10px 0 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--blog-accent2);
+    color: var(--blog-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    line-height: 1.8;
+    letter-spacing: 0.4px;
+}
+
+/* ---------- atenuacion de la banda de titulo incrustada ---------- */
+/* Los frames generados por Flow traen el titulo en ingles sobre la parte
+   superior. Un velo degradado con el color del fondo lo manda atras sin
+   tocar el archivo. Para volver al look crudo: borrar este bloque. */
+
+.blog-video::after,
+.blog-figure.is-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    z-index: 1;
+    background: linear-gradient(180deg,
+            rgba(2, 4, 8, 0.78),
+            rgba(2, 4, 8, 0));
+    pointer-events: none;
+}
+
+.blog-video::after {
+    height: 26%;
+}
+
+.blog-figure.is-hero {
+    position: relative;
+}
+
+.blog-figure.is-hero::after {
+    height: 31%;
+}
+
+/* ---------- video: poster + boton play ---------- */
+
+.blog-video {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: #04060c;
+    border: 1px solid var(--blog-border);
+    border-radius: 8px;
+}
+
+.blog-video video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-video-play {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: linear-gradient(180deg,
+            rgba(2, 4, 8, 0.05),
+            rgba(2, 4, 8, 0.62));
+    color: #ffffff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.blog-video-play span {
+    padding: 10px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    background: rgba(2, 4, 8, 0.62);
+}
+
+.blog-video-play:hover span {
+    border-color: #ffffff;
+    background: rgba(2, 4, 8, 0.85);
+}
+
+.blog-video.is-playing .blog-video-play {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.blog-video-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    padding: 5px 10px;
+    border: 1px solid var(--blog-border-bright);
+    border-radius: 999px;
+    background: rgba(2, 4, 8, 0.7);
+    color: var(--blog-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 1.5px;
+}
+
+/* ---------- escenas: media + texto ---------- */
+
+.blog-scene {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: 30px;
+    align-items: center;
+    margin: 46px 0;
+}
+
+.blog-scene:nth-of-type(even) {
+    grid-template-columns: 0.92fr 1.08fr;
+}
+
+.blog-scene:nth-of-type(even) .blog-scene-media {
+    order: 2;
+}
+
+.blog-scene-index {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--blog-accent2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+}
+
+.blog-scene-text h2 {
+    margin-top: 0;
+}
+
+.blog-scene-text p {
+    margin-bottom: 14px;
+}
+
+.blog-scene-link {
+    color: var(--blog-accent2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.blog-scene-link:hover {
+    text-decoration: underline;
+}
+
+/* ---------- grilla de cierre ---------- */
+
+.blog-media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin: 28px 0 8px;
+}
+
+.blog-media-card {
+    margin: 0;
+}
+
+.blog-media-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--blog-border);
+    border-radius: 8px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.blog-media-card:hover img {
+    border-color: var(--blog-border-bright);
+    transform: translateY(-3px);
+}
+
+/* ---------- portada de card en el indice ---------- */
+
+.blog-card-cover {
+    position: relative;
+    overflow: hidden;
+    margin: -28px -28px 22px;
+    border-bottom: 1px solid var(--blog-border);
+    aspect-ratio: 16 / 9;
+}
+
+.blog-card-cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.blog-card:hover .blog-card-cover img {
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+.blog-card-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(2, 4, 8, 0.12) 38%,
+            rgba(2, 4, 8, 0.78));
+}
+
+.blog-card:has(.blog-card-cover) {
+    overflow: hidden;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 850px) {
+
+    .blog-scene,
+    .blog-scene:nth-of-type(even) {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin: 40px 0;
+    }
+
+    .blog-scene:nth-of-type(even) .blog-scene-media {
+        order: 0;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .blog-media-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .blog-card-cover {
+        margin: -28px -28px 18px;
+    }
+
+    .blog-media-caption {
+        font-size: 0.6rem;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .blog-media-card:hover img,
+    .blog-card:hover .blog-card-cover img {
+        transform: none;
+    }
+
+    .blog-video-play {
+        transition: none;
+    }
+
+}

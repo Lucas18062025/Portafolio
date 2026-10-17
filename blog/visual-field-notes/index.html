@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Visual Field Notes: 5 escenas de threat intel, reversing y automatización | Lucas Villagra</title>
+    <meta name="theme-color" content="#020408">
+    <link rel="icon" href="../../favicon.ico">
+
+    <meta name="description"
+        content="Cinco escenas visuales sobre threat intel, ingeniería inversa, triage de alertas, propagación en red y automatización: qué ilustra cada una y por qué importa en un laboratorio de seguridad.">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://portafolio.lucaslean1806.workers.dev/blog/visual-field-notes/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Visual Field Notes | Lucas Villagra">
+    <meta property="og:description"
+        content="Cinco escenas visuales sobre threat intel, reversing, triage, propagación en red y automatización, con la lectura analítica de cada concepto.">
+    <meta property="og:url" content="https://portafolio.lucaslean1806.workers.dev/blog/visual-field-notes/">
+    <meta property="og:site_name" content="Lucas Villagra | Security Research">
+    <meta property="og:image"
+        content="https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/global-malware-threat-map-og.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Mapa global de amenazas con estética de centro de monitoreo">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Visual Field Notes | Lucas Villagra">
+    <meta name="twitter:description"
+        content="Cinco escenas visuales sobre threat intel, reversing, triage, propagación en red y automatización.">
+    <meta name="twitter:image"
+        content="https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/global-malware-threat-map-og.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/blog.css">
+    <link rel="stylesheet" href="../../css/blog-media.css?v=1">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Visual Field Notes: cinco escenas de threat intel, reversing y automatización",
+        "description": "Cinco escenas visuales sobre threat intel, ingeniería inversa, triage de alertas, propagación en red y automatización, con la lectura analítica de cada concepto.",
+        "inLanguage": "es-AR",
+        "datePublished": "2026-10-17",
+        "dateModified": "2026-10-17",
+        "author": {
+            "@type": "Person",
+            "@id": "https://portafolio.lucaslean1806.workers.dev/#person",
+            "name": "Lucas Villagra"
+        },
+        "publisher": {
+            "@id": "https://portafolio.lucaslean1806.workers.dev/#organization"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://portafolio.lucaslean1806.workers.dev/blog/visual-field-notes/"
+        },
+        "image": [
+            "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/global-malware-threat-map-og.webp"
+        ],
+        "video": [
+            {
+                "@type": "VideoObject",
+                "name": "Mapa holografico de amenazas con pulsos de ataques",
+                "description": "Ilustración animada de un mapa global de amenazas.",
+                "thumbnailUrl": "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/holographic-world-map-pulses-red-poster-1280.webp",
+                "uploadDate": "2026-10-17",
+                "duration": "PT8S",
+                "contentUrl": "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/holographic-world-map-pulses-red.mp4"
+            },
+            {
+                "@type": "VideoObject",
+                "name": "Un binario que se fragmenta hasta el ensamblador",
+                "description": "Ilustración animada del pasaje de un binario a su código ensamblador.",
+                "thumbnailUrl": "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/binary-file-shatters-into-assembly-poster-1280.webp",
+                "uploadDate": "2026-10-17",
+                "duration": "PT8S",
+                "contentUrl": "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/binary-file-shatters-into-assembly.mp4"
+            },
+            {
+                "@type": "VideoObject",
+                "name": "Malware detectado en pantalla tactica",
+                "description": "Ilustración animada de una detección de malware y su triage.",
+                "thumbnailUrl": "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/malware-detected-on-tactical-screen-poster-1280.webp",
+                "uploadDate": "2026-10-17",
+                "duration": "PT8S",
+                "contentUrl": "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/malware-detected-on-tactical-screen.mp4"
+            },
+            {
+                "@type": "VideoObject",
+                "name": "Grafo de nodos que se expande por la red",
+                "description": "Ilustración animada de propagación entre nodos de una red.",
+                "thumbnailUrl": "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/network-node-graph-expands-dynam-poster-1280.webp",
+                "uploadDate": "2026-10-17",
+                "duration": "PT8S",
+                "contentUrl": "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/network-node-graph-expands-dynam.mp4"
+            },
+            {
+                "@type": "VideoObject",
+                "name": "Script de Python ejecutandose en terminal",
+                "description": "Ilustración animada de automatización con Python en una terminal.",
+                "thumbnailUrl": "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/python-script-executing-in-terminal-poster-1280.webp",
+                "uploadDate": "2026-10-17",
+                "duration": "PT8S",
+                "contentUrl": "https://portafolio.lucaslean1806.workers.dev/assets/blog/flow/python-script-executing-in-terminal.mp4"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Portafolio", "item": "https://portafolio.lucaslean1806.workers.dev/"},
+            {"@type": "ListItem", "position": 2, "name": "Security Research", "item": "https://portafolio.lucaslean1806.workers.dev/blog/"},
+            {"@type": "ListItem", "position": 3, "name": "Visual Field Notes", "item": "https://portafolio.lucaslean1806.workers.dev/blog/visual-field-notes/"}
+        ]
+    }
+    </script>
+</head>
+
+<body class="blog-page">
+
+    <header class="blog-nav">
+        <div class="blog-container blog-nav-inner">
+
+            <a href="../../" class="blog-brand">
+                LUCAS<span>VILLAGRA</span> // SECURITY RESEARCH
+            </a>
+
+            <a href="../" class="blog-back">
+                ← SECURITY RESEARCH
+            </a>
+
+        </div>
+    </header>
+
+
+    <main>
+        <article class="blog-container">
+
+            <header class="blog-hero">
+
+                <span class="blog-kicker">
+                    [ FIELD NOTES · VISUAL ]
+                </span>
+
+                <h1>
+                    Cinco escenas<br>
+                    para <span>pensar</span><br>
+                    la seguridad
+                </h1>
+
+                <p>
+                    Generé un set visual con Google Flow para acompañar el
+                    laboratorio: cinco clips de ocho segundos y sus piezas
+                    fijas. No son capturas de pantalla de un incidente real
+                    ni telemetría: son <strong>ilustraciones</strong>. Lo que
+                    sí es real es el concepto que cada una deja ver.
+                </p>
+
+                <div class="blog-meta">
+                    <time datetime="2026-10-17">17 OCT 2026</time> · 5 CLIPS + 9 IMÁGENES · POR LUCAS VILLAGRA
+                </div>
+
+            </header>
+
+
+            <div class="blog-divider"></div>
+
+
+            <figure class="blog-figure is-hero">
+                <img src="../../assets/blog/flow/global-malware-threat-map-1280.webp"
+                    srcset="../../assets/blog/flow/global-malware-threat-map-640.webp 640w, ../../assets/blog/flow/global-malware-threat-map-1280.webp 1280w"
+                    sizes="(max-width: 900px) 100vw, 820px"
+                    alt="Pantalla de monitoreo con un globo terráqueo y rutas de ataque en rojo"
+                    width="1280" height="714" fetchpriority="high" decoding="async">
+                <figcaption class="blog-media-caption">
+                    Set visual generado con Google Flow · 2026. Las vistas son
+                    ilustrativas: ningún dato proviene de una red real.
+                </figcaption>
+            </figure>
+
+
+            <!-- =================================================
+             ARTICLE CONTENT
+             ================================================= -->
+
+            <section class="blog-article-content">
+
+                <p>
+                    La seguridad se explica mal con texto solo. Un párrafo sobre
+                    <em>movimiento lateral</em> puede ser correcto y aun así no
+                    quedar claro. Por eso armé este set: cada escena ilustra una
+                    idea que ya vengo trabajando en el laboratorio, y abajo está
+                    la lectura que me interesa dejar.
+                </p>
+
+                <p>
+                    Los clips se cargan solo cuando hacen falta: en pantallas
+                    grandes arrancan solos y en silencio, y en el celular quedan
+                    como imagen con un botón para reproducir. Nada de autoplay
+                    con audio ni video pesado al pedo.
+                </p>
+
+
+                <!-- ESCENA 01 -->
+
+                <section class="blog-scene">
+
+                    <div class="blog-scene-media">
+                        <div class="blog-video">
+                            <video muted loop playsinline preload="none"
+                                poster="../../assets/blog/flow/holographic-world-map-pulses-red-poster-1280.webp"
+                                data-src="../../assets/blog/flow/holographic-world-map-pulses-red.mp4"
+                                aria-label="Clip de ocho segundos: mapa mundial holográfico con pulsos rojos"></video>
+                            <span class="blog-video-badge">CLIP · 8 S</span>
+                            <button class="blog-video-play" type="button" aria-label="Reproducir el clip">
+                                <span>▶ REPRODUCIR</span>
+                            </button>
+                        </div>
+                        <p class="blog-media-caption">
+                            Google Flow · 8 s · 720p · sin audio.
+                        </p>
+                    </div>
+
+                    <div class="blog-scene-text">
+                        <span class="blog-scene-index">[ 01 / 05 ]</span>
+
+                        <h2>Un mapa de amenazas no es la amenaza</h2>
+
+                        <p>
+                            Los mapas de threat intel son <strong>agregación de
+                                telemetría</strong>: muestran dónde hay más ruido,
+                            no dónde está tu riesgo. Un punto rojo sobre una
+                            región no dice nada sobre tus activos.
+                        </p>
+
+                        <p>
+                            Sirven para una sola cosa bien hecha: priorizar
+                            hipótesis. La decisión se toma con datos propios
+                            —qué expusiste, qué logueás, qué alcanza a tu
+                            red—.
+                        </p>
+
+                        <a href="./../red-team-mindset/" class="blog-scene-link">LEER: PENSAR COMO ATACANTE →</a>
+                    </div>
+
+                </section>
+
+
+                <!-- ESCENA 02 -->
+
+                <section class="blog-scene">
+
+                    <div class="blog-scene-media">
+                        <div class="blog-video">
+                            <video muted loop playsinline preload="none"
+                                poster="../../assets/blog/flow/binary-file-shatters-into-assembly-poster-1280.webp"
+                                data-src="../../assets/blog/flow/binary-file-shatters-into-assembly.mp4"
+                                aria-label="Clip de ocho segundos: un archivo binario que se fragmenta hasta el ensamblador"></video>
+                            <span class="blog-video-badge">CLIP · 8 S</span>
+                            <button class="blog-video-play" type="button" aria-label="Reproducir el clip">
+                                <span>▶ REPRODUCIR</span>
+                            </button>
+                        </div>
+                        <p class="blog-media-caption">
+                            Google Flow · 8 s · 720p · sin audio.
+                        </p>
+                    </div>
+
+                    <div class="blog-scene-text">
+                        <span class="blog-scene-index">[ 02 / 05 ]</span>
+
+                        <h2>Del byte al ensamblador</h2>
+
+                        <p>
+                            Un binario no se lee de corrido: <strong>se
+                                interroga</strong>. Secciones, imports, strings,
+                            entropía y llamadas raras van armando el relato.
+                        </p>
+
+                        <p>
+                            La ingeniería inversa es método, no memoria de
+                            opcodes. La pregunta correcta no es <em>qué hace
+                                esta instrucción</em>, sino <em>qué historia
+                                cuenta el conjunto</em>.
+                        </p>
+
+                        <a href="../../#proyectos" class="blog-scene-link">VER: LAB DE REVERSING →</a>
+                    </div>
+
+                </section>
+
+
+                <!-- ESCENA 03 -->
+
+                <section class="blog-scene">
+
+                    <div class="blog-scene-media">
+                        <div class="blog-video">
+                            <video muted loop playsinline preload="none"
+                                poster="../../assets/blog/flow/malware-detected-on-tactical-screen-poster-1280.webp"
+                                data-src="../../assets/blog/flow/malware-detected-on-tactical-screen.mp4"
+                                aria-label="Clip de ocho segundos: malware detectado en una pantalla táctica"></video>
+                            <span class="blog-video-badge">CLIP · 8 S</span>
+                            <button class="blog-video-play" type="button" aria-label="Reproducir el clip">
+                                <span>▶ REPRODUCIR</span>
+                            </button>
+                        </div>
+                        <p class="blog-media-caption">
+                            Google Flow · 8 s · 720p · sin audio.
+                        </p>
+                    </div>
+
+                    <div class="blog-scene-text">
+                        <span class="blog-scene-index">[ 03 / 05 ]</span>
+
+                        <h2>Alerta no es incidente</h2>
+
+                        <p>
+                            Una detección solo dice <em>algo pasó acá</em>. El
+                            trabajo empieza después: <strong>triage</strong>.
+                            Qué activo, qué alcance, qué artefactos quedaron
+                            para analizar.
+                        </p>
+
+                        <p>
+                            Sin ese contexto, cada alerta compite por atención y
+                            termina ganando la más ruidosa, que casi nunca es la
+                            más grave.
+                        </p>
+
+                        <a href="../../#proyectos" class="blog-scene-link">VER: SIEM Y MONITOREO →</a>
+                    </div>
+
+                </section>
+
+
+                <!-- ESCENA 04 -->
+
+                <section class="blog-scene">
+
+                    <div class="blog-scene-media">
+                        <div class="blog-video">
+                            <video muted loop playsinline preload="none"
+                                poster="../../assets/blog/flow/network-node-graph-expands-dynam-poster-1280.webp"
+                                data-src="../../assets/blog/flow/network-node-graph-expands-dynam.mp4"
+                                aria-label="Clip de ocho segundos: grafo de nodos de red que se expande"></video>
+                            <span class="blog-video-badge">CLIP · 8 S</span>
+                            <button class="blog-video-play" type="button" aria-label="Reproducir el clip">
+                                <span>▶ REPRODUCIR</span>
+                            </button>
+                        </div>
+                        <p class="blog-media-caption">
+                            Google Flow · 8 s · 720p · sin audio.
+                        </p>
+                    </div>
+
+                    <div class="blog-scene-text">
+                        <span class="blog-scene-index">[ 04 / 05 ]</span>
+
+                        <h2>La confianza es el camino</h2>
+
+                        <p>
+                            El movimiento lateral rara vez es solo una
+                            vulnerabilidad explotada: <strong>usa confianza</strong>.
+                            Credenciales reutilizadas, servicios internos que se
+                            aceptan entre sí sin preguntar.
+                        </p>
+
+                        <p>
+                            Por eso segmentar no es burocracia de red: es cortar
+                            el grafo por donde el atacante necesita pasar.
+                        </p>
+
+                        <a href="./../vm-isolation/" class="blog-scene-link">LEER: AISLAMIENTO EN VMs →</a>
+                    </div>
+
+                </section>
+
+
+                <!-- ESCENA 05 -->
+
+                <section class="blog-scene">
+
+                    <div class="blog-scene-media">
+                        <div class="blog-video">
+                            <video muted loop playsinline preload="none"
+                                poster="../../assets/blog/flow/python-script-executing-in-terminal-poster-1280.webp"
+                                data-src="../../assets/blog/flow/python-script-executing-in-terminal.mp4"
+                                aria-label="Clip de ocho segundos: script de Python ejecutándose en una terminal"></video>
+                            <span class="blog-video-badge">CLIP · 8 S</span>
+                            <button class="blog-video-play" type="button" aria-label="Reproducir el clip">
+                                <span>▶ REPRODUCIR</span>
+                            </button>
+                        </div>
+                        <p class="blog-media-caption">
+                            Google Flow · 8 s · 720p · sin audio.
+                        </p>
+                    </div>
+
+                    <div class="blog-scene-text">
+                        <span class="blog-scene-index">[ 05 / 05 ]</span>
+
+                        <h2>Automatizar lo repetible</h2>
+
+                        <p>
+                            Automatizar tiene sentido en lo determinista:
+                            normalizar evidencia, recolectar, comparar, avisar.
+                            Eso libera horas y baja el error humano.
+                        </p>
+
+                        <p>
+                            Lo que requiere juicio se queda con una persona que
+                            lo lea. Un script que decide solo es un problema con
+                            cron.
+                        </p>
+
+                        <a href="./../continuous-learning/" class="blog-scene-link">LEER: APRENDIZAJE CONTINUO →</a>
+                    </div>
+
+                </section>
+
+
+                <h2>Piezas sueltas del mismo set</h2>
+
+                <p>
+                    No todas las imágenes necesitaban un clip. Estas cuatro
+                    quedaron como piezas fijas y funcionan igual de bien para
+                    ilustrar lo mismo: contexto, detalle y método.
+                </p>
+
+                <div class="blog-media-grid">
+
+                    <figure class="blog-media-card">
+                        <img src="../../assets/blog/flow/digital-zoom-into-virtual-cpu-640.webp"
+                            srcset="../../assets/blog/flow/digital-zoom-into-virtual-cpu-640.webp 640w, ../../assets/blog/flow/digital-zoom-into-virtual-cpu-1280.webp 1280w"
+                            sizes="(max-width: 700px) 100vw, 400px"
+                            alt="Zoom digital hacia un procesador con circuitos iluminados"
+                            width="1280" height="714" loading="lazy" decoding="async">
+                        <figcaption class="blog-media-caption">
+                            Del host a la VM: abstracción que hay que entender
+                            para aislar bien.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="blog-media-card">
+                        <img src="../../assets/blog/flow/decompiling-binary-into-assembly-640.webp"
+                            srcset="../../assets/blog/flow/decompiling-binary-into-assembly-640.webp 640w, ../../assets/blog/flow/decompiling-binary-into-assembly-1280.webp 1280w"
+                            sizes="(max-width: 700px) 100vw, 400px"
+                            alt="Interfaz de descompilación con bloques de código y cadenas"
+                            width="1280" height="714" loading="lazy" decoding="async">
+                        <figcaption class="blog-media-caption">
+                            Decompilar no devuelve el original: devuelve una
+                            versión creíble que hay que verificar.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="blog-media-card">
+                        <img src="../../assets/blog/flow/source-code-scrolling-on-screen-640.webp"
+                            srcset="../../assets/blog/flow/source-code-scrolling-on-screen-640.webp 640w, ../../assets/blog/flow/source-code-scrolling-on-screen-1280.webp 1280w"
+                            sizes="(max-width: 700px) 100vw, 400px"
+                            alt="Código fuente desplazándose sobre una pantalla oscura"
+                            width="1280" height="714" loading="lazy" decoding="async">
+                        <figcaption class="blog-media-caption">
+                            Leer código ajeno es la mitad del oficio: entender
+                            intención, no solo sintaxis.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="blog-media-card">
+                        <img src="../../assets/blog/flow/executing-python-reverse-enginee-640.webp"
+                            srcset="../../assets/blog/flow/executing-python-reverse-enginee-640.webp 640w, ../../assets/blog/flow/executing-python-reverse-enginee-1280.webp 1280w"
+                            sizes="(max-width: 700px) 100vw, 400px"
+                            alt="Terminal ejecutando un script de ingeniería inversa con Python"
+                            width="1280" height="714" loading="lazy" decoding="async">
+                        <figcaption class="blog-media-caption">
+                            Python como pegamento: recolecta, normaliza y
+                            presenta lo que después alguien interpreta.
+                        </figcaption>
+                    </figure>
+
+                </div>
+
+            </section>
+
+        </article>
+    </main>
+
+
+    <footer class="blog-footer">
+
+        <div class="blog-container">
+
+            <p>
+                © 2026 Lucas Villagra · Security Research
+            </p>
+
+            <p>
+                EDUCATION · ETHICAL SECURITY · CONTINUOUS LEARNING
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="../../js/blog-media.js?v=1" defer></script>
+
+</body>
+
+</html>
