@@ -28,7 +28,13 @@ Verificar en 360 y 1440. Los clips NO autoplay con `prefers-reduced-motion` ni `
 
 ## Checks
 - T1–T5 (automáticos en `deploy.ps1`) + T8 (`@graph` en producción).
-- T9 Range/206: `curl.exe -r 0-1023 -I https://.../assets/blog/flow/<slug>.mp4`.
+- T9 entrega de clips (medido 17/10): los assets de Workers **no soportan `Range`**: un GET con
+  `Range` devuelve 200 con el cuerpo completo (probado con `curl -r 0-1023` en el MP4 y en un WebP,
+  y con un offset a mitad de archivo: `moov`/`mdat` completos). Es aceptable porque los clips van con
+  `preload="none"` + `src` diferido (se piden solo al entrar en viewport o al tocar ▶) y están en
+  `+faststart` (`moov` en offset 36, antes de `mdat`): arrancan en streaming progresivo.
+  Verificación: `curl.exe -s -o NUL -w "%{http_code} %{size_download}" -r 0-1023 <url>.mp4`
+  → `200 1440786`.
 - T10 presupuesto de pesos (medido 17/10): imagen 1280 ≤ 186 KB · 640 ≤ 65 KB ·
   poster ≤ 133 KB · clip ≤ 1,41 MB · total **7,99 MB en 32 archivos** (crudos: 48,7 MB → −84 %).
   Los clips se descargan recién al entrar en viewport.
