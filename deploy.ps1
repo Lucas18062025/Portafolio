@@ -44,6 +44,13 @@ foreach ($pat in @("^specs$", "^specs/\*\*$")) {
 }
 
 # 1. Ver qué cambió
+#    Nota: los comandos nativos (git.exe) escriben avisos por stderr aun con exit 0
+#    (p. ej. "warning: LF will be replaced by CRLF" al tocar un .yml). Con
+#    $ErrorActionPreference="Stop" eso abortaba el script. Se aisla a "Continue" y
+#    se decide por $LASTEXITCODE, igual que en el push (4), el dry-run (4b) y el
+#    deploy (5).
+$oldEAPGit = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
 git status --short
 git diff --stat
 
@@ -51,17 +58,18 @@ git diff --stat
 $changes = git status --porcelain
 if ($changes) {
   git add .
+  if ($LASTEXITCODE -ne 0) { $ErrorActionPreference = $oldEAPGit; Write-Error "ABORTADO: git add falló (exit $LASTEXITCODE)."; exit 1 }
   git commit -m $Message
+  if ($LASTEXITCODE -ne 0) { $ErrorActionPreference = $oldEAPGit; Write-Error "ABORTADO: git commit falló (exit $LASTEXITCODE)."; exit 1 }
 } else {
   Write-Host "Sin cambios para commitear."
 }
 
 # 4. Push
 #     Nota: `git push` escribe a stderr aun con exit 0 (p. ej. "Everything up-to-date"
-#     cuando el arbol esta limpio y la rama al dia). Con $ErrorActionPreference="Stop"
-#     eso abortaba el script antes del dry-run. Se aisla a "Continue" y se decide
-#     por $LASTEXITCODE, igual que en el dry-run (4b) y el deploy (5).
+#     cuando el arbol esta limpio y la rama al dia). Se aisla igual que arriba.
 $branch = (git rev-parse --abbrev-ref HEAD).Trim()
+$ErrorActionPreference = $oldEAPGit
 $oldEAPPush = $ErrorActionPreference
 $ErrorActionPreference = "Continue"
 $pushOut = git push origin $branch 2>&1 | Out-String
@@ -107,12 +115,18 @@ if ($deployExit -ne 0) {
 
 # 6. Health-check post-deploy: sano = 200 en /, 200 en /manifest.json,
 #    404 en /worker.js (no exponer código) y 404 (nunca 500) en URL inexistente.
+#    Además: la página del set visual Flow 200 + 1 WebP y 1 MP4 del kit 200.
+#    Sus 32 assets no los referencia ninguna otra página: si se rompen, nada
+#    más lo delata.
 $base = "https://portafolio.lucaslean1806.workers.dev"
 $checks = @(
   @{ Path = "/"; Want = 200 },
   @{ Path = "/manifest.json?v=health"; Want = 200 },
   @{ Path = "/worker.js"; Want = 404 },
-  @{ Path = "/no-existo-healthcheck"; Want = 404 }
+  @{ Path = "/no-existo-healthcheck"; Want = 404 },
+  @{ Path = "/blog/visual-field-notes/"; Want = 200 },
+  @{ Path = "/assets/blog/flow/cybersecurity-analyst-viewing-mo-640.webp"; Want = 200 },
+  @{ Path = "/assets/blog/flow/holographic-world-map-pulses-red.mp4"; Want = 200 }
 )
 $fail = $false
 foreach ($c in $checks) {

@@ -28,3 +28,6 @@ jobs:
           check "/manifest.json?v=health" 200
           check "/worker.js" 404
           check "/no-existo-healthcheck" 404
+          check "/blog/visual-field-notes/" 200
+          check "/assets/blog/flow/cybersecurity-analyst-viewing-mo-640.webp" 200
+          check "/assets/blog/flow/holographic-world-map-pulses-red.mp4" 200
