@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 """Optimiza el kit de medios de Google Flow para la seccion Security Research.
 
-Convierte imagenes 2K a WebP en dos anchos (+ variante og 1200x630) y recomprime
-los clips MP4 720p para web. La salida esta pensada para `assets/blog/flow/`.
+Convierte imagenes 2K a WebP en dos anchos y recomprime los clips MP4 720p para
+web (con poster WebP en dos anchos). La salida esta pensada para
+`assets/blog/flow/`.
+
+La variante og (1200x630) es opt-in con `--og`: solo tiene consumidor la imagen
+que se usa como `og:image` de una pagina, asi que generarla para todas deja
+archivos huerfanos en el repo.
 
 Uso:
     python scripts/media/optimize_flow_media.py --src "<dir OneDrive>" --out "<assets/blog/flow>"
     python scripts/media/optimize_flow_media.py --src "<dir>" --out "<dir>" --no-video
+    python scripts/media/optimize_flow_media.py --src "<dir>" --out "<dir>" --og
 """
 
 from __future__ import annotations
@@ -91,14 +97,17 @@ def _center_crop(image: Image.Image, size: tuple[int, int]) -> Image.Image:
     return image.crop(box).resize(size, Image.LANCZOS)
 
 
-def optimize_image(source: Path, out_dir: Path, quality: int, force: bool) -> Result:
-    """Genera las variantes WebP (1280 / 640 / og) de una imagen.
+def optimize_image(
+    source: Path, out_dir: Path, quality: int, force: bool, with_og: bool = False
+) -> Result:
+    """Genera las variantes WebP (1280 / 640) de una imagen.
 
     Args:
         source: JPG/PNG de origen.
         out_dir: Carpeta destino.
         quality: Calidad WebP (1-100).
         force: Rehacer aunque la salida sea mas nueva.
+        with_og: Generar tambien la variante og 1200x630 (solo si se usa como og:image).
 
     Returns:
         Resultado con el peso antes y despues.
@@ -107,7 +116,14 @@ def optimize_image(source: Path, out_dir: Path, quality: int, force: bool) -> Re
     result = Result(source=source, slug=slug, kind="image", before=source.stat().st_size)
 
     main_target = out_dir / f"{slug}-{WIDTHS[0]}.webp"
-    if main_target.exists() and not force and main_target.stat().st_mtime >= source.stat().st_mtime:
+    og_target = out_dir / f"{slug}-og.webp"
+    og_missing = with_og and not og_target.exists()
+    if (
+        main_target.exists()
+        and not force
+        and not og_missing
+        and main_target.stat().st_mtime >= source.stat().st_mtime
+    ):
         result.after = sum(
             path.stat().st_size for path in out_dir.glob(f"{slug}-*.webp") if path.is_file()
         )
@@ -120,9 +136,10 @@ def optimize_image(source: Path, out_dir: Path, quality: int, force: bool) -> Re
             target = out_dir / f"{slug}-{width}.webp"
             result.after += _save_webp(_fit_width(image, width), target, quality)
             result.outputs.append(target)
-        og_target = out_dir / f"{slug}-og.webp"
-        result.after += _save_webp(_center_crop(image, OG_SIZE), og_target, quality)
-        result.outputs.append(og_target)
+        if with_og:
+            og_target = out_dir / f"{slug}-og.webp"
+            result.after += _save_webp(_center_crop(image, OG_SIZE), og_target, quality)
+            result.outputs.append(og_target)
     return result
 
 
@@ -196,7 +213,9 @@ def process(source_dir: Path, out_dir: Path, args: argparse.Namespace) -> list[R
         suffix = path.suffix.lower()
         try:
             if suffix in IMAGE_SUFFIXES:
-                results.append(optimize_image(path, out_dir, args.quality, args.force))
+                results.append(
+                    optimize_image(path, out_dir, args.quality, args.force, args.og)
+                )
             elif suffix in VIDEO_SUFFIXES and not args.no_video:
                 results.append(
                     transcode_video(path, out_dir, args.crf, args.quality, args.force)
@@ -251,6 +270,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--quality", type=int, default=80, help="calidad WebP (default 80)")
     parser.add_argument("--crf", type=int, default=28, help="calidad x264 (default 28)")
     parser.add_argument("--no-video", action="store_true", help="procesar solo imagenes")
+    parser.add_argument(
+        "--og",
+        action="store_true",
+        help="generar ademas la variante og 1200x630 (tiene consumidor solo la imagen usada como og:image)",
+    )
     parser.add_argument("--force", action="store_true", help="rehacer todo")
     args = parser.parse_args(argv)
 
