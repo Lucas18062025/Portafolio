@@ -26,7 +26,6 @@ specs/**
 .gstack/**
 .gbrain
 .gbrain/**
-vercel.json
 CODEOWNERS
 scripts
 scripts/**

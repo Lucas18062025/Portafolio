@@ -31,7 +31,8 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 ## Git
 - Pre-commit: `git status --short` + `git diff --stat` (+ `git check-ignore <archivo>` ante duda).
 - Nunca `git add .` en manual; solo archivos intencionales. (`deploy.ps1` hace staging propio.)
-- Chico: push directo ok. Grande: rama `feat/...` + PR + merge (respeta protección `main`).
+- Chico: push directo ok. Grande: rama `feat/...` + PR + merge.
+- `main` NO tiene protección real (privado + plan Free: sin branch protection ni rulesets) → disciplina por convención + `deploy.ps1`: todo push va a producción y el CI corre después (informa, no gatea). Evidencia 17/10: `gh api repos/Lucas18062025/Portafolio/branches/main` → `protected: false`.
 - Firmados `gpg.format=ssh`. Si `Unverified` → revisar signing key primero.
 
 ## Guards (abortan deploy, ver `TEST_PLAN.md`)

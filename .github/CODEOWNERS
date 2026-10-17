@@ -1,2 +1,4 @@
-# Dueño del repo: todo cambio requiere su PR (ver ruleset protect-main).
+# Dueño del repo. Sin branch protection ni rulesets (repo privado + plan Free)
+# este archivo NO bloquea nada: es informativo. El ruleset `protect-main` que
+# mencionaba la versión anterior no existe.
 * @Lucas18062025
