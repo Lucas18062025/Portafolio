@@ -18,8 +18,10 @@
 - No instalar dependencias sin aprobación. No tocar `node_modules/wrangler/config-schema.json`.
 
 ## 5. Observabilidad
-- Post-deploy 5 min: `Observability → Logs → Error`, cero `scriptThrewException` = sano.
-- Verificable por API (read-only): issues de `workers/observability` para el Worker `portafolio` → deben aparecer solo los issues conocidos.
+- Post-deploy 5 min: cero `scriptThrewException` = sano.
+- **Camino estándar (17/10): MCP `cloudflare-observability`** (read-only). `query_worker_observability` con `view:calculations`, filtro `$metadata.service eq portafolio`, `groupBys: $workers.outcome` y timeframe relativo `{reference: <ahora>, offset: "-6h"}` → debe devolver **solo `ok`**. Complemento: `view:events` + filtro `$metadata.error: exists` → debe volver **`[]`** (bucket vacío).
+- Antes de filtrar por un campo nuevo: `observability_keys` / `observability_values` para confirmar que el campo y el valor existen (evita filtros inventados).
+- Alternativa por API cruda (misma data): `POST /accounts/5443029ed4498003db9d0748999a326e/workers/observability/telemetry/query` con el `body` como **string JSON** y `queryId:"adhoc"` **obligatorio** (sin él → `ZodError`). Clave del resultado: `$workers.outcome`.
 
 ## 6. Publicación
 - Todo push a `main` va a producción: `deploy.yml` corre en `push: branches: [main]` y ejecuta `wrangler deploy`. No hay branch protection ni rulesets (repo privado + plan Free): la única barrera previa es `deploy.ps1` (T1–T3b + dry-run). El CI informa después del deploy; no gatea.

@@ -9,6 +9,7 @@
 | `scripts/media/optimize_flow_media.py` (Pillow + ffmpeg) | regenerar el kit visual (`--src/--out`, `--no-video`, `--crf`, `--force`) | correrlo sin `--src/--out` |
 | `gh api` (read-only) | auditorías: `branches/main`, `rulesets`, `check-runs`, `codeowners/errors` | `POST/PATCH/DELETE` sin pedido explícito |
 | Edge headless | verificación de render y medidas post-deploy | instalar Chrome u otro navegador |
+| MCP `cloudflare-observability` (read-only) | post-deploy: `query_worker_observability` (events/calculations/invocations), `observability_keys`/`observability_values`, `workers_list`/`workers_get_worker` | tocar config del Worker o desplegar desde ahí |
 | `cloudflare-auditor` (subagente) | auditoría read-only Workers/KV/wrangler | modificar código o infra |
 | `git-flow` (subagente) | flujo PR estricto | `edit` directo |
 | Browser: Rich Results + Search Console | T6–T7 | `Solicitar indexación` >10/día (cuota) |
