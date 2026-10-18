@@ -259,11 +259,14 @@
 /* ---------------------------------------------------------
    TRUST CREDENTIALS (first fold)
    --------------------------------------------------------- */
+/* Fila al ras del borde inferior del hero: comparte la linea de base con los
+   pies del robot (este tambien va en bottom: 0). Antes estaba en 32px y la fila
+   flotaba por encima del robot. Se mantiene en una sola linea en desktop. */
 .hero-trust {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 32px;
+    bottom: 0;
     width: min(1180px, calc(100% - 40px));
 
     display: flex;
