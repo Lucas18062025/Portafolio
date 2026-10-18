@@ -21,6 +21,7 @@
 
 ## No-objetivos verificados
 - `Range`/`206`: Workers Assets no lo soporta (probado 17/10: siempre 200 con el cuerpo completo, sin `Accept-Ranges`). No esperar respuestas parciales en MP4/WebP.
+- **Reemplazar un asset con el mismo nombre no se refleja** (probado 17/10): los assets se sirven con `Cache-Control: public, max-age=31536000, immutable` y el CDN **ignora el query string** en la clave de caché (`...webp?v=2` → `CF-Cache-Status: HIT`, mismo cuerpo). Cambiar el contenido de un archivo existente deja la versión vieja cacheada en el edge y en el navegador. Para cambiar una imagen: **nombre nuevo** + borrar el viejo (`v2`, ver `index.html` de la card Security Audit Checker).
 
 ## Criterio de finalización
 - T1–T5 en verde en output de `deploy.ps1` (**T5 = 7 checks**) + T8 + cero `scriptThrewException` en 5 min.
