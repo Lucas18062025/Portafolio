@@ -37,47 +37,6 @@
             }
         }
 
-        /* Reflection Cards CSS Migration */
-        .reflection-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 26px 32px;
-            text-align: left;
-            position: relative;
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
-        }
-
-        .reflection-card.accent-1 {
-            border-left: 3px solid var(--accent);
-        }
-
-        .reflection-card.accent-2 {
-            border-left: 3px solid var(--accent2);
-        }
-
-        .reflection-card.accent-3 {
-            border-left: 3px solid var(--accent3);
-        }
-
-        .reflection-card:hover {
-            background: var(--card-bg2);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
-        }
-
-        .reflection-card.accent-1:hover {
-            border-color: var(--accent);
-        }
-
-        .reflection-card.accent-2:hover {
-            border-color: var(--accent2);
-        }
-
-        .reflection-card.accent-3:hover {
-            border-color: var(--accent3);
-        }
-
         :root {
             --bg: #020408;
             --bg2: #060c14;
@@ -86,7 +45,6 @@
             --card-bg2: rgba(10, 18, 32, 0.95);
             --accent: #0066FF;
             --accent2: #00D4FF;
-            --accent3: #3388ff;
             --text-main: #f0f4f8;
             --text-muted: #8899aa;
             --text-subtle: #4a5a6a;
@@ -1097,12 +1055,6 @@
 .img-cover-top{object-fit:cover;object-position:top}
 .section-center{text-align:center}
 .h2-center{justify-content:center}
-.reflection-list{display:flex;flex-direction:column;gap:24px;max-width:780px;margin:0 auto}
-.ref-kicker{display:block;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:3px;margin-bottom:14px}
-.kicker-1{color:var(--accent)}
-.kicker-2{color:var(--accent2)}
-.kicker-3{color:#c9d1d9}
-.ref-quote{font-family:'Inter',sans-serif;font-size:1.12rem;color:#c0d8e8;line-height:1.8;font-style:italic}
 .foot-meta{font-size:.6rem;opacity:.65;margin-top:10px}
 .foot-links{font-size:.6rem;margin-top:12px;text-transform:none;letter-spacing:0}
 .foot-links a{color:var(--accent);text-decoration:none}
