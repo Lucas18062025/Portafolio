@@ -639,12 +639,13 @@
                 <div class="about-wrap">
 
                     <div class="about-avatar">
-                        <!-- Carga temprana (eager) SIN fetchpriority: es una foto de ~11 KB y se ve
-                             al llegar a la seccion. Con loading="lazy" el navegador la pedia recien al
-                             scrollear (llegaba tarde); con fetchpriority="high" le competia el LCP al hero. -->
+                        <!-- Identidad de la seccion: se pide en la carga inicial y con prioridad alta.
+                             Medido (netlog, Chrome): lazy y eager sin hint => LOW; con fetchpriority="high"
+                             => MEDIUM, la misma prioridad que el robot del hero (no se la quita).
+                             Sin esto la foto compite con las ~350 KB de portadas y llega tarde al scrollear. -->
                         <img src="Foto_Perfil.webp" srcset="Foto_Perfil-320.webp 320w, Foto_Perfil.webp 640w"
                             sizes="160px" alt="Lucas Villagra - Cybersecurity Analyst" width="640" height="640"
-                            loading="eager" decoding="async">
+                            loading="eager" fetchpriority="high" decoding="async">
                         <i class="fas fa-user-secret avatar-fallback"></i>
                     </div>
 
