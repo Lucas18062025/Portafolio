@@ -1,0 +1,40 @@
+.fa{font-family:var(--fa-style-family,"Font Awesome 6 Free");font-weight:var(--fa-style,900)}
+.fa,.fa-brands,.fa-classic,.fa-regular,.fa-sharp,.fa-solid,.fab,.far,.fas{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:var(--fa-display,inline-block);font-style:normal;font-variant:normal;line-height:1;text-rendering:auto}
+.fa-classic,.fa-regular,.fa-solid,.far,.fas{font-family:"Font Awesome 6 Free"}
+.fa-brands,.fab{font-family:"Font Awesome 6 Brands"}
+.fa-cloud:before{content:"\f0c2"}
+.fa-globe:before{content:"\f0ac"}
+.fa-wifi-3:before,.fa-wifi-strong:before,.fa-wifi:before{content:"\f1eb"}
+.fa-shield-alt:before,.fa-shield-halved:before{content:"\f3ed"}
+.fa-code:before{content:"\f121"}
+.fa-chart-line:before,.fa-line-chart:before{content:"\f201"}
+.fa-arrow-right:before{content:"\f061"}
+.fa-clipboard-check:before{content:"\f46c"}
+.fa-external-link-alt:before,.fa-up-right-from-square:before{content:"\f35d"}
+.fa-file-pdf:before{content:"\f1c1"}
+.fa-user-secret:before{content:"\f21b"}
+.fa-cog:before,.fa-gear:before{content:"\f013"}
+.fa-network-wired:before{content:"\f6ff"}
+.fa-user-shield:before{content:"\f505"}
+.fa-fish:before{content:"\f578"}
+.fa-robot:before{content:"\f544"}
+.fa-book-open:before{content:"\f518"}
+.fa-database:before{content:"\f1c0"}
+@font-face{font-family:"Font Awesome 6 Brands";font-style:normal;font-weight:400;font-display:block;src:url(../webfonts/fa-brands-subset-33.woff2) format("woff2")}
+.fa-brands,.fab{font-weight:400}
+.fa-aws:before{content:"\f375"}
+.fa-microsoft:before{content:"\f3ca"}
+.fa-css3-alt:before{content:"\f38b"}
+.fa-google:before{content:"\f1a0"}
+.fa-windows:before{content:"\f17a"}
+.fa-ubuntu:before{content:"\f7df"}
+.fa-gitlab:before{content:"\f296"}
+.fa-linux:before{content:"\f17c"}
+.fa-linkedin:before{content:"\f08c"}
+.fa-facebook:before{content:"\f09a"}
+.fa-whatsapp:before{content:"\f232"}
+.fa-docker:before{content:"\f395"}
+.fa-html5:before{content:"\f13b"}
+.fa-python:before{content:"\f3e2"}
+.fa-github:before{content:"\f09b"}
+@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:block;src:url(../webfonts/fa-solid-subset-33.woff2) format("woff2")}

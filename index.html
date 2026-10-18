@@ -121,7 +121,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./assets/vendor/fontawesome/css/all.min.css?v=640">
+    <!-- P1: CSS de iconos recortado a los 33 glifos que usa el sitio (2,2 KB) + dos fuentes
+         subseteadas (~3 KB c/u), en lugar del paquete completo (~360 KB).
+         El paquete original queda como fuente: regenerar con scripts/media/fontawesome-subset.py -->
+    <link rel="stylesheet" href="./assets/vendor/fontawesome/css/fa-subset-33.css">
     <link rel="stylesheet" href="./css/hero.css?v=11">
     <link rel="stylesheet" href="./css/main.css?v=2">
 </head>
