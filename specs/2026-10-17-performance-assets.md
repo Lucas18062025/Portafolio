@@ -61,3 +61,51 @@ Hallazgos no-weight:
 
 `git revert <sha>` del commit de assets/HTML + `.\deploy.ps1 -Message "revert: ..."`.
 Los archivos viejos viven en git, no hace falta regenerar nada.
+
+---
+
+## Resultado medido (17/10, producción)
+
+Mismo método antes y después: netlog de Edge headless (`--window-size=1440,900`,
+`--virtual-time-budget=6000`, DPR 1) + peso real de cada pedido con `Accept-Encoding: br`.
+
+| | antes | después | Δ |
+|---|---:|---:|---:|
+| **Primer load de `/`** | **1.230.844 B (1.202 KB)** | **649.127 B (634 KB)** | **−47,2 %** |
+| FontAwesome | 281.287 B | 6.981 B | −274.306 B |
+| Hero robot | 106.060 B | 12.342 B | −93.718 B |
+| Logos de certificados | 338.968 B | 127.576 B | −211.392 B |
+
+P0a: `assets/hero-robot-v2-{360,720}.{webp,avif}` (RGBA, AVIF q60 + WebP q80),
+`<picture>` con `srcset`/`sizes` y `fetchpriority="high"`. SSIM 0,98 sobre la zona
+visible (alfa > 0), error de alfa 0,07/255.
+**Ojo:** el original es RGBA con fondo transparente; convertir a RGB mete una caja
+clara en el hero. El `<img>` de Foto_Perfil pasó a `loading="lazy"` (estaba bajo el
+pliegue con `fetchpriority="high"`, compitiendo con el LCP).
+Sin `<link rel="preload">` a propósito: el wrapper es `display:none` ≤600 px y un
+preload dispararía la descarga en móvil igual.
+
+P0b: `_headers` no tenía regla para el hero → `max-age=0, must-revalidate`
+(el LCP se revalidaba en cada visita). Ahora los 4 archivos v2 son `immutable`.
+
+P1: `scripts/media/fontawesome-subset.py` detecta los 33 glifos usados (18 solid +
+15 brands), recorta las dos fuentes con `fontTools.subset` y genera
+`assets/vendor/fontawesome/css/fa-subset-33.css` (2.222 B) + `fa-{solid,brands}-subset-33.woff2`
+(2.800 + 3.448 B). **360.169 B → 8.494 B.** El paquete original queda en el repo como
+fuente, pero el sitio ya no lo carga.
+Verificación: render A/B de los 33 íconos servido por HTTP, CSS+fuente original contra
+CSS+fuente recortada → **0 píxeles de diferencia** (486.400 comparados). Cada par
+(familia, ícono) se chequeó contra la cmap del subset: 0 glifos perdidos.
+Trampa: un probe por `file://` no carga las fuentes y da cajas vacías en ambas
+versiones (falso positivo de "diferencias"); servir siempre por HTTP.
+El nombre lleva la cantidad de glifos como versión (`-33`): `/assets/vendor/*` es
+`immutable` y el CDN ignora el query string, así que agregar un ícono exige
+regenerar (nombre nuevo) y actualizar el `<link>`.
+
+P2: `assets/certificates/*-640.webp` (eran 1320×1020 servidos a 160 px de alto),
+referenciados desde `index.html` (6 `<img>`) y `data/certificates.json` (6 `preview`).
+
+Pendiente (no ejecutado): fuentes de Google self-host/subset (~103 KB), `icon-192.png`
+PNG → WebP (~58 KB), `og-portfolio.webp` (~57 KB), portadas de proyectos con AVIF,
+clips del blog a 960 (5,8 MB → ~3,5 MB), y los 14 íconos externos de
+skillicons/simpleicons (terceros).
