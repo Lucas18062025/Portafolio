@@ -287,9 +287,19 @@
             </div>
 
             <!-- Visual companion: Sentinel AI robot (bottom-left) -->
+            <!-- P0a: 720w/360w (AVIF q60 + WebP q80). Antes: 1333x935 x 106 KB para un render de <=340 px.
+                 Sin <link rel="preload"> a proposito: el wrapper es display:none <=600 px, y un preload
+                 dispararia la descarga igual en movil. -->
             <div class="hero-robot-wrapper" aria-hidden="true">
-                <img src="./assets/hero-robot.webp" alt="" class="hero-robot-img" width="1333" height="935"
-                    loading="eager" decoding="async">
+                <picture>
+                    <source type="image/avif"
+                        srcset="./assets/hero-robot-v2-360.avif 360w, ./assets/hero-robot-v2-720.avif 720w"
+                        sizes="(max-width: 600px) 100px, (max-width: 900px) 260px, 340px">
+                    <img src="./assets/hero-robot-v2-720.webp" alt="" class="hero-robot-img" width="720"
+                        height="505" fetchpriority="high" decoding="async"
+                        srcset="./assets/hero-robot-v2-360.webp 360w, ./assets/hero-robot-v2-720.webp 720w"
+                        sizes="(max-width: 600px) 100px, (max-width: 900px) 260px, 340px">
+                </picture>
             </div>
 
         </header>
@@ -628,7 +638,7 @@
                     <div class="about-avatar">
                         <img src="Foto_Perfil.webp" srcset="Foto_Perfil-320.webp 320w, Foto_Perfil.webp 640w"
                             sizes="160px" alt="Lucas Villagra - Cybersecurity Analyst" width="640" height="640"
-                            loading="eager" fetchpriority="high" decoding="async">
+                            loading="lazy" decoding="async">
                         <i class="fas fa-user-secret avatar-fallback"></i>
                     </div>
 
@@ -1219,7 +1229,7 @@
                     <div class="grid" id="grid-certificaciones">
                         <div class="cert-card">
                             <div class="cert-preview">
-                                <img src="assets/certificates/cisco-ethical-hacker.webp"
+                                <img src="assets/certificates/cisco-ethical-hacker-640.webp"
                                     alt="Certificado Cisco Networking Academy — Hacker Ético" class="img-cover-top"
                                     width="400" height="250" loading="lazy" decoding="async">
                             </div>
@@ -1236,7 +1246,7 @@
 
                         <div class="cert-card">
                             <div class="cert-preview">
-                                <img src="assets/certificates/google-cybersecurity.webp"
+                                <img src="assets/certificates/google-cybersecurity-640.webp"
                                     alt="Google Cybersecurity Certificate — Coursera" class="img-cover-top" width="400"
                                     height="250" loading="lazy" decoding="async">
                             </div>
@@ -1256,7 +1266,7 @@
 
                         <div class="cert-card">
                             <div class="cert-preview">
-                                <img src="assets/certificates/google-ai-essentials.webp"
+                                <img src="assets/certificates/google-ai-essentials-640.webp"
                                     alt="Google AI Essentials Certificate — Coursera" class="img-cover-top" width="400"
                                     height="250" loading="lazy" decoding="async">
                             </div>
@@ -1280,7 +1290,7 @@
                     <div class="grid" id="grid-logros">
                         <div class="cert-card">
                             <div class="cert-preview">
-                                <img src="assets/certificates/microsoft-proteccion-datos-confidenciales.webp"
+                                <img src="assets/certificates/microsoft-proteccion-datos-confidenciales-640.webp"
                                     alt="Logro Microsoft Learn — Protección de datos confidenciales en un mundo digital (Lucas Villagra, 28 sep 2026). Módulo completado, no es certificación profesional por examen."
                                     class="img-cover-top" width="400" height="250" loading="lazy" decoding="async">
                             </div>
@@ -1298,7 +1308,7 @@
 
                         <div class="cert-card">
                             <div class="cert-preview">
-                                <img src="assets/certificates/aws-cloud-security-essentials.webp"
+                                <img src="assets/certificates/aws-cloud-security-essentials-640.webp"
                                     alt="Certificado AWS Training & Certification — Cloud Security Essentials for Executives (Español LATAM)"
                                     class="img-cover-top" width="400" height="250" loading="lazy" decoding="async">
                             </div>
@@ -1316,7 +1326,7 @@
 
                         <div class="cert-card">
                             <div class="cert-preview">
-                                <img src="assets/certificates/big-school-cybersecurity.webp"
+                                <img src="assets/certificates/big-school-cybersecurity-640.webp"
                                     alt="Certificado BIG School — Ciberseguridad y Hacking Ético" class="img-cover-top"
                                     width="400" height="250" loading="lazy" decoding="async">
                             </div>

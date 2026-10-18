@@ -109,7 +109,7 @@ Artículos propios en [`/blog`](https://portafolio.lucaslean1806.workers.dev/blo
       </table>
     </td>
     <td valign="top" align="center" style="padding-left: 20px;">
-      <img src="assets/hero-robot.webp" alt="Hero Robot" width="300" />
+      <img src="assets/hero-robot-v2-720.webp" alt="Hero Robot" width="300" />
     </td>
   </tr>
 </table>

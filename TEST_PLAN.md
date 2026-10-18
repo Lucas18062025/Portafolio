@@ -22,6 +22,7 @@
 ## No-objetivos verificados
 - `Range`/`206`: Workers Assets no lo soporta (probado 17/10: siempre 200 con el cuerpo completo, sin `Accept-Ranges`). No esperar respuestas parciales en MP4/WebP.
 - **Reemplazar un asset con el mismo nombre no se refleja** (probado 17/10): los assets se sirven con `Cache-Control: public, max-age=31536000, immutable` y el CDN **ignora el query string** en la clave de caché (`...webp?v=2` → `CF-Cache-Status: HIT`, mismo cuerpo). Cambiar el contenido de un archivo existente deja la versión vieja cacheada en el edge y en el navegador. Para cambiar una imagen: **nombre nuevo** + borrar el viejo (`v2`, ver `index.html` de la card Security Audit Checker).
+- **`_headers` matchea por ruta exacta, no hay bloque `/assets/*` genérico** (probado 17/10 y 17/10bis): un archivo nuevo bajo `assets/` **sin regla propia** sale con `Cache-Control: public, max-age=0, must-revalidate` y se **revalida en cada visita**. Le pasó a `/assets/hero-robot.webp` (el recurso más pesado del hero) durante semanas sin que nada lo delatara: los health-checks dan 200 igual. Al agregar un asset nuevo, **agregar su regla** (`immutable` si el nombre es versionado, `86400` si se reescribe) y verificarla con `curl -sI`.
 
 ## Criterio de finalización
 - T1–T5 en verde en output de `deploy.ps1` (**T5 = 7 checks**) + T8 + cero `scriptThrewException` en 5 min.

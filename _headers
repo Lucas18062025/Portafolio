@@ -71,6 +71,20 @@
 /assets/hero_bg_dark_luxury.webp
   Cache-Control: public, max-age=31536000, immutable
 
+# Hero robot v2 (P0a 17/10): antes /assets/hero-robot.webp no tenia regla y salia
+# con max-age=0 -> el recurso mas pesado del hero se revalidaba en CADA visita.
+/assets/hero-robot-v2-360.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/hero-robot-v2-720.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/hero-robot-v2-360.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/hero-robot-v2-720.avif
+  Cache-Control: public, max-age=31536000, immutable
+
 /Foto_Perfil.webp
   Cache-Control: public, max-age=31536000, immutable
 
