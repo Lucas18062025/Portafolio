@@ -24,10 +24,10 @@
 - Alternativa por API cruda (misma data): `POST /accounts/5443029ed4498003db9d0748999a326e/workers/observability/telemetry/query` con el `body` como **string JSON** y `queryId:"adhoc"` **obligatorio** (sin él → `ZodError`). Clave del resultado: `$workers.outcome`.
 
 ## 6. Publicación
-- Todo push a `main` va a producción: `deploy.yml` corre en `push: branches: [main]` y ejecuta `wrangler deploy`.
-- `main` está protegida por el ruleset `protect-main` (exige PR, commits firmados, sin borrado ni force-push). El owner tiene bypass permanente, así que `deploy.ps1` puede pushear directo: GitHub acepta el push y lo deja asentado como *"Bypassed rule violations"*. La firma de los commits **no** se saltea.
-- Barrera previa real al deploy: los guards de `deploy.ps1` (T1–T3b + dry-run) + el commit firmado. El CI informa después del deploy; no gatea.
-- Corrección 20/10: hasta el 17/10 este documento decía "No hay branch protection ni rulesets (repo privado + plan Free)". Era falso. El repo es **público** (desde su creación) y el ruleset existe desde el 20/07/2026; el 17/10 la API de `/rulesets` daba 403 por el plan Free + repo privado, y eso se leyó como "no existe".
+- **Único path a producción: el CI.** `.github/workflows/deploy.yml` corre en `push: [main]` (o sea, al mergear el PR), ejecuta `wrangler deploy` y valida T5 + T10 (`scripts/health-checks.mjs`). Si el gate falla, el job queda rojo.
+- Antes había 3 paths de deploy (`deploy.ps1`, el CI y Workers Builds) y cada push a `main` desplegaba **3 veces** (medido 20/10: 3 versiones en Cloudflare por push, separadas ~15 s). `deploy.ps1` ya no despliega: es pre-flight + push de rama. Workers Builds queda pendiente de apagar (dashboard), y su deploy command (`npx wrangler deploy`) no está pineado.
+- Barreras antes del deploy: los guards (`scripts/guards.mjs`: T1–T3b, T4, T9) corren **en el CI** y no solo en la máquina del owner. El mismo script corre en el gate del PR (`ci.yml`), así que un PR roto ni siquiera llega al merge.
+- `main` está protegida por el ruleset `protect-main` (exige PR, commits firmados, sin borrado ni force-push). El owner tiene bypass permanente, así que un push directo se aceptaría y quedaría asentado como *"Bypassed rule violations"*: el flujo (rama → PR → merge) evita depender de ese bypass. La firma de los commits **no** se saltea.
 
 ## 7. Historia de git
 - Escaneo de secretos sobre toda la historia (393 commits, 17/10/2026): 4 coincidencias, todas `${{ secrets.* }}` (referencias, no valores). Nunca se commiteó `.env`/`.dev.vars`/`.pem`. Repetir ante duda con los patrones de tokens (Cloudflare/GitHub/Google/JWT/Stripe/DigitalOcean/Anthropic/xAI), claves privadas y hex-37.

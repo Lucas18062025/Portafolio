@@ -1,5 +1,9 @@
 name: Deploy Portafolio to Cloudflare
 
+# UNICO path de deploy a produccion. Se dispara al mergear el PR a `main`.
+# Antes habia 3 (este CI + deploy.ps1 + Workers Builds) y cada push desplegaba
+# 3 veces: medido el 20/10, 3 versiones en Cloudflare por push.
+
 on:
   push:
     branches: [main]
@@ -9,25 +13,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          # fetch-depth 2: el gate de T9 compara contra el commit anterior de main.
+          fetch-depth: 2
       - uses: actions/setup-node@v5
         with:
           node-version: 24
       # M1: wrangler pineado igual que deploy.ps1 (deriva = deploys distintos
       # según la puerta). TODO: SHA-pinear actions/* cuando se fijen SHAs.
       - run: npm i -g wrangler@4.136.3
+      # Barreras ANTES del deploy (misma implementacion que el pre-flight local
+      # y que el gate del PR: scripts/guards.mjs). Si algo esta roto, el
+      # deploy no sale: no se llega a romper produccion.
+      - name: Guards (T1-T3b, T4, T9)
+        env:
+          WRANGLER: wrangler
+        run: node scripts/guards.mjs --base "${{ github.event.before }}" --dry-run
       - run: wrangler deploy --config wrangler.jsonc
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      # M1: la puerta ciega también verifica (T5 mínimo, sin deploy.ps1).
-      - name: Health-checks post-deploy (T5)
-        run: |
-          base="https://portafolio.lucaslean1806.workers.dev"
-          check() { code=$(curl -s -o /dev/null -w "%{http_code}" "$base$1"); [ "$code" = "$2" ] || { echo "FALLO $1 -> $code (esperado $2)"; exit 1; }; echo "$1 -> $code OK"; }
-          check "/" 200
-          check "/manifest.json?v=health" 200
-          check "/worker.js" 404
-          check "/no-existo-healthcheck" 404
-          check "/blog/visual-field-notes/" 200
-          check "/assets/blog/flow/cybersecurity-analyst-viewing-mo-640.webp" 200
-          check "/assets/blog/flow/holographic-world-map-pulses-red.mp4" 200
+      # Verificacion post-deploy: T5 (sitio sano) + T10 (colector CSP).
+      # Si falla, el job queda rojo y el deploy se ve roto en el PR.
+      - name: Health-checks post-deploy (T5 + T10)
+        run: node scripts/health-checks.mjs

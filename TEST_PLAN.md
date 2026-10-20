@@ -1,16 +1,26 @@
 # TEST_PLAN.md — Portafolio
 
-## Puerta de deploy (automática en `deploy.ps1`)
-| # | Check | Esperado |
-|---|-------|----------|
-| T1 | `google*.html` existe | aborta si falta |
-| T2 | `wrangler.jsonc` tiene `"binding": "ASSETS"` | aborta si falta |
-| T3 | `.assetsignore` contiene `^worker\.js$` | aborta si falta |
-| T3b | `.assetsignore` contiene `AGENTS.md`, `SECURITY.md`, `TEST_PLAN.md`, `TOOLS.md`, `specs` + `specs/**` | aborta si falta |
-| T4 | `dry-run` contiene `env.ASSETS` | aborta si falta |
-| T5 | `GET /` → 200, `/manifest.json` → 200, `/worker.js` → 404, `/no-existo` → 404 (nunca 500) · `/blog/visual-field-notes/` → 200 + 2 assets del kit (1 WebP y 1 MP4) → 200 | aborta si falla |
-| T9 | **Cache-bust de CSS/JS**: si `css/*.css` o `js/*.js` cambiaron, el `?v=N` de su referencia en el HTML debe haber cambiado también | aborta si falla |
-| T10 | **Colector CSP**: `POST /api/csp-report` acepta `application/csp-report` (204), `application/reports+json` (204), `application/json` (204); rechaza `text/plain` (415), shape inválido (400), body > 8 KB (413); `GET` → 405 con `Allow: POST`; `/` trae `Reporting-Endpoints` con URL absoluta | aborta si falla |
+## Gates (una sola implementación: `scripts/guards.mjs` + `scripts/health-checks.mjs`)
+| # | Check | Dónde corre | Esperado |
+|---|-------|-------------|----------|
+| T1 | `google*.html` existe | guards | aborta si falta |
+| T2 | `wrangler.jsonc` tiene `"binding": "ASSETS"` | guards | aborta si falta |
+| T3 | `.assetsignore` contiene `^worker\.js$` | guards | aborta si falta |
+| T3b | `.assetsignore` contiene `AGENTS.md`, `SECURITY.md`, `TEST_PLAN.md`, `TOOLS.md`, `specs` + `specs/**` | guards | aborta si falta |
+| T4 | `dry-run` contiene `env.ASSETS` | guards (local + pre-deploy del CI) | aborta si falta |
+| T5 | `GET /` → 200, `/manifest.json` → 200, `/worker.js` → 404, `/no-existo` → 404 (nunca 500) · `/blog/visual-field-notes/` → 200 + 2 assets del kit (1 WebP y 1 MP4) → 200 | health-checks (post-deploy) | aborta si falla |
+| T9 | **Cache-bust de CSS/JS**: si `css/*.css` o `js/*.js` cambiaron, el `?v=N` de su referencia en el HTML debe haber cambiado también | guards | aborta si falla |
+| T10 | **Colector CSP**: `POST /api/csp-report` acepta `application/csp-report` (204), `application/reports+json` (204), `application/json` (204); rechaza `text/plain` (415), shape inválido (400), body > 8 KB (413); `GET` → 405 con `Allow: POST`; `/` trae `Reporting-Endpoints` con URL absoluta | health-checks (post-deploy) | aborta si falla |
+
+**Quién corre qué** (20/10: la implementación es una sola, para que no haya drift):
+- `scripts/guards.mjs` → T1, T2, T3, T3b, T9 (+ T4 con `--dry-run`).
+  Consumidores: `deploy.ps1 -Check` (local, antes del PR) · `ci.yml` (gate del PR, sin T4) · `deploy.yml` (pre-deploy, con T4).
+- `scripts/health-checks.mjs` → T5 + T10. Consumidor: `deploy.yml` (post-deploy). `deploy.ps1` ya no despliega, así que no los corre.
+- `scripts/verify-csp.js` → valida la CSP del `_headers`. Consumidor: `ci.yml`.
+
+## Flujo del deploy (único path a producción)
+Rama → `deploy.ps1 -Check` → `deploy.ps1 -Message` (commit + push de la rama) → PR → merge → **el CI despliega y valida T5 + T10**.
+Antes había 3 paths de deploy (deploy.ps1, CI y Workers Builds) y cada push a `main` desplegaba 3 veces.
 
 ### T10 — Por qué existe (bug real del 19-20/10)
 El endpoint `/api/csp-report` aceptaba **solo** `application/json`, que **ningún
