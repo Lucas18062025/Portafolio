@@ -67,12 +67,28 @@ Registro del MP4 contra el asset base: crop `x0=127`, `1026×720`, resize a 720�
 - Caja del parche: x 262→469, y 121→193 (207×72) → embedded en el canvas 720×505.
 
 ## Animación
-- Ciclo de 5,2 s (`robotBlink`, `linear`, `infinite`).
-- El parche se ve ~229 ms (la duración real del blink en el MP4 es 250–333 ms).
+- Ciclo de **2,2 s** (`--blink-cycle`, `robotBlink`, `linear`, `infinite`).
+  Medido en producción con el ciclo anterior de 5,2 s: gap real entre parpadeos
+  **5.179 ms** (no 3 s), ventana visible 249 ms. 2,2 s es más natural (el ojo
+  humano parpadea cada 2–5 s) y más perceptible.
+- Rampa: apagado 110 ms → sostenido 44 ms → encendido 110 ms. El parche tiene el
+  LED apagado, así que `opacity: 1` = ojos apagados.
+- La ventana visible es ~12% del ciclo: a 2,2 s son ~264 ms (la duración real del
+  blink en el MP4 es 250–333 ms). Si se cambia `--blink-cycle`, la ventana escala
+  con él (a 1,5 s → ~180 ms; a 3 s → ~360 ms).
 - Solo `opacity` (compositor): no toca layout, ni el flotado, ni el LCP.
 - Bajo `prefers-reduced-motion: no-preference` únicamente. Con `reduce`:
   `animation-name: none` y `opacity: 0` → ojos siempre encendidos, sin animación.
   **Verificado en navegador**: `reduce` → `animationName: "none"`, `opacity: "0"`.
+
+## Fuente de medios
+- `docs/media-source/robot-blink-source.mp4` (1.198.516 B) y
+  `docs/media-source/robot-transparent-master.png` (1.157.036 B) versionados en git.
+- `docs/**` está en `.assetsignore` → **no se deploya**, pero queda en el repo.
+- `scripts/media/robot_blink_patch.py` corre sin argumentos y regenera el parche
+  desde esas fuentes. Reproducibilidad verificada: el archivo regenerado tiene las
+  mismas dimensiones (720×505 RGBA) y difiere en 9 píxeles de 363.600
+  (delta máx 13/255, alfa idéntico) — el encoder WebP no es determinista byte a byte.
 
 ## Verificación (navegador real, Playwright + msedge, preview en :8899)
 | Check | Resultado |

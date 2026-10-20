@@ -15,9 +15,12 @@ La salida es un parche de ~2 KB frente a los ~500 KB de un WebP animado completo
 
 Uso:
     python scripts/media/robot_blink_patch.py \
-        --mp4 "C:\\Users\\HP Ryzen 5\\Downloads\\oct 15 - 15_03\\robot-pestañeando.mp4" \
+        --mp4 docs/media-source/robot-blink-source.mp4 \
         --base assets/hero-robot-v2-720.webp \
-        --out assets/hero-robot-blink-360.webp
+        --out assets/hero-robot-blink-720.webp
+
+La fuente (MP4 + PNG maestro) vive versionada en `docs/media-source/`, que esta
+en `.assetsignore` (no se deploya) pero si en git: el parche es reproducible.
 """
 
 from __future__ import annotations
@@ -221,21 +224,36 @@ def build_patch(mp4: Path, base_path: Path, out_path: Path, quality: int) -> Non
     mask = np.asarray(Image.fromarray((mask * 255).astype(np.uint8), "L")
                       .filter(ImageFilter.GaussianBlur(SIGMA))).astype(np.float32) / 255.0
 
-    rgba = np.dstack([off_rgb.clip(0, 255).astype(np.uint8), (mask * 255).astype(np.uint8)])
+    # El parche va embebido en un canvas del MISMO aspect que el asset base (720x505).
+    # Razon: el base se renderiza con `object-fit: contain` + `object-position: bottom right`
+    # + `max-width`; cuando el max-width recorta, el contenido se letraboxea y se desplaza
+    # dentro de la caja del elemento, y un parche posicionado con % sobre esa caja se
+    # desregistra. Con canvas del mismo aspect y las mismas reglas de object-fit, el
+    # parche se registra solo en cualquier viewport.
+    canvas = Image.new("RGBA", (tw, th), (0, 0, 0, 0))
+    canvas.paste(Image.fromarray(
+        np.dstack([off_rgb.clip(0, 255).astype(np.uint8), (mask * 255).astype(np.uint8)]),
+        "RGBA"), (crop[0], crop[1]), Image.fromarray(
+        np.dstack([off_rgb.clip(0, 255).astype(np.uint8), (mask * 255).astype(np.uint8)]),
+        "RGBA"))
+
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    Image.fromarray(rgba).save(out_path, "WEBP", quality=quality, method=6)
-    print(f"escrito {out_path} ({out_path.stat().st_size / 1024:.1f} KB)")
-    print(f"caja en 720x505: x {crop[0]}..{crop[2]}  y {crop[1]}..{crop[3]}  ({cw2}x{ch2})")
-    print(f"CSS: left:{100 * crop[0] / tw:.4f}%  top:{100 * crop[1] / th:.4f}%  "
-          f"width:{100 * cw2 / tw:.4f}%")
+    canvas.save(out_path, "WEBP", quality=quality, method=6)
+    print(f"escrito {out_path} ({out_path.stat().st_size / 1024:.1f} KB) "
+          f"canvas {tw}x{th}")
+    print(f"parche embebido en x {crop[0]}..{crop[2]}  y {crop[1]}..{crop[3]}  ({cw2}x{ch2})")
 
 
 def main() -> None:
     """Punto de entrada."""
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--mp4", type=Path, required=True, help="MP4 de origen")
-    ap.add_argument("--base", type=Path, required=True, help="asset base del hero")
-    ap.add_argument("--out", type=Path, required=True, help="WebP de salida")
+    ap.add_argument("--mp4", type=Path,
+                    default=Path("docs/media-source/robot-blink-source.mp4"),
+                    help="MP4 de origen (default: la fuente versionada)")
+    ap.add_argument("--base", type=Path, default=Path("assets/hero-robot-v2-720.webp"),
+                    help="asset base del hero")
+    ap.add_argument("--out", type=Path, default=Path("assets/hero-robot-blink-720.webp"),
+                    help="WebP de salida")
     ap.add_argument("--quality", type=int, default=80, help="calidad WebP")
     args = ap.parse_args()
     build_patch(args.mp4, args.base, args.out, args.quality)

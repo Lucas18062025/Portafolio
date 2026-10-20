@@ -612,27 +612,41 @@
         animation: heroRobotFloat 8s ease-in-out infinite;
     }
 
-    /* Doble parpadeo cada 5,2 s: los ojos se apagan ~250 ms (la duracion real medida
-       en el MP4, frames 82-87) y vuelven. Solo `opacity` (compositor): no toca layout,
-       ni el flotado, ni el LCP. */
+    /* Parpadeo: los ojos se apagan y vuelven (el parche es el frame real del MP4
+       con los LEDs apagados, y el `opacity` hace la rampa de encendido/apagado).
+       Solo `opacity` (compositor): no toca layout, ni el flotado, ni el LCP.
+
+       Cadencia: `--blink-cycle` = 2,2 s entre parpadeos (el ojo humano parpadea
+       cada 2-5 s). La ventana visible es ~12% del ciclo: a 2,2 s son ~264 ms,
+       que es la duracion real del blink en el MP4 (frames 79-92). Si se cambia
+       `--blink-cycle`, la ventana se escala con el (a 1,5 s -> ~180 ms: mas
+       nervioso; a 3 s -> ~360 ms: mas lento). */
     .hero-robot-blink {
-        animation: robotBlink 5.2s linear infinite;
+        animation: robotBlink var(--blink-cycle, 2.2s) linear infinite;
     }
 }
 
+/* Rampa: apagado 110 ms -> sostenido 44 ms -> encendido 110 ms.
+   El parche tiene el LED apagado, asi que opacity 1 = ojos apagados. */
 @keyframes robotBlink {
 
     0%,
-    90.4% {
+    87% {
         opacity: 0;
     }
 
-    90.8%,
-    95.2% {
+    92% {
         opacity: 1;
     }
 
-    95.6%,
+    94% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0;
+    }
+
     100% {
         opacity: 0;
     }
