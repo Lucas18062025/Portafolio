@@ -49,7 +49,7 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 La usan los tres: `deploy.ps1 -Check` (local), `ci.yml` (gate del PR) y `deploy.yml` (pre-deploy). Así no hay drift entre lo que se valida localmente y lo que valida el CI.
 T1 `google*.html` existe / T2 `binding ASSETS` / T3 `worker.js` en `.assetsignore`
 + T3b docs internos + `specs/` ignorados / T4 dry-run con `env.ASSETS`
-/ T5 health-checks `/` 200, `/manifest.json` 200, `/worker.js` 404, `/no-existo` 404 (nunca 500).
+/ T5 health-checks `/` 200, `/manifest.json` **404** (el sitio no es una PWA), `/worker.js` 404, `/no-existo` 404 (nunca 500).
 
 ## Reglas que no se repiten (ver detalle)
 - No exponer `worker.js` (`404` esperado). No ofuscar email sin pedido explícito (rompió Gmail en Edge, sep-2026).

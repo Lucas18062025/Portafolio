@@ -8,7 +8,7 @@
 | T3 | `.assetsignore` contiene `^worker\.js$` | guards | aborta si falta |
 | T3b | `.assetsignore` contiene `AGENTS.md`, `SECURITY.md`, `TEST_PLAN.md`, `TOOLS.md`, `specs` + `specs/**` | guards | aborta si falta |
 | T4 | `dry-run` contiene `env.ASSETS` | guards (local + pre-deploy del CI) | aborta si falta |
-| T5 | `GET /` → 200, `/manifest.json` → 200, `/worker.js` → 404, `/no-existo` → 404 (nunca 500) · `/blog/visual-field-notes/` → 200 + 2 assets del kit (1 WebP y 1 MP4) → 200 | health-checks (post-deploy) | aborta si falla |
+| T5 | `GET /` → 200, `/manifest.json` → **404** (el sitio no es una PWA: sin manifest ni service worker, Chrome no ofrece "instalar" en Android), `/worker.js` → 404, `/no-existo` → 404 (nunca 500) · `/blog/visual-field-notes/` → 200 + 2 assets del kit (1 WebP y 1 MP4) → 200 | health-checks (post-deploy) | aborta si falla |
 | T9 | **Cache-bust de CSS/JS**: si `css/*.css` o `js/*.js` cambiaron, el `?v=N` de su referencia en el HTML debe haber cambiado también | guards | aborta si falla |
 | T10 | **Colector CSP**: `POST /api/csp-report` acepta `application/csp-report` (204), `application/reports+json` (204), `application/json` (204); rechaza `text/plain` (415), shape inválido (400), body > 8 KB (413); `GET` → 405 con `Allow: POST`; `/` trae `Reporting-Endpoints` con URL absoluta | health-checks (post-deploy) | aborta si falla |
 
