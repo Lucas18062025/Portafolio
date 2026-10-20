@@ -1,10 +1,16 @@
-# Fuentes de medios del robot del hero
+# Fuentes de medios
 
 Assets **maestros** (no optimizados para web) de los que derivan los archivos que
 sí se sirven en producción. Están versionados en git para que el pipeline sea
 reproducible, pero **no se deployan**: `docs/**` está en `.assetsignore`.
 
-## Contenido
+Este directorio guarda dos fuentes:
+
+1. **Los medios del robot del hero** (abajo).
+2. **La fuente de FontAwesome** (`fontawesome/`), que antes vivía en
+   `assets/vendor/fontawesome/` y ocupaba **1,02 MB del bucket** sin que nadie la pidiera.
+
+## Contenido del robot
 
 | Archivo | Bytes | Qué es |
 |---|---|---|
@@ -41,6 +47,36 @@ python scripts/media/robot_blink_patch.py
 Sin argumentos usa las rutas de este directorio. El encoder WebP no es
 determinista byte a byte: el archivo regenerado difiere del commiteado en ~6 bytes
 y en 9 píxeles de 363.600 (delta máximo 13/255, alfa idéntico).
+
+## Fuente de FontAwesome (`fontawesome/`)
+
+| Archivo | Bytes | Qué es |
+|---|---|---|
+| `fontawesome/css/all.min.css` | 102.025 | CSS del paquete completo. De acá se leen los codepoints de los iconos. |
+| `fontawesome/webfonts/fa-solid-900.woff2` | 150.124 | Fuente original de la familia solid (900). |
+| `fontawesome/webfonts/fa-brands-400.woff2` | 108.020 | Fuente original de la familia brands (400). |
+
+**El sitio carga 8.494 B** de esta familia: `assets/vendor/fontawesome/css/fa-subset-33.css`
+(2.222 B) + `fa-brands-subset-33.woff2` (3.468 B) + `fa-solid-subset-33.woff2` (2.804 B).
+El subset tiene 33 glifos, los que el sitio usa de verdad (37 clases `fas` + 33 `fab`,
+0 `far` → la familia regular no se usa).
+
+### Regenerar
+
+```powershell
+python scripts/media/fontawesome-subset.py            # regenera (escribe en assets/)
+python scripts/media/fontawesome-subset.py --check    # solo valida, no escribe
+```
+
+El script **lee** de `docs/media-source/fontawesome/` y **escribe** en
+`assets/vendor/fontawesome/`. El número de versión es la cantidad de glifos usados:
+mismo conjunto de iconos → mismo nombre (`fa-subset-33.css`) → no hay que cambiar
+el `<link>` ni bumpear nada. Para agregar un ícono, el nombre cambia (`-34`) y ahí
+sí hay que actualizar el `<link>` de `index.html`, porque `/assets/vendor/*` se sirve
+con `Cache-Control: immutable` y el CDN ignora el query string.
+
+**Requiere `fonttools` + `brotli`** (`pip install fonttools brotli`): sin eso solo
+funciona el modo `--check` (lee el CSS y valida los codepoints, sin escribir).
 
 ## Por qué el parche y no un WebP animado del robot entero
 
