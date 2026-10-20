@@ -108,6 +108,19 @@ if ($changes) {
 # 4. Push
 #     Nota: `git push` escribe a stderr aun con exit 0 (p. ej. "Everything up-to-date"
 #     cuando el arbol esta limpio y la rama al dia). Se aisla igual que arriba.
+#
+#     Push DIRECTO a `main` = bypass intencional del ruleset `protect-main`
+#     (creado 20/07/2026, enforcement: active, reglas: pull_request,
+#     required_signatures, creation, deletion, non_fast_forward).
+#     El owner tiene `bypass_mode: always`, asi que GitHub ACEPTA el push y
+#     devuelve "Bypassed rule violations for refs/heads/main". No es un error
+#     del push: el push sale con exit 0 y el deploy sigue.
+#     Lo que el bypass NO cubre es `required_signatures`: el commit tiene que
+#     ir firmado o GitHub lo rechaza. Por eso este script no toca la signing
+#     key y hereda `commit.gpgsign=true` de la config del repo.
+#     Convencion (ver AGENTS.md): cambios CHICOS van por este script (push
+#     directo, bypass del owner); cambios GRANDES van por rama `feat/...` + PR
+#     + merge, para no depender del bypass.
 $branch = (git rev-parse --abbrev-ref HEAD).Trim()
 $ErrorActionPreference = $oldEAPGit
 $oldEAPPush = $ErrorActionPreference

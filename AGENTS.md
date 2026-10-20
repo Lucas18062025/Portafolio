@@ -32,7 +32,9 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 - Pre-commit: `git status --short` + `git diff --stat` (+ `git check-ignore <archivo>` ante duda).
 - Nunca `git add .` en manual; solo archivos intencionales. (`deploy.ps1` hace staging propio.)
 - Chico: push directo ok. Grande: rama `feat/...` + PR + merge.
-- `main` NO tiene protección real (privado + plan Free: sin branch protection ni rulesets) → disciplina por convención + `deploy.ps1`: todo push va a producción y el CI corre después (informa, no gatea). Evidencia 17/10: `gh api repos/Lucas18062025/Portafolio/branches/main` → `protected: false`.
+- `main` **sí** está protegida: ruleset `protect-main` (activo desde 20/07/2026) → exige PR, commits firmados, y bloquea borrado y force-push. El owner tiene `bypass_mode: always`, así que un push directo **se acepta** y GitHub lo registra como *"Bypassed rule violations"*. Convención: chico → push directo (bypass del owner); grande → rama + PR + merge. La firma **no** se saltea (sigue aplicando; `deploy.ps1` hereda `commit.gpgsign=true`). Todo push a `main` va a producción y el CI corre después (informa, no gatea).
+  - Evidencia 20/10: `gh api repos/Lucas18062025/Portafolio/rulesets/19284894` → `enforcement: active`, `bypass_actors[].bypass_mode: always`. Ojo: `gh api .../branches/main` → `protected: true` (el campo **no** distingue ruleset de branch protection clásico; para eso está `/rulesets`).
+  - El 17/10 se documente lo contrario ("sin branch protection ni rulesets, repo privado"): fue un error de lectura. La API de `/rulesets` daba **403** *"Upgrade to GitHub Pro or make this repository public to enable this feature"* porque el repo estaba **privado** en plan Free (los rulesets son gratis solo en repos públicos). El repo es **público** desde su creación (12/02/2026). No volver a concluir "no existe" a partir de un 403: leer el mensaje.
 - Firmados `gpg.format=ssh`. Si `Unverified` → revisar signing key primero.
 
 ## Guards (abortan deploy, ver `TEST_PLAN.md`)

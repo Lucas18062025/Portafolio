@@ -1,4 +1,6 @@
-# Dueño del repo. Sin branch protection ni rulesets (repo privado + plan Free)
-# este archivo NO bloquea nada: es informativo. El ruleset `protect-main` que
-# mencionaba la versión anterior no existe.
+# Dueño del repo. El ruleset `protect-main` exige PR, pero con 0 aprobaciones
+# requeridas y sin revisión de code owner (`require_code_owner_review: false`):
+# este archivo NO bloquea nada por sí solo, es informativo. La barrera real
+# son el PR y el commit firmado. El owner tiene bypass permanente, asi que un
+# push directo a `main` se acepta (queda registrado como bypass).
 * @Lucas18062025
