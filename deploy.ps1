@@ -179,4 +179,51 @@ if ($fail) {
   Write-Error "Health-check con fallos. Revisa Observability -> Logs -> Error (cero scriptThrewException = sano)."
   exit 1
 }
+
+# 7. T10: colector CSP. El endpoint aceptaba solo application/json (que ningun
+#    navegador manda) -> todo reporte real caia en 415 y el colector era un
+#    sensor apagado. Se verifican los 3 content-types validos, los rechazos y
+#    la cabecera Reporting-Endpoints (que Chrome 96+ exige con URL absoluta).
+Write-Host ""
+Write-Host "T10 - colector CSP:"
+$cspUrl = "$base/api/csp-report"
+$l2 = '{"csp-report":{"document-uri":"https://portafolio.lucaslean1806.workers.dev/","violated-directive":"script-src","blocked-uri":"inline"}}'
+$v1 = '[{"type":"csp-violation","body":{"documentURL":"https://portafolio.lucaslean1806.workers.dev/","effectiveDirective":"script-src","blockedURL":"inline","statusCode":200}}]'
+$cspChecks = @(
+  @{ Name = "POST application/csp-report (L2)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/csp-report" --data $l2 $cspUrl); Want = 204 },
+  @{ Name = "POST application/reports+json (v1)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/reports+json" --data $v1 $cspUrl); Want = 204 },
+  @{ Name = "POST application/json (L2)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/json" --data $l2 $cspUrl); Want = 204 },
+  @{ Name = "POST text/plain (rechazado)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: text/plain" --data "hola" $cspUrl); Want = 415 },
+  @{ Name = "POST shape invalido"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/json" --data '{"foo":1}' $cspUrl); Want = 400 },
+  @{ Name = "POST body > 8KB"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/json" --data ("x" * 9000) $cspUrl); Want = 413 },
+  @{ Name = "GET (405 + Allow: POST)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" $cspUrl); Want = 405 }
+)
+$cspFail = $false
+foreach ($c in $cspChecks) {
+  $ok = ($c.Code -eq $c.Want)
+  if (-not $ok) { $cspFail = $true }
+  Write-Host ("  {0} -> {1} (esperado {2}) {3}" -f $c.Name, $c.Code, $c.Want, ($(if ($ok) { "OK" } else { "FALLO" })))
+}
+# Allow: POST tiene que estar en el 405 (RFC 9110) y Reporting-Endpoints con
+# URL absoluta en / (Chrome ignora el endpoint si la URL es relativa).
+$allowHeader = curl.exe -s -D - -o NUL -X GET $cspUrl | Select-String -Pattern "^allow:" -CaseSensitive:$false
+if ($allowHeader -and $allowHeader -match "POST") {
+  Write-Host "  405 incluye 'Allow: POST' OK"
+} else {
+  Write-Host "  405 NO incluye 'Allow: POST' FALLO"
+  $cspFail = $true
+}
+$reporting = curl.exe -s -D - -o NUL "$base/" | Select-String -Pattern "^reporting-endpoints:" -CaseSensitive:$false
+if ($reporting -and $reporting -match 'https://') {
+  Write-Host "  Reporting-Endpoints con URL absoluta OK"
+} else {
+  Write-Host "  Reporting-Endpoints ausente o con URL relativa FALLO"
+  $cspFail = $true
+}
+if ($cspFail) {
+  Write-Error "T10 FALLO: el colector CSP no responde como debe. Revisar worker.js y _headers."
+  exit 1
+}
+Write-Host "T10 OK: colector CSP sano."
+
 Write-Host "Deploy sano: sin scriptThrewException esperado. Verifica en Observability -> Logs -> Error en 5 min."

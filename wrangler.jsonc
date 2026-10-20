@@ -5,7 +5,18 @@
   "compatibility_date": "2026-07-23",
   "observability": {
     "enabled": true,
-    "head_sampling_rate": 0.1,
+    // Sampling 100%: el colector CSP necesita que CADA reporte violation
+    // quede registrado. Con 0.1 se perdia el 90% de las invocaciones y el
+    // endpoint era un sensor apagado. El volumen es bajo porque los assets
+    // estaticos NO invocan al Worker (sin run_worker_first): el codigo solo
+    // corre para /api/csp-report y para los 404.
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    },
     "issues": {
       "enabled": true
     }

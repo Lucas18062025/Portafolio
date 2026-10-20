@@ -37,6 +37,60 @@ required.forEach(d => {
   }
 });
 
+// --- Reporting-Endpoints (Reporting API v1, Chrome 96+ / Edge) -----------------
+// El header `Report-To` (v0) esta deprecado en MDN y Chrome lo ignora para CSP.
+// `Reporting-Endpoints` es el header que hoy usa el navegador, y su URL debe
+// ser ABSOLUTA: si es relativa, Chrome descarta el endpoint y no reporta nada.
+// El nombre del endpoint tiene que coincidir con el grupo de `report-to`.
+const reportingEndpointsLine = content.split('\n').find(l => l.trim().startsWith('Reporting-Endpoints:'));
+if (!reportingEndpointsLine) {
+  console.error('Missing required header: Reporting-Endpoints');
+  ok = false;
+} else {
+  const value = reportingEndpointsLine.split('Reporting-Endpoints:')[1].trim();
+  // Formato: nombre="url" (separado por coma si hay varios).
+  const entries = value.split(',').map(e => e.trim()).filter(Boolean);
+  if (entries.length === 0) {
+    console.error('Reporting-Endpoints is empty');
+    ok = false;
+  }
+  for (const entry of entries) {
+    const m = entry.match(/^([a-z0-9-]+)\s*=\s*"(.*)"$/i);
+    if (!m) {
+      console.error(`Reporting-Endpoints entry is malformed: ${entry}`);
+      ok = false;
+      continue;
+    }
+    const [, name, url] = m;
+    if (!/^https:\/\//i.test(url)) {
+      console.error(`Reporting-Endpoints URL must be absolute (https://...): ${url}`);
+      ok = false;
+    }
+    // El grupo de la directiva `report-to` debe existir en Reporting-Endpoints.
+    const reportToGroup = (csp.match(/report-to\s+([^;]+)/) || [])[1];
+    if (reportToGroup && reportToGroup.trim() !== name) {
+      console.error(`CSP report-to group "${reportToGroup.trim()}" does not match Reporting-Endpoints name "${name}"`);
+      ok = false;
+    }
+  }
+}
+
+// --- Report-To (v0, deprecado) -------------------------------------------------
+// Se mantiene por compatibilidad, pero su URL tambien debe ser absoluta:
+// una URL relativa es invalida para Report-To.
+const reportToLine = content.split('\n').find(l => l.trim().startsWith('Report-To:'));
+if (reportToLine) {
+  const reportTo = reportToLine.split('Report-To:')[1].trim();
+  const urls = (reportTo.match(/"url"\s*:\s*"([^"]*)"/g) || []);
+  for (const raw of urls) {
+    const url = raw.replace(/"url"\s*:\s*"/, '').replace(/"$/, '');
+    if (!/^https:\/\//i.test(url)) {
+      console.error(`Report-To endpoint URL must be absolute (https://...): ${url}`);
+      ok = false;
+    }
+  }
+}
+
 if (ok) {
   console.log('CSP verification passed.');
   process.exit(0);

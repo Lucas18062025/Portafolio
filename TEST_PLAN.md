@@ -10,6 +10,25 @@
 | T4 | `dry-run` contiene `env.ASSETS` | aborta si falta |
 | T5 | `GET /` → 200, `/manifest.json` → 200, `/worker.js` → 404, `/no-existo` → 404 (nunca 500) · `/blog/visual-field-notes/` → 200 + 2 assets del kit (1 WebP y 1 MP4) → 200 | aborta si falla |
 | T9 | **Cache-bust de CSS/JS**: si `css/*.css` o `js/*.js` cambiaron, el `?v=N` de su referencia en el HTML debe haber cambiado también | aborta si falla |
+| T10 | **Colector CSP**: `POST /api/csp-report` acepta `application/csp-report` (204), `application/reports+json` (204), `application/json` (204); rechaza `text/plain` (415), shape inválido (400), body > 8 KB (413); `GET` → 405 con `Allow: POST`; `/` trae `Reporting-Endpoints` con URL absoluta | aborta si falla |
+
+### T10 — Por qué existe (bug real del 19-20/10)
+El endpoint `/api/csp-report` aceptaba **solo** `application/json`, que **ningún
+navegador manda**: Firefox/Safari envían `application/csp-report` (`report-uri`) y
+Chrome 96+/Edge envían `application/reports+json` (Reporting API v1). Todos esos
+POSTs caían en **415** → el colector era un sensor apagado y "no había violaciones"
+era una conclusión falsa.
+
+Además `_headers` usaba solo `Report-To` (v0, deprecado en MDN) con URL **relativa**,
+y Chrome moderno lee `Reporting-Endpoints` (v1) que exige URL **absoluta**.
+
+Los dos shapes son distintos y ambos válidos:
+- **L2** (`report-uri`): objeto → `{"csp-report": { ... }}`
+- **v1** (`Reporting-Endpoints`): **array** → `[{ "type": "...", "body": { ... } }]`
+
+Por eso la validación acepta `application/json` con cualquiera de los dos shapes.
+`node scripts/verify-csp.js` (gate del CI) exige que `Reporting-Endpoints` exista,
+que su URL sea absoluta y que el nombre coincida con el grupo de `report-to`.
 
 ### T9 — Por qué existe (bug real del 20/10)
 El CDN de Cloudflare **ignora el query string en la clave de caché**. Los CSS se sirven
