@@ -85,6 +85,14 @@
 /assets/hero-robot-v2-720.avif
   Cache-Control: public, max-age=31536000, immutable
 
+# Parche del parpadeo (20/10): canvas 720x505 con los ojos apagados, se superpone
+# al base. Inmutable: el nombre no cambia, si el parche se regenera hay que
+# versionar el nombre (v2) o cambiar la regla a must-revalidate.
+# NOTA: el CDN ignora el query string en la clave de cache, asi que un ?v=N
+# NO invalida este asset: solo sirve cambiar el nombre del archivo.
+/assets/hero-robot-blink-720.webp
+  Cache-Control: public, max-age=31536000, immutable
+
 /Foto_Perfil.webp
   Cache-Control: public, max-age=31536000, immutable
 
