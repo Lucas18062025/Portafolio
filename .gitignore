@@ -23,3 +23,6 @@ docs/media-kit/*.html
 # python
 __pycache__/
 *.pyc
+
+# playwright-cli (snapshots de QA, no son codigo del proyecto)
+.playwright-cli/
