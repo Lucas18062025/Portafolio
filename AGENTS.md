@@ -28,16 +28,25 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 - Diagnóstico: `npx --yes wrangler@4.136.3 deploy --dry-run`
 - Prohibido: `wrangler deploy` manual (salvo fix documentado), `--force`, instalar deps sin aprobación.
 
-## Git
+## Git — flujo (único path a producción)
+1. `git status` · `git diff` · `git branch`
+2. `git switch -c feat/...` (o `fix/...`)
+3. Modificar y probar → `.\deploy.ps1 -Check` (guards T1–T3b + T4 + T9 + dry-run; sin efectos)
+4. `.\deploy.ps1 -Message "..."` → commit firmado + push **de la rama** (aborta si estás en `main`)
+5. `gh pr create` + `gh pr merge --squash` — el ruleset `protect-main` exige PR
+6. El CI (`.github/workflows/deploy.yml`) despliega al mergear y valida T5 + T10; después se revisa en producción
+
+- **El deploy a producción lo hace solo el CI.** `deploy.ps1` no despliega y no puede pushear a `main`: es pre-flight + push de rama. Antes había 3 paths (deploy.ps1, CI y Workers Builds) y cada push a `main` desplegaba **3 veces** (medido 20/10: 3 versiones en Cloudflare por push, separadas ~15 s).
+- **Pendiente 20/10**: apagar `auto_build` de Workers Builds (dashboard → Workers & Pages → portafolio → Settings → Builds). Su deploy command es `npx wrangler deploy` **sin pinear**. Hasta que se apague, quedan 2 deploys por merge.
 - Pre-commit: `git status --short` + `git diff --stat` (+ `git check-ignore <archivo>` ante duda).
-- Nunca `git add .` en manual; solo archivos intencionales. (`deploy.ps1` hace staging propio.)
-- Chico: push directo ok. Grande: rama `feat/...` + PR + merge.
-- `main` **sí** está protegida: ruleset `protect-main` (activo desde 20/07/2026) → exige PR, commits firmados, y bloquea borrado y force-push. El owner tiene `bypass_mode: always`, así que un push directo **se acepta** y GitHub lo registra como *"Bypassed rule violations"*. Convención: chico → push directo (bypass del owner); grande → rama + PR + merge. La firma **no** se saltea (sigue aplicando; `deploy.ps1` hereda `commit.gpgsign=true`). Todo push a `main` va a producción y el CI corre después (informa, no gatea).
+- Nunca `git add .` en manual; solo archivos intencionales. (`deploy.ps1` hace staging propio y lista lo staged antes de commitear.)
+- `main` **sí** está protegida: ruleset `protect-main` (activo desde 20/07/2026) → exige PR, commits firmados, y bloquea borrado y force-push. El owner tiene `bypass_mode: always`, así que un push directo **se acepta** y GitHub lo registra como *"Bypassed rule violations"*: el flujo de arriba evita depender de ese bypass. La firma **no** se saltea (sigue aplicando; `deploy.ps1` hereda `commit.gpgsign=true`).
   - Evidencia 20/10: `gh api repos/Lucas18062025/Portafolio/rulesets/19284894` → `enforcement: active`, `bypass_actors[].bypass_mode: always`. Ojo: `gh api .../branches/main` → `protected: true` (el campo **no** distingue ruleset de branch protection clásico; para eso está `/rulesets`).
-  - El 17/10 se documente lo contrario ("sin branch protection ni rulesets, repo privado"): fue un error de lectura. La API de `/rulesets` daba **403** *"Upgrade to GitHub Pro or make this repository public to enable this feature"* porque el repo estaba **privado** en plan Free (los rulesets son gratis solo en repos públicos). El repo es **público** desde su creación (12/02/2026). No volver a concluir "no existe" a partir de un 403: leer el mensaje.
+  - El 17/10 se documentó lo contrario ("sin branch protection ni rulesets, repo privado"): fue un error de lectura. La API de `/rulesets` daba **403** *"Upgrade to GitHub Pro or make this repository public to enable this feature"* porque el repo estaba **privado** en plan Free (los rulesets son gratis solo en repos públicos). El repo es **público** desde su creación (12/02/2026). No volver a concluir "no existe" a partir de un 403: leer el mensaje.
 - Firmados `gpg.format=ssh`. Si `Unverified` → revisar signing key primero.
 
-## Guards (abortan deploy, ver `TEST_PLAN.md`)
+## Guards (una sola implementación: `scripts/guards.mjs`)
+La usan los tres: `deploy.ps1 -Check` (local), `ci.yml` (gate del PR) y `deploy.yml` (pre-deploy). Así no hay drift entre lo que se valida localmente y lo que valida el CI.
 T1 `google*.html` existe / T2 `binding ASSETS` / T3 `worker.js` en `.assetsignore`
 + T3b docs internos + `specs/` ignorados / T4 dry-run con `env.ASSETS`
 / T5 health-checks `/` 200, `/manifest.json` 200, `/worker.js` 404, `/no-existo` 404 (nunca 500).
