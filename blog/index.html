@@ -42,7 +42,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="stylesheet" href="../css/blog.css?v=1">
     <link rel="stylesheet" href="../css/blog-media.css?v=1">
 
     <script type="application/ld+json">
@@ -97,7 +97,10 @@
 
     <main>
 
-
+        <!-- h1 real de la pagina, al inicio del DOM (antes el unico h1 estaba
+             al final, despues de las cards y del CTA). Visible solo para
+             lectores de pantalla: el titulo poetico del hero queda como h2. -->
+        <h1 class="sr-only">Security Research: artículos y notas de laboratorio sobre ciberseguridad, pentesting y Blue Team</h1>
 
         <div class="blog-container">
             <div class="blog-divider"></div>
@@ -405,11 +408,11 @@
                     [ SECURITY RESEARCH / 2026 ]
                 </span>
 
-                <h1>
+                <h2>
                     Pensar.<br>
                     <span>Investigar.</span><br>
                     Defender.
-                </h1>
+                </h2>
 
                 <p>
                     Un espacio dedicado al aprendizaje práctico en ciberseguridad:

@@ -110,7 +110,11 @@
     text-transform: uppercase;
 }
 
-.blog-hero h1 {
+/* El h1 del hero existe en los 5 posts del blog. En el indice del blog el
+   hero es un h2 (el h1 real de la pagina va arriba, sr-only), asi que la
+   regla cubre los dos: mismo estilo exacto. */
+.blog-hero h1,
+.blog-hero h2 {
     margin: 0;
     color: #ffffff;
     font-family: 'Space Grotesk', sans-serif;
@@ -120,7 +124,8 @@
     line-height: 1.05;
 }
 
-.blog-hero h1 span {
+.blog-hero h1 span,
+.blog-hero h2 span {
     color: var(--blog-accent2);
 }
 
@@ -428,7 +433,8 @@
         flex-direction: column;
     }
 
-    .blog-hero h1 {
+    .blog-hero h1,
+    .blog-hero h2 {
         font-size: 2.6rem;
     }
 
@@ -437,6 +443,10 @@
     }
 }
 /* ===== Fase 3: utilidades migradas desde style= inline (blog posts) ===== */
+/* .sr-only: la clase existe en main.css, pero el blog no carga main.css
+   (carga solo blog.css + blog-media.css), asi que se replica aqui para el
+   h1 invisible del indice. */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0;margin:-1px}
 .blog-meta{margin-top:28px;color:#63798d;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:1px}
 .blog-quote{margin:35px 0;padding:25px 28px;background:var(--blog-card);border-left:3px solid var(--blog-accent2);color:#c0d8e8;font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-style:italic;line-height:1.7}
 .mt-70{margin-top:70px}
