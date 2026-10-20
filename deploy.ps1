@@ -43,6 +43,46 @@ foreach ($pat in @("^specs$", "^specs/\*\*$")) {
   }
 }
 
+# 0e. Guardia T9: cache-bust de CSS/JS.
+#     El CDN de Cloudflare ignora el query string en la clave de cache, asi que
+#     cambiar el contenido de css/*.css sin bumpear su ?v=N en el HTML que lo
+#     referencia NO llega a produccion: el deploy sube el archivo nuevo pero el
+#     edge y el navegador siguen con la version vieja. Sin error visible (T5 pasa).
+#     Caso real 20/10: la cadencia del blink del robot cambio de 5,2 s a 2,2 s,
+#     el deploy fue verde y el navegador seguia midiendo 5,2 s.
+$oldEAPT9 = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
+$cssChanged = @(git diff --name-only HEAD -- "*.css" "*.js" 2>$null)
+$ErrorActionPreference = $oldEAPT9
+if ($cssChanged.Count -gt 0) {
+  # Para cada CSS/JS cambiado: se busca el HTML que lo referencia y se compara
+  # el ?v=N de ESA referencia entre HEAD y el working tree.
+  $t9Bad = @()
+  foreach ($f in $cssChanged) {
+    $base = [System.IO.Path]::GetFileName($f)
+    $htmls = Get-ChildItem -Path . -Filter "*.html" -Recurse -File |
+      Where-Object { $_.FullName -notmatch '\\(node_modules|docs|specs|\.git)\\' }
+    foreach ($h in $htmls) {
+      $newLine = (Get-Content $h.FullName | Select-String -SimpleMatch $base | Select-Object -First 1)
+      if (-not $newLine) { continue }
+      $newV = [regex]::Match($newLine.Line, '\?v=(\d+)').Groups[1].Value
+      $hRel = $h.FullName.Substring((Get-Location).Path.Length + 1) -replace '\\', '/'
+      $oldHtml = @(git show "HEAD:$hRel" 2>$null)
+      $oldLine = ($oldHtml | Select-String -SimpleMatch $base | Select-Object -First 1)
+      $oldV = if ($oldLine) { [regex]::Match($oldLine.Line, '\?v=(\d+)').Groups[1].Value } else { "" }
+      if ($oldV -ne $newV) {
+        Write-Host "T9 OK: $f cambio el ?v=N en $hRel ($oldV -> $newV). Cache invalidada."
+      } else {
+        $t9Bad += "$f referenciado en $hRel sin cambiar el ?v=N (sigue en $newV)"
+      }
+    }
+  }
+  if ($t9Bad.Count -gt 0) {
+    Write-Error "ABORTADO (T9): cambio de contenido sin bumpear el ?v=N en el HTML:`n  $($t9Bad -join "`n  ")`nEl CDN ignora el query string en la clave de cache: el cambio no llegaria a produccion. Bump el ?v=N del <link> y volve a correr."
+    exit 1
+  }
+}
+
 # 1. Ver qué cambió
 #    Nota: los comandos nativos (git.exe) escriben avisos por stderr aun con exit 0
 #    (p. ej. "warning: LF will be replaced by CRLF" al tocar un .yml). Con

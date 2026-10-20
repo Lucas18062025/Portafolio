@@ -9,6 +9,23 @@
 | T3b | `.assetsignore` contiene `AGENTS.md`, `SECURITY.md`, `TEST_PLAN.md`, `TOOLS.md`, `specs` + `specs/**` | aborta si falta |
 | T4 | `dry-run` contiene `env.ASSETS` | aborta si falta |
 | T5 | `GET /` → 200, `/manifest.json` → 200, `/worker.js` → 404, `/no-existo` → 404 (nunca 500) · `/blog/visual-field-notes/` → 200 + 2 assets del kit (1 WebP y 1 MP4) → 200 | aborta si falla |
+| T9 | **Cache-bust de CSS/JS**: si `css/*.css` o `js/*.js` cambiaron, el `?v=N` de su referencia en el HTML debe haber cambiado también | aborta si falla |
+
+### T9 — Por qué existe (bug real del 20/10)
+El CDN de Cloudflare **ignora el query string en la clave de caché**. Los CSS se sirven
+con `Cache-Control: public, max-age=3600` y `index.html` los pide como `hero.css?v=12`.
+Si se cambia el contenido de `hero.css` **sin bumpear el `?v=N`**, el deploy sube el
+archivo nuevo pero el edge y el navegador siguen sirviendo la versión vieja: **el
+cambio no llega a producción** y no hay ningún error visible (los health-checks dan 200).
+
+Caso real (20/10): se ajustó la cadencia del parpadeo del robot de 5,2 s a 2,2 s,
+el deploy fue "verde" y T5 pasó, pero el navegador seguía midiendo 5,2 s. El fix fue
+bump de `hero.css?v=11` → `?v=12`.
+
+**Regla**: todo cambio de contenido en `css/*.css` o `js/*.js` → bumpear el `?v=N`
+correspondiente en el HTML que lo referencia.
+Los assets binarios son otro caso: para cambiar uno hay que **cambiar el nombre**
+(el CDN no revalida con el mismo nombre bajo `immutable`, ver "No-objetivos verificados").
 
 ## Gates del CI (GitHub Actions, no están en `deploy.ps1`)
 - `ci.yml` (en PR y push a `main`) → `node scripts/verify-csp.js`: valida la CSP del `_headers`.
