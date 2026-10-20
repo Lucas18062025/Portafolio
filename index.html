@@ -303,6 +303,13 @@
                         srcset="./assets/hero-robot-v2-360.webp 360w, ./assets/hero-robot-v2-720.webp 720w"
                         sizes="(max-width: 600px) 100px, (max-width: 900px) 260px, 340px">
                 </picture>
+                <!-- Parche del parpadeo: canvas del MISMO aspecto que el asset base (720x505) con la
+                     zona del visor y los ojos apagados, tomado del frame real del MP4.
+                     Mismo aspect + mismas reglas de object-fit = se registra solo en cualquier
+                     viewport (un parche con % sobre la caja del elemento se desregistra cuando
+                     object-fit letterboxea). 2.6 KB. Generado por scripts/media/robot_blink_patch.py -->
+                <img class="hero-robot-blink" src="./assets/hero-robot-blink-720.webp" alt=""
+                    width="720" height="505" loading="lazy" decoding="async" fetchpriority="low">
             </div>
 
         </header>

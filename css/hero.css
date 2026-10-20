@@ -586,9 +586,55 @@
     will-change: transform;
 }
 
+/* Parche del parpadeo: canvas 720x505 (mismo aspect que el asset base) con la zona del
+   visor y los ojos apagados. Se superpone al base con las MISMAS reglas de object-fit
+   para que el registro sea automatico en cualquier viewport: el base se renderiza
+   letterboxed con `object-fit: contain` + `object-position: bottom right`, y un parche
+   posicionado con % sobre la caja del ELEMENTO se desregistra cuando eso pasa.
+   Es un <img> absoluto sobre el wrapper (no flex), asi que toma la caja del wrapper,
+   que es la del <picture> base. */
+.hero-robot-blink {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom right;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    will-change: opacity;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .hero-robot-wrapper {
         animation: heroRobotFloat 8s ease-in-out infinite;
+    }
+
+    /* Doble parpadeo cada 5,2 s: los ojos se apagan ~250 ms (la duracion real medida
+       en el MP4, frames 82-87) y vuelven. Solo `opacity` (compositor): no toca layout,
+       ni el flotado, ni el LCP. */
+    .hero-robot-blink {
+        animation: robotBlink 5.2s linear infinite;
+    }
+}
+
+@keyframes robotBlink {
+
+    0%,
+    90.4% {
+        opacity: 0;
+    }
+
+    90.8%,
+    95.2% {
+        opacity: 1;
+    }
+
+    95.6%,
+    100% {
+        opacity: 0;
     }
 }
 

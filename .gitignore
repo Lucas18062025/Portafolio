@@ -19,3 +19,7 @@ status*.json
 
 docs/media-kit/*.html
 !docs/media-kit/one-pager.template.html
+
+# python
+__pycache__/
+*.pyc
