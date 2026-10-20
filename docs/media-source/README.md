@@ -44,11 +44,37 @@ y en 9 píxeles de 363.600 (delta máximo 13/255, alfa idéntico).
 
 ## Por qué el parche y no un WebP animado del robot entero
 
+El robot **base no se achicó** (sigue 34,6 KB, sin tocar). Lo que se achicó fue **cómo se
+entrega el blink**: el MP4 se usa como fuente de píxeles (el frame con los LEDs apagados),
+no como archivo web.
+
 | Opción | Peso | Descartada porque |
 |---|---|---|
 | WebP animado, 192 frames | 5.937 KB | ×30 visitas = 174 MB |
 | WebP animado, 16 frames | 502 KB | 14× el peso del base, sin AVIF |
 | **Parche estático + `opacity` CSS** | **2,6 KB** | — |
+
+Un WebP animado no comprime entre frames: guarda cada frame como una imagen completa,
+por eso el peso crece linealmente con la cantidad de frames.
+
+## El peso real que descarga el navegador
+
+El `sizes` del hero pide 340 px, así que el navegador elige el **AVIF de 360 px**, no el
+de 720. Medido con Playwright escuchando las respuestas de red (idéntico en
+1920 / 1440 / 768 / 390 px):
+
+| Archivo | Peso | ¿Se descarga? |
+|---|---|---|
+| `hero-robot-v2-360.avif` | 12,1 KB | ✅ **este** |
+| `hero-robot-v2-720.avif` | 26,7 KB | ❌ |
+| `hero-robot-v2-720.webp` | 34,6 KB | ❌ (solo sin soporte AVIF) |
+| `hero-robot-blink-720.webp` | 2,6 KB | ✅ (el parche no tiene `srcset`) |
+
+**Peso real del hero = 12,1 + 2,6 = 14,7 KB.**
+
+> **Corrección (20/10)**: la cifra de "37,2 KB" que circulaba en el spec y en la nota de
+> sesión sumaba los archivos "grandes" del repo sin mirar qué elige el navegador. El
+> número real es **14,7 KB**. Regla: el peso que importa se mide con el navegador.
 
 ## Otros candidatos evaluados (no usados)
 

@@ -30,7 +30,7 @@ Medido sobre los 3 candidatos:
 |---|---|---|
 | Video completo, 192 frames | **5.937 KB** | x30 visitas = 174 MB |
 | Video completo, 16 frames | **502 KB** | sin AVIF, rompe el peso del hero |
-| **Parche de ojos apagados (WebP)** | **2,4 KB** | + base 34,6 KB = 37 KB |
+| **Parche de ojos apagados (WebP)** | **2,4 KB** | + base = **14,7 KB reales** (ver abajo) |
 
 Elegido: **parche estático de 2,4 KB** superpuesto sobre el asset actual.
 
@@ -100,6 +100,25 @@ Registro del MP4 contra el asset base: crop `x0=127`, `1026×720`, resize a 720�
 | `prefers-reduced-motion: reduce` | `animationName: none`, `opacity: 0` ✅ |
 | 390 px | oculto (regla preexistente del sitio, sin cambio) ✅ |
 | Peso | base 34,6 KB + parche 2,6 KB = **37,2 KB** (antes 34,6 KB) |
+
+## Peso real que descarga el navegador (medido, no estimado)
+
+El `sizes` del hero pide 340 px, así que el navegador elige el **AVIF de 360 px**, no el
+de 720. Medido con Playwright escuchando las respuestas de red (idéntico en
+1920 / 1440 / 768 / 390 px):
+
+| Archivo | Peso | ¿Se descarga? |
+|---|---|---|
+| `hero-robot-v2-360.avif` | 12,1 KB | ✅ **este** |
+| `hero-robot-v2-720.avif` | 26,7 KB | ❌ |
+| `hero-robot-v2-720.webp` | 34,6 KB | ❌ (solo sin soporte AVIF) |
+| `hero-robot-blink-720.webp` | 2,6 KB | ✅ (el parche no tiene `srcset`) |
+
+**Peso real del hero = 12,1 + 2,6 = 14,7 KB.**
+
+> **Corrección (20/10)**: la cifra de "37,2 KB" que circulaba en la spec y en la nota de
+> sesión sumaba los archivos "grandes" del repo sin mirar qué elige el navegador. El
+> número real es **14,7 KB**. Regla: el peso que importa se mide con el navegador.
 
 ## Checks
 - T1 `google*.html` existe. T2 `binding ASSETS`. T3 `worker.js` en `.assetsignore`.
