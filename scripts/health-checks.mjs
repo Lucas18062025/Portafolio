@@ -50,7 +50,7 @@ await expect('T5 ', '/worker.js', '/worker.js', 404);
 await expect('T5 ', '/no-existo', '/no-existo-healthcheck', 404);
 await expect('T5 ', '/blog/visual-field-notes/', '/blog/visual-field-notes/', 200);
 await expect('T5 ', 'WebP del kit Flow', '/assets/blog/flow/cybersecurity-analyst-viewing-mo-640.webp', 200);
-await expect('T5 ', 'MP4 del kit Flow', '/assets/blog/flow/holographic-world-map-pulses-red.mp4', 200);
+await expect('T5 ', 'MP4 del kit Flow', '/assets/blog/flow/holographic-world-map-pulses-red-960.mp4', 200);
 
 // --- T10: colector CSP -------------------------------------------------------
 console.log('T10:');
