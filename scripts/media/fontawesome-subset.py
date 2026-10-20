@@ -21,8 +21,10 @@ El nombre lleva la version a proposito: `/assets/vendor/*` se sirve con
 `Cache-Control: immutable` y el CDN ignora el query string, asi que reemplazar un
 archivo con el mismo nombre dejaria la version vieja cacheada (ver TEST_PLAN.md).
 
-El paquete original (`css/all.min.css` + `webfonts/*.{woff2,ttf}`) queda en el repo
-como fuente de verdad para regenerar: el sitio no lo carga, no se descarga nunca.
+El paquete original (`css/all.min.css` + los 2 `webfonts/*-900.woff2` / `*-400.woff2`) queda en
+`docs/media-source/fontawesome/` como fuente de verdad para regenerar. El sitio no lo carga y
+no se descarga nunca. Ademas **no se deploya**: `docs/**` esta en `.assetsignore`, asi que el
+bucket de produccion no lo lleva (20/10: eso bajo 1,02 MB del bucket).
 """
 
 from __future__ import annotations
@@ -155,8 +157,13 @@ def main() -> int:
     parser.add_argument("--check", action="store_true", help="solo reporta, no escribe archivos")
     args = parser.parse_args()
 
-    fa = args.repo / "assets" / "vendor" / "fontawesome"
-    source_css = fa / "css" / "all.min.css"
+    # Fuente (solo lectura): el paquete original vive en docs/media-source/, que
+    # esta en .assetsignore -> NO se deploya. Antes vivia en assets/ y por eso
+    # ocupaba 1,02 MB del bucket sin que nadie lo pidiera.
+    fa_src = args.repo / "docs" / "media-source" / "fontawesome"
+    # Salida: lo que el sitio carga de verdad (subset de los glifos usados).
+    fa_out = args.repo / "assets" / "vendor" / "fontawesome"
+    source_css = fa_src / "css" / "all.min.css"
     css = source_css.read_text(encoding="utf-8")
     codepoints = read_codepoints(css)
 
@@ -179,18 +186,18 @@ def main() -> int:
 
     print("=== fuentes ===")
     for family, kind in families.items():
-        subset_font(sys.executable, fa / "webfonts" / originals[kind],
-                    fa / "webfonts" / f"fa-{kind}-subset-{version}.woff2",
+        subset_font(sys.executable, fa_src / "webfonts" / originals[kind],
+                    fa_out / "webfonts" / f"fa-{kind}-subset-{version}.woff2",
                     ["U+" + code for code in chars], weights[family], family)
 
     print("\n=== css ===")
-    target_css = fa / "css" / f"fa-subset-{version}.css"
+    target_css = fa_out / "css" / f"fa-subset-{version}.css"
     target_css.write_text(build_css(css, version, families, weights, set(wanted)), encoding="utf-8")
     print(f"  {source_css.name} {source_css.stat().st_size:>8,} B -> {target_css.name} "
           f"{target_css.stat().st_size:>7,} B ({target_css.stat().st_size / source_css.stat().st_size:.1%})")
     total = target_css.stat().st_size + sum(
-        (fa / "webfonts" / f"fa-{kind}-subset-{version}.woff2").stat().st_size for kind in originals)
-    print(f"\n  total a descargar: {total:,} B (era {source_css.stat().st_size + sum((fa / 'webfonts' / name).stat().st_size for name in originals.values()):,} B)")
+        (fa_out / "webfonts" / f"fa-{kind}-subset-{version}.woff2").stat().st_size for kind in originals)
+    print(f"\n  total a descargar: {total:,} B (era {source_css.stat().st_size + sum((fa_src / 'webfonts' / name).stat().st_size for name in originals.values()):,} B)")
     print(f"\n  actualizar el <link> de index.html a: ./assets/vendor/fontawesome/css/{target_css.name}")
     return 0
 
