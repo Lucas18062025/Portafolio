@@ -187,15 +187,30 @@ if ($fail) {
 Write-Host ""
 Write-Host "T10 - colector CSP:"
 $cspUrl = "$base/api/csp-report"
-$l2 = '{"csp-report":{"document-uri":"https://portafolio.lucaslean1806.workers.dev/","violated-directive":"script-src","blocked-uri":"inline"}}'
-$v1 = '[{"type":"csp-violation","body":{"documentURL":"https://portafolio.lucaslean1806.workers.dev/","effectiveDirective":"script-src","blockedURL":"inline","statusCode":200}}]'
+# Los bodies JSON van por archivo temporal: PowerShell al pasar un string con
+# comillas dobles a un ejecutable nativo (curl.exe) se las come y el body llega
+# como {csp-report:{...}}, que no es JSON valido -> 400 falso. Con
+# --data-binary @archivo el body llega integro.
+$cspTmp = Join-Path $env:TEMP "csp-gate"
+New-Item -ItemType Directory -Force -Path $cspTmp | Out-Null
+# Sin BOM: Windows PowerShell 5.1 escribe BOM con -Encoding UTF8, y JSON.parse
+# rechaza un body que empieza con BOM (verificado: 400 con BOM, 204 sin BOM).
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+$l2Body = '{"csp-report":{"document-uri":"https://portafolio.lucaslean1806.workers.dev/","violated-directive":"script-src","blocked-uri":"inline","status-code":200}}'
+$v1Body = '[{"type":"csp-violation","body":{"documentURL":"https://portafolio.lucaslean1806.workers.dev/","effectiveDirective":"script-src","blockedURL":"inline","statusCode":200}}]'
+$badBody = '{"foo":1}'
+$bigBody = '{"csp-report":{"document-uri":"' + ('x' * 9000) + '"}}'
+[System.IO.File]::WriteAllText("$cspTmp\l2.json", $l2Body, $utf8NoBom)
+[System.IO.File]::WriteAllText("$cspTmp\v1.json", $v1Body, $utf8NoBom)
+[System.IO.File]::WriteAllText("$cspTmp\bad.json", $badBody, $utf8NoBom)
+[System.IO.File]::WriteAllText("$cspTmp\big.json", $bigBody, $utf8NoBom)
 $cspChecks = @(
-  @{ Name = "POST application/csp-report (L2)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/csp-report" --data $l2 $cspUrl); Want = 204 },
-  @{ Name = "POST application/reports+json (v1)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/reports+json" --data $v1 $cspUrl); Want = 204 },
-  @{ Name = "POST application/json (L2)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/json" --data $l2 $cspUrl); Want = 204 },
-  @{ Name = "POST text/plain (rechazado)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: text/plain" --data "hola" $cspUrl); Want = 415 },
-  @{ Name = "POST shape invalido"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/json" --data '{"foo":1}' $cspUrl); Want = 400 },
-  @{ Name = "POST body > 8KB"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/json" --data ("x" * 9000) $cspUrl); Want = 413 },
+  @{ Name = "POST application/csp-report (L2)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/csp-report" --data-binary "@$cspTmp\l2.json" $cspUrl); Want = 204 },
+  @{ Name = "POST application/reports+json (v1)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/reports+json" --data-binary "@$cspTmp\v1.json" $cspUrl); Want = 204 },
+  @{ Name = "POST application/json (L2)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/json" --data-binary "@$cspTmp\l2.json" $cspUrl); Want = 204 },
+  @{ Name = "POST text/plain (rechazado)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: text/plain" --data-binary "@$cspTmp\l2.json" $cspUrl); Want = 415 },
+  @{ Name = "POST shape invalido"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/json" --data-binary "@$cspTmp\bad.json" $cspUrl); Want = 400 },
+  @{ Name = "POST body > 8KB"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" -X POST -H "Content-Type: application/json" --data-binary "@$cspTmp\big.json" $cspUrl); Want = 413 },
   @{ Name = "GET (405 + Allow: POST)"; Code = [int](curl.exe -s -o NUL -w "%{http_code}" $cspUrl); Want = 405 }
 )
 $cspFail = $false
