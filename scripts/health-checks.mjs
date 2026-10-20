@@ -42,7 +42,10 @@ console.log(`health-checks contra ${BASE}`);
 // --- T5: sitio sano ----------------------------------------------------------
 console.log('T5:');
 await expect('T5 ', '/', '/', 200);
-await expect('T5 ', '/manifest.json', '/manifest.json?v=health', 200);
+// El sitio NO es una PWA (no hay manifest ni service worker a proposito:
+// Chrome ofrecia "instalar" en Android y el aviso molestaba). Que /manifest.json
+// siga en 404 es un guard: si alguien lo vuelve a sumar, el aviso vuelve.
+await expect('T5 ', '/manifest.json (404, no es PWA)', '/manifest.json', 404);
 await expect('T5 ', '/worker.js', '/worker.js', 404);
 await expect('T5 ', '/no-existo', '/no-existo-healthcheck', 404);
 await expect('T5 ', '/blog/visual-field-notes/', '/blog/visual-field-notes/', 200);

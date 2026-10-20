@@ -30,4 +30,4 @@ Los tonos del preview (bordó/dorado) NO se copian.
 - No ofuscar el email sin pedido explícito (rompió Gmail en Edge, sep-2026).
 - Fixes chicos: push directo a `main` ok. Cambios grandes: rama `feat/...` + PR.
 - Commits firmados (`gpg.format=ssh`); si sale `Unverified`, revisar la signing key.
-- Health-check sano: `/` 200, `/manifest.json` 200, `/worker.js` 404, `/no-existo` 404.
+- Health-check sano: `/` 200, `/manifest.json` 404 (el sitio no es una PWA), `/worker.js` 404, `/no-existo` 404.
