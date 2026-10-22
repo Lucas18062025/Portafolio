@@ -7,7 +7,7 @@ Contenido: proyectos, blog, `data/certificates.json`, SEO JSON-LD.
 ## Orden
 `AGENTS.md > SECURITY.md > TEST_PLAN.md > deploy.ps1 > código`.
 `.agents/rules/workflow.md` es puntero a este archivo, no duplica.
-Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (puerta T1-T8).
+Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (puerta T1-T10).
 
 ## Rutas (absolutas, verificar en disco antes de usar)
 - Real: `C:\Users\HP Ryzen 5\Proyectos\Portafolio`
@@ -24,7 +24,7 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 
 ## Comandos (únicos)
 - Preview: `npx serve .` (solo en preview)
-- Deploy: `.\deploy.ps1 -Message "feat: ..."` (guards + push + dry-run + deploy + health-checks)
+- Deploy: `.\deploy.ps1 -Message "feat: ..."` (pre-flight: guards T1–T3b + T4 + T9 + dry-run, **sin efectos** + commit firmado + push **de la rama**). **No despliega**: el deploy lo hace el CI al mergear el PR.
 - Diagnóstico: `npx --yes wrangler@4.136.3 deploy --dry-run`
 - Prohibido: `wrangler deploy` manual (salvo fix documentado), `--force`, instalar deps sin aprobación.
 
@@ -37,7 +37,7 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 6. El CI (`.github/workflows/deploy.yml`) despliega al mergear y valida T5 + T10; después se revisa en producción
 
 - **El deploy a producción lo hace solo el CI.** `deploy.ps1` no despliega y no puede pushear a `main`: es pre-flight + push de rama. Antes había 3 paths (deploy.ps1, CI y Workers Builds) y cada push a `main` desplegaba **3 veces** (medido 20/10: 3 versiones en Cloudflare por push, separadas ~15 s).
-- **Pendiente 20/10**: apagar `auto_build` de Workers Builds (dashboard → Workers & Pages → portafolio → Settings → Builds). Su deploy command es `npx wrangler deploy` **sin pinear**. Hasta que se apague, quedan 2 deploys por merge.
+- **22/10: `auto_build` de Workers Builds APAGADO y verificado por API** (`auto_build_enabled: false`) → **1 deploy por merge** (solo el CI). Se apagó desde el dashboard (toggle **"Disable builds"**, en Configuración → Compilaciones) porque ni el MCP de Cloudflare (`requires user authorization`) ni el token OAuth de wrangler (`403 code 10000`) tienen escritura de Builds. **Reversible**: volver el toggle a gris. Ojo: el endpoint `GET /accounts/{id}/builds/workers/{script_tag}` exige el **tag id** (`5b39e736…`), no el nombre del Worker — con el nombre devuelve un 404 engañoso.
 - Pre-commit: `git status --short` + `git diff --stat` (+ `git check-ignore <archivo>` ante duda).
 - Nunca `git add .` en manual; solo archivos intencionales. (`deploy.ps1` hace staging propio y lista lo staged antes de commitear.)
 - `main` **sí** está protegida: ruleset `protect-main` (activo desde 20/07/2026) → exige PR, commits firmados, y bloquea borrado y force-push. El owner tiene `bypass_mode: always`, así que un push directo **se acepta** y GitHub lo registra como *"Bypassed rule violations"*: el flujo de arriba evita depender de ese bypass. La firma **no** se saltea (sigue aplicando; `deploy.ps1` hereda `commit.gpgsign=true`).
@@ -48,8 +48,9 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 ## Guards (una sola implementación: `scripts/guards.mjs`)
 La usan los tres: `deploy.ps1 -Check` (local), `ci.yml` (gate del PR) y `deploy.yml` (pre-deploy). Así no hay drift entre lo que se valida localmente y lo que valida el CI.
 T1 `google*.html` existe / T2 `binding ASSETS` / T3 `worker.js` en `.assetsignore`
-+ T3b docs internos + `specs/` ignorados / T4 dry-run con `env.ASSETS`
-/ T5 health-checks `/` 200, `/manifest.json` **404** (el sitio no es una PWA), `/worker.js` 404, `/no-existo` 404 (nunca 500).
++ T3b docs internos + `specs/` ignorados / T4 dry-run con `env.ASSETS` / T9 cache-bust `?v=N` de CSS/JS
+/ T5 health-checks `/` 200, `/manifest.json` **404** (el sitio no es una PWA), `/worker.js` 404, `/no-existo` 404 (nunca 500), `/blog/visual-field-notes/` 200 + 2 assets del kit Flow (1 WebP y 1 MP4) 200 (7 checks)
++ T10 colector CSP: 3 content-types aceptados (204), `text/plain` 415, shape inválido 400, body > 8 KB 413, `GET` 405 con `Allow: POST`, `Reporting-Endpoints` con URL absoluta (8 checks).
 
 ## Reglas que no se repiten (ver detalle)
 - No exponer `worker.js` (`404` esperado). No ofuscar email sin pedido explícito (rompió Gmail en Edge, sep-2026).

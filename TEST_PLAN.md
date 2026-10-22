@@ -21,6 +21,7 @@
 ## Flujo del deploy (único path a producción)
 Rama → `deploy.ps1 -Check` → `deploy.ps1 -Message` (commit + push de la rama) → PR → merge → **el CI despliega y valida T5 + T10**.
 Antes había 3 paths de deploy (deploy.ps1, CI y Workers Builds) y cada push a `main` desplegaba 3 veces.
+**Hoy: 1 deploy por merge** — el `auto_build` de Workers Builds está **apagado** (verificado por API el 22/10: `auto_build_enabled: false`). Reversible desde el dashboard (toggle "Disable builds", Configuración → Compilaciones).
 
 ### T10 — Por qué existe (bug real del 19-20/10)
 El endpoint `/api/csp-report` aceptaba **solo** `application/json`, que **ningún
@@ -63,6 +64,12 @@ Los assets binarios son otro caso: para cambiar uno hay que **cambiar el nombre*
 ## Validación SEO (manual, post-deploy)
 - T6 Rich Results: `/` → ProfilePage · `/blog/` → Blog + BreadcrumbList · `/blog/visual-field-notes/` → BlogPosting + BreadcrumbList. 0 errores.
 - T7 Search Console: `URL está en Google` + indexada + HTTPS OK.
+  - **Estado 22/10**: `sitemap.xml` reenviado (`Estado: Correcto`, 7 páginas, Enviado 20 oct) ·
+    **prueba en tiempo real OK en los 2 posts** (20/10 19:41 y 19:42: *"La URL está disponible para Google"*,
+    *"La página se puede indexar"*, rutas de exploración válidas) · **solicitud de indexación bloqueada por
+    cuota** (reintentar 23/10) · **index real pendiente** (revisar ~27/10 en *Páginas*).
+  - La cuota de "Solicitar indexación" es **diaria y compartida por propiedad**, no por URL: no insistir si vuelve a saltar.
+  - El deep link `/search-console/inspect?resource_id=…&id=…` devuelve **404 de Google**: usar solo `resource_id` o el menú "Inspección de URLs".
 - T8 `curl` prod: `/` devuelve `@graph` (ProfilePage + Person + WebSite); cada página de blog devuelve su propio `@type`.
 
 ## No-objetivos verificados
@@ -74,4 +81,5 @@ Los assets binarios son otro caso: para cambiar uno hay que **cambiar el nombre*
 - **La prioridad de una imagen se mide, no se supone** (medido 17/10 sobre `/`, prioridad real de `net::` en el netlog de Chrome, escritorio y celular): `loading="lazy"` y `loading="eager"` **sin** `fetchpriority` dan **`LOW`**; `loading="eager"` + `fetchpriority="high"` da **`MEDIUM`** (Chrome techa en `MEDIUM` las imágenes fuera del viewport). Ese `MEDIUM` es la **misma** prioridad que el robot del hero, que no se mueve: el hint de la foto **no le quita el LCP**. Regla: la foto de perfil (`#about`) va `loading="eager" fetchpriority="high"`; para bajar peso del camino crítico se recorta el **archivo** (nombre nuevo), nunca la prioridad de una imagen que el usuario ve al llegar a la sección.
 
 ## Criterio de finalización
-- T1–T5 en verde en output de `deploy.ps1` (**T5 = 7 checks**) + T8 + cero `scriptThrewException` en 5 min.
+- T1–T5 en verde en output de `deploy.ps1` (**T5 = 7 checks**) + **T9 + T10** + T8 + cero `scriptThrewException` en 5 min.
+- T7 (Search Console) es **manual y dependiente de Google**: no bloquea el deploy. Se cierra cuando *Páginas* muestre "Indexada".
