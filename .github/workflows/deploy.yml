@@ -7,6 +7,21 @@ name: Deploy Portafolio to Cloudflare
 on:
   push:
     branches: [main]
+    # Docs-only NO despliega: todos los .md versionados ya estan en .assetsignore,
+    # asi que un PR de documentacion cambia 0 bytes del artefacto. Sin esto, cada
+    # merge de docs creaba una version nueva en Cloudflare con contenido identico
+    # (ruido en el historial de versiones y en la metrica "1 deploy por merge").
+    # NO ignorar: worker.js, wrangler.jsonc, _headers, scripts/** ni .github/**.
+    # `.md` va dos veces a proposito: `**/*.md` no siempre cubre la raiz del repo.
+    # Trampa: si algun dia `Deploy` fuera required check de PR, un PR de docs
+    # quedaria en "Expected" para siempre. Hoy `Deploy` corre en push a main y el
+    # gate del PR es `CI`, asi que saltar el workflow no bloquea ningun merge.
+    paths-ignore:
+      - '**/*.md'
+      - '*.md'
+      - 'specs/**'
+      - 'docs/**'
+      - '.agents/**'
 
 jobs:
   deploy:
