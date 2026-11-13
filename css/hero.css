@@ -283,7 +283,7 @@
 
 .hero-trust-label {
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.64rem;
+    font-size: 0.7rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -302,7 +302,7 @@
     text-decoration: none;
 
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.62rem;
+    font-size: 0.7rem;
     letter-spacing: 1px;
     text-transform: uppercase;
 
@@ -372,7 +372,7 @@
 
 .system-index {
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     color: var(--accent2);
 }
 
@@ -445,7 +445,7 @@
     border-top: 1px solid var(--border);
 
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.67rem;
+    font-size: 0.7rem;
     letter-spacing: 2px;
     text-transform: uppercase;
 
@@ -513,7 +513,7 @@
     background: rgba(68, 147, 248, 0.1);
     color: var(--accent);
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.62rem;
+    font-size: 0.7rem;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -551,8 +551,8 @@
     margin-top: 6px;
 
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.62rem;
-    letter-spacing: 1.5px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--text-muted);
 }
@@ -717,6 +717,20 @@
     }
 }
 
+/* KPIs: los 4 en una fila necesitan ~710px. Por debajo de 1250 el hero-copy
+   no llega y caian 3+1 con el cuarto huerfano en una fila propia. */
+@media (max-width: 1249px) {
+    .hero-kpis {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px 12px;
+    }
+
+    .hero-kpi {
+        min-width: 0;
+    }
+}
+
 @media (max-width: 600px) {
 
     /* Stack hero content vertically so the trust strip sits below it */
@@ -737,7 +751,7 @@
         flex-wrap: wrap;
         white-space: normal;
         gap: 6px 16px;
-        font-size: 0.68rem;
+        font-size: 0.74rem;
         letter-spacing: 0.5px;
     }
 
@@ -780,7 +794,7 @@
         min-width: 0;
         padding: 0 10px;
         gap: 8px;
-        font-size: 0.66rem;
+        font-size: 0.7rem;
         letter-spacing: 1px;
     }
 
@@ -804,11 +818,57 @@
     }
 }
 
-/* Robot hidden on small screens and touch devices without hover
-   (e.g. mobile "desktop site" mode reports a wide viewport) until
-   the gaze animation is integrated */
+/* Robot en mobile y touch: poster estatico en el flujo, sin parpadeo ni flotado.
+   Antes se ocultaba por completo (display:none) y se perdia el activo de marca
+   en la mayoria del trafico. Coste: 12,1 KB (AVIF 360w ya versionado) y 0 JS.
+   El parche del parpadeo (.hero-robot-blink) sigue oculto: solo tiene sentido
+   con la animacion de escritorio. */
 @media (max-width: 700px), (hover: none) {
     .hero-robot-wrapper {
+        display: flex;
+    }
+
+    .hero-robot-blink {
         display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-robot-wrapper {
+        position: static;
+        right: auto;
+        bottom: auto;
+        justify-content: center;
+        margin-top: 28px;
+        animation: none;
+    }
+
+    .hero-robot-img {
+        height: 172px;
+        max-width: 240px;
+        opacity: 1;
+        -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+        mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+    }
+
+    /* Badges: con 0.7rem dos por fila no entraban (149 + 162 + 8 > 358).
+       Menos padding y tracking recupera la grilla 2x2 sin bajar la tipografia. */
+    .hero-trust-badge {
+        padding: 4px 7px;
+        letter-spacing: 0.5px;
+    }
+}
+
+/* A 360px (iPhone SE) la grilla de 2 columnas deja 158px por celda: con
+   letter-spacing 1px los badges y el label mas largo se partian en dos lineas.
+   Se aprieta el tracking sin tocar el tamano de fuente. */
+@media (max-width: 400px) {
+    .hero-trust-badge {
+        padding: 4px 6px;
+        letter-spacing: 0.2px;
+    }
+
+    .hero-kpi-label {
+        letter-spacing: 0.2px;
     }
 }
