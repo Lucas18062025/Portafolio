@@ -219,7 +219,7 @@
         .stack-tab {
             flex: 0 0 auto;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--text-muted);
@@ -268,7 +268,7 @@
         .cert-tab {
             flex: 0 0 auto;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--text-muted);
@@ -354,7 +354,7 @@
 
         .stack-panel-head .sub {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             color: var(--panel-accent, var(--accent2));
             letter-spacing: 1px;
         }
@@ -618,7 +618,7 @@
 
         .status-tag {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.62rem;
+            font-size: 0.7rem;
             color: var(--accent2);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -828,10 +828,16 @@
             background: rgba(255, 255, 255, 0.08);
         }
 
-        /* ===== BOTONES DE CONTACTO ===== */
+        /* ===== BOTONES DE CONTACTO =====
+           Borde y fondo neutros (sistema de 2 acentos); el color de marca queda
+           solo en el icono y en el hover, para reconocer la red sin romper la paleta. */
 
         .btn-linkedin {
-            border-color: #0A66C2;
+            border-color: var(--border);
+            color: #ffffff;
+        }
+
+        .btn-linkedin i {
             color: #6EC6FF;
         }
 
@@ -845,7 +851,11 @@
         }
 
         .btn-whatsapp {
-            border-color: #25D366;
+            border-color: var(--border);
+            color: #ffffff;
+        }
+
+        .btn-whatsapp i {
             color: #25D366;
         }
 
@@ -859,7 +869,11 @@
         }
 
         .btn-gmail {
-            border-color: #EA4335;
+            border-color: var(--border);
+            color: #ffffff;
+        }
+
+        .btn-gmail i {
             color: #EA4335;
         }
 
@@ -869,7 +883,11 @@
         }
 
         .btn-facebook {
-            border-color: #1877F2;
+            border-color: var(--border);
+            color: #ffffff;
+        }
+
+        .btn-facebook i {
             color: #4DA3FF;
         }
 
@@ -889,7 +907,7 @@
 
         /* GitHub: neutro blanco — equilibra la fila de colores de marca */
         .btn-github {
-            border-color: rgba(230, 237, 243, 0.35);
+            border-color: var(--border);
             color: #e6edf3;
         }
 
@@ -972,7 +990,7 @@
             padding: 60px 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             color: var(--text-subtle);
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -1051,7 +1069,7 @@
 .action-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 #proyectos .action-row{flex-wrap:nowrap;gap:8px;margin-top:auto;padding-top:20px}
 @media (min-width:901px){#proyectos .card .status-tag{min-height:2.5em}#proyectos .card h3{min-height:3.4em}#proyectos .tag-row{min-height:64px;align-content:flex-start}}
-.action-row .btn{flex:1 1 0;min-width:0;justify-content:center;text-align:center;margin-top:0;min-height:50px;padding:8px 4px;font-size:.6rem;letter-spacing:.5px;line-height:1.5}
+.action-row .btn{flex:1 1 0;min-width:0;justify-content:center;text-align:center;margin-top:0;min-height:50px;padding:8px 4px;font-size:.66rem;letter-spacing:.5px;line-height:1.5}
 .img-cover-top{object-fit:cover;object-position:top}
 .section-center{text-align:center}
 .h2-center{justify-content:center}
@@ -1084,7 +1102,7 @@
 .svc-tab {
     flex: 0 0 auto;
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -1144,7 +1162,7 @@
 
 .svc-panel .stack-panel-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
 .svc-panel .stack-panel-head h3 { font-family: "Space Grotesk", sans-serif; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); margin: 0; }
-.svc-panel .stack-panel-head .sub { font-family: "JetBrains Mono", monospace; font-size: 0.68rem; color: var(--panel-accent, var(--accent2)); letter-spacing: 1px; }
+.svc-panel .stack-panel-head .sub { font-family: "JetBrains Mono", monospace; font-size: 0.7rem; color: var(--panel-accent, var(--accent2)); letter-spacing: 1px; }
 
 .svc-deliverables {
     margin: 12px 0 18px;
