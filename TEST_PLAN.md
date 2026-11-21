@@ -6,7 +6,7 @@
 | T1 | `google*.html` existe | guards | aborta si falta |
 | T2 | `wrangler.jsonc` tiene `"binding": "ASSETS"` | guards | aborta si falta |
 | T3 | `.assetsignore` contiene `^worker\.js$` | guards | aborta si falta |
-| T3b | `.assetsignore` contiene `AGENTS.md`, `SECURITY.md`, `TEST_PLAN.md`, `TOOLS.md`, `specs` + `specs/**` | guards | aborta si falta |
+| T3b | `.assetsignore` contiene `AGENTS.md`, `SECURITY.md`, `TEST_PLAN.md`, `TOOLS.md`, `VERSION`, `specs` + `specs/**` | guards | aborta si falta |
 | T4 | `dry-run` contiene `env.ASSETS` | guards (local + pre-deploy del CI) | aborta si falta |
 | T5 | `GET /` → 200, `/manifest.json` → **404** (el sitio no es una PWA: sin manifest ni service worker, Chrome no ofrece "instalar" en Android), `/worker.js` → 404, `/no-existo` → 404 (nunca 500) · `/blog/visual-field-notes/` → 200 + 2 assets del kit (1 WebP y 1 MP4) → 200 | health-checks (post-deploy) | aborta si falla |
 | T9 | **Cache-bust de CSS/JS**: si `css/*.css` o `js/*.js` cambiaron, el `?v=N` de su referencia en el HTML debe haber cambiado también | guards | aborta si falla |

@@ -107,9 +107,17 @@ if (assetsignore === null) {
     ok('T3b', '.assetsignore ignora los 4 docs internos');
   }
 
+  // VERSION no se publica: es un archivo interno sin content-type propio
+  // (extensionless => el borde lo sirve sin MIME). La version visible es el
+  // footer que estampa stamp-version.mjs (T11).
+  if (!hasExact('VERSION')) {
+    bad('T3b', 'falta `VERSION` en .assetsignore: el archivo de version quedaria descargable en /VERSION.');
+  } else {
+    ok('T3b', '.assetsignore ignora VERSION');
+  }
+
   const missingSpecs = [];
-  if (!hasExact('specs')) missingSpecs.push('specs');
-  if (!hasExact('specs/**')) missingSpecs.push('specs/**');
+  if (!hasExact('specs')) missingSpecs.push('specs');  if (!hasExact('specs/**')) missingSpecs.push('specs/**');
   if (missingSpecs.length) {
     bad('T3b', `faltan en .assetsignore: ${missingSpecs.join(', ')}. Los specs quedarian descargables.`);
   } else {
