@@ -49,7 +49,7 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 ## Guards (una sola implementación: `scripts/guards.mjs`)
 La usan los tres: `deploy.ps1 -Check` (local), `ci.yml` (gate del PR) y `deploy.yml` (pre-deploy). Así no hay drift entre lo que se valida localmente y lo que valida el CI.
 T1 `google*.html` existe / T2 `binding ASSETS` / T3 `worker.js` en `.assetsignore`
-+ T3b docs internos + `specs/` ignorados / T4 dry-run con `env.ASSETS` / T9 cache-bust `?v=N` de CSS/JS
++ T3b docs internos + `specs/` ignorados + `VERSION` (interna, no se sirve) / T4 dry-run con `env.ASSETS` / T9 cache-bust `?v=N` de CSS/JS
 / T11 footer de versión ≡ `VERSION` (fuente única; estampa `scripts/stamp-version.mjs`)
 / T5 health-checks `/` 200, `/manifest.json` **404** (el sitio no es una PWA), `/worker.js` 404, `/no-existo` 404 (nunca 500), `/blog/visual-field-notes/` 200 + 2 assets del kit Flow (1 WebP y 1 MP4) 200 (7 checks)
 + T10 colector CSP: 3 content-types aceptados (204), `text/plain` 415, shape inválido 400, body > 8 KB 413, `GET` 405 con `Allow: POST`, `Reporting-Endpoints` con URL absoluta (8 checks).
