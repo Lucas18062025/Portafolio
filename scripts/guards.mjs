@@ -117,6 +117,14 @@ if (assetsignore === null) {
     ok('T3b', '.assetsignore ignora VERSION');
   }
 
+  // .gitattributes tampoco: es metadata del repo, no del sitio (y .gitignore
+  // ya estaba ignorado: sin esto /.gitattributes respondia 200).
+  if (!hasExact('.gitattributes')) {
+    bad('T3b', 'falta `.gitattributes` en .assetsignore: quedaria descargable en /.gitattributes.');
+  } else {
+    ok('T3b', '.assetsignore ignora .gitattributes');
+  }
+
   const missingSpecs = [];
   if (!hasExact('specs')) missingSpecs.push('specs');
   if (!hasExact('specs/**')) missingSpecs.push('specs/**');
