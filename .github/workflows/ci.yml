@@ -30,6 +30,6 @@ jobs:
       # Gate del PR: mismas barreras que el pre-flight local (scripts/guards.mjs),
       # contra la base del PR. Sin T4 (dry-run) porque aca no hay credenciales
       # de Cloudflare: esa se valida en deploy.yml, antes de desplegar.
-      - name: Guards (T1-T3b, T9, T11)
+      - name: Guards (T1-T3b, T9, T11, T12)
         if: github.event_name == 'pull_request'
         run: node scripts/guards.mjs --base "${{ github.event.pull_request.base.sha }}"

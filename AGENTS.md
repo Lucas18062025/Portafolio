@@ -45,12 +45,14 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
   - Evidencia 20/10: `gh api repos/Lucas18062025/Portafolio/rulesets/19284894` → `enforcement: active`, `bypass_actors[].bypass_mode: always`. Ojo: `gh api .../branches/main` → `protected: true` (el campo **no** distingue ruleset de branch protection clásico; para eso está `/rulesets`).
   - El 17/10 se documentó lo contrario ("sin branch protection ni rulesets, repo privado"): fue un error de lectura. La API de `/rulesets` daba **403** *"Upgrade to GitHub Pro or make this repository public to enable this feature"* porque el repo estaba **privado** en plan Free (los rulesets son gratis solo en repos públicos). El repo es **público** desde su creación (12/02/2026). No volver a concluir "no existe" a partir de un 403: leer el mensaje.
 - Firmados `gpg.format=ssh`. Si `Unverified` → revisar signing key primero.
+- **Fin de línea**: `.gitattributes` fija `* text=auto eol=lf` (T12). Nunca normalizar a mano: si el diff se infla, es que el archivo se escribió en CRLF — revisar con `git ls-files --eol` antes de tocar nada.
 
 ## Guards (una sola implementación: `scripts/guards.mjs`)
 La usan los tres: `deploy.ps1 -Check` (local), `ci.yml` (gate del PR) y `deploy.yml` (pre-deploy). Así no hay drift entre lo que se valida localmente y lo que valida el CI.
 T1 `google*.html` existe / T2 `binding ASSETS` / T3 `worker.js` en `.assetsignore`
 + T3b docs internos + `specs/` ignorados + `VERSION` (interna, no se sirve) / T4 dry-run con `env.ASSETS` / T9 cache-bust `?v=N` de CSS/JS
 / T11 footer de versión ≡ `VERSION` (fuente única; estampa `scripts/stamp-version.mjs`)
+/ T12 `.gitattributes` con `* text=auto eol=lf`
 / T5 health-checks `/` 200, `/manifest.json` **404** (el sitio no es una PWA), `/worker.js` 404, `/no-existo` 404 (nunca 500), `/blog/visual-field-notes/` 200 + 2 assets del kit Flow (1 WebP y 1 MP4) 200 (7 checks)
 + T10 colector CSP: 3 content-types aceptados (204), `text/plain` 415, shape inválido 400, body > 8 KB 413, `GET` 405 con `Allow: POST`, `Reporting-Endpoints` con URL absoluta (8 checks).
 
