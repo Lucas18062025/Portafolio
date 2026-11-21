@@ -1,0 +1,21 @@
+# Normalizacion de fin de linea: el repo es LF, siempre.
+#
+# Contexto (2 incidentes): 13/11 y 21/11 un editor/script escribio CRLF y el
+# diff salio con miles de lineas cambiadas (1567 y 4518) cuando el cambio real
+# era de decenas. Con core.autocrlf=false y sin este archivo, git compara byte
+# a byte: cada linea cambia. Con `text=auto eol=lf` git normaliza al indexar y
+# escribe LF en el checkout, en Windows incluido.
+* text=auto eol=lf
+
+# Binarios: que git no intente normalizar ni diffear como texto.
+# (text=auto ya los detecta por el byte NUL; esto es seguro explicito.)
+*.webp  binary
+*.avif  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.ico   binary
+*.gif   binary
+*.mp4   binary
+*.pdf   binary
+*.woff2 binary

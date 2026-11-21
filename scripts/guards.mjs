@@ -16,6 +16,7 @@
  *        en el HTML tiene que cambiar tambien (el CDN ignora el query string)
  *   T11  footer de version: cada pagina con <footer> estampa VERSION (una sola
  *        fuente de verdad). Delega en scripts/stamp-version.mjs --check.
+ *   T12  .gitattributes declara `* text=auto eol=lf` (repo LF, tambien en Windows)
  *   T4   (--dry-run) el dry-run de wrangler declara env.ASSETS
  *
  * Uso:
@@ -66,7 +67,7 @@ function walk(dir, out = []) {
   return out;
 }
 
-console.log(`guards: T1 T2 T3 T3b${DRY_RUN ? ' T4' : ''} T9 T11  (base: ${BASE || 'working tree vs HEAD'})`);
+console.log(`guards: T1 T2 T3 T3b${DRY_RUN ? ' T4' : ''} T9 T11 T12  (base: ${BASE || 'working tree vs HEAD'})`);
 
 // --- T1: google*.html (verificacion de Search Console) ------------------------
 const googleFiles = readdirSync(ROOT).filter((f) => /^google.*\.html$/.test(f));
@@ -117,11 +118,34 @@ if (assetsignore === null) {
   }
 
   const missingSpecs = [];
-  if (!hasExact('specs')) missingSpecs.push('specs');  if (!hasExact('specs/**')) missingSpecs.push('specs/**');
+  if (!hasExact('specs')) missingSpecs.push('specs');
+  if (!hasExact('specs/**')) missingSpecs.push('specs/**');
   if (missingSpecs.length) {
     bad('T3b', `faltan en .assetsignore: ${missingSpecs.join(', ')}. Los specs quedarian descargables.`);
   } else {
     ok('T3b', '.assetsignore ignora specs/ y specs/**');
+  }
+}
+
+// --- T12: .gitattributes fija LF ---------------------------------------------
+// Dos incidentes por CRLF en un repo LF: 13/11 (1567 lineas de diff falso) y
+// 21/11 (4518). Con core.autocrlf=false y sin atributos, git compara byte a
+// byte y cada linea cambia. `* text=auto eol=lf` normaliza al indexar y escribe
+// LF en el checkout, tambien en Windows.
+const gitattributes = readFileSafe(join(ROOT, '.gitattributes'));
+if (gitattributes === null) {
+  bad('T12', 'falta .gitattributes. Sin `* text=auto eol=lf` un editor en Windows reintroduce CRLF y el diff se infla.');
+} else {
+  const ruleLines = gitattributes
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => l.startsWith('*'));
+  const declaresAuto = ruleLines.some((l) => /\btext=auto\b/.test(l));
+  const declaresLf = ruleLines.some((l) => /\beol=lf\b/.test(l));
+  if (!declaresAuto || !declaresLf) {
+    bad('T12', `la regla global de .gitattributes tiene que declarar text=auto y eol=lf (hoy: ${ruleLines.join(' | ') || 'sin reglas *'}).`);
+  } else {
+    ok('T12', '.gitattributes normaliza a LF (`* text=auto eol=lf`)');
   }
 }
 
