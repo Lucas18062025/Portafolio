@@ -44,7 +44,7 @@ if ($Message -and $branch -eq "main") {
 # 0. El deploy lo hace el CI, no este script. Si alguien lo invoca esperando
 #    un deploy, que lo sepa antes de que haga cualquier cosa.
 if ($Check -or -not $Message) {
-  Write-Host "PRE-FLIGHT: guards (T1-T3b, T4, T9) + dry-run. Sin commit, sin push, sin deploy." -ForegroundColor Cyan
+  Write-Host "PRE-FLIGHT: guards (T1-T3b, T4, T9, T11) + dry-run. Sin commit, sin push, sin deploy." -ForegroundColor Cyan
   Write-Host "            El deploy a produccion lo hace el CI al mergear el PR en main." -ForegroundColor Cyan
 }
 else {

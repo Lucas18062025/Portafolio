@@ -24,14 +24,15 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 
 ## Comandos (únicos)
 - Preview: `npx serve .` (solo en preview)
-- Deploy: `.\deploy.ps1 -Message "feat: ..."` (pre-flight: guards T1–T3b + T4 + T9 + dry-run, **sin efectos** + commit firmado + push **de la rama**). **No despliega**: el deploy lo hace el CI al mergear el PR.
+- Deploy: `.\deploy.ps1 -Message "feat: ..."` (pre-flight: guards T1–T3b + T4 + T9 + T11 + dry-run, **sin efectos** + commit firmado + push **de la rama**). **No despliega**: el deploy lo hace el CI al mergear el PR.
 - Diagnóstico: `npx --yes wrangler@4.136.3 deploy --dry-run`
+- Versión visible: editar `VERSION` y correr `node scripts/stamp-version.mjs` (estampa el footer en todas las páginas; T11 falla si hay drift).
 - Prohibido: `wrangler deploy` manual (salvo fix documentado), `--force`, instalar deps sin aprobación.
 
 ## Git — flujo (único path a producción)
 1. `git status` · `git diff` · `git branch`
 2. `git switch -c feat/...` (o `fix/...`)
-3. Modificar y probar → `.\deploy.ps1 -Check` (guards T1–T3b + T4 + T9 + dry-run; sin efectos)
+3. Modificar y probar → `.\deploy.ps1 -Check` (guards T1–T3b + T4 + T9 + T11 + dry-run; sin efectos)
 4. `.\deploy.ps1 -Message "..."` → commit firmado + push **de la rama** (aborta si estás en `main`)
 5. `gh pr create` + `gh pr merge --squash` — el ruleset `protect-main` exige PR
 6. El CI (`.github/workflows/deploy.yml`) despliega al mergear y valida T5 + T10; después se revisa en producción
@@ -49,6 +50,7 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 La usan los tres: `deploy.ps1 -Check` (local), `ci.yml` (gate del PR) y `deploy.yml` (pre-deploy). Así no hay drift entre lo que se valida localmente y lo que valida el CI.
 T1 `google*.html` existe / T2 `binding ASSETS` / T3 `worker.js` en `.assetsignore`
 + T3b docs internos + `specs/` ignorados / T4 dry-run con `env.ASSETS` / T9 cache-bust `?v=N` de CSS/JS
+/ T11 footer de versión ≡ `VERSION` (fuente única; estampa `scripts/stamp-version.mjs`)
 / T5 health-checks `/` 200, `/manifest.json` **404** (el sitio no es una PWA), `/worker.js` 404, `/no-existo` 404 (nunca 500), `/blog/visual-field-notes/` 200 + 2 assets del kit Flow (1 WebP y 1 MP4) 200 (7 checks)
 + T10 colector CSP: 3 content-types aceptados (204), `text/plain` 415, shape inválido 400, body > 8 KB 413, `GET` 405 con `Allow: POST`, `Reporting-Endpoints` con URL absoluta (8 checks).
 

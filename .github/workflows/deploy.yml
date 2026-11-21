@@ -40,7 +40,7 @@ jobs:
       # Barreras ANTES del deploy (misma implementacion que el pre-flight local
       # y que el gate del PR: scripts/guards.mjs). Si algo esta roto, el
       # deploy no sale: no se llega a romper produccion.
-      - name: Guards (T1-T3b, T4, T9)
+      - name: Guards (T1-T3b, T4, T9, T11)
         env:
           WRANGLER: wrangler
         run: node scripts/guards.mjs --base "${{ github.event.before }}" --dry-run

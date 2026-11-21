@@ -14,6 +14,8 @@
  *   T3b  .assetsignore ignora los docs internos y specs/
  *   T9   cache-bust: si cambia css/*.css o js/*.js, el ?v=N de su referencia
  *        en el HTML tiene que cambiar tambien (el CDN ignora el query string)
+ *   T11  footer de version: cada pagina con <footer> estampa VERSION (una sola
+ *        fuente de verdad). Delega en scripts/stamp-version.mjs --check.
  *   T4   (--dry-run) el dry-run de wrangler declara env.ASSETS
  *
  * Uso:
@@ -64,7 +66,7 @@ function walk(dir, out = []) {
   return out;
 }
 
-console.log(`guards: T1 T2 T3 T3b${DRY_RUN ? ' T4' : ''} T9  (base: ${BASE || 'working tree vs HEAD'})`);
+console.log(`guards: T1 T2 T3 T3b${DRY_RUN ? ' T4' : ''} T9 T11  (base: ${BASE || 'working tree vs HEAD'})`);
 
 // --- T1: google*.html (verificacion de Search Console) ------------------------
 const googleFiles = readdirSync(ROOT).filter((f) => /^google.*\.html$/.test(f));
@@ -158,6 +160,22 @@ if (cssChanged.length === 0) {
   }
   for (const b of t9Bad) bad('T9 ', b);
   if (t9Bad.length === 0) ok('T9 ', 'cache-bust verificado en todas las referencias');
+}
+
+// --- T11: footer de version alineado con VERSION ------------------------------
+// La version visible se estampa con scripts/stamp-version.mjs (unica
+// implementacion). Si alguien edita el HTML a mano o bumpea VERSION sin
+// re-estampar, la pagina miente sobre lo que esta corriendo en produccion.
+const stamp = spawnSync(process.execPath, [join(ROOT, 'scripts', 'stamp-version.mjs'), '--check'], {
+  cwd: ROOT,
+  encoding: 'utf8'
+});
+if (stamp.error) {
+  bad('T11', `no se pudo ejecutar stamp-version --check (${stamp.error.message}).`);
+} else if (stamp.status !== 0) {
+  bad('T11', `footer de version desalineado de VERSION.\n${(stamp.stderr || '').trim()}`);
+} else {
+  ok('T11', 'footer de version alineado con VERSION en todas las paginas');
 }
 
 // --- T4: dry-run con env.ASSETS ----------------------------------------------
