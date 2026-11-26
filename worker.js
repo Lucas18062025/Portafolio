@@ -19,6 +19,225 @@ const CSP_CONTENT_TYPES = [
 // sobre content-length: un POST chunked o con content-length mentiroso lo esquiva.
 const MAX_REPORT_BYTES = 8192;
 
+// Configuracion del asistente virtual (/api/chat).
+const MAX_CHAT_BYTES = 4096;
+const MAX_CHAT_MESSAGE_CHARS = 500;
+const GEMINI_INTERACTIONS_URL = "https://generativelanguage.googleapis.com/v1/interactions";
+const GEMINI_MODEL = "gemini-4-hydrogen";
+const ASSISTANT_SYSTEM_INSTRUCTION =
+  "Sos el asistente virtual del portafolio de Lucas Villagra, analista de ciberseguridad " +
+  "(Red Team, pentesting, SIEM, automatizacion con Python, n8n e IA; Tucuman, Argentina). " +
+  "Responde en espanol (es-AR), de forma breve, clara y profesional (maximo 3 a 4 oraciones). " +
+  "No inventes datos, clientes ni proyectos que no existan; si piden contacto directo, " +
+  "indica lucaslean1806@gmail.com o la seccion ./ Conectar (#contacto).";
+
+/**
+ * Helper de respuesta JSON sin cache para endpoints /api/*.
+ * @param {object} payload
+ * @param {number} [status=200]
+ * @param {Record<string, string>} [extraHeaders]
+ * @returns {Response}
+ */
+function jsonResponse(payload, status = 200, extraHeaders = {}) {
+  return new Response(JSON.stringify(payload), {
+    status,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+      ...extraHeaders
+    }
+  });
+}
+
+/**
+ * Normaliza texto a minusculas sin tildes para matching determinista.
+ * @param {string} text
+ * @returns {string}
+ */
+function normalizeChatText(text) {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+/**
+ * Flujos guiados deterministas (respuesta instantanea sin consumir cuota de IA).
+ * @param {string} rawMessage
+ * @returns {string | null}
+ */
+function matchDeterministicReply(rawMessage) {
+  const msg = normalizeChatText(rawMessage);
+
+  if (/\b(hola|buenas|buen dia|buenas tardes|buenas noches|ayuda|menu|inicio)\b/.test(msg)) {
+    return (
+      "¡Hola! Soy el asistente de Lucas Villagra. Puedo ayudarte con:\n" +
+      "1. Proyectos y labs de ciberseguridad\n" +
+      "2. Certificaciones y CV\n" +
+      "3. Contacto directo\n" +
+      "¿Qué necesitás?"
+    );
+  }
+
+  if (/\b(contacto|contactar|email|correo|mail|whatsapp|linkedin|hablar)\b/.test(msg)) {
+    return (
+      "Podés contactar a Lucas directamente por correo a lucaslean1806@gmail.com, " +
+      "o desde LinkedIn y WhatsApp en la sección ./ Conectar (#contacto) al pie de la página."
+    );
+  }
+
+  if (/\b(proyecto|proyectos|labs|laboratorios|github|herramientas|repos)\b/.test(msg)) {
+    return (
+      "En la sección ./ Proyectos (#projects) encontrás labs y herramientas reales de Lucas " +
+      "(auditoría de seguridad, SIEM, automatización con Python, n8n e IA), junto con sus repositorios en GitHub."
+    );
+  }
+
+  if (/\b(cv|curriculum|certificacion|certificaciones|certificados|credenciales)\b/.test(msg)) {
+    return (
+      "Podés descargar el CV de Lucas desde el encabezado o revisar sus credenciales " +
+      "(Cisco Ethical Hacker, Google Cybersecurity y Google AI Essentials) en la sección ./ Certificaciones."
+    );
+  }
+
+  return null;
+}
+
+/**
+ * Extrae el texto final de una respuesta de Gemini Interactions API (steps -> model_output).
+ * @param {unknown} data
+ * @returns {string | null}
+ */
+function extractGeminiText(data) {
+  if (!data || typeof data !== "object") return null;
+  const steps = Array.isArray(data.steps) ? data.steps : [];
+  const parts = [];
+  for (const step of steps) {
+    if (step && step.type === "model_output" && Array.isArray(step.content)) {
+      for (const block of step.content) {
+        if (block && block.type === "text" && typeof block.text === "string") {
+          parts.push(block.text);
+        }
+      }
+    }
+  }
+  const text = parts.join("").trim();
+  return text || null;
+}
+
+/**
+ * Consulta a Gemini usando Interactions API v1 (sin retencion en servidor: store=false).
+ * La API key se envia en header x-goog-api-key, nunca en query string.
+ * @param {string} prompt
+ * @param {string} apiKey
+ * @returns {Promise<string | null>}
+ */
+async function callGemini(prompt, apiKey) {
+  const response = await fetch(GEMINI_INTERACTIONS_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-goog-api-key": apiKey
+    },
+    body: JSON.stringify({
+      model: GEMINI_MODEL,
+      store: false,
+      system_instruction: ASSISTANT_SYSTEM_INSTRUCTION,
+      input: prompt,
+      generation_config: {
+        max_output_tokens: 300
+      }
+    })
+  });
+
+  if (!response.ok) {
+    console.error("[api/chat] Gemini upstream error:", response.status);
+    return null;
+  }
+
+  const data = await response.json();
+  return extractGeminiText(data);
+}
+
+/**
+ * Manejador del endpoint POST /api/chat.
+ * @param {Request} request
+ * @param {Record<string, any>} env
+ * @returns {Promise<Response>}
+ */
+async function handleChatRequest(request, env) {
+  if (request.method !== "POST") {
+    return jsonResponse({ error: "Method Not Allowed" }, 405, { Allow: "POST" });
+  }
+
+  const contentType = (request.headers.get("content-type") || "")
+    .split(";")[0]
+    .trim()
+    .toLowerCase();
+  if (contentType !== "application/json") {
+    return jsonResponse({ error: "Unsupported Media Type" }, 415, { Accept: "application/json" });
+  }
+
+  const body = await readCappedBody(request, MAX_CHAT_BYTES);
+  if (body.tooLarge) {
+    return jsonResponse({ error: "Payload Too Large" }, 413);
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(body.text);
+  } catch {
+    return jsonResponse({ error: "JSON inválido." }, 400);
+  }
+
+  const rawMessage = parsed && typeof parsed.message === "string" ? parsed.message.trim() : "";
+  if (!rawMessage || rawMessage.length > MAX_CHAT_MESSAGE_CHARS) {
+    return jsonResponse(
+      { error: `El mensaje debe tener entre 1 y ${MAX_CHAT_MESSAGE_CHARS} caracteres.` },
+      400
+    );
+  }
+
+  // 1. Clasificacion determinista (flujos guiados)
+  const deterministicReply = matchDeterministicReply(rawMessage);
+  if (deterministicReply) {
+    return jsonResponse({ reply: deterministicReply, source: "guided" });
+  }
+
+  // 2. Fallback a Gemini (intenciones no deterministas)
+  if (typeof env?.GEMINI_API_KEY === "string" && env.GEMINI_API_KEY.trim().length > 0) {
+    try {
+      const geminiReply = await callGemini(rawMessage, env.GEMINI_API_KEY.trim());
+      if (geminiReply) {
+        return jsonResponse({ reply: geminiReply, source: "ai" });
+      }
+      return jsonResponse(
+        {
+          reply:
+            "No pude consultar al motor de IA en este momento. Probá nuevamente en unos segundos o escribile a Lucas desde ./ Conectar (#contacto)."
+        },
+        502
+      );
+    } catch (err) {
+      console.error("[api/chat] Gemini fetch failed:", err?.message ?? err);
+      return jsonResponse(
+        {
+          reply:
+            "Hubo un error temporal con el motor de IA. Podés escribirle directamente a Lucas desde ./ Conectar (#contacto)."
+        },
+        502
+      );
+    }
+  }
+
+  return jsonResponse({
+    reply:
+      "No encontré una respuesta rápida para esa consulta y el motor de IA no está activo todavía. Podés contactar a Lucas en ./ Conectar (#contacto).",
+    source: "fallback"
+  });
+}
+
 /**
  * Lee el body como texto cortando en maxBytes.
  * @param {Request} request
@@ -115,6 +334,10 @@ function summarizeCspReport(report) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (url.pathname === "/api/chat") {
+      return handleChatRequest(request, env);
+    }
 
     if (url.pathname === "/api/csp-report") {
       if (request.method !== "POST") {
