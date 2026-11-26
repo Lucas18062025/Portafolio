@@ -18,19 +18,18 @@
     box-sizing: border-box;
     background-color: #02040A;
 
-    /* Alto y ancho real del robot (aspect 720x505 = 1.426). */
-    --robot-h: clamp(120px, calc(48vh - 300px), 210px);
-    --robot-w: calc(var(--robot-h) * 1.426);
+    /* Alto del robot. Apoya los pies en el borde inferior (igual que antes) y
+       se dimensiona con la banda libre entre los CTAs y ese borde. Medido con
+       el padding de arriba: la banda mide ~110px a 768px de viewport y ~253px
+       a 1098px, asi que `60vh - 445px` deja 10-40px de aire bajo los botones
+       (100px abajo, 214px a 1098px). */
+    --robot-h: clamp(100px, calc(60vh - 445px), 250px);
 
-    /* Anclaje al margen izquierdo: el borde izquierdo del bloque central
-       (1180px centrado) vive en --hero-gutter. El robot se apoya en ese
-       margen izquierdo (20px antes del bloque en pantallas anchas; minimo
-       16px del borde). Si en viewports medianos (1280-1440px) entra en la
-       banda del contenedor, --robot-overlap desplaza .hero-trust a su derecha
-       con 20px de aire para que nunca se superpongan ni bloqueen clics. */
-    --hero-gutter: max(20px, calc(50vw - 590px));
-    --robot-left: max(16px, calc(var(--hero-gutter) - var(--robot-w) - 20px));
-    --robot-overlap: max(0px, calc(var(--robot-left) + var(--robot-w) + 20px - var(--hero-gutter)));
+    /* Margen izquierdo del robot: se apoya en el espacio libre entre el borde
+       de la ventana y el contenido (1180px centrado), a ~42% de ese margen.
+       A 1376px de ancho queda en 41px (3 cm del borde); a 2290px, en 233px.
+       Nunca mas cerca de 20px del borde ni mas lejos de 230px. */
+    --robot-left: clamp(20px, calc(21vw - 289px), 230px);
 }
 
 /* Background */
@@ -76,8 +75,6 @@
 }
 
 .hero-container {
-    position: relative;
-    z-index: 2;
     width: min(1180px, 100%);
     margin: 0 auto;
 }
@@ -295,10 +292,12 @@
     align-items: center;
     gap: 10px 16px;
 
-    /* Reserva dinamica a la izquierda igual al solapamiento real del robot
-       (--robot-overlap): 0px en >=1600px (robot 100% en margen izquierdo) y
-       exactamente el ancho necesario + 20px de aire en 901-1599px. */
-    padding: 14px 0 14px var(--robot-overlap);
+    /* 1.426 = relacion de aspecto del asset del robot (720x505). El contenido
+       arranca 24px a la derecha del robot: se descuenta el borde izquierdo de
+       la franja (centrada con ancho min(1180px, 100% - 40px)). */
+    padding: 16px 0 0 max(0px, calc(
+        var(--robot-left) + var(--robot-h) * 1.426 + 24px
+        - (100% - min(1180px, 100% - 40px)) / 2));
     margin-top: 0;
 
     border-top: 1px solid var(--border);
@@ -588,7 +587,7 @@
 .hero-robot-wrapper {
     position: absolute;
     bottom: 0;
-    left: var(--robot-left);
+    left: max(20px, calc(50% - 590px));
     z-index: 1;
     pointer-events: none;
     user-select: none;
