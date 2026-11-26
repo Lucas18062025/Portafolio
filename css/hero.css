@@ -24,6 +24,12 @@
        a 1098px, asi que `60vh - 445px` deja 10-40px de aire bajo los botones
        (100px abajo, 214px a 1098px). */
     --robot-h: clamp(100px, calc(60vh - 445px), 250px);
+
+    /* Margen izquierdo del robot: se apoya en el espacio libre entre el borde
+       de la ventana y el contenido (1180px centrado), a ~42% de ese margen.
+       A 1376px de ancho queda en 41px (3 cm del borde); a 2290px, en 233px.
+       Nunca mas cerca de 20px del borde ni mas lejos de 230px. */
+    --robot-left: clamp(20px, calc(21vw - 248px), 230px);
 }
 
 /* Background */
@@ -286,8 +292,12 @@
     align-items: center;
     gap: 10px 16px;
 
-    /* 1.426 = relacion de aspecto del asset del robot (720x505). */
-    padding: 16px 0 0 calc(var(--robot-h) * 1.426 + 24px);
+    /* 1.426 = relacion de aspecto del asset del robot (720x505). El contenido
+       arranca 24px a la derecha del robot: se descuenta el borde izquierdo de
+       la franja (centrada con ancho min(1180px, 100% - 40px)). */
+    padding: 16px 0 0 max(0px, calc(
+        var(--robot-left) + var(--robot-h) * 1.426 + 24px
+        - (100% - min(1180px, 100% - 40px)) / 2));
     margin-top: 0;
 
     border-top: 1px solid var(--border);
