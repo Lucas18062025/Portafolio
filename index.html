@@ -123,9 +123,9 @@
          subseteadas (~3 KB c/u), en lugar del paquete completo (~360 KB).
          El paquete original queda como fuente: regenerar con scripts/media/fontawesome-subset.py -->
     <link rel="stylesheet" href="./assets/vendor/fontawesome/css/fa-subset-33.css">
-    <link rel="stylesheet" href="./css/hero.css?v=16">
+    <link rel="stylesheet" href="./css/hero.css?v=17">
     <link rel="stylesheet" href="./css/main.css?v=3">
-    <link rel="stylesheet" href="./css/chat.css?v=1">
+    <link rel="stylesheet" href="./css/chat.css?v=2">
 </head>
 
 <body>
@@ -1416,41 +1416,81 @@
     </div>
 
     <!-- Asistente Virtual -->
-    <button type="button" id="chat-toggle" class="chat-toggle" aria-label="Abrir asistente virtual"
+    <button type="button" id="chat-toggle" class="chat-toggle" aria-label="Abrir Lucas AI Assistant"
         aria-expanded="false" aria-controls="chat-widget">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        <svg class="chat-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z"></path>
+            <path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"></path>
+            <path d="M5 16l.7 1.6L7.3 18.3l-1.6.7L5 20.6l-.7-1.6-1.6-.7 1.6-.7L5 16z"></path>
         </svg>
+        <span class="chat-toggle-status" aria-hidden="true"></span>
     </button>
 
-    <section id="chat-widget" class="chat-widget" role="dialog" aria-label="Asistente virtual de Lucas Villagra" hidden>
+    <div id="chat-widget" class="chat-widget" role="dialog" aria-labelledby="chat-widget-title"
+        aria-describedby="chat-widget-subtitle" hidden>
         <div class="chat-header">
-            <div class="chat-title-group">
-                <span class="chat-status-dot" aria-hidden="true"></span>
-                <h2 class="chat-title">./ Asistente</h2>
+            <div class="chat-header-brand">
+                <div class="chat-avatar" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z"></path>
+                        <path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"></path>
+                    </svg>
+                    <span class="chat-avatar-dot"></span>
+                </div>
+                <div class="chat-title-block">
+                    <div class="chat-title-row">
+                        <h2 id="chat-widget-title" class="chat-title">Lucas AI Assistant</h2>
+                        <span class="chat-status-pill">En línea</span>
+                    </div>
+                    <p id="chat-widget-subtitle" class="chat-subtitle">Asistente virtual de Lucas Villagra</p>
+                </div>
             </div>
-            <button type="button" id="chat-close" class="chat-close" aria-label="Cerrar asistente">
+            <button type="button" id="chat-close" class="chat-close" aria-label="Minimizar asistente">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M18 6L6 18M6 6l12 12"></path>
                 </svg>
             </button>
         </div>
-        <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
-        <div class="chat-quick-actions" aria-label="Consultas rápidas">
-            <button type="button" class="chat-chip" data-prompt="Proyectos">Proyectos</button>
-            <button type="button" class="chat-chip" data-prompt="Certificaciones">Certificaciones</button>
-            <button type="button" class="chat-chip" data-prompt="Contacto">Contacto</button>
+
+        <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions">
+            <div class="chat-welcome">
+                <p class="chat-welcome-heading">¡Hola! Soy el asistente virtual de Lucas.</p>
+                <p class="chat-welcome-copy">Estoy acá para ayudarte a conocer su experiencia, proyectos de
+                    ciberseguridad, habilidades y trayectoria profesional.</p>
+                <div class="chat-quick-actions" role="group" aria-label="Consultas rápidas">
+                    <button type="button" class="chat-chip"
+                        data-prompt="Contame sobre Lucas Villagra y su perfil profesional">Sobre Lucas</button>
+                    <button type="button" class="chat-chip" data-prompt="Proyectos">Proyectos</button>
+                    <button type="button" class="chat-chip"
+                        data-prompt="¿Cuál es la experiencia de Lucas en ciberseguridad?">Ciberseguridad</button>
+                    <button type="button" class="chat-chip" data-prompt="Certificaciones">Certificaciones</button>
+                    <button type="button" class="chat-chip" data-prompt="Contacto">Contacto</button>
+                </div>
+            </div>
         </div>
-        <form id="chat-form" class="chat-input-area">
-            <input type="text" id="chat-input" class="chat-input" maxlength="500" autocomplete="off"
-                placeholder="Escribí tu consulta..." aria-label="Mensaje para el asistente">
-            <button type="submit" id="chat-btn" class="chat-btn">Enviar</button>
+
+        <form id="chat-form" class="chat-composer">
+            <div class="chat-input-box">
+                <textarea id="chat-input" class="chat-input" rows="1" maxlength="500" autocomplete="off"
+                    placeholder="Preguntá sobre proyectos, ciberseguridad o contacto..."
+                    aria-label="Mensaje para el asistente"></textarea>
+                <button type="submit" id="chat-btn" class="chat-btn" aria-label="Enviar mensaje" disabled>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M22 2L11 13"></path>
+                        <path d="M22 2l-7 20-4-9-9-4 20-7z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="chat-composer-meta">
+                <span class="chat-composer-hint">Enter enviar · Shift+Enter salto de línea</span>
+                <span id="chat-char-count" class="chat-char-count" hidden></span>
+            </div>
         </form>
-    </section>
+    </div>
 
     <script src="./js/main.js" defer></script>
     <script src="./js/certificates.js" defer></script>
-    <script src="./js/chat.js?v=1" defer></script>
+    <script src="./js/chat.js?v=2" defer></script>
 </body>
 
 </html>
