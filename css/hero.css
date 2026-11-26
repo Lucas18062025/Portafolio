@@ -29,7 +29,7 @@
        de la ventana y el contenido (1180px centrado), a ~42% de ese margen.
        A 1376px de ancho queda en 41px (3 cm del borde); a 2290px, en 233px.
        Nunca mas cerca de 20px del borde ni mas lejos de 230px. */
-    --robot-left: clamp(20px, calc(21vw - 163px), 230px);
+    --robot-left: clamp(20px, calc(21vw - 289px), 230px);
 }
 
 /* Background */
