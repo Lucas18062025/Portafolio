@@ -26,7 +26,7 @@ Detalle: `TOOLS.md` (herramientas), `SECURITY.md` (dominios), `TEST_PLAN.md` (pu
 - Preview: `npx serve .` (solo en preview)
 - Deploy: `.\deploy.ps1 -Message "feat: ..."` (pre-flight: guards T1–T3b + T4 + T9 + T11 + dry-run, **sin efectos** + commit firmado + push **de la rama**). **No despliega**: el deploy lo hace el CI al mergear el PR.
 - Diagnóstico: `npx --yes wrangler@4.136.3 deploy --dry-run`
-- Versión visible: editar `VERSION` y correr `node scripts/stamp-version.mjs` (estampa el footer en todas las páginas; T11 falla si hay drift).
+- Versión visible: editar `VERSION` y correr `node scripts/stamp-version.mjs` (estampa el footer en todas las páginas; T11 falla si hay drift). Política SemVer: `MINOR` para features visibles, `PATCH` para fixes/ajustes visibles, `MAJOR` para rediseño o cambio de dominio (no se bumpea en PRs solo de docs).
 - Prohibido: `wrangler deploy` manual (salvo fix documentado), `--force`, instalar deps sin aprobación.
 
 ## Git — flujo (único path a producción)

@@ -10,7 +10,7 @@
     align-items: center;
     overflow: hidden;
     isolation: isolate;
-    padding: 120px 20px 118px;
+    padding: 96px 20px 190px;
     box-sizing: border-box;
     background-color: #02040A;
 }
@@ -259,9 +259,9 @@
 /* ---------------------------------------------------------
    TRUST CREDENTIALS (first fold)
    --------------------------------------------------------- */
-/* Fila al ras del borde inferior del hero: comparte la linea de base con los
-   pies del robot (este tambien va en bottom: 0). Antes estaba en 32px y la fila
-   flotaba por encima del robot. Se mantiene en una sola linea en desktop. */
+/* Fila al ras del borde inferior del hero. El robot queda arriba (bottom: 60px)
+   y alineado a la izquierda del contenedor, en la banda libre entre los CTAs y
+   esta franja. Se mantiene en una sola linea en desktop. */
 .hero-trust {
     position: absolute;
     left: 50%;
