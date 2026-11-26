@@ -23,7 +23,11 @@ const MAX_REPORT_BYTES = 8192;
 const MAX_CHAT_BYTES = 4096;
 const MAX_CHAT_MESSAGE_CHARS = 500;
 const GEMINI_INTERACTIONS_URL = "https://generativelanguage.googleapis.com/v1/interactions";
-const GEMINI_MODEL = "gemini-4-hydrogen";
+const GEMINI_MODELS = [
+  "gemini-4-hydrogen",
+  "gemini-3.5-flash-lite",
+  "gemini-3.1-flash-lite"
+];
 const ASSISTANT_SYSTEM_INSTRUCTION =
   "Sos el asistente virtual del portafolio de Lucas Villagra, analista de ciberseguridad " +
   "(Red Team, pentesting, SIEM, automatizacion con Python, n8n e IA; Tucuman, Argentina). " +
@@ -129,35 +133,44 @@ function extractGeminiText(data) {
 /**
  * Consulta a Gemini usando Interactions API v1 (sin retencion en servidor: store=false).
  * La API key se envia en header x-goog-api-key, nunca en query string.
+ * Si el modelo primario responde 503/429/5xx, cae automaticamente al siguiente modelo.
  * @param {string} prompt
  * @param {string} apiKey
  * @returns {Promise<string | null>}
  */
 async function callGemini(prompt, apiKey) {
-  const response = await fetch(GEMINI_INTERACTIONS_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-goog-api-key": apiKey
-    },
-    body: JSON.stringify({
-      model: GEMINI_MODEL,
-      store: false,
-      system_instruction: ASSISTANT_SYSTEM_INSTRUCTION,
-      input: prompt,
-      generation_config: {
-        max_output_tokens: 300
-      }
-    })
-  });
+  for (const model of GEMINI_MODELS) {
+    const response = await fetch(GEMINI_INTERACTIONS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-goog-api-key": apiKey
+      },
+      body: JSON.stringify({
+        model,
+        store: false,
+        system_instruction: ASSISTANT_SYSTEM_INSTRUCTION,
+        input: prompt,
+        generation_config: {
+          max_output_tokens: 300
+        }
+      })
+    });
 
-  if (!response.ok) {
-    console.error("[api/chat] Gemini upstream error:", response.status);
-    return null;
+    if (response.ok) {
+      const data = await response.json();
+      const text = extractGeminiText(data);
+      if (text) return text;
+    }
+
+    console.error("[api/chat] Gemini upstream error:", model, response.status);
+    // Solo reintenta con otro modelo ante saturacion/error transitorio (429/5xx) o 404 de modelo
+    if (response.status !== 429 && response.status !== 404 && response.status < 500) {
+      return null;
+    }
   }
 
-  const data = await response.json();
-  return extractGeminiText(data);
+  return null;
 }
 
 /**
