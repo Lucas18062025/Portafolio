@@ -31,12 +31,15 @@ const GEMINI_MODELS = [
 const ASSISTANT_SYSTEM_INSTRUCTION =
   "Sos Portafolio AI, el asistente virtual del portafolio de Lucas Villagra, analista de ciberseguridad " +
   "(Red Team, pentesting, SIEM, automatizacion con Python, n8n e IA; Tucuman, Argentina). " +
-  "Cuenta con una seccion de Investigacion / Security Research en https://portafolio.lucaslean1806.workers.dev/blog/ " +
-  "y la publicacion Visual Field Notes (5 escenas de threat intel, reversing y automatizacion) en " +
+  "Enlaces oficiales del portafolio: Proyectos https://portafolio.lucaslean1806.workers.dev/#proyectos, " +
+  "Certificaciones https://portafolio.lucaslean1806.workers.dev/#certificaciones, " +
+  "Contacto https://portafolio.lucaslean1806.workers.dev/#contacto, " +
+  "Investigacion / Security Research https://portafolio.lucaslean1806.workers.dev/blog/ " +
+  "y Visual Field Notes (5 escenas de threat intel, reversing y automatizacion) " +
   "https://portafolio.lucaslean1806.workers.dev/blog/visual-field-notes/. " +
   "Responde en espanol (es-AR), de forma breve, clara y profesional (maximo 3 a 4 oraciones). " +
   "No inventes datos, clientes ni proyectos que no existan; si piden contacto directo, " +
-  "indica lucaslean1806@gmail.com o la seccion ./ Conectar (#contacto).";
+  "indica lucaslean1806@gmail.com o https://portafolio.lucaslean1806.workers.dev/#contacto.";
 
 /**
  * Helper de respuesta JSON sin cache para endpoints /api/*.
@@ -99,21 +102,23 @@ function matchDeterministicReply(rawMessage) {
   if (/\b(contacto|contactar|email|correo|mail|whatsapp|linkedin|hablar)\b/.test(msg)) {
     return (
       "Podés contactar a Lucas directamente por correo a lucaslean1806@gmail.com, " +
-      "o desde LinkedIn y WhatsApp en la sección ./ Conectar (#contacto) al pie de la página."
+      "o desde LinkedIn y WhatsApp en la sección ./ Conectar: https://portafolio.lucaslean1806.workers.dev/#contacto"
     );
   }
 
   if (/\b(proyecto|proyectos|labs|laboratorios|github|herramientas|repos)\b/.test(msg)) {
     return (
-      "En la sección ./ Proyectos (#projects) encontrás labs y herramientas reales de Lucas " +
-      "(auditoría de seguridad, SIEM, automatización con Python, n8n e IA), junto con sus repositorios en GitHub."
+      "En la sección ./ Proyectos encontrás labs y herramientas reales de Lucas " +
+      "(auditoría de seguridad, SIEM, automatización con Python, n8n e IA), junto con sus repositorios en GitHub:\n" +
+      "https://portafolio.lucaslean1806.workers.dev/#proyectos"
     );
   }
 
   if (/\b(cv|curriculum|certificacion|certificaciones|certificados|credenciales)\b/.test(msg)) {
     return (
       "Podés descargar el CV de Lucas desde el encabezado o revisar sus credenciales " +
-      "(Cisco Ethical Hacker, Google Cybersecurity y Google AI Essentials) en la sección ./ Certificaciones."
+      "(Cisco Ethical Hacker, Google Cybersecurity, Google AI Essentials y AWS Cloud Security) en:\n" +
+      "https://portafolio.lucaslean1806.workers.dev/#certificaciones"
     );
   }
 

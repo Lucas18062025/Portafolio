@@ -74,6 +74,7 @@
         }
     }
 
+    const PORTFOLIO_ORIGIN = 'https://portafolio.lucaslean1806.workers.dev';
     const PORTFOLIO_LINK_RE = /(https:\/\/portafolio\.lucaslean1806\.workers\.dev\/[^\s)]*)/g;
 
     function renderSafeMessage(container, text) {
@@ -81,15 +82,29 @@
         const parts = String(text).split(PORTFOLIO_LINK_RE);
         for (const part of parts) {
             if (!part) continue;
-            if (part.startsWith('https://portafolio.lucaslean1806.workers.dev/')) {
+            if (part.startsWith(PORTFOLIO_ORIGIN + '/')) {
                 const cleanUrl = part.replace(/[.,;:!?]+$/, '');
                 const trailing = part.slice(cleanUrl.length);
+                const pathPart = cleanUrl.slice(PORTFOLIO_ORIGIN.length);
                 const a = document.createElement('a');
                 a.className = 'chat-link';
-                a.href = cleanUrl;
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                a.textContent = cleanUrl.replace('https://portafolio.lucaslean1806.workers.dev', '');
+
+                if (pathPart.startsWith('/#')) {
+                    const hash = pathPart.slice(1);
+                    a.href = hash;
+                    a.textContent = hash;
+                    a.addEventListener('click', function onHashLinkClick() {
+                        if (window.innerWidth <= 480 && !widget.hidden) {
+                            closeChat();
+                        }
+                    });
+                } else {
+                    a.href = cleanUrl;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.textContent = pathPart;
+                }
+
                 container.appendChild(a);
                 if (trailing) {
                     container.appendChild(document.createTextNode(trailing));
