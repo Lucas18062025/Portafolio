@@ -125,6 +125,7 @@
     <link rel="stylesheet" href="./assets/vendor/fontawesome/css/fa-subset-33.css">
     <link rel="stylesheet" href="./css/hero.css?v=13">
     <link rel="stylesheet" href="./css/main.css?v=3">
+    <link rel="stylesheet" href="./css/chat.css?v=1">
 </head>
 
 <body>
@@ -1414,8 +1415,42 @@
 
     </div>
 
+    <!-- Asistente Virtual -->
+    <button type="button" id="chat-toggle" class="chat-toggle" aria-label="Abrir asistente virtual"
+        aria-expanded="false" aria-controls="chat-widget">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+
+    <section id="chat-widget" class="chat-widget" role="dialog" aria-label="Asistente virtual de Lucas Villagra" hidden>
+        <div class="chat-header">
+            <div class="chat-title-group">
+                <span class="chat-status-dot" aria-hidden="true"></span>
+                <h2 class="chat-title">./ Asistente</h2>
+            </div>
+            <button type="button" id="chat-close" class="chat-close" aria-label="Cerrar asistente">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+        <div class="chat-quick-actions" aria-label="Consultas rápidas">
+            <button type="button" class="chat-chip" data-prompt="Proyectos">Proyectos</button>
+            <button type="button" class="chat-chip" data-prompt="Certificaciones">Certificaciones</button>
+            <button type="button" class="chat-chip" data-prompt="Contacto">Contacto</button>
+        </div>
+        <form id="chat-form" class="chat-input-area">
+            <input type="text" id="chat-input" class="chat-input" maxlength="500" autocomplete="off"
+                placeholder="Escribí tu consulta..." aria-label="Mensaje para el asistente">
+            <button type="submit" id="chat-btn" class="chat-btn">Enviar</button>
+        </form>
+    </section>
+
     <script src="./js/main.js" defer></script>
     <script src="./js/certificates.js" defer></script>
+    <script src="./js/chat.js?v=1" defer></script>
 </body>
 
 </html>
