@@ -8,11 +8,12 @@
     const widget = document.getElementById('chat-widget');
     const closeBtn = document.getElementById('chat-close');
     const messagesBox = document.getElementById('chat-messages');
+    const threadDivider = document.getElementById('chat-thread-divider');
     const form = document.getElementById('chat-form');
     const input = document.getElementById('chat-input');
     const submitBtn = document.getElementById('chat-btn');
     const charCountEl = document.getElementById('chat-char-count');
-    const quickChips = document.querySelectorAll('.chat-chip');
+    const discoveryCards = document.querySelectorAll('.chat-card');
 
     if (!toggleBtn || !widget || !closeBtn || !messagesBox || !form || !input || !submitBtn) {
         return;
@@ -30,13 +31,17 @@
         const svg = document.createElementNS(SVG_NS, 'svg');
         svg.setAttribute('viewBox', '0 0 24 24');
 
-        const path = document.createElementNS(SVG_NS, 'path');
-        path.setAttribute(
-            'd',
-            'M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z'
-        );
+        const diamond = document.createElementNS(SVG_NS, 'polygon');
+        diamond.setAttribute('points', '12 3 21 12 12 21 3 12');
 
-        svg.appendChild(path);
+        const core = document.createElementNS(SVG_NS, 'circle');
+        core.setAttribute('cx', '12');
+        core.setAttribute('cy', '12');
+        core.setAttribute('r', '2.4');
+        core.setAttribute('class', 'ai-core-node');
+
+        svg.appendChild(diamond);
+        svg.appendChild(core);
         wrap.appendChild(svg);
         return wrap;
     }
@@ -51,7 +56,7 @@
 
         const label = document.createElement('span');
         label.className = 'chat-typing-label';
-        label.textContent = 'Procesando…';
+        label.textContent = 'Procesando consulta…';
 
         const frag = document.createDocumentFragment();
         frag.appendChild(container);
@@ -63,7 +68,15 @@
         messagesBox.scrollTop = messagesBox.scrollHeight;
     }
 
+    function ensureThreadDivider() {
+        if (threadDivider && threadDivider.hidden) {
+            threadDivider.hidden = false;
+        }
+    }
+
     function addMessageRow(text, role, extraClass) {
+        ensureThreadDivider();
+
         const row = document.createElement('div');
         row.className = 'chat-row ' + (role === 'user' ? 'chat-row-user' : 'chat-row-bot');
 
@@ -109,8 +122,8 @@
     function setBusyState(busy) {
         isSending = busy;
         input.disabled = busy;
-        quickChips.forEach(function toggleChip(chip) {
-            chip.disabled = busy;
+        discoveryCards.forEach(function toggleCard(card) {
+            card.disabled = busy;
         });
         updateInputControls();
     }
@@ -220,10 +233,12 @@
         }
     });
 
-    quickChips.forEach(function bindChip(chip) {
-        chip.addEventListener('click', function onChipClick() {
-            const prompt = chip.getAttribute('data-prompt') || chip.textContent || '';
-            sendMessage(prompt);
+    discoveryCards.forEach(function bindCard(card) {
+        card.addEventListener('click', function onCardClick() {
+            const prompt = card.getAttribute('data-prompt') || '';
+            if (prompt) {
+                sendMessage(prompt);
+            }
         });
     });
 

@@ -125,7 +125,7 @@
     <link rel="stylesheet" href="./assets/vendor/fontawesome/css/fa-subset-33.css">
     <link rel="stylesheet" href="./css/hero.css?v=18">
     <link rel="stylesheet" href="./css/main.css?v=3">
-    <link rel="stylesheet" href="./css/chat.css?v=3">
+    <link rel="stylesheet" href="./css/chat.css?v=4">
 </head>
 
 <body>
@@ -1414,34 +1414,45 @@
 
     </div>
 
-    <!-- Asistente Virtual -->
+    <!-- Frontier AI 2026 — Intelligent Portfolio Interface -->
     <button type="button" id="chat-toggle" class="chat-toggle" aria-label="Abrir Lucas AI Assistant"
         aria-expanded="false" aria-controls="chat-widget">
-        <svg class="chat-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z"></path>
-            <path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"></path>
-            <path d="M5 16l.7 1.6L7.3 18.3l-1.6.7L5 20.6l-.7-1.6-1.6-.7 1.6-.7L5 16z"></path>
-        </svg>
-        <span class="chat-toggle-status" aria-hidden="true"></span>
+        <span class="ai-core-mark" aria-hidden="true">
+            <svg class="ai-core-svg" viewBox="0 0 24 24">
+                <polygon points="12 2.5 21.5 12 12 21.5 2.5 12"></polygon>
+                <circle cx="12" cy="12" r="4.8"></circle>
+                <circle cx="12" cy="12" r="1.9" class="ai-core-node"></circle>
+            </svg>
+        </span>
+        <span class="chat-toggle-copy" aria-hidden="true">
+            <span class="chat-toggle-name">Lucas AI</span>
+            <span class="chat-toggle-meta">
+                <span class="chat-live-dot"></span>
+                <span>Interface</span>
+            </span>
+        </span>
     </button>
 
     <div id="chat-widget" class="chat-widget" role="dialog" aria-labelledby="chat-widget-title"
         aria-describedby="chat-widget-subtitle" hidden>
         <div class="chat-header">
             <div class="chat-header-brand">
-                <div class="chat-avatar" aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z"></path>
-                        <path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"></path>
+                <span class="ai-core-mark" aria-hidden="true">
+                    <svg class="ai-core-svg" viewBox="0 0 24 24">
+                        <polygon points="12 2.5 21.5 12 12 21.5 2.5 12"></polygon>
+                        <circle cx="12" cy="12" r="4.8"></circle>
+                        <circle cx="12" cy="12" r="1.9" class="ai-core-node"></circle>
                     </svg>
-                    <span class="chat-avatar-dot"></span>
-                </div>
+                </span>
                 <div class="chat-title-block">
                     <div class="chat-title-row">
                         <h2 id="chat-widget-title" class="chat-title">Lucas AI Assistant</h2>
-                        <span class="chat-status-pill">En línea</span>
+                        <span class="chat-status-indicator">
+                            <span class="chat-live-dot" aria-hidden="true"></span>
+                            <span>Online</span>
+                        </span>
                     </div>
-                    <p id="chat-widget-subtitle" class="chat-subtitle">Asistente virtual de Lucas Villagra</p>
+                    <p id="chat-widget-subtitle" class="chat-subtitle">Intelligent Portfolio Interface</p>
                 </div>
             </div>
             <button type="button" id="chat-close" class="chat-close" aria-label="Minimizar asistente">
@@ -1453,35 +1464,136 @@
 
         <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions">
             <div class="chat-welcome">
-                <p class="chat-welcome-heading">¡Hola! Soy el asistente virtual de Lucas.</p>
-                <p class="chat-welcome-copy">Estoy acá para ayudarte a conocer su experiencia, proyectos de
-                    ciberseguridad, habilidades y trayectoria profesional.</p>
-                <div class="chat-quick-actions" role="group" aria-label="Consultas rápidas">
-                    <button type="button" class="chat-chip"
-                        data-prompt="Contame sobre Lucas Villagra y su perfil profesional">Sobre Lucas</button>
-                    <button type="button" class="chat-chip" data-prompt="Proyectos">Proyectos</button>
-                    <button type="button" class="chat-chip"
-                        data-prompt="¿Cuál es la experiencia de Lucas en ciberseguridad?">Ciberseguridad</button>
-                    <button type="button" class="chat-chip" data-prompt="Certificaciones">Certificaciones</button>
-                    <button type="button" class="chat-chip" data-prompt="Contacto">Contacto</button>
+                <div class="chat-welcome-intro">
+                    <p class="chat-welcome-kicker">FRONTIER AI // SMART DISCOVERY</p>
+                    <p class="chat-welcome-heading">Hola, soy Lucas AI.</p>
+                    <p class="chat-welcome-copy">Tu punto de acceso inteligente para explorar la experiencia, los
+                        proyectos y las capacidades profesionales de Lucas Villagra.</p>
+                </div>
+
+                <div class="chat-discovery-grid" role="group" aria-label="Accesos rápidos de descubrimiento">
+                    <button type="button" class="chat-card"
+                        data-prompt="Contame sobre Lucas Villagra: su perfil profesional, experiencia y trayectoria.">
+                        <span class="chat-card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M5 20a7 7 0 0 1 14 0"></path>
+                            </svg>
+                        </span>
+                        <span class="chat-card-body">
+                            <span class="chat-card-top">
+                                <span class="chat-card-index">01</span>
+                                <span class="chat-card-title">Sobre Lucas</span>
+                            </span>
+                            <span class="chat-card-desc">Perfil profesional, experiencia y trayectoria</span>
+                        </span>
+                        <svg class="chat-card-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+
+                    <button type="button" class="chat-card" data-prompt="Proyectos">
+                        <span class="chat-card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <polygon points="12 3 21 8 12 13 3 8"></polygon>
+                                <polyline points="3 13 12 18 21 13"></polyline>
+                                <polyline points="3 17 12 22 21 17"></polyline>
+                            </svg>
+                        </span>
+                        <span class="chat-card-body">
+                            <span class="chat-card-top">
+                                <span class="chat-card-index">02</span>
+                                <span class="chat-card-title">Proyectos</span>
+                            </span>
+                            <span class="chat-card-desc">Portfolio tecnológico, desarrollo y automatización</span>
+                        </span>
+                        <svg class="chat-card-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+
+                    <button type="button" class="chat-card"
+                        data-prompt="¿Cuál es la experiencia de Lucas en ciberseguridad, Ethical Hacking, Red Team, Blue Team y SIEM?">
+                        <span class="chat-card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z"></path>
+                                <path d="M9.5 12l1.8 1.8L15 10"></path>
+                            </svg>
+                        </span>
+                        <span class="chat-card-body">
+                            <span class="chat-card-top">
+                                <span class="chat-card-index">03</span>
+                                <span class="chat-card-title">Ciberseguridad</span>
+                            </span>
+                            <span class="chat-card-desc">Ethical Hacking, Red/Blue Team, SIEM y vulnerabilidades</span>
+                        </span>
+                        <svg class="chat-card-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+
+                    <button type="button" class="chat-card" data-prompt="Certificaciones">
+                        <span class="chat-card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="9" r="5"></circle>
+                                <path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5"></path>
+                            </svg>
+                        </span>
+                        <span class="chat-card-body">
+                            <span class="chat-card-top">
+                                <span class="chat-card-index">04</span>
+                                <span class="chat-card-title">Certificaciones</span>
+                            </span>
+                            <span class="chat-card-desc">Formación, certificaciones y conocimientos técnicos</span>
+                        </span>
+                        <svg class="chat-card-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+
+                    <button type="button" class="chat-card" data-prompt="Contacto">
+                        <span class="chat-card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                                <polyline points="4 7 12 13 20 7"></polyline>
+                            </svg>
+                        </span>
+                        <span class="chat-card-body">
+                            <span class="chat-card-top">
+                                <span class="chat-card-index">05</span>
+                                <span class="chat-card-title">Contacto</span>
+                            </span>
+                            <span class="chat-card-desc">Canales de contacto, LinkedIn y oportunidades</span>
+                        </span>
+                        <svg class="chat-card-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
+
+            <div id="chat-thread-divider" class="chat-thread-divider" hidden>Conversación</div>
         </div>
 
         <form id="chat-form" class="chat-composer">
             <div class="chat-input-box">
                 <textarea id="chat-input" class="chat-input" rows="1" maxlength="500" autocomplete="off"
-                    placeholder="Preguntá sobre proyectos, ciberseguridad o contacto..."
-                    aria-label="Mensaje para el asistente"></textarea>
+                    placeholder="Consultá sobre experiencia, ciberseguridad o proyectos..."
+                    aria-label="Mensaje para Lucas AI Assistant"></textarea>
                 <button type="submit" id="chat-btn" class="chat-btn" aria-label="Enviar mensaje" disabled>
                     <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M22 2L11 13"></path>
-                        <path d="M22 2l-7 20-4-9-9-4 20-7z"></path>
+                        <path d="M12 19V5"></path>
+                        <path d="M6 11l6-6 6 6"></path>
                     </svg>
                 </button>
             </div>
             <div class="chat-composer-meta">
-                <span class="chat-composer-hint">Enter enviar · Shift+Enter salto de línea</span>
+                <span class="chat-composer-hint">Enter enviar · Shift+Enter nueva línea</span>
                 <span id="chat-char-count" class="chat-char-count" hidden></span>
             </div>
         </form>
@@ -1489,7 +1601,7 @@
 
     <script src="./js/main.js" defer></script>
     <script src="./js/certificates.js" defer></script>
-    <script src="./js/chat.js?v=2" defer></script>
+    <script src="./js/chat.js?v=3" defer></script>
 </body>
 
 </html>
