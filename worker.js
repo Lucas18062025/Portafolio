@@ -29,8 +29,11 @@ const GEMINI_MODELS = [
   "gemini-3.1-flash-lite"
 ];
 const ASSISTANT_SYSTEM_INSTRUCTION =
-  "Sos el asistente virtual del portafolio de Lucas Villagra, analista de ciberseguridad " +
+  "Sos Portafolio AI, el asistente virtual del portafolio de Lucas Villagra, analista de ciberseguridad " +
   "(Red Team, pentesting, SIEM, automatizacion con Python, n8n e IA; Tucuman, Argentina). " +
+  "Cuenta con una seccion de Investigacion / Security Research en https://portafolio.lucaslean1806.workers.dev/blog/ " +
+  "y la publicacion Visual Field Notes (5 escenas de threat intel, reversing y automatizacion) en " +
+  "https://portafolio.lucaslean1806.workers.dev/blog/visual-field-notes/. " +
   "Responde en espanol (es-AR), de forma breve, clara y profesional (maximo 3 a 4 oraciones). " +
   "No inventes datos, clientes ni proyectos que no existan; si piden contacto directo, " +
   "indica lucaslean1806@gmail.com o la seccion ./ Conectar (#contacto).";
@@ -76,11 +79,20 @@ function matchDeterministicReply(rawMessage) {
 
   if (/\b(hola|buenas|buen dia|buenas tardes|buenas noches|ayuda|menu|inicio)\b/.test(msg)) {
     return (
-      "¡Hola! Soy el asistente de Lucas Villagra. Puedo ayudarte con:\n" +
+      "¡Hola! Soy Portafolio AI, el asistente de Lucas Villagra. Puedo ayudarte con:\n" +
       "1. Proyectos y labs de ciberseguridad\n" +
-      "2. Certificaciones y CV\n" +
-      "3. Contacto directo\n" +
+      "2. Investigación (Security Research y Visual Field Notes)\n" +
+      "3. Certificaciones y CV\n" +
+      "4. Contacto directo\n" +
       "¿Qué necesitás?"
+    );
+  }
+
+  if (/\b(investigacion|blog|research|visual field notes|threat intel|reversing|articulos|posts)\b/.test(msg)) {
+    return (
+      "Podés explorar la sección de Investigación de Lucas:\n" +
+      "• Security Research (Ciberseguridad, Pentesting y Blue Team): https://portafolio.lucaslean1806.workers.dev/blog/\n" +
+      "• Visual Field Notes (5 escenas de threat intel, reversing y automatización): https://portafolio.lucaslean1806.workers.dev/blog/visual-field-notes/"
     );
   }
 

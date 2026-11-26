@@ -610,6 +610,24 @@
     color: #f4d2da;
 }
 
+.chat-link {
+    color: var(--ai-cyan);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+}
+
+.chat-link:hover {
+    color: var(--ai-ink);
+}
+
+.chat-link:focus-visible {
+    outline: 2px solid var(--ai-cyan);
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
 .chat-msg-pending {
     display: inline-flex;
     align-items: center;
