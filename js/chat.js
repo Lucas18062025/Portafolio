@@ -74,6 +74,32 @@
         }
     }
 
+    const PORTFOLIO_LINK_RE = /(https:\/\/portafolio\.lucaslean1806\.workers\.dev\/[^\s)]*)/g;
+
+    function renderSafeMessage(container, text) {
+        container.textContent = '';
+        const parts = String(text).split(PORTFOLIO_LINK_RE);
+        for (const part of parts) {
+            if (!part) continue;
+            if (part.startsWith('https://portafolio.lucaslean1806.workers.dev/')) {
+                const cleanUrl = part.replace(/[.,;:!?]+$/, '');
+                const trailing = part.slice(cleanUrl.length);
+                const a = document.createElement('a');
+                a.className = 'chat-link';
+                a.href = cleanUrl;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.textContent = cleanUrl.replace('https://portafolio.lucaslean1806.workers.dev', '');
+                container.appendChild(a);
+                if (trailing) {
+                    container.appendChild(document.createTextNode(trailing));
+                }
+            } else {
+                container.appendChild(document.createTextNode(part));
+            }
+        }
+    }
+
     function addMessageRow(text, role, extraClass) {
         ensureThreadDivider();
 
@@ -92,8 +118,10 @@
 
         if (extraClass === 'chat-msg-pending') {
             bubble.appendChild(createTypingIndicator());
-        } else {
+        } else if (role === 'user') {
             bubble.textContent = text; // Proteccion XSS: solo textContent
+        } else {
+            renderSafeMessage(bubble, text);
         }
 
         row.appendChild(bubble);
@@ -194,7 +222,7 @@
 
             pendingBubble.classList.remove('chat-msg-pending');
             if (data && typeof data.reply === 'string' && data.reply.trim()) {
-                pendingBubble.textContent = data.reply;
+                renderSafeMessage(pendingBubble, data.reply);
                 if (!response.ok) {
                     pendingBubble.classList.add('chat-msg-error');
                 }
